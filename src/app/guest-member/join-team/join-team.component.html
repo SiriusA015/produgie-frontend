@@ -1,0 +1,69 @@
+<div class="tableCardStyling">
+  <div
+    class="flex items-center flex-shrink-0 text-white mr-6 cursor-pointer title-div"
+  >
+    <div width="80"><img src="/assets/images/logo.svg" /></div>
+  </div>
+
+  <div
+    class="w-screen h-screen flex justify-center items-center"
+    *ngIf="loading"
+  >
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div
+    class="w-screen h-screen flex justify-center items-center"
+    *ngIf="!loading && !(error || apiError) && !apiSuccess"
+  >
+    <div class="bg-white w-1/5 rounded-md shadow-md p-4 fontStyle">
+      <div class="col-md-12 col-lg-10 p-0">
+        <p class="title">
+          By agreeing to join the Team you are giving permission to include your
+          data (Anonymously) in the Team Reports.
+        </p>
+        <div class="flex flex-row justify-evenly items-center mt-16">
+          <button
+            class="btn btn-primary btn-rounded waves-effect"
+            type="button"
+            (click)="joinTeam($event)"
+            value="Accepted"
+          >
+            Accept
+          </button>
+          <button
+            class="btn btn-primary btn-rounded waves-effect declineBtn"
+            (click)="joinTeam($event)"
+            type="button"
+            value="Declined"
+          >
+            Decline
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="w-screen h-screen flex justify-center items-center"
+    *ngIf="(error || apiError) && !loading"
+  >
+    <div class="bg-white w-1/5 rounded-md shadow-md p-4">
+      <p class="font-semibold text-4xl">Something went wrong</p>
+      <div class="text-xl py-4">
+        <span>Error: </span><span>{{ error || apiError }}</span>
+      </div>
+    </div>
+  </div>
+  <div
+    class="w-screen h-screen flex justify-center items-center"
+    *ngIf="apiSuccess && !loading"
+  >
+    <div class="bg-white w-1/5 rounded-md shadow-md p-4">
+      <!-- <p class="font-semibold text-4xl">Success</p> -->
+      <div class="text-xl py-4">
+        <span>{{ apiSuccess }}</span>
+      </div>
+    </div>
+  </div>
+</div>

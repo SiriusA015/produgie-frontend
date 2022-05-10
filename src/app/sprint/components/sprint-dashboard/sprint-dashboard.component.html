@@ -1,0 +1,463 @@
+<div class="fixed left-0 w-full h-screen flex justify-center items-center bg-white" style="z-index: 999"
+  *ngIf="loadCounter > 0">
+  <div class="loader"></div>
+</div>
+
+<div *ngIf="isdesignEditcheck == false && showdash == false && sprintData?.length > 0" class="notify"> Please design your
+  Sprint First</div>
+
+<div *ngIf="isdesignEditcheck == true && showdash == false && sprintData?.length > 0" class="notify">Please share your
+  sprint first.</div>
+
+<!-- <div *ngIf="showdash"> -->
+<div *ngIf="isdesignEditcheck == true && showdash == true && sprintData?.length >0">
+  <div class="h-full well well-lg" *ngIf="loadCounter === 0" style="background-color: #f3f8ff;">
+    <div style="
+    margin-inline: auto;
+      background-color: #f3f8ff;
+      padding: 2rem 1rem 6rem 1rem;
+      max-width: 960px;
+      width: 100%;
+    " class="well well-lg">
+      <div class="px-4 py-4 flex flex-row"
+        style="align-items: flex-end; display: block; text-align: right;">
+        <mat-form-field appearance="none" class="custom-mat-select" floatLabel="never">
+          <!-- <mat-label class="text-color">Manage sprint</mat-label> -->
+          <mat-select placeholder="Manage Sprint" (selectionChange)="selectName($event)">
+            <mat-option *ngFor="let sprint of ManageSprintTypes" [value]="sprint.displayName" [disabled]="
+              (sprint.displayName === 'Cancel' && userSprint?.isFinished === true) ||
+              (sprint.displayName === 'Extend 2 weeks' && (userSprint?.isFinished === true || userSprint?.isExtended === true))
+            ">
+              {{ sprint?.displayName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="loadCounter > 0">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>
+      <div class="bg-white m-2 rounded-md shadow-md p-4 card-radius feedback-cards">
+        <div class="flex items-center">
+          <span class="text-xs text-heading font-weight-bold font-semibold py-1">Start Date :</span>
+          <span class="text-font text-font-weight">{{
+            data?.userSprint?.datetimeFrom | date: "mediumDate"
+            }}</span>
+        </div>
+        <div class="flex items-center">
+          <span class="text-xs text-heading font-weight-bold font-semibold py-1">End Date :</span>
+          <span class="text-font text-font-weight">{{
+            data?.userSprint?.datetimeTo | date
+            }}</span>
+        </div>
+        <div class="flex items-center">
+          <span class="text-xs text-heading font-weight-bold font-semibold py-1">Sprint Duration :</span>
+          <span class="text-font text-font-weight">{{ data?.userSprint?.duration }}
+            {{ data?.userSprint?.duration == 1 ? "Week" : "Weeks" }}</span>
+        </div>
+        <div class="flex items-center">
+          <span class="text-xs text-heading font-weight-bold font-semibold py-1">Feedback Frequency :</span>
+          <span class="text-font text-font-weight">{{ data?.userSprint?.frequency }}
+            {{ data?.userSprint?.frequency == 1 ? "day" : "days" }}</span>
+        </div>
+      </div>
+
+      <div class="flex-col bg-white m-2 rounded-md shadow-md px-4 py-4 card-radius tab-margin-top">
+        <!-- <h2 class="text-lg font-bold text-heading">{{ data?.sprint?.label }}
+        <label class="pg-tooltip items-center align-items-center ml-2 focus:outline-none">
+          <mat-icon role="img" fontset="material-icons-outlined"
+            class="mat-icon notranslate text-gray-500 mat-icon-22 material-icons-outlined mat-icon-no-color info-possition"
+            aria-hidden="true">info</mat-icon>
+          <input type="checkbox" />
+          <div class="font-light text-xs z-20 color-black">{{ data?.sprint?.description }}</div>
+        </label>
+      </h2>
+      <p class="text-sm text-gray-700 py-1 des-text">
+        {{ data?.sprint?.description }}
+      </p> -->
+        <div class="w-full flex items-center justify-between py-1 mb-2">
+          <h2 class="text-lg font-bold text-heading d-flex items-center" style="width: 65%;">
+            {{ data?.sprint?.label }}
+            <label class="pg-tooltip items-center align-items-center ml-2 mb-0 focus:outline-none">
+              <mat-icon role="img" fontset="material-icons-outlined"
+                class="mat-icon notranslate text-gray-500 mat-icon-22 material-icons-outlined mat-icon-no-color info-possition"
+                aria-hidden="true">info</mat-icon>
+              <input type="checkbox" />
+              <div class="font-light text-xs z-20 color-black">
+                {{ data?.userSprint?.description }}
+              </div>
+            </label>
+          </h2>
+          <button class="items-center px-4 py-1 button-color text-white font-sm rounded">
+            <span class="font-weight-bold btn-font">Sprint {{ data?.sprintNo }}</span>
+          </button>
+        </div>
+        <p class="text-sm text-gray-700 py-1 des-text">
+          {{ data?.sprint?.description }}
+        </p>
+
+        <!-- ------- status meter ------- -->
+        <!-- <div class="w-full flex items-center justify-between py-1 mt-2">
+        <div class="flex-row items-center" style="flex: auto;">
+          <span class="mr-2 text-xs font-regular text-heading">Status :</span>
+          <br />
+          <div class="progress margin-progress" style="height: 3em;">
+            <div class="progress-bar progress-bar bg-success progress-style" role="progressbar" aria-valuenow="25"
+              aria-valuemin="0" aria-valuemax="100">
+              In Progress
+            </div>
+          </div>
+        </div>
+      </div> -->
+        <!-- ---------------------------- -->
+      </div>
+
+      <!-- Actions -->
+
+      <!-- carousal-start -->
+      <div class="font-bold slider-font" style="padding: 0.5em">Actions</div>
+      <div id="demo" class="carousel slide" data-interval="false" data-ride="carousel">
+        <!-- Indicators -->
+        <ul class="carousel-indicators" *ngIf="allaction.length > 1">
+          <li data-target="#demo" data-slide-to="0" class="active"></li>
+          <li data-target="#demo" data-slide-to="1"></li>
+          <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <!-- <img src="assets/images/flower.jpg" alt="Los Angeles" width="1100" height="500"> -->
+            <div class="card">
+              <div class="card-body" alt="First slide">
+                <div *ngIf="allaction?.length == 0" class="div-text">
+                  No data found
+                </div>
+                <!-- <div class="m-2 rounded-md overflow-hidden shadow-md bg-white pl-4 py-4" style="padding-right: 1.5rem!important;"> -->
+                <h5 class="card-title" *ngIf="allaction?.length > 0">
+                  <div class="flex flex-row justify-between w-full">
+                    <div class="flex flex-row items-center">
+                      <span class="mr-2 text-center flex items-center justify-center">
+                        <!-- TODO: Change this icon as required -->
+                        <!-- <mat-icon svgIcon="gift" style="color: #57a5ee" class="pg-txt-green" aria-hidden="false">
+                      </mat-icon> -->
+                        <img src="../../../../assets/images/sprint-icon.svg" class="icon-img" />
+                      </span>
+                      <span class="font-bold label-font">{{
+                        allaction[0]?.label
+                        }}</span>
+                    </div>
+                    <mat-icon class="align-middle" style="color: #57a5ee" (click)="openBottomDialog('action')">
+                      bar_chart
+                    </mat-icon>
+                  </div>
+                </h5>
+                <!-- </div> -->
+                <p class="card-text text-font-des">
+                  {{ allaction[0]?.description }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item" *ngFor="let data of filteredActionArray">
+            <!-- <img src="assets/images/flower.jpg" alt="Los Angeles" width="1100" height="500"> -->
+            <div class="card">
+              <div class="card-body" alt="First slide">
+                <!-- <div class="m-2 rounded-md overflow-hidden shadow-md bg-white pl-4 py-4" style="padding-right: 1.5rem!important;"> -->
+                <h5 class="card-title" *ngIf="filteredActionArray?.length > 0">
+                  <div class="flex flex-row justify-between w-full">
+                    <div class="flex flex-row items-center">
+                      <span class="mr-2 text-center flex items-center justify-center">
+                        <!-- TODO: Change this icon as required -->
+                        <!-- <mat-icon svgIcon="gift" style="color: #57a5ee" class="pg-txt-green" aria-hidden="false">
+                      </mat-icon> -->
+                        <img src="../../../../assets/images/sprint-icon.svg" class="icon-img" />
+                      </span>
+                      <span class="font-bold label-font">{{ data?.label }}</span>
+                    </div>
+                    <mat-icon class="align-middle" style="color: #57a5ee" (click)="openBottomDialog('action')">
+                      bar_chart
+                    </mat-icon>
+                  </div>
+                </h5>
+                <!-- </div> -->
+                <p class="card-text text-font-des">{{ data?.description }}</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev" *ngIf="allaction.length > 1">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next" *ngIf="allaction.length > 1">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+      </div>
+      <div class="font-bold tab-margin-top slider-font" style="padding: 0.5em">
+        Behaviours
+      </div>
+      <div id="demo1" class="carousel slide" data-interval="false" data-ride="carousel">
+        <!-- Indicators -->
+        <ul class="carousel-indicators" *ngIf="allbehavior.length > 1">
+          <li data-target="#demo1" data-slide-to="0" class="active"></li>
+          <li data-target="#demo1" data-slide-to="1"></li>
+          <li data-target="#demo1" data-slide-to="2"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="card">
+              <div class="card-body" alt="First slide">
+                <div *ngIf="allbehavior?.length == 0" class="div-text">
+                  No data found
+                </div>
+                <h5 class="card-title" *ngIf="allbehavior?.length > 0">
+                  <div class="flex flex-row justify-between w-full">
+                    <div class="flex flex-row items-center">
+                      <span class="mr-2 text-center flex items-center justify-center">
+                        <!-- TODO: Change this icon as required -->
+                        <img src="../../../../assets/images/sprint-icon.svg" class="icon-img" />
+                      </span>
+                      <span class="font-bold label-font">{{
+                        allbehavior[0]?.label
+                        }}</span>
+                    </div>
+                    <mat-icon class="align-middle" style="color: #57a5ee" (click)="openBottomDialog('behaviour')">
+                      bar_chart
+                    </mat-icon>
+                  </div>
+                </h5>
+                <!-- </div> -->
+                <p class="card-text text-font-des">
+                  {{ allbehavior[0]?.description }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item" *ngFor="let data of filteredBehaviourArray">
+            <div class="card">
+              <div class="card-body" alt="First slide">
+                <h5 class="card-title" *ngIf="filteredBehaviourArray?.length > 0">
+                  <div class="flex flex-row justify-between w-full">
+                    <div class="flex flex-row items-center">
+                      <span class="mr-2 text-center flex items-center justify-center">
+                        <!-- TODO: Change this icon as required -->
+                        <img src="../../../../assets/images/sprint-icon.svg" class="icon-img" />
+                      </span>
+                      <span class="font-bold label-font">{{ data?.label }}</span>
+                    </div>
+                    <mat-icon class="align-middle" style="color: #57a5ee" (click)="openBottomDialog('behaviour')">
+                      bar_chart
+                    </mat-icon>
+                  </div>
+                </h5>
+                <!-- </div> -->
+                <p class="card-text text-font-des">{{ data?.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo1" data-slide="prev" *ngIf="allbehavior.length > 1">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo1" data-slide="next" *ngIf="allbehavior.length > 1">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+      </div>
+
+      <!-- carousal-start -->
+      <div class="font-bold tab-margin-top slider-font" style="padding: 0.5em">
+        Outcomes
+      </div>
+      <div id="demo2" class="carousel slide" data-interval="false" data-ride="carousel">
+        <!-- Indicators -->
+        <ul class="carousel-indicators" *ngIf="alloutcome.length > 1">
+          <li data-target="#demo2" data-slide-to="0" class="active"></li>
+          <li data-target="#demo2" data-slide-to="1"></li>
+          <li data-target="#demo2" data-slide-to="2"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="card">
+              <div class="card-body" alt="First slide">
+                <div *ngIf="alloutcome?.length == 0" class="div-text">
+                  No data found
+                </div>
+                <h5 class="card-title" *ngIf="alloutcome?.length > 0">
+                  <div class="flex flex-row justify-between w-full">
+                    <div class="flex flex-row items-center">
+                      <span class="mr-2 text-center flex items-center justify-center">
+                        <!-- TODO: Change this icon as required -->
+                        <img src="../../../../assets/images/sprint-icon.svg" class="icon-img" />
+                      </span>
+                      <span class="font-bold label-font">{{
+                        alloutcome[0]?.label
+                        }}</span>
+                    </div>
+                    <mat-icon class="align-middle" style="color: #57a5ee" (click)="openBottomDialog('outcome')">
+                      bar_chart
+                    </mat-icon>
+                  </div>
+                </h5>
+                <!-- </div> -->
+                <p class="card-text text-font-des">
+                  {{ alloutcome[0]?.description }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item" *ngFor="let data of filteredOutcomeArray">
+            <div class="card">
+              <div class="card-body" alt="First slide">
+                <h5 class="card-title" *ngIf="filteredOutcomeArray?.length > 0">
+                  <div class="flex flex-row justify-between w-full">
+                    <div class="flex flex-row items-center">
+                      <span class="mr-2 text-center flex items-center justify-center">
+                        <!-- TODO: Change this icon as required -->
+                        <img src="../../../../assets/images/sprint-icon.svg" class="icon-img" />
+                      </span>
+                      <span class="font-bold label-font">{{ data?.label }}</span>
+                    </div>
+                    <mat-icon class="align-middle" style="color: #57a5ee" (click)="openBottomDialog('outcome')">
+                      bar_chart
+                    </mat-icon>
+                  </div>
+                </h5>
+                <!-- </div> -->
+                <p class="card-text text-font-des">{{ data?.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo2" data-slide="prev" *ngIf="alloutcome.length > 1">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo2" data-slide="next" *ngIf="alloutcome.length > 1">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+      </div>
+
+      <!-- carousal-end -->
+      <!-- Outcomes -->
+      <div class="font-bold tab-margin-top slider-font" style="padding: 0.5em">
+        Sprint Crew
+      </div>
+      <div class="m-2 rounded-md overflow-hidden shadow-md bg-white p-4">
+        <div class="display-div w-full">
+          <img src="{{crew.imageUrl}}" (error)="onImgError($event,crew.avatar)"
+            style="border-radius: 2px; width: 38px; height: 38px" />
+          <div class="user-text">
+            <span class="font-weight-bold mb-2">{{ crew.name | titlecase }}</span>
+            <span class="d-block designation">{{ crew.role |titlecase }}</span>
+          </div>
+        </div>
+        <div class="border-bottom my-6 d-block w-full"></div>
+        <ng-container *ngIf="data?.crew.length > 0">
+          <div class="" *ngFor="let cr of data?.crew">
+            <div class="display-div w-full">
+              <img src="{{cr.imageUrl ? imageBaseUrl+cr.imageUrl : '/assets/avatars/'+cr.avatar+'.svg' }}"
+                (error)="onImgError($event,cr.avatar)" style="border-radius: 2px; width: 38px; height: 38px" />
+              <div class="user-text">
+                <span class="font-weight-bold mb-2">{{
+                  cr?.name | titlecase
+                  }}</span>
+                <span class="d-block designation">{{ getRole(cr) | titlecase}}</span>
+              </div>
+            </div>
+            <div class="border-bottom my-6 d-block w-full"></div>
+          </div>
+        </ng-container>
+
+      </div>
+
+      <!-- tabs section -->
+      <div class="tab-margin-top">
+        <mat-tab-group class="remove-border-bottom">
+          <mat-tab label="Advice">
+            <div class="m-2 rounded-md overflow-hidden shadow-md bg-white p-4 tab-margin-top">
+              <div *ngIf="advice.length > 0">
+                <div class="display-div w-full d-block" *ngFor="let data of advice">
+                  <div class="d-flex w-full mb-2">
+                    <img src="{{data.imageUrl ? imageBaseUrl+data.imageUrl : '/assets/avatars/'+data.avatar+'.svg' }}"
+                      (error)="onImgError($event,data.avatar)" style="border-radius: 2px; width: 38px; height: 38px" />
+                    <div class="user-text">
+                      <span class="font-weight-bold">{{ data.name }}</span>
+                      <span class="designation">{{ data.role }}</span>
+                    </div>
+                  </div>
+                  <p class="content">
+                    {{ data.text }}
+                  </p>
+
+                  <div class="border-bottom my-8"></div>
+                </div>
+              </div>
+              <div *ngIf="advice?.length == 0" class="div-text">
+                <h3 class="no-data-text">No data found</h3>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="Feedback">
+            <div class="m-2 rounded-md overflow-hidden shadow-md bg-white pl-4 py-4 padding-right-card tab-margin-top">
+              <div *ngIf="feedback.length > 0">
+                <div *ngFor="let data of feedback">
+                  <div class="display-div w-full justify-between">
+                    <p class="content pr-2">
+                      {{ data.text }}
+                    </p>
+                    <span class="time-text-color designation">4h</span>
+                  </div>
+
+                  <div class="border-bottom my-8"></div>
+                </div>
+              </div>
+              <div *ngIf="feedback?.length == 0" class="div-text">
+                <h3 class="no-data-text">No data found</h3>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="Sprint Crew Engagement">
+            <div class="m-2 rounded-md overflow-hidden shadow-md bg-white pl-4 py-4 padding-right-card tab-margin-top"
+              *ngIf="enlistGraph?.length == 0">
+              <h3 class="text-xl font-bold margin-bottom-text enlist-text">
+                Sprint Crew Engagement
+              </h3>
+              <div style="display: block" class="div-text">
+                <h2 class="no-data-text">No data found</h2>
+              </div>
+            </div>
+            <div class="m-2 rounded-md overflow-hidden shadow-md bg-white pl-4 py-4 padding-right-card tab-margin-top"
+              *ngIf="enlistGraph.length > 0">
+              <h3 class="text-xl font-bold margin-bottom-text">
+                Sprint Crew Engagement
+              </h3>
+              <div style="display: block">
+                <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels"
+                  [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                  [chartType]="lineChartType" [plugins]="lineChartPlugins">
+                </canvas>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+    <!-- </div> -->
+  </div>
+  <div class="bg-transparent fixed top-0 left-0 h-screen w-screen" style="z-index: 10000" *ngIf="sprintPortfolio">
+    <app-design-sprint-overlay></app-design-sprint-overlay>
+  </div>
+</div>
+<div *ngIf="isdesignEditcheck == false && showdash == false && sprintData?.length == 0" class="notify">You do not have an
+  active sprint.</div>
+
+<app-mat-svg-icon></app-mat-svg-icon>

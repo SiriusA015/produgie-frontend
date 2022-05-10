@@ -1,0 +1,121 @@
+<div #wrapper id="wrapper" (window:resize)="onResize()">
+  <div class="w-full pg-snapshot-graph h-full relative">
+    <div>
+      <div id="Change-1" class="absolute" *ngIf="hideInnovator" (click)="openDetailsDialog('Innovator')">
+        Innovator
+        <div class="badge-div" [matBadge]="innovatorRank" [matBadgeHidden]="!rankChecked" matBadgePosition="before"
+          matBadgeColor="accent"> </div>
+        <div class="d-flex profile-intro-style" *ngIf="!teamMemberChecked">
+          <div class="sub-profile-intro-style" *ngFor="let item of userProfileInnovator">
+            <img src='/assets/avatars/{{item}}.svg' />
+            <!-- <mat-icon svgIcon="Profile" class="mat-icon-28" aria-hidden="false">
+            </mat-icon> -->
+          </div>
+        </div>
+        <div class="d-flex profile-intro-style" *ngIf="teamMemberChecked">
+          <div class="sub-profile-intro-style" *ngFor="let item of TeamProfileInnovator">
+            <img src='/assets/avatars/{{item}}.svg' />
+            <!-- <mat-icon svgIcon="Profile" class="mat-icon-28" aria-hidden="false">
+            </mat-icon> -->
+          </div>
+        </div>
+      </div>
+
+      <div id="Change-2" class="absolute" *ngIf="hideEntrepreneur" (click)="openDetailsDialog('Entrepreneur')">
+        Entrepreneur
+        <div class="badge-div" [matBadge]="entrepreneurRank" [matBadgeHidden]="!rankChecked" matBadgePosition="before"
+          matBadgeColor="accent"> </div>
+        <div class="d-flex profile-entre-style" *ngIf="!teamMemberChecked">
+          <div class="sub-profile-entre-style" *ngFor="let item of userProfileEntrepreneurial">
+            <img src='/assets/avatars/{{item}}.svg' />
+          </div>
+        </div>
+        <div class="d-flex profile-entre-style" *ngIf="teamMemberChecked">
+          <div class="sub-profile-entre-style" *ngFor="let item of TeamProfileEntrepreneurial">
+            <img src='/assets/avatars/{{item}}.svg' />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+
+      <div id="Execute-1" class="absolute" *ngIf="hideResults" (click)="openDetailsDialog('Results')">
+        Results
+        <div class="badge-div" [matBadge]="resultRank" [matBadgeHidden]="!rankChecked" matBadgePosition="before"
+          matBadgeColor="accent"> </div>
+        <div class="d-flex profile-res-style" *ngIf="!teamMemberChecked">
+          <div class="sub-profile-res-style" *ngFor="let item of userProfileresult">
+            <img src='/assets/avatars/{{item}}.svg' />
+
+          </div>
+        </div>
+        <div class="d-flex profile-res-style" *ngIf="teamMemberChecked">
+          <div class="sub-profile-res-style" *ngFor="let item of TeamProfileresult">
+            <img src='/assets/avatars/{{item}}.svg' />
+
+          </div>
+        </div>
+      </div>
+
+      <div id="Execute-2" class="absolute" *ngIf=" hideStructured" (click)="openDetailsDialog('Structured')">
+        Structured
+        <div class="badge-div" [matBadge]="structuredRank" [matBadgeHidden]="!rankChecked" matBadgePosition="before"
+          matBadgeColor="accent"> </div>
+        <div class="profile-struct-style" *ngIf="!teamMemberChecked">
+          <div class="sub-profile-struct-style" *ngFor="let item of userProfileStructured">
+            <img src='/assets/avatars/{{item}}.svg' />
+
+          </div>
+        </div>
+        <div class="profile-struct-style" *ngIf="teamMemberChecked">
+          <div class="sub-profile-struct-style" *ngFor="let item of TeamProfileStructured">          
+            <img src='/assets/avatars/{{item}}.svg'/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div id="Connect-1" class="absolute" *ngIf=" hideRelationship" (click)="openDetailsDialog('Relationship')">
+        Relationship
+        <div class="badge-div" [matBadge]="relationshipRank" [matBadgeHidden]="!rankChecked" matBadgePosition="before"
+          matBadgeColor="accent"> </div>
+        <div class="d-flex profile-rel-style" *ngIf="!teamMemberChecked">
+          <div class="sub-profile-rel-style" *ngFor="let item of userProfileRelationship">
+            <img src='/assets/avatars/{{item}}.svg' />
+
+          </div>
+        </div>
+        <div class="d-flex profile-rel-style" *ngIf="teamMemberChecked">
+          <div class="sub-profile-rel-style" *ngFor="let item of TeamProfileRelationship">
+            <img src='/assets/avatars/{{item}}.svg' />
+
+          </div>
+        </div>
+      </div>
+
+      <div id="Connect-2" class="absolute" *ngIf="hideExternal" (click)="openDetailsDialog('External')">
+        External
+        <div class="badge-div" [matBadge]="externalRank" [matBadgeHidden]="!rankChecked" matBadgePosition="before"
+          matBadgeColor="accent"> </div>
+        <div class="profile-style d-flex" *ngIf="!teamMemberChecked">
+          <div class="sub-profile-style" *ngFor="let item of userProfileExternal">
+            <img src='/assets/avatars/{{item}}.svg' />
+
+          </div>
+        </div>
+        <div class="profile-style d-flex" *ngIf="teamMemberChecked">
+          <div class="sub-profile-style" *ngFor="let item of TeamProfileExternal">
+            <img src='/assets/avatars/{{item}}.svg' />
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="circle-text-1" class="absolute">Change</div>
+    <div id="circle-text-2" class="absolute">Execute</div>
+    <div id="circle-text-3" class="absolute">Connect</div>
+  </div>
+
+</div>

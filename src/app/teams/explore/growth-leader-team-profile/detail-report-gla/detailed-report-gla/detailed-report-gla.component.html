@@ -1,0 +1,174 @@
+<div class="" >
+    <div class="page-break"></div>
+   <!--  <div *ngIf="index==0 || index==3 || index==6" class="flex flex-row justify-center items-center">
+      <span class="weight-bold font-semibold ml-4 font22"> {{ capabilityType }}</span>
+    </div> -->
+
+    <div class="p-4 mt-10 content-block">
+      <div class="flex flex-row justify-start items-center" >
+        <span class="text-3xl font-semibold ml-4 font20">
+          {{capabilityName}}
+        </span>
+      </div>
+    </div>
+    <hr />
+    <div class="content-block" >
+    <!--   <div class="p-4">
+        <span class="text-xs text-left pg-description-text font18" style="color: #8E9AAE;">description here</span>
+      </div> -->
+      <div class="px-4 pt-4" *ngIf="style?.length > 0 && (styleSubDimensionsArr?.length > 0 || styleSubscalesArr?.length > 0)">
+        <span class="pg-txt-blue-bright font-bold text-base font16">Style</span>
+      </div>
+      <div *ngFor="let lh of style;let i=index">
+        <div class="p-4 flex flex-row">
+          <div class="w-1/3 flex flex-col justify-start">
+            <div class="flex justify-center mb-6">
+              <button class="pg-lh-text px-4 py-1 pg-lh-button text-xs font-semibold rounded-md focus:outline-none">
+                Low
+              </button>
+            </div>
+            <div class="flex justify-start">
+              <span class="text-xs text-center font14">{{lh?.lowText}}</span>
+            </div>
+          </div>
+          <div class="w-1/3 flex flex-col mt-4 ml-1 mr-1">
+            <span class="pg-txt-blue-bright font-semibold text-xs text-center mb-2 font14"
+              >{{lh?.dimension_name}}</span>
+            <div class="flex flex-row justify-evenly">
+              <div *ngFor="let sc of score" class="pg-blue-dot mx-1" [ngClass]="{'pg-bg-blue-light': lh.dimension_score < sc, 'pg-bg-blue-dark': lh.dimension_score >= sc}"></div>
+            </div>
+          </div>
+          <div class="w-1/3 flex flex-col justify-start">
+            <div class="flex justify-center mb-6">
+              <button
+                class="pg-lh-button px-4 py-1 pg-lh-text text-xs font-semibold rounded-md focus:outline-none">
+                High
+              </button>
+            </div>
+            <div class="flex justify-end">
+              <span class="text-xs text-center font14"
+                >{{lh?.highText}}</span>
+            </div>
+          </div>
+        </div>
+        <ng-container *ngIf="i===0">
+          <div class="p-4" *ngIf="lh.sub_dimensions.length > 0">
+            <span class="pg-text-not-black font-semibold text-sm font18"
+              >The team scores indicate that the team:</span>
+          </div>
+        </ng-container>        
+        <div class="p-4 flex flex-col border-b border-dashed border-gray-400 mb-4" *ngIf="lh.sub_dimensions.length > 0">
+          <div class="flex justify-start items-start" *ngFor="let subData of lh?.sub_dimensions">
+            <mat-icon class="text-gray-500 mat-icon-18">play_arrow</mat-icon>
+            <span class="text-xs ml-2 font14">{{subData.text}}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- START style for Manage complexity -->
+      <ng-container *ngIf="capabilityName == 'Manage Complexity' && styleSubscalesArr?.length > 0">
+        <div class="flex flex-col w-full mx-4 my-4">
+          <span class="text-sm font-semibold pg-text-not-black ml-2 font-bold text-base">Subscales</span>
+          <p class="pg-text-not-black font-12-heading ml-2">These scores and the text descriptions describe whether your team is on target, too fast or too slow or is mixed in speed compared to next level teams.</p>
+        </div>
+        <div class="border-b border-dashed border-gray-300"> 
+          <div *ngIf="lh?.sub_dimension_name != 'Paced Decisions'">
+               <div class="flex flex-row items-center mx-4 mb-4" *ngFor="let sd of strategy[0]?.sub_dimensions">
+                   <button class="pg-lh-text px-4 py-1 pg-lh-button text-xs font-semibold rounded-md focus:outline-none min-w-160">
+                       {{ sd?.sub_dimension_name }}
+                   </button>
+                   <div class="flex flex-row justify-evenly ml-2">
+                       <div *ngFor="let sc of score" class="pg-blue-dot mx-1" [ngClass]="{'pg-bg-blue-light': sd.score < sc,'pg-bg-blue-dark': sd.score >= sc}"></div>
+                   </div>
+               </div>
+          </div>
+        </div>
+        <div class="p-4" *ngIf="lh?.text?.length > 0">
+        <span class="pg-text-not-black font-semibold text-sm font18"
+          >The team scores indicate that the team:</span>
+        </div>
+        <div class="p-4 flex flex-col border-b border-dashed border-gray-400 mb-4" *ngIf="lh?.text?.length > 0">
+          <div class="flex justify-start items-start" *ngFor="let stext of lh?.text">
+            <mat-icon class="text-gray-500 mat-icon-18">play_arrow</mat-icon>
+            <span class="text-xs ml-2 font14">{{stext}}</span>
+          </div>
+        </div>
+      </ng-container>
+      <!-- END style for Manage complexity -->
+
+
+      <div class="px-4 pt-4"  *ngIf="strategy.length > 0 && (strategy[0]?.sub_dimensions?.length > 0 || strategySubscalesArr?.length > 0)" >
+        <span class="pg-txt-blue-bright font-bold text-base font16">Strategy</span>
+      </div>   
+      <div *ngFor="let lh of strategy; let i = index">
+        <div class="p-4 flex flex-row">
+            <div class="w-1/3 flex flex-col justify-start">
+              <div class="flex justify-center mb-6">
+                <button class="pg-lh-text px-4 py-1 pg-lh-button text-xs font-semibold rounded-md focus:outline-none">Low </button>
+              </div>
+              <div class="flex justify-start"><span class="text-xs text-center font14">{{lh?.lowText}}</span>
+              </div>
+            </div>
+            <div class="w-1/3 flex flex-col mt-4 ml-1 mr-1">
+              <span class="pg-txt-blue-bright font-semibold text-xs text-center mb-2 font14"
+                >{{lh?.dimension_name}}</span>
+              <div class="flex flex-row justify-evenly">
+                <div *ngFor="let sc of score" class="pg-blue-dot mx-1" [ngClass]="{'pg-bg-blue-light': lh.dimension_score < sc, 'pg-bg-blue-dark': lh.dimension_score >= sc}"></div>
+              </div>
+            </div>
+            <div class="w-1/3 flex flex-col justify-start">
+              <div class="flex justify-center mb-6">
+                <button class="pg-lh-button px-4 py-1 pg-lh-text text-xs font-semibold rounded-md focus:outline-none">
+                  High
+                </button>
+              </div>
+              <div class="flex justify-end">
+                <span class="text-xs text-center font14"
+                  >{{lh?.highText}}</span>
+              </div>
+            </div>
+        </div>        
+        <ng-container *ngIf="i === 0">
+          <div class="p-4" *ngIf="lh.sub_dimensions.length > 0">
+            <span class="pg-text-not-black font-semibold text-sm font18">The team scores indicate that the team:</span>
+          </div>
+        </ng-container>        
+        <div class="p-4 flex flex-col border-gray-400 mb-2"  *ngIf="lh.sub_dimensions.length > 0">
+          <div class="flex justify-start items-start" *ngFor="let subData of lh.sub_dimensions">
+            <mat-icon class="text-gray-500 mat-icon-18">play_arrow</mat-icon>
+            <span class="text-xs ml-2 font14">{{subData.text}}</span>
+          </div>
+        </div>
+      </div>
+      
+       <!-- STAR Strategies for Manage complexity  -->
+       <ng-container *ngIf="capabilityName == 'Manage Complexity' && strategySubscalesArr?.length > 0">
+         <div class="flex flex-col w-full mx-4 my-4">
+            <span class="text-sm font-semibold pg-text-not-black ml-2 font-bold text-base">Subscales</span>
+            <p class="pg-text-not-black font-12-heading ml-2">These scores and the text descriptions describe whether your team is on target, too fast or too slow or is mixed in speed compared to next level teams.</p>
+         </div>
+         <div class="border-b border-dashed border-gray-300"> 
+            <div *ngIf="lh?.sub_dimension_name != 'Paced Decisions'">
+                 <div class="flex flex-row items-center mx-4 mb-4" *ngFor="let sd of strategySubscalesArr">
+                     <button class="pg-lh-text px-4 py-1 pg-lh-button text-xs font-semibold rounded-md focus:outline-none min-w-160">
+                         {{ sd?.sub_dimension_name }}
+                     </button>
+                     <div class="flex flex-row justify-evenly ml-2">
+                         <div *ngFor="let sc of score" class="pg-blue-dot mx-1" [ngClass]="{'pg-bg-blue-light': sd.score < sc,'pg-bg-blue-dark': sd.score >= sc}"></div>
+                     </div>
+                 </div>
+            </div>
+          </div>
+          <div class="p-4" *ngIf="lh?.text?.length > 0">
+            <span class="pg-text-not-black font-semibold text-sm font18">The team scores indicate that the team:</span>
+          </div>
+          <div class="p-4 flex flex-col border-gray-400 mb-2" *ngIf="lh?.text?.length > 0">
+            <div class="flex justify-start items-start" *ngFor="let stext of lh?.text">
+              <mat-icon class="text-gray-500 mat-icon-18">play_arrow</mat-icon>
+              <span class="text-xs ml-2 font14">{{stext}}</span>
+            </div>
+          </div>
+        </ng-container>
+       <!-- END Strategies for Manage complexity  -->
+    </div>
+  </div>

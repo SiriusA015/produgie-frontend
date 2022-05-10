@@ -1,0 +1,37 @@
+.rounded{
+    border-radius: 1.5rem;
+     background-color: #fff;
+  }
+  
+  .ds{
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .pg-info{
+    background-color: #f3f8ff;
+    border-radius: 2rem;
+  }
+  
+  // .btn{
+  //   background-color: transparent !important;
+  //   border: none;
+  //   }
+    
+  .allow{
+    cursor: pointer !important;
+    background-color:#278ce9;
+  }
+  .not-allow{
+    cursor: not-allowed !important;
+    background-color:#8e9aae;
+  }
+ .pg-box-preview:first-child{
+  background: rgba(149, 100, 230, 0.13);
+ }
+ .pg-box-preview:nth-child(2){
+  background: rgba(58, 223, 144, 0.21);
+ }
+ .pg-box-preview:last-child{
+  background: #EBF2FB;;
+ }

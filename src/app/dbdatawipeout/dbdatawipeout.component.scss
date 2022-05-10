@@ -1,0 +1,39 @@
+.heading-1 {
+  display        : flex;
+  justify-content: center;
+}
+
+.wipeout {
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  flex-direction : column;
+  height         : calc(100vh - 100px);
+
+  button {
+    margin : 0 20px;
+    padding: 1.2rem 2rem;
+    border : 0;
+  }
+
+  .example-button-row {
+    button {
+      background: #3f51b5;
+    }
+  }
+
+  .mat-card {
+    margin: 20px 0;
+
+    .mat-card-actions {
+      margin       : 0;
+      margin-bottom: 20px;
+    }
+  }
+
+  .heading-2 {
+    display        : flex;
+    justify-content: center;
+  }
+
+}

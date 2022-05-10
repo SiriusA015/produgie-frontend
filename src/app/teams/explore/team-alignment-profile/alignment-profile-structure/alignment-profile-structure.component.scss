@@ -1,0 +1,64 @@
+.pg-snapshot-graph {
+    background-image: url("/assets/images/alignment-profile.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  
+  #wrapper {
+    min-width: 590px;
+    padding: 5rem;
+    margin-top: -100px;
+  }
+
+
+  ::ng-deep.action.mat-badge-medium.mat-badge-above .mat-badge-content {
+    top: 35%;
+    border-radius: 22% !important;
+  }
+  
+ 
+  
+  .profile-img {
+    border: 10px solid white;
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    background-color: #e2e8f0;
+  }
+  
+  #circle-text-1 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    top: 15%;
+    left: 25%;
+    cursor: pointer;
+
+  }
+  
+  #circle-text-2 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    top: 35%;
+    left: 38%;
+    cursor: pointer;
+  }
+  
+  #circle-text-3 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    top: 55%;
+    left: 38%;
+    cursor: pointer;
+  }
+  #circle-text-4 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    top: 78%;
+    left: 23%;
+    cursor: pointer;
+  }
+
+  
+
+  

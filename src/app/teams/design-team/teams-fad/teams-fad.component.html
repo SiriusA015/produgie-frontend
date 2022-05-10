@@ -1,0 +1,327 @@
+<div class="flex w-full flex-row h-full relative">
+  <div class="bg-white left-nav">
+      <app-teams-left-nav></app-teams-left-nav>
+  </div>
+  <div class="pg-info">
+      <label class="pg-tooltip-left flex flex-row items-center ml-2">
+          <mat-icon class="text-gray-500 mat-icon-18" fontSet="material-icons-outlined">info</mat-icon>
+          <input type="checkbox" />
+          <div class="font-light text-xs">
+              Mouse over the sidebar to track your progress in creating your sprint
+          </div>
+      </label>
+  </div>
+  <div class="pg-container pg">
+      <div class="pg__inner">
+          <div class="flex flex-row items-center">
+              <span class="Select-3-Priorities-for-your-Development heading-1">Select 3 Priorities for Team Development</span>
+              <label class="pg-tooltip flex flex-row items-center ml-2">
+                  <!-- <mat-icon style="width: 20%;" svgIcon="info" class="text-gray-200" aria-hidden="false"></mat-icon> -->
+                  <input type="checkbox" />
+                  <div class="font-light text-xs">
+                      Select 3 development priorities for your development. Choose from the Recommended list that is based on your Growth Leader Assessment results and job challenges or from the other capabilities.
+                  </div>
+              </label>
+          </div>
+          <span class="heading-4">
+              Tap on the cards to pick your top 3 priorities for your Sprints
+          </span>
+
+          <div class="w-100">
+              <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="bg-white mat">
+                        <div class="flex flex-row justify-between items-center text-xs font-semibold">
+                            <div>
+                                <span class="heading-2">Capabilities</span>
+                            </div>
+                        </div>
+                        <ng-container *ngIf="!showData">
+                            <ng-container *ngFor="let capability of capabilitiesData; let i = index">
+                                <div 
+                                class="cursor-pointer overflow-hidden fad-preview border"
+                                (click)="selectedData(capability.id,i,capability.unique_key)"
+                                [ngClass]="{ 'border-2 pg-border-green-bright pg-selected':
+                                modifiedArray?.includes(capability.unique_key),
+                                'pg-border-b-none': modifiedArray?.includes
+                                    (capability.unique_key) }"
+                              >
+                                <div class="relative flex flex-row justify-between items-center">
+                                    <div class="flex flex-row items-center">
+                                        <div class="flex items-center">
+                                            <mat-icon [svgIcon]="capability.icon" class="mat-icon-28 pg-txt-blue-bright" aria-hidden="false"> </mat-icon>
+                                            <span class="heading-5">{{ capability.capabilityName }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-row items-center justify-between">
+                                        <mat-icon class="align-middle mat-icon-18 text-blue-400 mr-6"
+                                            (click)="
+                                            openDetailsDialog(capability);
+                                            $event.stopPropagation()">
+                                            bar_chart
+                                        </mat-icon>
+                                    </div>
+                                </div>
+                                <div class="flex flex-row justify-between items-center">
+                                    <span class="text-base">
+                                        {{ capability.description }}
+                                    </span>
+                                </div>
+                            </div>
+                            </ng-container>
+                        </ng-container>
+                      <ng-container *ngIf="showData">
+                        <ng-container *ngFor="let capability of capabilities; let i = index" >
+                            <div 
+                            class="cursor-pointer overflow-hidden fad-preview border"
+                            (click)="selectedData(capability.id,i,capability.unique_key)"
+                            [ngClass]="{ 'border-2 pg-border-green-bright pg-selected':
+                            modifiedArray?.includes(capability.unique_key),
+                            'pg-border-b-none': modifiedArray?.includes
+                                (capability.unique_key) }"
+                          >
+                            <div class="relative flex flex-row justify-between items-center">
+                                <div class="flex flex-row items-center">
+                                    <div class="flex items-center">
+                                        <mat-icon [svgIcon]="capability.icon" class="mat-icon-28 pg-txt-blue-bright" aria-hidden="false"> </mat-icon>
+                                        <span class="heading-5">{{ capability.capabilityName }}</span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-row items-center justify-between">
+                                    <mat-icon class="align-middle mat-icon-18 text-blue-400 mr-6"
+                                        (click)="
+                                        openDetailsDialog(capability);
+                                        $event.stopPropagation()">
+                                        bar_chart
+                                    </mat-icon>
+                                </div>
+                            </div>
+                            <div class="flex flex-row justify-between items-center">
+                                <span class="text-base">
+                                    {{ capability.description }}
+                                </span>
+                            </div>
+                        </div>
+                        </ng-container>
+                      </ng-container>
+                        
+                        <div class="w-full view-all-button flex justify-center" *ngIf="!showData">
+                            <button mat-stroked-button class="btn btn-white"(click)="showMoreData()">
+                              <b>Show Others</b>
+                            </button>
+                          </div>
+                          <div class="w-full view-all-button flex justify-center" *ngIf="showData">
+                            <button mat-stroked-button class="btn btn-white"(click)="showMoreData()">
+                              <b>Show Recommended</b>
+                            </button>
+                          </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <div class="bg-white mat">
+                        <div class="flex flex-row justify-between items-center text-xs font-semibold">
+                            <div>
+                                <span class="heading-2">Roles</span>
+                            </div>
+                        </div>
+                        <ng-container *ngIf="!toggleRole">
+                            <ng-container *ngIf="roles.length > 0">
+                                <div *ngFor="let role of roles; let i = index"
+                                    class="cursor-pointer overflow-hidden fad-preview border" (click)="selectedData(role.id,i,role.unique_key)"
+                                    [ngClass]="{ 'border-2 pg-border-green-bright pg-selected':
+                                    modifiedArray?.includes(role.unique_key),
+                                    'pg-border-b-none': modifiedArray?.includes
+                                        (role.unique_key) }">
+                                    <div class="relative flex flex-row justify-between items-center">
+                                        <div class="flex flex-row items-center">
+                                            <div class="flex items-center">
+                                                <!-- <mat-icon [svgIcon]="capability.capability.icon" class="mat-icon-28 pg-txt-blue-bright" aria-hidden="false"> </mat-icon> -->
+                                                <span class="heading-5">{{ role.roleName }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row items-center justify-between">
+                                            <mat-icon class="align-middle mat-icon-18 text-blue-400 mr-6"
+                                                (click)="
+                                                openDetailsDialog(role);
+                                                $event.stopPropagation()">
+                                                bar_chart
+                                            </mat-icon>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-row justify-between items-center">
+                                        <span class="text-base">
+                                            {{ role.description }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </ng-container>                            
+                            <ng-container *ngIf="roles.length <= 0">
+                                <p>No recommended roles available</p>
+                            </ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="toggleRole">
+                            <div *ngFor="let role of roleOthers; let i = index"
+                                class="cursor-pointer overflow-hidden fad-preview border" (click)="selectedData(role.id,i,role.unique_key)"
+                                [ngClass]="{ 'border-2 pg-border-green-bright pg-selected':
+                                modifiedArray?.includes(role.unique_key),
+                                'pg-border-b-none': modifiedArray?.includes
+                                    (role.unique_key) }">
+                                <div class="relative flex flex-row justify-between items-center">
+                                    <div class="flex flex-row items-center">
+                                        <div class="flex items-center">
+                                            <!-- <mat-icon [svgIcon]="capability.capability.icon" class="mat-icon-28 pg-txt-blue-bright" aria-hidden="false"> </mat-icon> -->
+                                            <span class="heading-5">{{ role.roleName }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-row items-center justify-between">
+                                        <mat-icon class="align-middle mat-icon-18 text-blue-400 mr-6"
+                                            (click)="
+                                            openDetailsDialog(role);
+                                            $event.stopPropagation()">
+                                            bar_chart
+                                        </mat-icon>
+                                    </div>
+                                </div>
+                                <div class="flex flex-row justify-between items-center">
+                                    <span class="text-base">
+                                        {{ role.description }}
+                                    </span>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <div class="w-full view-all-button flex justify-center" *ngIf="!toggleRole">
+                            <button mat-stroked-button class="btn btn-white"(click)="toggleRoles()">
+                              <b>Show Others</b>
+                            </button>
+                        </div>
+                        <div class="w-full view-all-button flex justify-center" *ngIf="toggleRole">
+                            <button mat-stroked-button class="btn btn-white"(click)="toggleRoles()">
+                                <b>Show Recommended</b>
+                            </button>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-lg-4">
+                    <div class="bg-white mat">
+                        <div class="flex flex-row justify-between items-center text-xs font-semibold">
+                            <div class="flex flex-row">
+                                <span class="heading-2">Alignment Areas
+                                   
+                                </span>
+                                <!-- <ng-container *ngIf="alignments.length == 0">
+                                    <label
+                                    class="pg-tooltip flex flex-row items-center label-text"
+                                  >
+                                    <mat-icon class="pg-txt-blue-bright" aria-hidden="false">info</mat-icon>
+                                    <input type="checkbox" />
+                                    <div class="font-light text-xs text-label">
+                                        System is unable to generate selections until Alignment Report is created
+                                    </div>
+                                  </label>
+                                </ng-container> -->
+                               
+                            </div>
+                        </div>                        
+                        <ng-container *ngIf="!toggleAlignment">
+                            <ng-container *ngIf="alignments.length > 0">
+                                <div *ngFor="let alignment of alignments; let i = index"
+                                    class="cursor-pointer overflow-hidden fad-preview border"
+                                    (click)="selectedData(alignment.id,i,alignment.unique_key)"
+                                    [ngClass]="{ 'border-2 pg-border-green-bright pg-selected':
+                                    modifiedArray?.includes(alignment.unique_key),
+                                    'pg-border-b-none': modifiedArray?.includes
+                                        (alignment.unique_key) }">
+                                    <div class="relative flex flex-row justify-between items-center">
+                                        <div class="flex flex-row items-center">
+                                            <div class="flex items-center">
+                                                <!-- <mat-icon [svgIcon]="capability.capability.icon" class="mat-icon-28 pg-txt-blue-bright" aria-hidden="false"> </mat-icon> -->
+                                                <span class="heading-5">{{ alignment.scale }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row items-center justify-between">
+                                            <mat-icon class="align-middle mat-icon-18 text-blue-400 mr-6"
+                                            (click)="
+                                            openDetailsDialog(alignment);
+                                            $event.stopPropagation()"  >
+                                                bar_chart
+                                            </mat-icon>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-row justify-between items-center">
+                                        <span class="text-base">
+                                            {{alignment.description }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="alignments.length <= 0">
+                                <p>No recommended alignment areas available</p>
+                            </ng-container>                            
+                        </ng-container>
+                        <ng-container *ngIf="toggleAlignment">
+                            <div *ngFor="let alignment of alignmentsOthers; let i = index"
+                                class="cursor-pointer overflow-hidden fad-preview border"
+                                (click)="selectedData(alignment.id,i,alignment.unique_key)"
+                                [ngClass]="{ 'border-2 pg-border-green-bright pg-selected':
+                                modifiedArray?.includes(alignment.unique_key),
+                                'pg-border-b-none': modifiedArray?.includes
+                                    (alignment.unique_key) }">
+                                <div class="relative flex flex-row justify-between items-center">
+                                    <div class="flex flex-row items-center">
+                                        <div class="flex items-center">
+                                            <!-- <mat-icon [svgIcon]="capability.capability.icon" class="mat-icon-28 pg-txt-blue-bright" aria-hidden="false"> </mat-icon> -->
+                                            <span class="heading-5">{{ alignment.scale }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-row items-center justify-between">
+                                        <mat-icon class="align-middle mat-icon-18 text-blue-400 mr-6"
+                                        (click)="
+                                        openDetailsDialog(alignment);
+                                        $event.stopPropagation()"  >
+                                            bar_chart
+                                        </mat-icon>
+                                    </div>
+                                </div>
+                                <div class="flex flex-row justify-between items-center">
+                                    <span class="text-base">
+                                        {{alignment.description }}
+                                    </span>
+                                </div>
+                            </div>
+                        </ng-container>                            
+                        <div class="w-full view-all-button flex justify-center" *ngIf="!toggleAlignment">
+                            <button mat-stroked-button class="btn btn-white"(click)="toggleAlignments()">
+                                <b>Show Others</b>
+                            </button>
+                        </div>
+                        <div class="w-full view-all-button flex justify-center" *ngIf="toggleAlignment">
+                            <button mat-stroked-button class="btn btn-white"(click)="toggleAlignments()">
+                                <b>Show Recommended</b>
+                            </button>
+                        </div>                       
+                    </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="flex flex-row justify-end mt-5">
+              <div class="flex flex-row items-center">
+                  <div class="flex flex-row items-center justify-center">
+                      <label class="pg-tooltip flex flex-row items-center ml-2 focus:outline-none">
+                          <input type="checkbox" />
+                          <div *ngIf="selectedValue.length < 3" class="font-light text-xs"><span class="heading-5">Please select 3 focus areas for development</span></div>
+                          <button
+                              class="btn next-btn"
+                              [ngClass]="{'allow': selectedValue?.length >= 3,'cursor-not-allowed': selectedValue?.length < 3}"
+                              (click)="storeFad()"
+                          >
+                              Next
+                          </button>
+                      </label>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<app-mat-svg-icon></app-mat-svg-icon>

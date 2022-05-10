@@ -1,0 +1,266 @@
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+}
+
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+.slider.round {
+	border-radius: 34px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ff0000;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+	text-align: end;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+}
+
+input:checked + .slider {
+	background-color: #3aa76d;
+	text-align: start;
+}
+
+input:focus + .slider {
+	box-shadow: 0 0 1px #3aa76d;
+}
+
+input:checked + .slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+.slider-disabled.round {
+	border-radius: 34px;
+}
+
+.slider-disabled.round:before {
+	border-radius: 50%;
+}
+.slider-disabled {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: gray;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+	text-align: end;
+}
+
+.slider-disabled:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+}
+
+input:checked + .slider-disabled {
+	background-color: gray;
+	text-align: start;
+}
+
+input:focus + .slider-disabled {
+	box-shadow: 0 0 1px gray;
+}
+
+input:checked + .slider-disabled:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+.pg-stakeholder-image-bg {
+	background-color: #1e88e5;
+}
+
+// .pg{
+//     background-color: #f3f8ff;
+//     margin: 2rem;
+//     border-radius: 15px;
+//     margin-top: 2rem;
+//     margin-left: 125px;
+//     padding: 2rem;
+// }
+.rounded {
+	margin-bottom: 2rem;
+	border-radius: 15px;
+}
+// .pd{
+//   padding-left: 30px;
+//   margin: 2px;
+// }
+
+// .mr{
+//   margin-right: -30px;
+// }
+.selected-btn {
+	background-color: #1f88e5;
+	padding: 1rem 1.5rem;
+}
+
+.unselected-btn {
+	background-color: #8e9aae;
+	padding: 1rem 1.5rem;
+}
+
+.back-prp {
+	background-color: #fff;
+	border-radius: 1rem !important;
+}
+
+.p-5 {
+	margin-left: 0.5rem !important;
+}
+// .input-box{
+//   border: 2px solid whitesmoke;
+//   line-height: 3rem;
+//   padding: 0.6rem;
+// }
+// .mr-top{
+//   margin-top: -32px;
+// }
+
+// hr {
+//   border: 0;
+//   clear:both;
+//   display:block;
+//   width: 100%;
+//   background-color: #000;
+//   height: 1px;
+// }
+
+.toggle-font {
+	font-size: 12px;
+}
+.viewing-right {
+	.pg {
+		margin-left: 0px;
+		width: 70%;
+		max-width: 70%;
+		margin: 0 auto;
+		margin-top: 5rem;
+	}
+}
+@media screen and (min-width: 768px) and (max-width: 1108px) {
+	.word-wrap {
+		word-break: break-all;
+	}
+	.width-toggle {
+		width: 18% !important;
+	}
+	.width-name {
+		width: 21% !important;
+	}
+	.width-email-box {
+		width: 23% !important;
+	}
+	.width-role-box {
+		width: 14% !important;
+	}
+	.width-switch-box {
+		width: 13% !important;
+	}
+	.width-last-box {
+		width: 21% !important;
+	}
+}
+@media screen and (min-width: 576px) and (max-width: 767px) {
+	.word-wrap {
+		word-break: break-all;
+	}
+	.width-toggle {
+		width: 18% !important;
+	}
+	.width-name {
+		width: 21% !important;
+	}
+	.width-email-box {
+		width: 23% !important;
+	}
+	.width-role-box {
+		width: 14% !important;
+	}
+	.width-switch-box {
+		width: 18% !important;
+	}
+	.width-last-box {
+		width: 18% !important;
+	}
+}
+@media screen and (min-width: 320px) and (max-width: 575px) {
+	.word-wrap {
+		word-break: break-all;
+	}
+	.width-toggle {
+		width: 18% !important;
+	}
+}
+
+.input-box {
+	border: 1px solid #8e9aae !important;
+	padding: 1.5rem;
+	border-radius: 3px;
+	font-size: 1.4rem;
+	font-weight: 400;
+}
+.input-box.mat-select {
+	padding: 1.2rem;
+}
+
+.mb-15 {
+	margin-bottom: 15px;
+}
+.btn {
+	display: flex;
+	align-items: center;
+}
+@media screen and (max-width: 1199px) {
+	.viewing-right {
+		width: 86%;
+		max-width: 86%;
+		margin-inline: auto;
+	}
+}
+// @media screen and (max-width: 991px) {
+// 	.viewing-right {
+// 		width: 100%;
+// 		max-width: 100%;
+// 	}
+// }
+
+.width-email-box {
+	word-break: break-all;
+}

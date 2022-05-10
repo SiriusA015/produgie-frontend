@@ -1,0 +1,10 @@
+<svg id="Icons_Radio_Button_On" data-name="Icons / Radio / Button On" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Color" d="M10,20A10,10,0,1,1,20,10,10.011,10.011,0,0,1,10,20ZM10,2a8,8,0,1,0,8,8A8.009,8.009,0,0,0,10,2Zm0,13a5,5,0,1,1,5-5A5.006,5.006,0,0,1,10,15Zm0-8a3,3,0,1,0,3,3A3,3,0,0,0,10,7Z" transform="translate(0)"/>
+    </clipPath>
+  </defs>
+  <g id="Group_112" data-name="Group 112">
+    <path id="Color-2" data-name="Color" d="M10,20A10,10,0,1,1,20,10,10.011,10.011,0,0,1,10,20ZM10,2a8,8,0,1,0,8,8A8.009,8.009,0,0,0,10,2Zm0,13a5,5,0,1,1,5-5A5.006,5.006,0,0,1,10,15Zm0-8a3,3,0,1,0,3,3A3,3,0,0,0,10,7Z"/>
+  </g>
+</svg>

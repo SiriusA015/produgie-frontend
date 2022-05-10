@@ -1,0 +1,405 @@
+<div class="flex md:w-full flex-row h-full relative viewing-right">
+  <!-- <div class="pg-sidebar">
+    <app-dash-left-nav></app-dash-left-nav>
+  </div> -->
+  <div class="pg-container pg">
+    <div class="pg__inner">
+      <div class="flex flex-col h-full mr-top">
+        <div class="flex justify-between align-center space-x-100 mb-4">
+          <div class="flex">
+            <span class="heading-1">General Viewing Rights</span>
+          </div>
+        </div>
+        <!-- <div class="flex flex-col shadow"> -->
+        <div *ngIf="lsaData.length > 0" class="flex flex-col shadow back-prp mat">
+          <div class="flex w-full justify-between items-center border-form">
+            <div class="flex w-full mb-15">
+              <div class="font-bold focus:border-none heading-5 width-name" style="width: 25%">
+                Name
+              </div>
+              <div class="font-bold focus:border-none heading-5" style="width: 30%">
+                Email
+              </div>
+              <div class="font-bold focus:border-none heading-5" style="width: 15%">
+                Role
+              </div>
+
+              <div class="font-semibold flex flex-row items-center" style="width: 15%">
+                <span class="text-lg font-bold heading-5">Plan</span>
+                <label class="pg-tooltip flex flex-row items-center ml-2">
+                  <div class="font-light text-xs">Plan description.</div>
+                </label>
+              </div>
+              <div class="font-semibold flex flex-row items-center" style="width: 15%">
+                <span class="text-lg font-semibold heading-5">Portfolio</span>
+                <label class="pg-tooltip flex flex-row items-center ml-2">
+                  <div class="font-light text-xs">Portfolio description.</div>
+                </label>
+              </div>
+              <div class="font-semibold flex flex-row items-center" style="width: 15%">
+                <span class="text-lg font-semibold heading-5">Report</span>
+                <label class="pg-tooltip flex flex-row items-center ml-2">
+                  <div class="font-light text-xs">Report description.</div>
+                </label>
+              </div>
+
+            </div>
+          </div>
+          <hr />
+          <div class="flex w-full justify-between items-center border-form" style="display: block;">
+            <div class=" flex w-full border-b border-gray-300 mt-4" *ngFor="let item of lsaData">
+              <div class="font-semibold heading-5" style="width: 25%">
+                {{item.first_name}} {{item.last_name}}
+              </div>
+              <div class="font-semibold heading-5" style="width: 30%">
+                {{item.email}}
+              </div>
+              <div class="font-semibold heading-5" style="width: 15%">
+                LSA Certified<span style="display: none;"> {{item.lsa_id}}</span>
+              </div>
+              <div class="pr-4 width-switch box" style="width: 15%">
+                <label class="switch">
+
+                  <input type="checkbox" [checked]="item.plan" (change)="lsaUserPlan($event,item)" />
+                  <div class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                    <span class="toggle-font">YES</span><span class="toggle-font">NO</span>
+                  </div>
+                </label>
+              </div>
+              <div class="pr-4 flex justify-between items-center width-last-box" style="width: 15%">
+                <label class="switch">
+                  <input type="checkbox" [checked]="item.portfolio" (change)="userPortfolio($event,item)" />
+                  <div class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                    <span class="toggle-font">YES</span><span class="toggle-font">NO</span>
+                  </div>
+                </label>
+              </div>
+
+              <div class="pr-4 flex justify-between items-center width-last-box" style="width: 15%">
+                <label class="switch">
+                  <input type="checkbox" [checked]="item.report" (change)="userReport($event,item)" />
+                  <div class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                    <span class="toggle-font">YES</span><span class="toggle-font">NO</span>
+                  </div>
+                </label>
+              </div>
+
+              <hr />
+            </div>
+
+          </div>
+        </div>
+
+        <!-- <div *ngIf="designComplete" class="flex flex-col shadow back-prp mat">
+          <div class="flex w-full justify-between items-center border-form">
+            <div class="flex w-full mb-15">
+              <div class="font-bold focus:border-none heading-5 width-name" style="width: 25%">
+                Name
+              </div>
+              <div class="font-bold focus:border-none heading-5" style="width: 30%">
+                Email
+              </div>
+              <div class="font-bold focus:border-none heading-5" style="width: 15%">
+                Role
+              </div>
+
+
+              <div class="font-semibold flex flex-row items-center" style="width: 15%">
+                <span class="text-lg font-bold heading-5">Plan</span>
+                <label class="pg-tooltip flex flex-row items-center ml-2">
+                 <div class="font-light text-xs">Plan description.</div>
+                </label>
+              </div>
+              <div class="font-semibold flex flex-row items-center" style="width: 15%">
+                <span class="text-lg font-semibold heading-5">Portfolio</span>
+                <label class="pg-tooltip flex flex-row items-center ml-2">
+                  <div class="font-light text-xs">Portfolio description.</div>
+                </label>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div *ngIf="loadCounter > 0">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </div>
+          <div class="flex flex-col w-full items-center">
+            <div class="flex flex-col w-full items-center" [formGroup]="allViewRightsForm">
+              <div class="flex flex-col w-full items-center" *ngIf="vrs.length > 0">
+                <div class="w-full border-b border-gray-300 mt-4" formArrayName="invitee" *ngFor="
+                    let item of allViewRightsForm.get('invitee')['controls'];
+                    let i = index
+                  ">
+                  <div class="w-full flex flex-row justify-between mb-4 items-center" [formGroupName]="i">
+                    <div class="w-full flex items-center">
+                      <div class="pr-4 flex flex-row items-center width-name-box" style="width: 25%">
+                        <div class="h-16 w-16 p-1 rounded-full bg-white">
+                          <span
+                            class="pg-stakeholder-image-bg rounded-full h-full w-full flex justify-center items-center border-white text-white uppercase">
+                            {{
+                            allViewRightsForm.controls.invitee.controls[
+                            i
+                            ].controls.name.value.charAt(0)
+                            }}
+                          </span>
+                        </div>
+                        <span class="font-semibold">{{
+                          allViewRightsForm.controls.invitee.controls[i].controls
+                          .name.value
+                          }}</span>
+                      </div>
+                      <div class="pr-4" style="width: 30%">
+                        <span class="font-semibold width-email-box">{{
+                          allViewRightsForm.controls.invitee.controls[i].controls
+                          .email.value
+                          }}</span>
+                      </div>
+                      <div class="pr-8 flex relative width-role-box" style="width: 15%">
+                        <span class="flex w-full justify-between items-center font-semibold">
+                          {{
+                          allViewRightsForm.controls.invitee.controls[i]
+                          .controls.role.value
+                          }}
+                        </span>
+                      </div>
+                      <div class="pr-4 width-switch box" style="width: 15%">
+                        <label class="switch">
+                          <input type="checkbox" formControlName="plan" (change)="onToggle(item.value)" />
+                          <div class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                            <span class="toggle-font">YES</span><span class="toggle-font">NO</span>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="pr-4 flex justify-between items-center width-last-box" style="width: 15%">
+                        <label class="switch">
+                          <input type="checkbox" formControlName="portfolio" (change)="onToggle(item.value)" />
+                          <div class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                            <span class="toggle-font">YES</span><span class="toggle-font">NO</span>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            add new Crew --
+          <div class="flex flex-col w-full">
+            <div class="flex flex-col flex-1 justify-between items-center" [formGroup]="viewRightsForm">
+              <div class="w-full border-b border-gray-300 mt-4" formArrayName="invitee" *ngFor="
+                  let item of viewRightsForm.get('invitee')['controls'];
+                  let i = index
+                ">
+                <div class="w-full flex flex-row justify-between mb-4 items-center" [formGroupName]="i">
+
+                  <div class="w-full flex items-center">
+                    <div class="pr-4" style="width: 25%">
+                      <input
+                        class="appearance-none bg-transparent w-full text-gray-600 leading-tight focus:outline-none font-semibold input-box"
+                        type="text" placeholder="Name*" formControlName="name" [ngClass]="{
+                          'border-b border-red-500':
+                            viewRightsForm.controls.invitee.controls[i].controls
+                              .name.touched &&
+                            viewRightsForm.controls.invitee.controls[i].controls
+                              .name.invalid
+                        }" />
+                    </div>
+                    <div class="pr-4" style="width: 25%">
+                      <input
+                        class="appearance-none bg-transparent w-full text-gray-600 leading-tight focus:outline-none font-semibold input-box"
+                        type="text" placeholder="Email*" formControlName="email" [ngClass]="{
+                          'border-b border-red-500':
+                            viewRightsForm.controls.invitee.controls[i].controls
+                              .email.touched &&
+                            viewRightsForm.controls.invitee.controls[i].controls
+                              .email.invalid
+                        }" />
+
+                    </div>
+                    <div class="flex relative" style="width: 14%; margin-left: 28px;">
+                      <span class="flex w-full justify-between items-center border-b-2">
+                        <mat-select
+                          class="w-full appearance-none text-gray-600 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 font-semibold input-box"
+                          formControlName="role">
+                          <mat-option value="manager">Manager</mat-option>
+                          <mat-option value="mentor">Mentor</mat-option>
+                          <mat-option value="peer">Peer</mat-option>
+                          <mat-option value="team">Team</mat-option>
+                          <mat-option value="customer">Customer</mat-option>
+                          <mat-option value="coach">Coach</mat-option>
+                          <mat-option value="other">Other</mat-option>
+                        </mat-select>
+
+                      </span>
+                    </div>
+
+                    <div class="pr-4" style="width: 15%; margin-left: 28px;">
+                      <label class="switch">
+                        <input type="checkbox" formControlName="plan" (change)="onToggle(item.value)" />
+                         new added --
+                        <div class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                          <span class="toggle-font">YES</span><span class="toggle-font">NO</span>
+                        </div>
+                      </label>
+                    </div>
+                    <div class="pr-4 flex justify-between items-center" style="width: 13%">
+                      <label class="switch">
+                        <input type="checkbox" formControlName="portfolio" (change)="onToggle(item.value)" />
+                        <div class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                          <span class="toggle-font">YES</span><span class="toggle-font">NO</span>
+                        </div>
+                      </label>
+                      <mat-icon class="cursor-pointer mr" (click)="removeItemFieldInvitee(i)">
+                        close
+                      </mat-icon>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex w-full items-center mt-12 mb-4 relative pd" *ngIf="addUserButton">
+
+            <button (click)="addItemField()" color="primary" class="btn heading-5">
+              <mat-icon class="text-white">add</mat-icon>Add
+            </button>
+          </div>
+        </div> -->
+        <!-- old crew -->
+
+        <div *ngIf="lsaData.length == 0" class="flex flex-col shadow back-prp mat">
+          <span class="text-center font-bold">There is no LSA certified user available</span>
+        </div>
+
+        <!-- <div class="flex flex-row my-2 px-4 py-6 font-bold heading-4"
+          style="font-size: 18px; margin: -1rem; color:#051532" >
+          Current Sprint Crew (Viewing Rights)
+        </div> -->
+        <div class="flex justify-between align-center space-x-100 mt-10 py-5">
+          <div class="flex">
+            <span class="heading-1">Current Sprint Crew (Viewing Rights)</span>
+          </div>
+
+        </div>
+        <div *ngIf="!designComplete" class="flex flex-col shadow back-prp mat">
+          <span class="text-center font-bold">Please Design your Sprint first!</span>
+        </div>
+
+
+        <div *ngIf="designComplete" class="flex flex-col shadow back-prp mat">
+          <div class="flex w-full justify-between items-center border-form">
+            <div class="flex w-full mb-15">
+              <div class="font-bold focus:border-none heading-5" style="width: 25%">
+                Name
+              </div>
+              <div class="font-bold focus:border-none heading-5" style="width: 30%">
+                Email
+              </div>
+              <div class="font-bold focus:border-none heading-5" style="width: 15%">
+                Role
+              </div>
+              <div class="font-semibold flex flex-row items-center" style="width: 15%">
+                <span class="text-lg font-bold heading-5">Plan</span>
+                <label class="pg-tooltip flex flex-row items-center ml-2">
+                  <div class="font-light text-xs">Plan description.</div>
+                </label>
+              </div>
+              <div class="font-semibold flex flex-row items-center" style="width: 30%">
+                <span class="text-lg font-semibold heading-5">Portfolio</span>
+                <label class="pg-tooltip flex flex-row items-center ml-2">
+                  <div class="font-light text-xs">Portfolio description.</div>
+                </label>
+              </div>
+            </div>
+          </div>
+          <hr/>
+          <div class="flex flex-col w-full items-center" [formGroup]="crewForm">
+            <div class="flex flex-col w-full items-center" *ngIf="crews.length > 0">
+              <div class="w-full border-b border-gray-300 mt-4" formArrayName="crew" *ngFor="
+                    let item of crewForm.get('crew')['controls'];
+                    let i = index
+                  ">
+                <div class="w-full flex flex-row justify-between mb-4 items-center" [formGroupName]="i">
+                  <div class="w-full flex items-center">
+                    <div class="pr-4 flex flex-row items-center" style="width: 25%">
+                      <!-- <div class="h-16 w-16 p-1 rounded-full bg-white">
+                        <span
+                          class="pg-stakeholder-image-bg rounded-full h-full w-full flex justify-center items-center border-white text-white uppercase ">
+                          {{
+                          crewForm.controls.crew.controls[
+                          i
+                          ].controls.name.value.charAt(0)
+                          }}
+                        </span>
+                      </div> -->
+                      <span class="font-semibold heading-5">{{
+                        crewForm.controls.crew.controls[i].controls.name.value
+                        }}</span>
+
+                    </div>
+                    <div class="pr-4" style="width: 30%">
+                      <span class="font-semibold heading-5 word-wrap">{{
+                        crewForm.controls.crew.controls[i].controls.email.value
+                        }}</span>
+
+                    </div>
+                    <div class="pr-8 flex relative" style="width: 15%">
+                      <span class="flex w-full justify-between items-center font-semibold heading-5">
+                        {{
+                        crewForm.controls.crew.controls[i].controls.role.value
+                        }}
+                      </span>
+                    </div>
+                    <div class="pr-4" style="width: 15%">
+                      <label class="switch">
+                        <input type="checkbox" formControlName="plan"
+                          (change)="onCrewToggle(crewForm.controls.crew.controls[i].controls)" />
+                        <div class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                          <span class="toggle-font">YES</span><span class="toggle-font">NO</span>
+                        </div>
+                      </label>
+                    </div>
+                    <div class="pr-4 flex justify-between items-center width-toggle" style="width: 30%">
+                      <label class="switch">
+                        <input type="checkbox" formControlName="portfolio"
+                          (change)="onCrewToggle(crewForm.controls.crew.controls[i].controls)" />
+                        <div class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                          <span class="toggle-font">YES</span><span class="toggle-font">NO</span>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- </div> -->
+      </div>
+
+      <div *ngIf="
+        changesVrsFinal.length > 0 ||
+        changeCrewFinal.length > 0 ||
+        portfolioArr.length > 0 ||
+        !addUserButton
+      ">
+        <button (click)="storeViewingRights()" class="border-none text-white font-bold focus:outline-none p-4 mt-10"
+          [ngClass]="
+          !addUserButton && viewRightsForm.invalid
+            ? 'bg-gray-600 cursor-not-allowed'
+            : 'pg-bg-blue-bright'
+            " [disabled]="
+            loadCounter > 0 || (!addUserButton && viewRightsForm.invalid)
+          " style="text-align: center; width: 10rem; float: right;">
+              Save
+        </button>
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+
+</div>

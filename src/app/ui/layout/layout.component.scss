@@ -1,0 +1,12 @@
+.main-wrapper {
+  top: 105px;
+  position: relative;
+  min-height: calc(100vh - 105px);
+}
+
+@media screen and (max-width: 991px) {
+  .main-wrapper {
+    top: 69px;
+    min-height: calc(100vh - 69px);
+  }
+}

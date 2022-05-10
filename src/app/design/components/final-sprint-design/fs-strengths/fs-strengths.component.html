@@ -1,0 +1,28 @@
+<div class="w-full flex flex-row items-center justify-between mt-5">
+  <div class="pg-final-heading flex flex-row w-1/2 mr-4 rounded-r-full">
+    <div class="pg-heading-symbol"></div>
+    <h1 class="text-2xl font-bold">Strengths To Leverage</h1>
+  </div>
+  <div class="flex flex-row items-center justify-end w-1/2">
+    <mat-icon svgIcon="pencil" class="mr-2 align-middle">edit</mat-icon>
+    <span class="mr-10 text-2xl font-medium" style="color: #2C3E50;">Edit</span>
+  </div>
+</div>
+
+<div class="pg-margin-inner mt-5 mb-10">
+  <div class="grid grid-cols-2 gap-4">
+    <div *ngFor="let strength of strengths"
+    class="rounded overflow-hidden cursor-pointer bg-white border-2 border-gray-200" style="color: #FC9F6A;">
+      <div class="px-6 py-8 flex flex-row items-center">
+        <mat-icon
+          svgIcon="triangle"
+          class="mat-icon-10"
+          aria-hidden="false"
+
+        ></mat-icon>
+        <span class="text-base ml-2 font-medium">{{strength.title}}</span>
+      </div>
+    </div>
+
+  </div>
+</div>

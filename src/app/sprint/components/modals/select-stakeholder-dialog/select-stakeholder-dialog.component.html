@@ -1,0 +1,47 @@
+<div
+    class="bg-white rounded-t-md relative"
+  >
+  <div class="flex justify-center items-center py-2">
+    <div class="w-8 h-2 bg-gray-300 rounded-md" (click)="onClose()"></div>
+  </div>
+    <div class="text w-full">
+      <div class="flex font-bold justify-center mt-6 mb-4 text-lg">
+        Select StakeHolder
+      </div>
+      <div
+        class="bg-white h-full flex justify-center items-center mb-2"
+        *ngIf="data.stakeholder.length === 0"
+      >
+        <span class="text-base font-semibold">Add stakeholder first. </span>
+      </div>
+      <div class="bg-white h-full flex flex-col" *ngIf="data.stakeholder.length > 0">
+        <div
+          class="flex flex-row items-center pl-8"
+          *ngFor="let sh of data.stakeholder"
+        >
+          <mat-checkbox
+            class="example-margin"
+            [checked]="selectedStakeHolder.has(sh.id)"
+            (change)="addToSelectedStakeHolder(sh);"
+          >
+            <div class="flex flex-row pl-4 items-center">
+              <div class="h-16 w-16 p-1 rounded-full bg-white">
+                <span
+                  class="pg-stakeholder-image-bg rounded-full h-full w-full flex justify-center items-center border-white text-white uppercase"
+                >
+                  {{ sh.name.charAt(0) }}
+                </span>
+              </div>
+              <span class="pl-2">{{ sh.name }}</span>
+            </div>
+          </mat-checkbox>
+        </div>
+        <button
+          class="w-full py-6 rounded-t-md focus:outline-none mt-2 pg-bg-blue-bright text-white text-lg font-semibold"
+          (click)="addToActivityStakeholder()"
+        >
+          {{ selectedStakeHolder.size === 0 ? "Done" : "Select" }}
+        </button>
+      </div>
+    </div>
+  </div>

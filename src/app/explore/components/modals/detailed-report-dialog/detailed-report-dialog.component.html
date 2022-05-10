@@ -1,0 +1,56 @@
+<div *ngIf="loadCounter > 0">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  <p align="center">Loading report...</p>
+</div>
+
+<div class="flex flex-col w-full h-full" *ngIf="loadCounter === 0">
+  <div id="reportContent">
+    <div class="flex justify-between items-center">
+      <div class="flex items center absolute pg-top-close-icon hide-on-print">
+        <mat-icon class="cursor-pointer" (click)="onCancel()">close</mat-icon>
+      </div>
+    </div>
+    <app-detailed-report-heading (isReportDownload)="onReportDownload($event)"></app-detailed-report-heading>
+    <div class="flex flex-col" style="margin: 0 auto; width: 650px" *ngFor="let item of allData">
+      <app-detailed-report [strategy]="item.strategy" [style]="item.style" [label]="item.capability.name"
+        [description]="item.capability.description"></app-detailed-report>
+    </div>
+    <div>
+      <app-detailed-report-footer></app-detailed-report-footer>
+    </div>
+  </div>
+  <!-- START report generation -->
+  <div id="printMe" style="display: none;">
+    <div class="flex justify-between items-center pg-top-close-icon" data-html2canvas-ignore="true">
+      <div class="flex items center absolute ">
+        <mat-icon class="cursor-pointer" (click)="onCancel()">close</mat-icon>
+      </div>
+    </div>
+    <app-detailed-report-heading (isReportDownload)="onReportDownload($event)"></app-detailed-report-heading>
+    <div class="flex flex-col" style="margin: 0 auto; width: 650px" *ngFor="let item of allData; let i = index">
+      <app-detailed-report [strategy]="item.strategy" [style]="item.style" [label]="item.capability.name"
+        [description]="item.capability.description" [capType]="item.capability.capType" [index]="i">
+      </app-detailed-report>
+    </div>
+    <div class="page-break"></div>
+    <br><br>
+    <div class="flex flex-col mx-20 lg:mx-32">
+      <div class="flex jlogo items-center flex-shrink-0 text-white mt-10">
+        <img src="/assets/images/logo2.png" alt="logo" width="120px" />
+      </div>
+    </div>
+    <table class="fix-content mrg" style="width: 100%;">
+      <tr>
+        <td>&#169;2021 Organisation Solutions</td>
+        <td class="hide-on-print leftmr">&nbsp;
+          <!-- <img src="/assets/images/logo2.png" alt="logo" width="120px" /> -->
+        </td>
+        <td class="rightmr" style="float: right;">CONFIDENTIAL</td>
+      </tr>
+    </table>
+    <!-- <div>
+    <app-detailed-report-footer></app-detailed-report-footer>
+  </div> -->
+  </div>
+  <!-- END report generation -->
+</div>

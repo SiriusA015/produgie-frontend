@@ -1,0 +1,16 @@
+<div *ngIf="reportGenerated || routePrefix === 'gl360'" class="blank-ui-layout-wrapper">
+	<div>
+		<router-outlet></router-outlet>
+	</div>
+</div>
+
+<div *ngIf="!reportGenerated && routePrefix !== 'gl360'">
+  <app-header></app-header>
+  <div
+    class="flex flex-col justify-center items-center pg-h-screen-w-header w-full"
+  >
+    <span class="text-2xl font-semibold">Survey not completed yet!</span>
+  </div>
+  <app-mat-svg-icon></app-mat-svg-icon>
+  <app-loader *ngIf="isLoader"></app-loader>
+</div>

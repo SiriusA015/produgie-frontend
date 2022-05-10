@@ -1,0 +1,231 @@
+<div class="flex w-full flex-row h-full relative">
+  <div class="bg-white left-nav">
+    <app-left-nav></app-left-nav>
+  </div>
+  <div class="pg-info">
+    <label class="pg-tooltip-left flex flex-row items-center ml-2">
+      <mat-icon
+        class="text-gray-500 mat-icon-18"
+        fontSet="material-icons-outlined"
+        >info</mat-icon
+      >
+      <input type="checkbox" />
+      <div class="font-light text-xs">
+        Mouse over the sidebar to track your progress in creating your sprint
+      </div>
+    </label>
+  </div>
+  <div class="pg-container pg">
+    <div class="pg__inner">
+      <div class="flex flex-row items-center">
+        <span class="Select-3-Priorities-for-your-Development heading-1"
+          >Select 3 Priorities for your Development</span
+        >
+        <label class="pg-tooltip flex flex-row items-center ml-2">
+          <mat-icon
+            style="width: 20%"
+            svgIcon="info"
+            class="text-gray-200"
+            aria-hidden="false"
+          ></mat-icon
+          ><input type="checkbox" />
+          <div class="font-light text-xs">
+            Select 3 development priorities for your development. Choose from
+            the Recommended list that is based on your Growth Leader Assessment
+            results and job challenges or from the other capabilities.
+          </div>
+        </label>
+      </div>
+      <span class="heading-4">
+        Tap on the cards to select your top 3 priorities for development
+      </span>
+
+      <div class="bg-white mat">
+        <div
+          class="
+            flex flex-row
+            justify-between
+            items-center
+            text-xs
+            font-semibold
+          "
+        >
+          <div>
+            <span class="heading-2">Recommended</span>
+          </div>
+        </div>
+        <div *ngIf="recommendedFad.length > 0">
+          <div
+            *ngFor="let capability of recommendedFad; let i = index"
+            class="cursor-pointer overflow-hidden fad-preview border"
+            (click)="selectCapability(capability.capability.id, i)"
+            [ngClass]="{
+              'border-2 pg-border-green-bright pg-selected':
+                selectedCapability.has(capability.capability.id),
+              'pg-border-b-none': selectedCapability.has(
+                recommendedFad[i + 1]?.capability?.id
+              )
+            }"
+          >
+            <div
+              class="relative h-full flex flex-row justify-between items-center"
+            >
+              <div class="flex flex-row items-center">
+                <div class="flex items-center">
+                  <mat-icon
+                    [svgIcon]="capability.capability.icon"
+                    class="mat-icon-28 pg-txt-blue-bright"
+                    aria-hidden="false"
+                  >
+                  </mat-icon>
+                  <span class="heading-5">{{
+                    capability.capability.label
+                  }}</span>
+                </div>
+              </div>
+              <div class="flex flex-row items-center justify-between">
+                <mat-icon
+                  class="align-middle mat-icon-18 text-blue-400 mr-6"
+                  (click)="
+                    openDetailsDialog(capability.capability);
+                    $event.stopPropagation()
+                  "
+                  >bar_chart</mat-icon
+                >
+                <mat-icon
+                  class="
+                    material-icons-outlined
+                    align-middle
+                    mat-icon-18
+                    pg-txt-green
+                    mr-6
+                  "
+                  >grade</mat-icon
+                >
+              </div>
+            </div>
+            <div class="flex flex-row justify-between items-center">
+              <span class="text-base">
+                {{ capability.capability.description }}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="recommendedFad.length == 0" class="mb-5">
+          <div class="heading-5 mb-4">
+            If you would like personalized recommendations by experts, please complete the Growth Leader Assessment.<span class="fc-8E"> (It will take 60 mins to complete)</span>
+          </div>
+          <div class="heading-5 fc-27 cursor-pointer" (click)="gotoGLA()">
+            Go to Growth Leader Assessment
+          </div>
+        </div>
+
+        <div
+          class="
+            flex flex-row
+            justify-between
+            items-center
+            text-xs
+            font-semibold
+          "
+        >
+          <div>
+            <span class="heading-2">Others</span>
+          </div>
+        </div>
+        <div>
+          <div
+            *ngFor="let capability of nonrecommendedFad; let i = index"
+            class="cursor-pointer overflow-hidden fad-preview border"
+            (click)="selectCapability(capability.capability.id, i)"
+            [ngClass]="{
+              'border-2 pg-border-green-bright pg-selected':
+                selectedCapability.has(capability.capability.id),
+              'pg-border-b-none': selectedCapability.has(
+                nonrecommendedFad[i + 1]?.capability?.id
+              )
+            }"
+          >
+            <div
+              class="relative h-full flex flex-row justify-between items-center"
+            >
+              <div class="flex flex-row items-center">
+                <div class="flex items-center">
+                  <mat-icon
+                    [svgIcon]="capability.capability.icon"
+                    class="mat-icon-28 pg-txt-blue-bright"
+                    aria-hidden="false"
+                  >
+                  </mat-icon>
+                  <span class="heading-5">{{
+                    capability.capability.label
+                  }}</span>
+                </div>
+              </div>
+              <div class="flex flex-row items-center justify-between">
+                <mat-icon
+                  class="align-middle mat-icon-18 text-blue-400 mr-6"
+                  (click)="
+                    openDetailsDialog(capability.capability);
+                    $event.stopPropagation()
+                  "
+                  >bar_chart</mat-icon
+                >
+              </div>
+            </div>
+            <div class="flex flex-row justify-between items-center mr-12 mb-6">
+              <span class="text-base">
+                {{ capability.capability.description }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-row justify-end mt-5">
+        <div class="flex flex-row items-center">
+          <div class="flex flex-row items-center justify-center">
+            <!-- [ngClass]="selectedCapability.size >= 3 ? 'allow' : 'not-allow'" -->
+            <label
+              class="
+                pg-tooltip
+                flex flex-row
+                items-center
+              "
+            >
+              <input type="checkbox" />
+              <div *ngIf="selectedCapability.size < 3" class="font-light text-xs"> <span class="heading-5"
+                >Please select 3 focus areas for development</span
+              ></div>
+              <!-- <div *ngIf="selectedCapability.size == 3" class="font-light text-xs"> <span class="heading-5"
+                >When you change your focus for development, your current Sprint will be reset so that you can design one for the new focus.</span
+              ></div> -->
+              <!-- <button
+                class="btn next-btn mr-3"
+                [ngClass]="{
+                  'pg-bg-blue-dark': !this.disableFlag,
+                  'cursor-not-allowed': this.disableFlag
+                }"
+                (click)="saveFad()"
+              >
+                Save
+              </button> -->
+              <button
+                class="btn next-btn"
+                [ngClass]="{
+                  'pg-bg-blue-dark': selectedCapability.size >= 3,
+                  'cursor-not-allowed': selectedCapability.size < 3
+                }"
+                (click)="storeFad()"
+              >
+                Next
+              </button>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-mat-svg-icon></app-mat-svg-icon>

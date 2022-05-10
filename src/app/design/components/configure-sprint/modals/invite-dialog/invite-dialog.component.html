@@ -1,0 +1,40 @@
+<div
+  class="flex bg-white invite-card"
+>
+  <div
+    class="invite-left"
+  ></div>
+  <div class="flex flex-row p-4 ml-4 justify-between items-center w-full">
+    <span>Add 1 Key Stakeholder</span>
+    <div
+      class="flex items-center border-b border-teal-500 py-2"
+      style="width: 220px"
+    >
+      <label class="block text-gray-700 text-sm font-bold mb-2">
+        Name<span class="text-red-500">*</span>
+      </label>
+      <input
+        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+        type="text"
+        aria-label="Name"
+      />
+    </div>
+    <div
+      class="flex items-center border-b border-teal-500 py-2"
+      style="width: 220px"
+    >
+      <label class="block text-gray-700 text-sm font-bold mb-2">
+        Email<span class="text-red-500">*</span>
+      </label>
+      <input
+        class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+        type="email"
+        aria-label="Eame"
+      />
+    </div>
+    <span class="text-gray-500 font-medium cursor-pointer" (click)="skip()">Skip For Now</span>
+    <button class="rounded border-2 border-orange-500 pg-w-88 pg-h-50" (click)="addInvite()">
+      Add
+    </button>
+  </div>
+</div>

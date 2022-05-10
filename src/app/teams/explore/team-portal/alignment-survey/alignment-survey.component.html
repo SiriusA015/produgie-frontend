@@ -1,0 +1,94 @@
+<div class="role-level-main">
+  <!-- logo -->
+  <div class="flex items-center flex-shrink-0 text-white mr-6 close-button">
+    <div>
+      <img src="/assets/images/logo.svg" alt="" class="imagStyle"/> checking
+    </div>
+    <div class="close-button">
+      <button mat-icon-button [mat-dialog-close]="true">
+        <mat-icon class="close-icon btnColor mt-4 ml-4">close</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="survey-title -mt-8">
+    <p class="title heading-1" *ngIf="!researchQuestion">
+      Team Alignment Survey
+    </p>
+    <p class="title heading-1" *ngIf="researchQuestion">
+      Research Questions
+    </p>
+    <p class="subTitle heading-4">
+      Click on the circle to answer the following questions.
+    </p>
+  </div>
+
+  <div class="role-body mcq-section">
+    <!-- <div>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      <p align="center">Loading Questions...</p>
+    </div> -->
+    <mat-grid-list cols="10" class="mcq-optionHeading mb-12 -mt-4" rowHeight="100px">
+      <mat-grid-tile [colspan]="4" [rowspan]="1">
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="6" [rowspan]="1">
+        <div class="option-heading ml-4">
+          <p>Strongly Disagree</p>
+          <p>Disagree</p>
+          <p>Slightly Disagree</p>
+          <p>Slightly Agree</p>
+          <p class="-mr-4">Agree</p>
+          <p class="-mr-6">Strongly Agree</p>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <div class="question-body">
+      <mat-grid-list cols="10" class="mcq-optionHeading" rowHeight="65px"
+        *ngFor="let question of questionList; first as isFirst" style="margin: 20px 0">
+        <mat-grid-tile [colspan]="4" [rowspan]="1" [ngClass]="{ firstQuestion: isFirst }">
+          <div style="width: 100%; align-items: flex-start" class="question-p">
+            {{ question.question }}
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="6" [rowspan]="1">
+          <mat-radio-group (change)="radioChange($event, question.unique_ref_id)" class="option-heading">
+            <mat-radio-button value="Strongly disagree" [checked]="question?.answer === 'Strongly disagree'">
+            </mat-radio-button>
+            <mat-radio-button value="Disagree" [checked]="question?.answer === 'Disagree'">
+            </mat-radio-button>
+            <mat-radio-button value="Slightly disagree" [checked]="question?.answer === 'Slightly disagree'">
+            </mat-radio-button>
+            <mat-radio-button value="Slightly agree" [checked]="question?.answer === 'Slightly agree'">
+            </mat-radio-button>
+            <mat-radio-button value="Agree" [checked]="question?.answer === 'Agree'">
+            </mat-radio-button>
+            <mat-radio-button value="Strongly agree" [checked]="question?.answer === 'Strongly agree'">
+            </mat-radio-button>
+          </mat-radio-group>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div>
+  <div class="progress-bar" *ngIf="!researchQuestion">
+    <mat-progress-bar mode="determinate" [value]="attemptedPercentage"></mat-progress-bar> 
+
+   <mat-hint align="center">
+      {{ attemptedPercentage }}% Done,
+
+      {{ remainingQuestions }} questions more to go.
+    </mat-hint>
+  </div>
+  <!-- <div></div>  mt-72 -->
+  <div class="flex justify-between margin-btn">
+    <div></div>
+    <div class="submit-section mr-24 -mt-8">
+      <div *ngIf="!isLastPage" class="info-div-button cursor-pointer continue-button btn" (click)="continueQuestion()">
+        Continue
+      </div>
+      <div *ngIf="isLastPage" class="info-div-button cursor-pointer btn ml-4" (click)="saveAndExit()">
+        Submit
+      </div>
+    </div>
+  </div>  
+</div>

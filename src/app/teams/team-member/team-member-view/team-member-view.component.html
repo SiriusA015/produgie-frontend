@@ -1,0 +1,54 @@
+<app-team-member-navbar></app-team-member-navbar>
+<div class="flex w-full flex-row h-full relative">
+    <mat-card class="card" style="border-radius: 15px;">
+        <div class="pg-container">
+            <div class="pg__inner">
+                <div class="flex flex-col h-full">
+                    <div class="flex flex-col">
+                        <span class="heading-1">Teams</span>
+                        <div class="text-center" *ngIf="isLoading">
+                            <mat-icon>
+                                <mat-spinner diameter="40"></mat-spinner>
+                            </mat-icon>
+                        </div>
+                        <ng-container *ngIf="isteamMemberData">
+                            <mat-accordion class="margin-top-accordian" *ngFor="let data of teamDetails">
+                                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title class="team-title">
+                                           {{data.team.name}}
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <div class="border-bottom"></div>
+                                    <h2 class="d-font">Description</h2>
+                                    <p class="p-font">{{data.team.description}}</p>
+                                    <h2 class="d-font margin-top">Team Members</h2>
+                                    <div class="margin-top">
+                                        <div class="flex flex-wrap">
+                                            <div class="flex col-md-4 margin-top">
+                                                <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553__340.png"
+                                                    style="border-radius: 2px;width: 4em;" />
+                                                <span class="font-weight-bold font-line-height">{{data.manager.name}}(Team Manager)</span>
+                                            </div>
+                                            <div class="flex col-md-4 margin-top" *ngFor="let member of data.members">
+                                                <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553__340.png"
+                                                    style="border-radius: 2px;width: 4em;" />
+                                                <span class="font-weight-bold font-line-height">{{member.name}}</span>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                </mat-expansion-panel>
+                            </mat-accordion>
+                        </ng-container>
+                        
+                        <div  class="text-center" *ngIf="!isteamMemberData && !isLoading">
+                            <h3 class="team-title mt-3">No Teams Found</h3>
+                        </div>
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+</div>

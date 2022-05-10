@@ -1,0 +1,60 @@
+
+<div class="pg-container mx-auto flex justify-center items-center" *ngIf="!isDesignComplete">
+  <div class="flex flex-col my-20">
+    <span class="font-bold text-base text-gray-500">You do not have an active sprint.</span>
+  </div>
+</div>
+
+<div class="sprint-start" *ngIf="!isSprintStarted">
+  <div class="flex flex-col my-20 position-text"> 
+    <span class="font-bold text-base text-gray-500">Your Sprint will start on {{sprintStartDate | date: 'mediumDate'}}</span>
+  </div>
+</div>
+
+<div class="mb-10 mt-10" *ngIf="isDesignComplete && isSprintStarted">
+  <h2 class="text-font">Calender</h2>
+</div>
+<ng-container *ngIf="isDesignComplete && isSprintStarted">
+<div class="border-bottom"></div>
+<div class="calender-margin">
+  <!-- START CALENDAR -->
+      <div class="pb-20">
+          <div class="flex flex-row justify-space-between items-center cal calendar-top">
+            <div class="" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
+              <mat-icon class="inconcolor cursor-pointer color-arrow">keyboard_arrow_left</mat-icon>
+            </div>
+              <h3 class="font-bold font-heading">
+                {{ viewDate | calendarDate: view + "ViewTitle" }}
+              </h3>
+            <div mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">
+              <mat-icon class="inconcolor cursor-pointer color-arrow">keyboard_arrow_right</mat-icon>
+            </div>
+          </div>   
+          <mwl-calendar-month-view
+          [viewDate]="viewDate"
+          
+          [events]="events"
+          [refresh]="refresh"
+          [minDate]="minDate"
+          (dayClicked)="dayClicked($event.day)"
+          (eventClicked)="handleEvent('Clicked', $event.event)"
+          >
+          </mwl-calendar-month-view>         
+      </div>
+  <!-- END CALENDAR -->
+</div>
+</ng-container>
+<div class="fixed w-full bottom-0 border-t border-gray-200 z-10" style="z-index: 999;">
+ <app-team-bottom-nav></app-team-bottom-nav>
+</div>
+
+<ng-template #customCellTemplate let-day="day" let-locale="locale">
+  <div class="cal-cell-top">        
+    <span class="cal-day-number back-color" *ngIf="day.events.length >0">
+        {{ day.date | calendarDate:'monthViewDayNumber':locale }}
+    </span>
+    <span class="cal-day-number" *ngIf="day.events.length <=0">
+      {{ day.date | calendarDate:'monthViewDayNumber':locale }}
+  </span>
+  </div>
+</ng-template>

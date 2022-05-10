@@ -1,0 +1,43 @@
+<div class="mb-4">
+    <div
+      class="flex flex-col lg:flex-row justify-between bg-white px-8 py-10 shadow-md mb-4 rounded"
+    >
+      <div
+        class="w-full justify-center mb-4 lg:mb-0 lg:w-1/4 flex items-center lg:justify-start"
+      >
+        <h2 class="text-2xl font-semibold">{{ sprint?.label }}</h2>
+      </div>
+      <div class="w-full mb-4 lg:mb-0 lg:w-1/3 flex items-center justify-center">
+        <p class="text-sm font-medium text-gray-700">
+          {{sprint?.description}}
+        </p>
+      </div>
+      <div
+        class="w-full mb-4 lg:mb-0 lg:w-1/3 flex items-center justify-between"
+      >
+        <div class="flex justify-between">
+          <button
+            class="mr-2 pg-bg-blue-dark text-white font-sm px-2 py-1 rounded lg:mr-8 pg-h-33 pg-w-88"
+          >
+            <span class="text-xs">Sprint {{sprintNo}}</span>
+          </button>
+          <div class="flex flex-row items-center">
+            <span class="mr-2 text-xs font-medium">Status :</span>
+            <div class="pg-btn-group focus:shadow-outline">
+              <div
+              class="flex items-center pg-bg-green text-white font-sm px-1 py-1"
+            >
+              <mat-icon svgIcon="progress" class="mr-2 mat-icon-14"></mat-icon>
+              <span class="text-xs">In Progress</span>
+            </div>
+            <div
+              class="flex items-center bg-gray-500 text-white font-sm px-1 py-1"
+            >
+              <mat-icon svgIcon="pause" class="mat-icon-14"></mat-icon>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

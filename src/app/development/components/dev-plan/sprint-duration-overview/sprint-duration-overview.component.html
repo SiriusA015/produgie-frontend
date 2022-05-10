@@ -1,0 +1,30 @@
+<div class="mb-4">
+    <div
+      class="flex flex-col lg:flex-row justify-between bg-white px-8 py-6 shadow-lg mb-4 rounded"
+    >
+      <div class="w-full justify-center mb-4 lg:mb-0 lg:w-1/6 flex items-center lg:justify-start">
+        <h3 class="text-2xl font-bold lg:text-xl pg-text-333">Current Sprint</h3>
+      </div>
+      <div class="w-full justify-end mb-4 lg:mb-0 lg:w-1/6 flex flex-row items-center font-semibold">
+        <!-- <mat-icon class="mr-2">power_settings_new</mat-icon> -->
+        <span class="text-sm pg-text-333 mr-2">Start on :</span>
+        <span class="text-sm pg-text-333">{{frequency?.datetimeFrom | date: 'mediumDate'}}</span>
+      </div>
+      <div class="w-full justify-end mb-4 lg:mb-0 lg:w-1/6 flex flex-row items-center font-semibold">
+        <!-- <mat-icon svgIcon="tick" class="mat-icon-18 mr-2"></mat-icon> -->
+        <span class="text-sm pg-text-333 mr-2">Ends on :</span>
+        <span class="text-sm pg-text-333">{{frequency?.datetimeTo | date: 'mediumDate'}}</span>
+      </div>
+      <div class="w-full justify-end mb-4 lg:mb-0 lg:w-1/6 flex flex-row items-center font-semibold">
+        <!-- <mat-icon class="mr-2">query_builder</mat-icon> -->
+        <span class="text-sm pg-text-333 mr-2">Duration :</span>
+        <span class="text-sm pg-text-333">{{frequency?.duration}} weeks</span>
+      </div>
+      <div class="w-full justify-center mb-4 lg:mb-0 lg:w-2/6 flex flex-row items-center font-semibold">
+        <!-- <mat-icon svgIcon="dot" class="mat-icon-18 mr-2"></mat-icon> -->
+        <span class="text-sm pg-text-333 mr-2">Feedback frequency :</span>
+        <span class="text-sm pg-text-333">{{frequency?.frequency}} days</span>
+      </div>
+    </div>
+  </div>
+  

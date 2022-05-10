@@ -1,0 +1,75 @@
+<div class="mb-4 rounded">
+    <div
+      class="flex flex-col lg:flex-row justify-between bg-white px-8 py-10 shadow-md border-b border-gray-200"
+    >
+      <div
+        class="w-full justify-center mb-4 lg:mb-0 lg:w-1/4 flex items-center lg:justify-start" *ngIf="sprint"
+      >
+      <mat-select
+        class="w-full appearance-none text-gray-600 leading-tight focus:outline-none focus:bg-white focus:border-gray-500  font-semibold" [(value)]="selected"
+      >
+          <mat-option *ngFor="let userSprint of userSprints" [value]="userSprint.userSprintId" (click)="selectUserSprint(userSprint.assessmentId)">{{userSprint?.label}}</mat-option>
+        </mat-select>
+        <!-- <h2 class="text-2xl font-semibold">{{ sprint?.label }}</h2> -->
+      </div>
+      <div class="w-full mb-4 lg:mb-0 lg:w-1/3 flex items-center justify-center">
+        <p class="text-sm font-medium text-gray-700">
+          {{sprint?.description}}
+        </p>
+      </div>
+      <div
+        class="w-full mb-4 lg:mb-0 lg:w-1/3 flex items-center justify-between"
+      >
+        <div class="flex justify-between">
+          <button
+            class="mr-2 pg-bg-blue-dark text-white font-sm px-2 py-1 rounded lg:mr-8 pg-h-33 pg-w-88"
+          >
+            <span class="text-xs">Sprint {{sprintNo}}</span>
+          </button>
+          <!-- <div class="flex flex-row items-center">
+            <span class="mr-2 text-xs font-medium">Status :</span>
+            <div class="pg-btn-group focus:shadow-outline">
+              <div
+              class="flex items-center pg-bg-green text-white font-sm px-1 py-1"
+            >
+              <mat-icon svgIcon="progress" class="mr-2 mat-icon-14"></mat-icon>
+              <span class="text-xs">In Progress</span>
+            </div>
+            <div
+              class="flex items-center bg-gray-500 text-white font-sm px-1 py-1"
+            >
+              <mat-icon svgIcon="pause" class="mat-icon-14"></mat-icon>
+            </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex flex-col lg:flex-row justify-between bg-white px-8 py-6 shadow-lg"
+    >
+      <div class="w-full justify-center mb-4 lg:mb-0 lg:w-1/6 flex items-center lg:justify-start">
+        <!-- <h3 class="text-2xl font-bold lg:text-xl pg-text-333">Current Sprint</h3> -->
+      </div>
+      <div class="w-full justify-end mb-4 lg:mb-0 lg:w-1/6 flex flex-row items-center font-semibold">
+        <!-- <mat-icon class="mr-2">power_settings_new</mat-icon> -->
+        <span class="text-sm pg-text-333 mr-2">Start on :</span>
+        <span class="text-sm pg-text-333">{{frequency?.datetimeFrom | date: 'mediumDate'}}</span>
+      </div>
+      <div class="w-full justify-end mb-4 lg:mb-0 lg:w-1/6 flex flex-row items-center font-semibold">
+        <!-- <mat-icon svgIcon="tick" class="mat-icon-18 mr-2"></mat-icon> -->
+        <span class="text-sm pg-text-333 mr-2">Ends on :</span>
+        <span class="text-sm pg-text-333">{{frequency?.datetimeTo | date: 'mediumDate'}}</span>
+      </div>
+      <div class="w-full justify-end mb-4 lg:mb-0 lg:w-1/6 flex flex-row items-center font-semibold">
+        <!-- <mat-icon class="mr-2">query_builder</mat-icon> -->
+        <span class="text-sm pg-text-333 mr-2">Duration :</span>
+        <span class="text-sm pg-text-333">{{frequency?.duration}} weeks</span>
+      </div>
+      <div class="w-full justify-center mb-4 lg:mb-0 lg:w-2/6 flex flex-row items-center font-semibold">
+        <!-- <mat-icon svgIcon="dot" class="mat-icon-18 mr-2"></mat-icon> -->
+        <span class="text-sm pg-text-333 mr-2">Feedback frequency :</span>
+        <span class="text-sm pg-text-333">{{frequency?.frequency}} days</span>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,123 @@
+<div class="flex w-full flex-row h-full relative">
+  <div class="bg-white left-nav">
+      <app-teams-left-nav></app-teams-left-nav>
+  </div>
+  <div class="pg-info">
+      <label class="pg-tooltip-left flex flex-row items-center ml-2">
+          <mat-icon class="text-gray-500 mat-icon-18" fontSet="material-icons-outlined">info</mat-icon>
+          <input type="checkbox" />
+          <div class="font-light text-xs">
+              Mouse over the sidebar to track your progress in creating your sprint
+          </div>
+      </label>
+  </div>
+  <div class="pg-container pg">
+      <div class="pg__inner">
+          <div class="flex flex-row items-center">
+              <span class="text-black font-bold header-text heading-1">Select One to Focus Team Sprint</span>
+              <label class="pg-tooltip flex flex-row items-center ml-2">
+                  <!-- <mat-icon svgIcon="info" class="text-gray-200" aria-hidden="false"></mat-icon> -->
+                  <input type="checkbox" />
+                  <div class="font-light text-xs">Select one area you would like to start developing now.</div>
+              </label>
+          </div>
+          <span class="heading-4">
+           Congratulations! you've chosen 3 priorities to work on.
+           <p class="heading-4">Now, take a moment to decide on one priority to done in the coming weeks.</p>
+          </span>
+
+          <div class="bg-white mat">
+              <div class="flex flex-row justify-between items-center text-xs font-semibold">
+                  <div>
+                      <span class="heading-2">Your 3 Priorities</span>
+                  </div>
+              </div>
+
+              <div *ngIf="focusTeamSprintArr?.length > 0">
+                  <div
+                      *ngFor="let data of focusTeamSprintArr; let i = index"
+                      class="cursor-pointer overflow-hidden pg-box-preview border"
+                      (click)="setPriorityCap(data.id,data)"
+                      [ngClass]="{'border-2 pg-border-green-bright pg-selected': data.unique_id === selectedPriority }"
+                  >
+                      <div class="relative h-full flex flex-row justify-between items-center">
+                          <div class="flex flex-row items-center">
+                              <div class="flex items-center">
+                                  <mat-icon [svgIcon]="data.icon" class="mat-icon-28 pg-txt-blue-bright" aria-hidden="true"> </mat-icon>
+                                  <span class="heading-5">{{data.name }}</span>
+                              </div>
+                          </div>
+                          <div class="flex flex-row items-center justify-between">
+                              <mat-icon class="align-middle mat-icon-18 text-blue-400 mr-6" (click)="openDetailsDialog(data)">bar_chart</mat-icon>
+                              <mat-icon class="material-icons-outlined align-middle mat-icon-18 pg-txt-green mr-6" *ngIf="data.isRecommended">grade</mat-icon>
+                          </div>
+                      </div>
+                      <div class="flex flex-row justify-between items-center">
+                          <span class="text-base">
+                              {{ data.description }}
+                          </span>
+                      </div>
+                  </div>
+                  <!-- <div
+                  *ngFor="let capability of roleData; let i = index"
+                  class="cursor-pointer overflow-hidden pg-box-preview border"
+                  (click)="setPriorityRole(capability.id,'role')"
+                  [ngClass]="{'border-2 pg-border-green-bright pg-selected': isPriority === capability.id }"
+              >
+                  <div class="relative h-full flex flex-row justify-between items-center">
+                      <div class="flex flex-row items-center">
+                          <div class="flex items-center">
+                              <mat-icon [svgIcon]="capability.icon" class="mat-icon-28 pg-txt-blue-bright" aria-hidden="true"> </mat-icon>
+                              <span class="heading-5">{{capability.name }}</span>
+                          </div>
+                      </div>
+                      <div class="flex flex-row items-center justify-between">
+                          <mat-icon class="align-middle mat-icon-18 text-blue-400 mr-6" (click)="openDetailsDialog(capability); $event.stopPropagation() ">bar_chart</mat-icon>
+                          <mat-icon class="material-icons-outlined align-middle mat-icon-18 pg-txt-green mr-6" *ngIf="capability.isRecommended">grade</mat-icon>
+                      </div>
+                  </div>
+                  <div class="flex flex-row justify-between items-center">
+                      <span class="text-base">
+                          {{ capability.description }}
+                      </span>
+                  </div>
+              </div>
+              <div
+              *ngFor="let capability of alignData; let i = index"
+              class="cursor-pointer overflow-hidden pg-box-preview border"
+              (click)="setPriorityAlign(capability.id,'area')"
+              [ngClass]="{'border-2 pg-border-green-bright pg-selected': isPriority === capability.id }"
+          >
+              <div class="relative h-full flex flex-row justify-between items-center">
+                  <div class="flex flex-row items-center">
+                      <div class="flex items-center">
+                          <mat-icon [svgIcon]="capability.icon" class="mat-icon-28 pg-txt-blue-bright" aria-hidden="true"> </mat-icon>
+                          <span class="heading-5">{{capability.scale }}</span>
+                      </div>
+                  </div>
+                  <div class="flex flex-row items-center justify-between">
+                      <mat-icon class="align-middle mat-icon-18 text-blue-400 mr-6" (click)="openDetailsDialog(capability); $event.stopPropagation() ">bar_chart</mat-icon>
+                      <mat-icon class="material-icons-outlined align-middle mat-icon-18 pg-txt-green mr-6" *ngIf="capability.isRecommended">grade</mat-icon>
+                  </div>
+              </div>
+              <div class="flex flex-row justify-between items-center">
+                  <span class="text-base">
+                      {{ capability.description }}
+                  </span>
+              </div>
+          </div> -->
+              </div>
+          </div>
+          <div class="flex flex-row justify-end mt-5">
+              <div class="flex flex-row items-center">
+                  <div class="flex flex-row items-center justify-center cursor-pointer ml-4 pg-bg-blue-light" [ngClass]="{'pg-bg-blue-dark': !!isPriority, 'cursor-not-allowed': !isPriority}">
+                      <button class="btn next-btn" (click)="updateFad()">
+                          Next
+                      </button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <app-mat-svg-icon></app-mat-svg-icon>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<app-team-member-navbar></app-team-member-navbar>
+<div class="flex w-full flex-row h-full relative">
+    <mat-card class="card" style="border-radius: 15px; height:450px;">
+        <div class="pg-container">
+            <div class="pg__inner">
+                <div class="flex flex-col h-full">
+                    <div class="flex flex-col">
+                        <span class="heading-1">Viewing Rights</span>
+                        <div class="text-center" *ngIf="isLoading">
+                            <mat-icon>
+                                <mat-spinner diameter="40"></mat-spinner>
+                            </mat-icon>
+                        </div>
+                        <mat-card class="card-style" *ngIf="isviewRightAccess">
+                            <div class="flex flex-row padding-div">
+                                <div class="width-div">
+                                    <h2 class="title-font">Team Reports</h2>
+                                    <div class="flex items-center cursor-pointer">
+                                        <img *ngIf="viewingRightsAccess?.team_report"src="/assets/images/right.svg" alt="" class="image-width" />
+                                        <img *ngIf="!viewingRightsAccess?.team_report"src="/assets/images/cross.svg" alt="" class="image-width" />
+                                        <p class="p-text">GLA Team Report</p>
+                                    </div>
+                                    <div class="flex items-center cursor-pointer">
+                                        <img *ngIf="viewingRightsAccess?.team_report" src="/assets/images/right.svg" alt="" class="image-width" />
+                                        <img *ngIf="!viewingRightsAccess?.team_report" src="/assets/images/cross.svg" alt="" class="image-width" />
+                                        <p class="p-text">Team Alignment Report</p>
+                                    </div>
+                                </div>
+                                <div class="width-div">
+                                    <h2 class="title-font">Sprint Design</h2>
+                                    <div class="flex items-center cursor-pointer">
+                                        <img *ngIf="viewingRightsAccess?.sprint_design"src="/assets/images/right.svg" alt="" class="image-width" />
+                                        <img *ngIf="!viewingRightsAccess?.sprint_design"src="/assets/images/cross.svg" alt="" class="image-width" />
+                                        <p class="p-text">Team Development Plan</p>
+                                    </div>
+                                </div>
+                                <div class="width-div">
+                                    <h2 class="title-font">Team Dashboard</h2>
+                                    <div class="flex items-center cursor-pointer">
+                                        <img *ngIf="viewingRightsAccess?.team_dashboard"src="/assets/images/right.svg" alt="" class="image-width" />
+                                        <img *ngIf="!viewingRightsAccess?.team_dashboard"src="/assets/images/cross.svg" alt="" class="image-width" />
+                                        <p class="p-text">Dashboard</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </mat-card>
+                        <div  class="text-center" *ngIf="!isviewRightAccess && !isLoading">
+                            <h3 class="title-font mt-3">No Viewing Rights Found </h3>
+                        </div>
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+</div>

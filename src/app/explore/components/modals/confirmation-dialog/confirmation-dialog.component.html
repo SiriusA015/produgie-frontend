@@ -1,0 +1,6 @@
+<h1 mat-dialog-title class="heading-5 text-center">You have answered <b>{{data.value}} out of {{ data.totalQuestion }}</b> questions on this page. Do you still want to continue?</h1>
+
+<div class="example-button-row">
+    <button class="mat-raised-button cancel btn btn-gray mr-4" (click)="onNoClick(false)">Cancel</button>
+    <button class="mat-raised-button continue-button btn" (click)="onNoClick(true)">Continue</button>
+</div>

@@ -1,0 +1,67 @@
+<div style="page-break-after: always"></div>
+<div class="flex flex-col w-full">
+  <div class="flex flex-col w-full mb-4">
+    <span class="text-2xl mb-4 font-bold">
+      {{ capability.capabilityType }}
+    </span>
+    <span class="text-xl font-semibold">{{ capability.label }}</span>
+  </div>
+  <div class="flex w-full mb-10 font-semibold">
+    {{ description }}
+  </div>
+ <div class="flex items-center justify-between">
+  <div class="flex col-8 font-semibold text-lg">
+    100% Definition Ratings
+  </div>
+  <div class="flex col-4 font-semibold items-center justify-center">50% Benchmark</div>
+ </div>
+  <div class="flex w-full mb-10 justify-between">
+    <div class="col-8" style="display: block;">
+      <canvas
+        id="canvas"
+        baseChart
+        [datasets]="barChartData"
+        [colors]="chartColors"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [chartType]="barChartType"
+      >
+      </canvas>
+    </div>
+    <div class="col-4  mb-10 mt-20 flex flex-col justify-around items-center">
+      <div class="font-semibold" *ngFor="let bm of benchmark">{{ bm }}</div>
+    </div>
+  </div>
+  <div class="flex w-full justify-start font-semibold text-lg">
+    Importance to Develop
+  </div>
+  <div class="flex w-full mb-10">
+    <div class="col-8" style="display: block;">
+      <canvas
+        id="canvas"
+        baseChart
+        [datasets]="barChartDataImportance"
+        [colors]="chartColorsImportance"
+        [labels]="barChartLabels"
+        [options]="barChartOptionsImportance"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [chartType]="barChartType"
+      >
+      </canvas>
+    </div>
+  </div>
+  <div class="font-semibold text-lg mb-5">Advice and Suggestions</div>
+  <div>
+    <ul class="ml-4">
+      <li class="mb-2 font-semibold" *ngFor="let item of advices">
+        {{ item }}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- <canvas id="canvas" height="450" width="600"></canvas>
+<img id="url" /> -->

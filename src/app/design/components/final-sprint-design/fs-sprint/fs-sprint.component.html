@@ -1,0 +1,146 @@
+<div class="w-full flex flex-row items-center justify-between">
+  <div class="pg-final-heading flex flex-row w-1/2 mr-4 rounded-r-full">
+    <div class="pg-heading-symbol"></div>
+    <h1 class="text-2xl font-bold">Sprint</h1>
+  </div>
+  <div class="flex flex-row items-center justify-end w-1/2">
+    <mat-icon svgIcon="pencil" class="mr-2 align-middle">edit</mat-icon>
+    <span class="mr-10 text-2xl font-medium" style="color: #2c3e50">Edit</span>
+  </div>
+</div>
+<div class="pg-margin-inner mt-5 mb-10">
+  <div class="flex flex-col">
+    <div class="mb-6">
+      <span class="text-xl font-semibold">Select Sprint</span>
+    </div>
+    <div
+      class="w-full flex flex-row justify-between border-purple-200 border-2 rounded-md items-center p-4"
+    >
+      <div class="flex flex-row items-center">
+        <mat-icon
+          [svgIcon]="ChosenSprint.icon"
+          class="mat-icon-action"
+          aria-hidden="false"
+          [ngClass]="ChosenSprint.iconclass"
+        ></mat-icon>
+        <span class="text-lg font-light ml-6 pg-txt-gray-light">{{
+          ChosenSprint.text
+        }}</span>
+      </div>
+      <div class="flex flex-row items-center">
+        <mat-icon class="mat-icon-purple" aria-hidden="false"
+          >schedule</mat-icon
+        >
+        <span class="ml-2 mat-icon-purple">8 WEEKS</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col">
+    <div class="mb-6">
+      <span class="text-xl font-semibold">Best Practice Actions</span>
+    </div>
+    <div
+      *ngFor="let ChosenAction of ChosenActions"
+      class="w-full flex flex-row justify-between border-purple-200 border-2 rounded-md items-center p-4 mb-4"
+    >
+      <div class="flex flex-row items-center w-4/5">
+        <mat-icon
+          [svgIcon]="ChosenAction.icon"
+          class="mat-icon-action"
+          style="font-size: 72px"
+          aria-hidden="false"
+          [ngClass]="ChosenAction.iconclass"
+        ></mat-icon>
+        <span class="text-lg font-light ml-6 pg-txt-gray-light">{{
+          ChosenAction.text
+        }}</span>
+      </div>
+      <div class="flex flex-row items-center w-1/5 justify-end">
+        <img class="w-10 h-10" [src]="ChosenAction?.avatar" alt="Avatar">
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col">
+    <div class="mb-6">
+      <span class="text-xl font-semibold">Recommended Behaviour</span>
+    </div>
+    <div
+      *ngFor="let RecommendedBehaviour of RecommendedBehaviours"
+      class="w-full flex flex-row justify-between border-purple-200 border-2 rounded-md items-center p-4 mb-4"
+    >
+      <div class="flex flex-row items-center w-4/5">
+        <mat-icon
+          [svgIcon]="RecommendedBehaviour.icon"
+          class="mat-icon-action"
+          style="font-size: 72px"
+          aria-hidden="false"
+          [ngClass]="RecommendedBehaviour.iconclass"
+        ></mat-icon>
+        <span class="text-lg font-light ml-6 pg-txt-gray-light">{{
+          RecommendedBehaviour.text
+        }}</span>
+      </div>
+      <div class="flex flex-row items-center w-1/5 justify-end">
+        <mat-icon class="mat-icon-purple" aria-hidden="false"
+          >schedule</mat-icon
+        >
+        <span class="ml-2 mat-icon-purple">8 WEEKS</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col">
+    <div class="mb-6">
+      <span class="text-xl font-semibold">Recommended Outcome</span>
+    </div>
+    <div
+      class="w-full flex flex-row justify-between border-purple-200 border-2 rounded-md items-center p-4 mb-4"
+    >
+      <div class="flex flex-row items-center">
+        <mat-icon
+          [svgIcon]="RecomndedOutcome.icon"
+          class="mat-icon-action"
+          aria-hidden="false"
+          [ngClass]="RecomndedOutcome.iconclass"
+        ></mat-icon>
+        <span class="text-lg font-light ml-6 pg-txt-gray-light">{{
+          RecomndedOutcome.text
+        }}</span>
+      </div>
+      <div class="flex flex-row items-center">
+        <mat-icon class="mat-icon-purple" aria-hidden="false"
+          >schedule</mat-icon
+        >
+        <span class="ml-2 mat-icon-purple">8 WEEKS</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col">
+    <div class="mb-6">
+      <span class="text-xl font-semibold">Frequency of Feedback</span>
+    </div>
+    <div
+      class="w-full flex flex-row justify-between border-purple-200 border-2 rounded-md items-center p-4"
+      style="height: 108px;"
+    >
+      <div class="flex flex-row items-center">
+          <div class="flex flex-col h-full justify-center">
+            <div class="h-3">
+              <span
+                *ngFor="let item of numberArray(14); let i = index"
+                class="day-dot"
+                [ngClass]="{ 'day-dot-active': i < Frequency.day }"
+              ></span>
+            </div>
+            <div>
+              <span
+                *ngFor="let item of numberArray(14); let i = index"
+                class="day-dot"
+                [ngClass]="{ 'day-dot-active': i + 14 < Frequency.day }"
+              ></span>
+            </div>
+          </div>
+          <span class="text-base font-normal text-black ml-6">{{ Frequency.day }} days</span>
+      </div>
+    </div>
+  </div>
+</div>

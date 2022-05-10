@@ -1,0 +1,49 @@
+<header></header>
+<div *ngIf="isLoading" class="loader-top">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div class="flex w-full flex-row h-full relative development-plan">
+  <div class="pg-container pg">
+    <div class="pg__inner">
+      <div class="flex flex-row justify-between items-center mb-8">
+        <span class="text-4xl font-bold">Team Development Plan</span>
+        <div class="flex flex-row justify-between items-center mb-8">
+          <button class="flex justify-evenly items-center btn btn-white focus:outline-none" *ngIf="isEdit"
+            (click)="finalEdit()">
+            <mat-icon class="">edit</mat-icon>
+            <span class="">Edit</span>
+          </button>
+          <button class="flex justify-evenly items-center btn btn-gray focus:outline-none" *ngIf="!isEdit"
+            (click)="saveSprint()">
+            <mat-icon class="">save</mat-icon>
+            <span class="">Save</span>
+          </button>
+          <button class="flex justify-evenly items-center btn focus:outline-none" (click)="shareSprint()">
+            <mat-icon class="">share</mat-icon>
+            <span class="">Share</span>
+          </button>
+        </div>
+      </div>
+
+      <app-strength-and-priorities [strenghts]="capabilities" [fads]="FadArray" [priority]="priority">
+      </app-strength-and-priorities>
+      <app-current-sprint 
+        [userSprint]="userSprint" 
+        [sprint]="data?.sprint" 
+        [sprintNo]="userSprint?.sprintNumber"
+        [frequency]="data?.userSprint" 
+        [design]="design"
+        (isSprintDurationChanged)="isSprintDurationChanged($event)"
+        ></app-current-sprint>
+      <ng-container *ngIf="allaction && alloutcome && allbehavior">
+      <app-action-behaviour-outcome [actions]="allaction" [outcomes]="alloutcome" [behaviours]="allbehavior"
+        [sprintId]="data?.userSprint?.sprintId"></app-action-behaviour-outcome>
+        <div class="flex flex-row justify-between items-center mb-8">
+          <span class="text-2xl font-bold"> Team Sprint Crew</span>
+        </div>
+        <app-sprint-crew [crews]="crewMember"></app-sprint-crew>
+      </ng-container>
+    </div>
+  </div>
+</div>
+<app-mat-svg-icon></app-mat-svg-icon>

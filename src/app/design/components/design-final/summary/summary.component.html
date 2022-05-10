@@ -1,0 +1,108 @@
+<div class="mb-10">
+  <div class="flex items-center flex-row justify-between">
+    <h3 class="text-3xl font-bold" i18n="summary header|An introduction header">
+      <div class="flex">
+        <h2 class="heading-1">My Development Plan</h2>
+        <!-- <label class="pg-tooltip-left flex flex-row items-center ml-2">
+  <mat-icon class="text-gray-500 mat-icon-18" fontSet="material-icons-outlined"
+  >info</mat-icon>
+  <input type="checkbox" />
+  <div class="font-light text-xs">
+  {{ userSprint?.description }}
+  </div>
+  </label> -->
+      </div>
+    </h3>
+    <div class="flex flex-row justify-between items-center">
+      <button class="flex justify-evenly items-center btn btn-white focus:outline-none" *ngIf="isEdit"
+        (click)="finalEdit()">
+        <mat-icon class="">edit</mat-icon>
+        <span class="">Edit</span>
+      </button>
+      <button class="flex justify-evenly items-center btn btn-gray focus:outline-none" *ngIf="!isEdit"
+        (click)="saveSprint()">
+        <mat-icon class="">save</mat-icon>
+        <span class="">Save</span>
+      </button>
+      <button class="flex justify-evenly items-center btn focus:outline-none" (click)="shareSprint()">
+        <mat-icon class="">share</mat-icon>
+        <span class="">Share</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <div class="mb-10">
+    <div class="flex items-center flex-row justify-between">
+      <h3 class="text-3xl font-bold" i18n="summary header|An introduction header">
+        <div class="flex">
+            <h2 class="heading-1">My Development Plan</h2>
+             <label class="pg-tooltip-left flex flex-row items-center ml-2">
+            <mat-icon class="text-gray-500 mat-icon-18" fontSet="material-icons-outlined"
+              >info</mat-icon>
+            <input type="checkbox" />
+            <div class="font-light text-xs">
+              {{ userSprint?.description }}
+            </div>
+          </label> --
+        </div>        
+      </h3> -->
+<!-- <div class="flex flex-row justify-between items-center">
+        <button class="flex justify-evenly items-center btn btn-white focus:outline-none" *ngIf="isEdit" (click)="finalEdit()">
+          <mat-icon class="">edit</mat-icon>
+          <span class="">Edit</span>
+        </button>
+        <button class="flex justify-evenly items-center btn btn-gray focus:outline-none" *ngIf="!isEdit" (click)="saveSprint()">
+          <mat-icon class="">save</mat-icon>
+          <span class="">Save</span>
+        </button>
+        <button class="flex justify-evenly items-center btn focus:outline-none" (click)="shareSprint()">
+          <mat-icon class="">share</mat-icon>
+          <span class="">Share</span>
+        </button>
+      </div>
+     </h3> --
+    </div> -->
+<!-- <div class="flex flex-row justify-between items-center">
+      <button
+        class=" border-blue-600 rounded-md flex flex-row justify-evenly items-center bg-white px-3 py-2 mr-4 focus:outline-none"
+        *ngIf="isEdit" (click)="finalEdit()">
+        <mat-icon class="pg-txt-blue-bright">edit</mat-icon>
+        <span class="pg-txt-blue-bright font-bold">Edit</span>
+      </button>
+      <button
+        class=" border-blue-600 rounded-md flex flex-row justify-evenly items-center bg-white px-3 py-2 mr-4 focus:outline-none"
+        *ngIf="!isEdit" (click)="saveSprint()">
+        <mat-icon class="pg-txt-blue-bright">save</mat-icon>
+        <span class="pg-txt-blue-bright font-bold">Save</span>
+      </button>
+      <button
+        class=" border-blue-600 rounded-md flex flex-row justify-evenly items-center pg-bg-blue-dark px-3 py-2 focus:outline-none"
+        (click)="shareSprint()">
+        <mat-icon class="text-white">share</mat-icon>
+        <span class="text-white font-bold">Share</span>
+      </button>
+    </div> -->
+
+<!-- <div class="flex flex-row justify-between items-center">
+      <button
+        class=" border-blue-600 rounded-md flex flex-row justify-evenly items-center bg-white px-3 py-2 mr-4 focus:outline-none"
+        *ngIf="isEdit" (click)="finalEdit()">
+        <mat-icon class="pg-txt-blue-bright">send</mat-icon>
+        <span class="pg-txt-blue-bright font-bold">Provide Feedback</span>
+      </button>
+ </div>
+
+ <div class="flex flex-row justify-between items-center" *ngIf="advicecomp">
+  <button
+    class=" border-blue-600 rounded-md flex flex-row justify-evenly items-center bg-white px-3 py-2 mr-4 focus:outline-none"
+    *ngIf="isEdit" (click)="finalEdit()">
+    <mat-icon class="pg-txt-blue-bright">send</mat-icon>
+    <span class="pg-txt-blue-bright font-bold">Provide Advice</span>
+  </button>
+</div> -->
+
+<!-- </div>
+</div> -->

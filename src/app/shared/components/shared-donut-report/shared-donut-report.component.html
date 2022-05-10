@@ -1,0 +1,193 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon">close</mat-icon>
+</button>
+
+<div *ngIf="loadCounter > 0">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    <p align="center">Loading report...</p>
+</div>
+<div class="popup-style-1" *ngIf="loadCounter === 0">
+
+    <div class="py-4">
+        <div class="flex flex-row justify-start items-center">
+            <span class="heading-2">
+                {{ capabilityName }}
+            </span>
+        </div>
+    </div>
+    <hr />
+
+    <div>
+        <!-- <div class="py-4">
+            <span class="text-xs text-left pg-description-text font-14-heading font-normal text-base" style="color: #8E9AAE;">
+                {{ data.description }}
+            </span>
+        </div> -->
+        <div class="pb-4" *ngIf="style?.length > 0 && (styleSubDimensionsArr?.length > 0 || styleSubscalesArr?.length > 0)">
+            <span class="heading-5 text-base">Style</span>
+        </div>
+        <div *ngFor="let lh of styleSubDimensionsArr; let i=index">
+            <div class="p-4 flex flex-row" *ngIf="style[0]?.dimension_name === lh?.sub_dimension_name">
+                <div class="w-1/3 flex flex-col justify-start">
+                    <div class="flex justify-center mb-6">
+                        <button
+                            class="pg-lh-text px-4 py-1 pg-lh-button text-xs font-semibold rounded-md focus:outline-none">
+                            Low
+                        </button>
+                    </div>
+                    <div class="flex justify-start">
+                        <span class="font-12-heading text-center">{{lh?.lowText}}</span>
+                    </div>
+                </div>
+                <div class="w-1/3 flex flex-col mt-4 ml-1 mr-1">
+                    <span class="pg-txt-blue-bright font-semibold text-xs text-center mb-2 font14">{{
+                        lh?.sub_dimension_name }}</span>
+                    <div class="flex flex-row justify-between">
+                        <div *ngFor="let sc of score" class="pg-blue-dot mx-1"
+                            [ngClass]="{'pg-bg-blue-light': lh?.score < sc, 'pg-bg-blue-dark': lh?.score >= sc}"></div>
+                    </div>
+                </div>
+                <div class="w-1/3 flex flex-col justify-start">
+                    <div class="flex justify-center mb-6">
+                        <button
+                            class="pg-lh-button px-4 py-1 pg-lh-text text-xs font-semibold rounded-md focus:outline-none">
+                            High
+                        </button>
+                    </div>
+                    <div class="flex justify-end">
+                        <span class="font-12-heading text-center">{{lh?.highText}}</span>
+                    </div>
+                </div>
+            </div>
+            <ng-container *ngIf="i===0">
+                <div class="py-2" *ngIf="data.sub_dimensions.length > 0">
+                    <span class="font-16-heading">The team scores indicate that the team:</span>
+                </div>
+            </ng-container>
+            <div class="py-2 flex flex-col border-gray-400 mb-2" *ngIf="data.sub_dimensions.length > 0">
+                <div class="flex justify-start items-start" *ngFor="let subData of data.sub_dimensions">
+                    <li><span class="font-12-heading ml-2">{{ subData.text }}</span></li>
+                </div>
+            </div>
+        </div>
+        <div class="py-2" *ngIf="lh?.text?.length > 0">
+            <span class="font-16-heading">The team scores indicate that the team:</span>
+        </div>
+
+        <div class="py-2 flex flex-col border-gray-400 mb-2" *ngIf="lh?.text?.length > 0">
+            <div class="flex justify-start items-start" *ngFor="let stext of lh?.text">
+                <li>
+                    <span class="font-12-heading ml-2">{{ stext }}</span>
+                </li>
+            </div>
+        </div>
+    </div>
+
+    <!-- START style for Manage complexity -->
+    <ng-container *ngIf="capabilityName == 'Manage Complexity' && styleSubscalesArr?.length > 0">
+        <div class="flex flex-col w-full mx-4 my-4">
+            <span class="text-sm font-semibold pg-text-not-black ml-2 font-bold text-base">Subscales</span>
+            <p class="pg-text-not-black font-12-heading ml-2">These scores and the text descriptions describe
+                whether your team is on target, too fast or too slow or is mixed in speed compared to next level
+                teams.</p>
+        </div>
+        <div class="border-b border-dashed border-gray-300">
+            <div class="flex flex-row items-center mx-4 mb-4" *ngFor="let sd of styleSubscalesArr">
+                <button
+                    class="pg-lh-text px-4 py-1 pg-lh-button text-xs font-semibold rounded-md focus:outline-none min-w-160">
+                    {{ sd?.sub_dimension_name }}
+                </button>
+                <div class="flex flex-row justify-between ml-2">
+                    <div *ngFor="let sc of score" class="pg-lh-text-sub mx-1"
+                        [ngClass]="{'pg-bg-blue-light': sd.score < sc,'pg-bg-blue-dark': sd.score >= sc}"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="py-2">
+            <span class="font-16-heading">The team scores indicate that the team:</span>
+        </div>
+        <div class="py-2 flex flex-col border-gray-400 mb-2">
+            <div class="flex justify-start items-start">
+                <li>
+                    <span class="font-12-heading ml-2">{{ sd?.text }}</span>
+                </li>
+            </div>
+        </div>
+    </ng-container>
+
+    <!-- END Style for Manage complexity -->
+
+    <div class="pb-4" *ngIf="strategy?.length > 0 && (strategySubDimensionsArr?.length > 0 || strategySubscalesArr?.length > 0)">
+        <span class="heading-5 text-base">Strategy</span>
+    </div>
+
+    <div *ngFor="let lh of strategySubDimensionsArr; let i = index">
+        <div class="p-4 flex flex-row" *ngIf="strategy[0]?.dimension_name === lh?.sub_dimension_name">
+            <div class="w-1/3 flex flex-col justify-start">
+                <div class="flex justify-center mb-6">
+                    <button class="pg-lh-text px-4 py-1 pg-lh-button text-xs font-semibold rounded-md focus:outline-none">Low</button>
+                </div>
+                <div class="flex justify-start"> <span class="font-12-heading text-center">{{lh?.lowText}}</span></div>
+            </div>
+            <div class="w-1/3 flex flex-col mt-4 ml-1 mr-1">
+                <span class="pg-txt-blue-bright font-semibold text-xs text-center mb-2 font14">{{ lh?.sub_dimension_name }}</span>
+                <div class="flex flex-row justify-between">
+                    <div *ngFor="let sc of score" class="pg-blue-dot mx-1" [ngClass]="{'pg-bg-blue-light': lh?.score < sc, 'pg-bg-blue-dark': lh?.score >= sc}"></div>
+                </div>
+            </div>
+            <div class="w-1/3 flex flex-col justify-start">
+                <div class="flex justify-center mb-6">
+                    <button class="pg-lh-button px-4 py-1 pg-lh-text text-xs font-semibold rounded-md focus:outline-none">
+                        High
+                    </button>
+                </div>
+                <div class="flex justify-end">
+                    <span class="font-12-heading text-center">{{lh?.highText}}</span>
+                </div>
+            </div>
+        </div>
+        <!-- Show this text only once -->
+        <ng-container *ngIf="data.sub_dimensions.length">
+            <div class="py-2" *ngIf="data?.sub_dimensions?.length > 0">
+                <span class="font-16-heading">The team scores indicate that the team:</span>
+            </div>
+        </ng-container>
+        <div class="py-2 flex flex-col border-gray-400 mb-2" *ngIf="data.sub_dimensions.length">
+            <div class="flex justify-start items-start" *ngFor="let subData of data.sub_dimensions">
+                <li><span class="font-12-heading ml-2">{{ subData.text }}</span></li>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAR Strategies for Manage complexity  -->
+    <ng-container *ngIf="capabilityName == 'Manage Complexity' && strategySubscalesArr?.length > 0">
+        <div class="flex flex-col w-full mx-4 my-4">
+            <span class="text-sm font-semibold pg-text-not-black ml-2 font-bold text-base">Subscales</span>
+            <p class="pg-text-not-black font-12-heading ml-2">These scores and the text descriptions describe
+                whether your team is on target, too fast or too slow or is mixed in speed compared to next level
+                teams.</p>
+        </div>
+        <div class="border-b border-dashed border-gray-300">
+            <div class="flex flex-row items-center mx-4 mb-4" *ngFor="let sd of strategySubscalesArr">
+                <button
+                    class="pg-lh-text-sub px-4 py-1 pg-lh-button text-xs font-semibold rounded-md focus:outline-none min-w-160">
+                    {{ sd.sub_dimension_name }}
+                </button>
+                <div class="flex flex-row justify-between ml-2">
+                    <div *ngFor="let sc of score" class="pg-blue-dot mx-1"
+                        [ngClass]="{'pg-bg-blue-light': sd.score < sc,'pg-bg-blue-dark': sd.score >= sc}"></div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="py-2" *ngIf="lh?.text?.length > 0">
+            <span class="font-16-heading">The team scores indicate that the team:</span>
+        </div>
+        <div class="py-2 flex flex-col border-gray-400 mb-2" *ngIf="lh?.text?.length > 0">
+            <div class="flex justify-start items-start" *ngFor="let stext of lh?.text">
+                <li><span class="font-12-heading ml-2">{{ stext }}</span></li>
+            </div>
+        </div> -->
+    </ng-container>
+    <!-- END Strategies for Manage complexity -->
+</div>

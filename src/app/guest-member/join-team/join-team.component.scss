@@ -1,0 +1,36 @@
+.fontStyle {
+    font-size: 23px;
+    font-weight: bold;
+    width: 50%;
+}
+
+.declineBtn {
+    background-color: grey;
+    border-color: grey;
+    margin-right: -10rem;
+}
+
+.tableCardStyling {
+    background: #F3F8FF;;
+}
+
+.title {
+    text-align: center; 
+    margin-left: 8rem;
+}
+
+.title-div {
+    border: 1px solid #8e9aae;
+    padding-left: 1.5rem;
+    border-radius: 1rem;
+    width: 11%;
+    background-color: white;
+  
+    img {
+      width: 106px;
+      height: 3.4rem;
+      flex-grow: 0;
+      margin: 1.1rem 0;
+      margin-right: 1.5rem;
+    }
+}

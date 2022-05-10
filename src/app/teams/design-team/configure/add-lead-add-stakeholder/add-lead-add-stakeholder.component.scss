@@ -1,0 +1,68 @@
+.font-heading{
+    font-weight: bold;
+    font-size:18px;
+}
+.float-right{
+    float:right;
+}
+.margin-top{
+    margin-top:30px;
+}
+.width-div{
+    width:50%
+}
+.input{
+    border:1px solid #8E9AAE !important;
+    padding: 10px;
+    height:44px;
+    width:270px;
+    // padding:9px, 15px, 9px, 15px;
+}
+.margin-top-top{
+    margin-top: 25px;
+}
+.border-bottom{
+    border:1px solid #8E9AAE;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+.btn-submit{
+    height:44px;
+    width:63px;
+    background-color: #278CE9;
+    color:#fff;
+    padding:10px, 15px, 10px, 15px;
+    border-radius: 3px;
+}
+.custom-mat-select {
+    border: 1px solid #dbdde1 !important;
+    padding: 10px !important;
+    text-align: center !important;
+    border-radius: 2px !important;
+    width: 50%;
+    height:44px;
+    background: #fff;
+    color:#88898c;
+  }
+  .margin-left{
+      margin-left:20px;
+  }
+  .btn-container{
+      display:flex;
+      align-items: end;
+      justify-content: flex-end;
+  }
+  .border{
+    border:3px solid #dbdde1;
+  }
+
+  .inputboxborder {
+    padding: 1.2rem;
+    border: 1px solid #dbdde1 !important;
+  }
+  .inputboxborder.select-padding {
+    padding: 1rem;
+  }
+  .spinner-white{
+      color:#fff;
+  }

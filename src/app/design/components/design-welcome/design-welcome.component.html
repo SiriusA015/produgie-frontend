@@ -1,0 +1,152 @@
+<div class="mx-auto welcome-wrap pg-h-screen-w-header">
+  <div class="h-150 flex flex-row">
+    <mat-card class="mat-card mat-focus-indicator card">
+      <!-- <div class="w-1/2 bg-white flex flex-col h-full"> -->
+      <div class="flex flex-col mt-10">
+        <div class="flex">
+          <span class="font-bold Welcome-to-Design heading-1"
+            >Welcome to Design</span
+          >
+          <label
+            class="
+              pg-tooltip
+              flex flex-row
+              items-center
+              ml-2
+              focus:outline-none
+            "
+          >
+            <mat-icon
+              svgIcon="info"
+              class="text-gray-800"
+              aria-hidden="false"
+            ></mat-icon
+            ><input type="checkbox" />
+            <div class="font-light text-xs z-20">
+              A development Sprint is a short, time boxed effort to develop a
+              capability. Select your Sprint, actions, behaviors and outcomes
+              and engage others to help you complete it and learn.
+            </div>
+          </label>
+        </div>
+        <span class="sub-title heading-4">
+          This video will help you design a Sprint for your development
+        </span>
+
+        <div class="grid">
+          <div class="welcome-design-grid">
+            <div class="video-block">
+              <!-- <img src="/assets/images/design-page.svg" alt="" class="imgcss" /> -->
+              <video controls>
+                <source
+                  src="https://storage.googleapis.com/produgie-media/Produgie%20Design%20video_Version%2002.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="nav-design">
+              <div class="flex flex-col">
+                <div class="flex flex-row items-center">
+                  <span
+                    class="
+                      border
+                      pg-border-blue-bright pg-txt-blue-bright
+                      font-bold
+                      text-base
+                      bg-white
+                      round
+                    "
+                    >1. Focus Your Development</span
+                  >
+                </div>
+                <div class="relative">
+                  <div class="w-10 h-10 flex justify-center items-center"></div>
+                </div>
+                <div class="flex flex-row items-center">
+                  <span
+                    class="
+                      border
+                      pg-border-blue-bright
+                      rounded-xl
+                      pg-txt-blue-bright
+                      font-bold
+                      text-base
+                      bg-white
+                      px
+                      round
+                    "
+                    >2. Configure Sprint</span
+                  >
+                </div>
+                <div class="relative">
+                  <div class="w-10 h-10 flex justify-center items-center"></div>
+                </div>
+                <div class="flex flex-row items-center">
+                  <span
+                    class="
+                      border
+                      pg-border-blue-bright
+                      rounded-xl
+                      pg-txt-blue-bright
+                      font-bold
+                      text-base
+                      bg-white
+                      px
+                      round
+                    "
+                    >3. Identify Support</span
+                  >
+                </div>
+                <div class="relative">
+                  <div class="w-10 h-10 flex justify-center items-center"></div>
+                </div>
+                <div class="flex flex-row items-center">
+                  <span
+                    class="
+                      border
+                      pg-border-blue-bright
+                      rounded-xl
+                      pg-txt-blue-bright
+                      font-bold
+                      text-base
+                      bg-white
+                      px1
+                      round
+                    "
+                    >4. Schedule Routines</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <!-- <div class="video h-full w-full flex flex-col justify-center items-center rounded-t-lg"
+          style="background-color: #ebeeff">
+  </div> -->
+      </div>
+      <div class="w-100 text-right mt-5">
+        <button class="letbtn btn" (click)="getAssessment()">
+          Let's get started!
+        </button>
+      </div>
+    </mat-card>
+
+    <!-- <div
+      class="
+        flex flex-col
+        justify-center
+        items-center
+        pg-h-screen-w-header
+        w-full
+      "
+      *ngIf="!Surveycompleted"
+    >
+      <span class="text-3x-1 font-semibold"
+        >Survey Report not generated yet!</span
+      >
+    </div> -->
+  </div>
+  <app-mat-svg-icon></app-mat-svg-icon>
+</div>

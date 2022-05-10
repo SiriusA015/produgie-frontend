@@ -1,0 +1,26 @@
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 10px;
+}
+
+.example-radio-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  min-height: 48px;
+  font-size: 12pt;
+}
+::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle,
+.mat-radio-outer-circle {
+  border-color: #4339f2 !important;
+}
+
+::ng-deep.mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: #4339f2 !important;
+}
+::ng-deep.mat-radio-label-content{
+    font-size: 12px;
+    font-weight: bold;
+  }

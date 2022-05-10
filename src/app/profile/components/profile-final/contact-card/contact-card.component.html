@@ -1,0 +1,50 @@
+
+<div *ngIf="crewsItems?.length != 0" class="px-24">
+  <ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="crewsItems">
+      <div *nguCarouselDef="let crew; let ind = index" class="item">
+        <div class="tile flex flex-row justify-start items-center">
+          <div class="flex justify-start items-center bg-white crew-rounded-border">
+            <div id="icon" *ngIf="crew.role=='self'">
+              <mat-icon
+                svgIcon="bookmark"
+                aria-hidden="false"
+              ></mat-icon>
+            </div>
+            <div class="h-16 w-16 p-1 rounded-full bg-white">
+              <span
+                class="
+                  pg-stakeholder-image-bg
+                  rounded-full
+                  h-full
+                  w-full
+                  flex
+                  justify-center
+                  items-center
+                  border-white
+                  text-white
+                  uppercase
+                "
+              >
+                {{ crew.name.charAt(0) }}
+              </span>
+            </div>
+            <div class="ml-1">
+              <p class="heading-6">{{ crew.name | titlecase}}</p>
+              <p class="font-12-8e-heading">{{ crew.role | titlecase }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <button NguCarouselPrev class="leftRs" [ngClass]="{'hidden': crews?.length === 1}">
+      <mat-icon class="maticon" [class]="myCarousel.isFirst?'fc-8E':''">keyboard_arrow_left</mat-icon>
+    </button>
+    <button NguCarouselNext class="rightRs" [ngClass]="{'hidden': crews?.length === 1}">
+      <mat-icon class="maticon" [class]="myCarousel.isLast?'fc-8E':''">keyboard_arrow_right</mat-icon>
+    </button>
+
+    <ul class="myPoint" NguCarouselPoint>
+      <li *ngFor="let j of myCarousel.pointNumbers; let i = index" [class.active]="i===myCarousel.activePoint"
+        (click)="myCarousel.moveTo(i)"></li>
+    </ul>
+  </ngu-carousel>
+</div>

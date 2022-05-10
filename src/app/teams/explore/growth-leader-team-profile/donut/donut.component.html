@@ -1,0 +1,49 @@
+<div #wrapper id="wrapper" (window:resize)="onResize()">
+   <div class="w-full h-full pg-snapshot-graph relative">
+      <!-- <div class="flex justify-center items-center w-full h-full" style="z-index: -10">
+         <img class="profile-img rounded-full shadow-xl" [src]="imageConverted"
+            onerror="this.onerror=null;this.src='/assets/avatars/avatar_10.svg'" alt="" height="100" width="110" />
+      </div> -->
+      
+      <div class="action absolute" id="perform-{{ i + 1 }}" [matBadge]="item.rank" [matBadgeHidden]="!rankChecked"
+         matBadgePosition="before" matBadgeColor="accent" *ngFor="let item of perform; let i = index">
+         <div class="action-title text-sm font-semibold absolute heading-4">
+            {{ item.capabilityName }}
+         </div>
+         <div class="w-full h-full flex justify-center items-center"
+            [ngClass]="selectedCircluar == 'first' + i ? 'cursor-pointer' : ''"
+            (click)="openDetailsDialog('first' + i, item.capabilityName)">
+            <!-- [ngClass]="selectedCircluar == 'first' + i ? 'cursor-pointer' : ''" -->
+            <mat-icon [svgIcon]='item.icon' class="mat-icon-28 pg-txt-blue-bright" aria-hidden="false">
+            </mat-icon>
+         </div>
+      </div>
+      <div class="action absolute" id="transform-{{ i + 1 }}" [matBadge]="item.rank" [matBadgeHidden]="!rankChecked"
+         matBadgePosition="before" matBadgeColor="accent" *ngFor="let item of transform; let i = index">
+         <div class="action-title text-sm font-semibold absolute heading-4">
+            {{ item.capabilityName }}
+         </div>
+         <div class="w-full h-full flex justify-center items-center"
+            [ngClass]="selectedCircluar == 'second' + i ? 'cursor-pointer' : ''"
+            (click)="openDetailsDialog('second' + i, item.capabilityName)">
+            <mat-icon [svgIcon]="item.icon" class="mat-icon-28 pg-txt-blue-bright" aria-hidden="false">
+            </mat-icon>
+         </div>
+      </div>
+      <div class="action absolute" id="energize-{{ i + 1 }}" [matBadge]="item.rank" [matBadgeHidden]="!rankChecked"
+         matBadgePosition="before" matBadgeColor="accent" *ngFor="let item of energize; let i = index">
+         <div class="action-title text-sm font-semibold absolute heading-4">
+            {{ item.capabilityName }}
+         </div>
+         <div class="w-full h-full flex justify-center items-center"
+            [ngClass]="selectedCircluar == 'third' + i ? 'cursor-pointer' : ''"
+            (click)="openDetailsDialog('third' + i, item.capabilityName)">
+            <mat-icon [svgIcon]="item.icon" class="mat-icon-28 pg-txt-blue-bright" aria-hidden="false">
+            </mat-icon>
+         </div>
+      </div>
+      <div id="circle-text-1" class="absolute">Perform</div>
+      <div id="circle-text-2" class="absolute">Transform</div>
+      <div id="circle-text-3" class="absolute">Energize</div>
+   </div>
+</div>

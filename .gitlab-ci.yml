@@ -1,0 +1,163 @@
+cache: &global_cache
+  key:
+      files:
+        - package-lock.json
+  paths:
+      - node_modules
+
+variables:
+  PROJECT_PATH: "$CI_PROJECT_DIR"
+  APP_OUTPUT_PATH: "$CI_PROJECT_DIR/dist/project-grip"
+  DOCKER_DRIVER: overlay2
+
+stages:
+  - prep-dependency
+  - build
+  - deploy-dev
+  - deploy-uat
+  - deploy-prod
+
+prep-dependency:
+  stage: prep-dependency
+  image: trion/ng-cli:latest
+  tags:
+    - docker
+  script:
+    - npm install
+  cache:
+    # inherit all global cache settings
+    <<: *global_cache
+  only: 
+    refs:
+      - dev
+      - uat
+      - prod    
+    changes:
+      - package-lock.json
+
+build_dev_app:
+  stage: build
+  image: trion/ng-cli:latest
+  environment:
+    name: dev
+  tags:
+    - docker
+  before_script:
+    - npm install
+  script:
+    - npm run dev-build
+  artifacts:
+    name: "project-grip"
+    paths:
+      - $APP_OUTPUT_PATH
+  only: 
+    - develop
+  cache:
+    # inherit all global cache settings
+    <<: *global_cache
+    policy: pull-push
+  
+build_uat_app:
+  stage: build
+  image: trion/ng-cli:latest
+  environment:
+    name: uat
+  tags:
+    - docker
+  before_script:
+    - npm install
+  script:
+    - npm run uat-build
+  artifacts:
+    name: "project-grip"
+    paths:
+      - $APP_OUTPUT_PATH
+  only: 
+    - feature/sc-2959-v3
+  cache:
+    # inherit all global cache settings
+    <<: *global_cache
+    policy: pull-push
+
+build_prod_app:
+  stage: build
+  image: trion/ng-cli:latest
+  environment:
+    name: prod
+  tags:
+    - docker
+  before_script:
+    - npm install
+  script:
+    - npm run build
+  artifacts:
+    name: "project-grip"
+    paths:
+      - $APP_OUTPUT_PATH
+  only: 
+    - main
+  cache:
+    # inherit all global cache settings
+    <<: *global_cache
+    policy: pull-push
+    
+deploy_dev:
+  stage: deploy-dev
+  image: google/cloud-sdk:latest
+  environment:
+    name: dev
+  tags:
+    - docker
+  script:
+    - echo $GCP_SERVICE_ACCOUNT > gcloud-service-key.json
+    - gcloud auth activate-service-account --key-file gcloud-service-key.json
+    - gsutil -m rm -r gs://myprodugie-dev/*
+    - gsutil -m cp -r $APP_OUTPUT_PATH/** gs://myprodugie-dev
+    - gcloud compute url-maps invalidate-cdn-cache dev-load-balancer --path "/*" --project sincere-cacao-299107
+  only: 
+    - develop
+  dependencies:
+    - build_dev_app
+  needs:
+    - build_dev_app
+
+deploy_uat:
+  stage: deploy-uat
+  image: google/cloud-sdk:latest
+  environment:
+    name: uat
+  tags:
+    - docker
+  script:
+    - echo $GCP_SERVICE_ACCOUNT > gcloud-service-key.json
+    - gcloud auth activate-service-account --key-file gcloud-service-key.json
+    - gsutil -m rm -r gs://myprodugie-uat/*
+    - gsutil -m cp -r $APP_OUTPUT_PATH/** gs://myprodugie-uat
+    - gcloud compute url-maps invalidate-cdn-cache new-lb --path "/*" --project produgie-uat
+  only: 
+    - feature/sc-2959-v3
+  dependencies:
+    - build_uat_app
+  needs:
+    - build_uat_app
+
+deploy_prod:
+  stage: deploy-prod
+  image: google/cloud-sdk:latest
+  environment:
+    name: prod
+  tags:
+    - docker
+  script:
+    - echo $GCP_SERVICE_ACCOUNT > gcloud-service-key.json
+    - gcloud auth activate-service-account --key-file gcloud-service-key.json
+    - gsutil -m rm -r gs://prod-my/*
+    - gsutil -m cp -r $APP_OUTPUT_PATH/** gs://prod-my
+    - gcloud compute url-maps invalidate-cdn-cache produgie-prod-load-balancer --path "/*" --project project-produgie-prod
+  dependencies:
+    - build_prod_app
+  needs:
+    - build_prod_app
+  only: 
+    - main
+  when: manual

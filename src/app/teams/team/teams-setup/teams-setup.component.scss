@@ -1,0 +1,192 @@
+.certificate {
+  .heading-4 {
+    font-weight: 400;
+    .learnMore {
+      color: #075ee1;
+      text-decoration: underline;
+    }
+  }
+  .formLabel {
+    display: block;
+    margin-bottom: 0;
+    color: #000;
+    margin-bottom: 1rem;
+  }
+
+  .mat-input-element,
+  .mat-select {
+    background: #fff;
+    border: 1px solid #8e9aae;
+    padding: 15px;
+  }
+  .btn-reset {
+    font-size: 1.6rem;
+    color: #48535b;
+    font-weight: bold;
+    margin-right: 5rem;
+  }
+}
+
+::ng-deep .mat-form-field-infix {
+  width: 230px !important;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-left: 27px;
+  margin-top: 11px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  // background-color: #a39696;
+  background-color: #8e9aae;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  text-align: end;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  // background-color: #3AA76D;
+  background-color: #278ce9;
+  text-align: start;
+}
+
+input:focus + .slider {
+  // box-shadow: 0 0 1px #3AA76D;
+  box-shadow: #278ce9;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.dbtable-sliderOn {
+  background-color: #278ce9 !important;
+  box-shadow: #278ce9 !important;
+}
+
+.dbtable-sliderOff {
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    right: 0;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+  }
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  // left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #8e9aae !important;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  text-align: end;
+}
+::ng-deep .width-100 {
+  width: 100% !important;
+  margin-top: 0px !important;
+}
+.toggle-text {
+  font-size: 12px;
+  font-weight: bold;
+}
+.clients-div {
+  margin: 2.5rem 21rem;
+  padding: 2.5rem;
+  border-radius: 1rem;
+  background: #f3f8ff;
+  margin-top: 125px;
+}
+.background-white {
+  background-color: #fff;
+  padding: 25px;
+  margin: 30px;
+}
+.heading-clients {
+  margin-top: 20px;
+  color: #051532;
+  font-weight: 700;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.text-font {
+  color: #051532;
+  font-weight: 400;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.button-text {
+  font-weight: 700;
+}
+.button-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.plus-icon {
+  color: #fff;
+  vertical-align: middle;
+  font-size: 21px;
+  font-weight: 700;
+}
+.loader-top {
+  margin: 20rem 20px 20px 20px;
+}
+
+.idp-col {
+  text-align: unset !important;
+}
+@media screen and (max-width: 1199px) {
+  ::ng-deep .mat-form-field-infix {
+    width: 230px !important;
+  }
+}

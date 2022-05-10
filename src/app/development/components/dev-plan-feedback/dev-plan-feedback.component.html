@@ -1,0 +1,176 @@
+<app-dev-loader *ngIf="isLoader"></app-dev-loader>
+<!-- <div class="flex w-full flex-col h-full relative" *ngIf="!isLoader">
+  <div class="pg-container" style="padding-left: 5rem; padding-right: 5rem">
+    <div class="pt-8"></div>
+    <div class="flex flex-row justify-between items-center mb-8">
+      <span class="text-2xl font-bold"
+        >{{ data.name.firstname + " " + data.name.lastname }}'s Development Plan</span
+      >
+      <button
+        *ngIf="checkEmpty(feedback)"
+        class="px-8 py-4 flex flex-row justify-between items-center text-white pg-button-orange rounded-md focus:outline-none"
+        (click)="openAdvice(); $event.stopPropagation()"
+      >
+        <mat-icon fontSet="material-icons-outlined" class="text-white mr-2"
+          >send</mat-icon
+        >
+        <span class="text-md font-semibold">Provide Feedback</span>
+      </button>
+      <button
+        *ngIf="!checkEmpty(feedback)"
+        class="px-8 py-4 flex flex-row justify-between items-center text-white rounded-md border border-gray-400 focus:outline-none"
+        (click)="editAdvice(); $event.stopPropagation()"
+      >
+        <mat-icon
+          fontSet="material-icons-outlined"
+          class="pg-txt-blue-bright mr-2"
+          >edit</mat-icon
+        >
+        <span class="text-md font-semibold text-gray-500">Edit Feedback</span>
+      </button>
+    </div>
+    <app-fad-overview
+      [strenghts]="capabilities"
+      [fads]="data?.capability"
+      [priority]="data?.priority"
+    ></app-fad-overview>
+    <app-sprint-duration-overview
+      [frequency]="data?.userSprint"
+    ></app-sprint-duration-overview>
+    <app-sprint-overview [sprint]="data?.sprint" [sprintNo]="data?.sprintNo"></app-sprint-overview>
+    <app-abo-overview
+      [actions]="allaction"
+      [outcomes]="alloutcome"
+      [behaviours]="allbehavior"
+      [sprintId]="sprintId"
+    ></app-abo-overview>
+    <div class="flex flex-row justify-between">
+      <div
+        class="w-full flex flex-col lg:flex-row justify-between bg-white py-6 px-8 shadow-lg mb-4 rounded"
+      >
+        <div
+          class="w-full justify-center mb-4 lg:mb-0 lg:w-1/5 flex items-center lg:justify-start"
+        >
+          <h3 class="text-2xl lg:text-xl pg-text-333 font-bold">Sprint Crew</h3>
+        </div>
+      </div>
+    </div>
+    <app-sprint-crew-overview
+      *ngIf="data?.crew"
+      [crews]="data?.crew"
+      [self]="data.name.fullname"
+    ></app-sprint-crew-overview>
+  </div>
+</div>
+<div
+  class="bg-transparent fixed top-0 left-0 h-screen w-screen"
+  style="z-index: 10000"
+  *ngIf="stored"
+>
+  <app-thank-you
+    [userName]="data.name.fullname"
+  ></app-thank-you>
+</div> -->
+
+<div class="flex w-full flex-row h-full relative development-plan">
+  <div class="pg-container pg">
+    <div class="pg__inner">
+      <div class="mb-10">
+        <div class="flex items-center flex-row justify-between">
+          <span class="heading-1"
+            >{{ data.name?.fullname }}'s
+            Development Plan</span
+          >
+
+          <!-- <span class="heading-1"> {{ username }}'s Development Plan</span> -->
+
+          <button
+            *ngIf="checkEmpty(feedback)"
+            class="
+              px-8
+              py-4
+              flex flex-row
+              justify-between
+              items-center
+              bg-white
+              rounded-md
+              border border-gray-400
+              focus:outline-none
+            "
+            (click)="openAdvice(); $event.stopPropagation()"
+          >
+            <mat-icon
+              fontSet="material-icons-outlined"
+              class="pg-txt-blue-bright mr-2"
+              >send</mat-icon
+            >
+            <span class="pg-txt-blue-bright font-bold">Provide Feedback</span>
+          </button>
+          <button
+            *ngIf="!checkEmpty(feedback)"
+            class="
+              px-8
+              py-4
+              flex flex-row
+              justify-between
+              bg-white
+              items-center
+              text-white
+              rounded-md
+              border border-gray-400
+              focus:outline-none
+            "
+            (click)="editAdvice(); $event.stopPropagation()"
+          >
+            <mat-icon
+              fontSet="material-icons-outlined"
+              class="pg-txt-blue-bright mr-2"
+              >edit</mat-icon
+            >
+            <span class="pg-txt-blue-bright font-semibold text-gray-500"
+              >Edit Feedback</span
+            >
+          </button>
+        </div>
+      </div>
+      <!-- <app-summary [userSprint]="userSprint" [name]="name"></app-summary> -->
+      <app-summary-details
+        [feedbackpage]="feedbackpage"
+        [strenghts]="capabilities"
+        [fads]="data?.capability"
+        [priority]="data?.priority"
+      ></app-summary-details>
+      <app-snapshot
+        [userSprint]="data?.userSprint"
+        [sprint]="data?.sprint"
+        [sprintNo]="data?.sprintNo"
+        [frequency]="data?.userSprint"
+      ></app-snapshot>
+      <!-- <app-resilience  [sprintNo]="data?.sprintNo"></app-resilience> -->
+      <app-key
+        [actions]="allaction"
+        [outcomes]="alloutcome"
+        [behaviours]="allbehavior"
+        [sprintId]="data?.userSprint?.sprintId"
+      ></app-key>
+      <app-sprint-roles></app-sprint-roles>
+      <app-contact-card
+        *ngIf="data?.crew"
+        [crews]="data?.crew"
+        [self]="data.name.fullname"
+      ></app-contact-card>
+    </div>
+  </div>
+</div>
+
+<div
+  class="bg-transparent fixed top-0 left-0 h-screen w-screen"
+  style="z-index: 10000"
+  *ngIf="stored"
+>
+  <app-thank-you
+    [userName]="data.name.fullname"
+  ></app-thank-you>
+</div>
+
+<app-mat-svg-icon></app-mat-svg-icon>

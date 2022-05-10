@@ -1,0 +1,28 @@
+<div
+    class="bg-white rounded-t-md relative"
+  >
+    <div class="text w-full" *ngIf="data.selectedEvent.length !== 0 || data.today <= data.selectedDate">
+      <div class="flex justify-center items-center py-2">
+        <div class="w-8 h-2 bg-gray-300 rounded-md" (click)="onClose()"></div>
+      </div>
+      <div class="flex font-bold justify-center mt-4 mb-1">Events</div>
+      <div class="flex font-semibold justify-center mb-4 text-xs text-gray-500">{{ data.selectedDate | date: "mediumDate" }} | {{ data.selectedDate | date: "EEEE" }}</div>
+      <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+      >
+      </mat-radio-group>
+      <div class="flex flex-col content-between px-2">
+        <div class="flex items-center py-6 pl-2 event-list" *ngFor="let se of data.selectedEvent" (click)="openViewDialog(se)">
+          <span class="pg-p-5 flex justify-center items-center rounded-full" [ngClass]="se.color">
+            <mat-icon fontSet="material-icons-outlined" class="text-white mat-icon-14">{{se.icon}}</mat-icon>
+          </span>
+          <span class="pl-2 font-semibold">{{se.eventType.title}}</span>
+        </div>
+        <div class="flex items-center py-6 pl-2 event-list" *ngIf="!data.isStop && data.today <= data.selectedDate" (click)="openAddDialog()">
+            <mat-icon fontSet="material-icons-outlined" class="pg-txt-blue-bright">add_circle_outline</mat-icon>
+          <span class="pl-2 font-semibold">Add Event</span>
+        </div>
+      </div>
+    </div>
+  </div>

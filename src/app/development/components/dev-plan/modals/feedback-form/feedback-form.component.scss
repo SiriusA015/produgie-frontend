@@ -1,0 +1,31 @@
+::ng-deep.mat-radio-label{
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start !important;
+}
+::ng-deep.mat-radio-label-content{
+    padding: 0 !important;
+    display: block;
+}
+::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle , .mat-radio-outer-circle {
+    border-color: #4339F2 !important;
+  }
+  
+::ng-deep.mat-radio-button.mat-accent .mat-radio-inner-circle{
+background-color: #4339F2 !important;
+}
+
+.pg-list-items{
+    border-bottom: #e0e0e0 dashed 2px;
+}
+.pg-list-items:nth-last-child(1){
+    border: none;
+}
+// .pg-border-gray{
+//     border-bottom: #e0e0e0 solid 2px;
+// }
+
+.invalid-feedback{
+    display : block;
+    font-size: 100%;
+}

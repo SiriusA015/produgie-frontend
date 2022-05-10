@@ -1,0 +1,120 @@
+
+<div  class="pg-container mx-auto flex justify-center items-center" *ngIf="!isDesignComplete">
+  <div class="flex flex-col my-20">
+    <span class="font-bold text-base text-gray-500">You do not have an active sprint.</span>
+  </div>
+</div>
+<div class="sprint-start" *ngIf="!isSprintStarted">
+  <div class="flex flex-col my-20 position-text"> 
+    <span class="font-bold text-base text-gray-500">Your Sprint will start on {{sprintStartDate | date: 'mediumDate'}}</span>
+  </div>
+</div>
+<div *ngIf="isDesignComplete && isSprintStarted" class="pb-20">
+  <div class="p-4" >
+    <span class="text-xl font-bold trend-text">Trends</span>
+  </div>
+  <!-- <app-updated-charts></app-updated-charts> -->
+
+  <!-- <app-trend-line-chart [labels]="actionLabel" [data]="[action]" [details]="[{title:'Effort on Action'}]"
+    title="Actions" [borderColor]="actionStyle.borderColor" [backgroundColor]="actionStyle.backgroundColor"
+    [textColor]="actionStyle.textColor" [hideLegend]="false"
+    infoText="Identified on-the-job opportunities that accelerate your development"></app-trend-line-chart> -->
+  <div class="m-2 rounded-md overflow-hidden shadow-md bg-white margin-card" *ngIf="actionGraph?.length == 0">
+    <h3 class="text-xl font-bold margin-bottom-text">Action</h3>
+    <div style="display: block;">
+      <h2 class="no-data-text"> No data found</h2>
+    </div>
+  </div>
+  <div class="m-2 rounded-md overflow-hidden shadow-md bg-white margin-card" *ngIf="enlistGraph?.length == 0">
+    <h3 class="text-xl font-bold margin-bottom-text">Sprint Crew Engagement</h3>
+    <div style="display: block;">
+      <h2 class="no-data-text"> No data found</h2>
+    </div>
+  </div>
+  <div class="m-2 rounded-md overflow-hidden shadow-md bg-white margin-card" *ngIf="reflectGraph?.length == 0">
+    <h3 class="text-xl font-bold margin-bottom-text">Reflection</h3>
+    <div style="display: block;">
+      <h2 class="no-data-text"> No data found</h2>
+    </div>
+  </div>
+  <div class="m-2 rounded-md overflow-hidden shadow-md bg-white margin-card" *ngIf="behaviorGraph?.length == 0">
+    <h3 class="text-xl font-bold margin-bottom-text">Behaviour</h3>
+    <div style="display: block;">
+      <h2 class="no-data-text"> No data found</h2>
+    </div>
+  </div>
+  <div class="m-2 rounded-md overflow-hidden shadow-md bg-white margin-card" *ngIf="outcomeGraph?.length == 0">
+    <h3 class="text-xl font-bold margin-bottom-text">Outcome</h3>
+    <div style="display: block;">
+      <h2 class="no-data-text"> No data found</h2>
+    </div>
+  </div>
+  <div class="m-2 rounded-md overflow-hidden shadow-md bg-white" *ngIf="actionGraph?.length >0">
+    <h3 class="text-xl font-bold margin-bottom-text">Action</h3>
+    <div style="display: block;">
+      <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels"
+        [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+        [plugins]="lineChartPlugins">
+      </canvas>
+    </div>
+  </div>
+  <div class="m-2 rounded-md overflow-hidden shadow-md bg-white margin-top-card" *ngIf="behaviorGraph?.length >0">
+    <h3 class="text-xl font-bold margin-bottom-text">Behaviour</h3>
+    <div style="display: block;">
+      <canvas baseChart width="400" height="400" [datasets]="lineChartData1" [labels]="lineChartLabels1"
+        [options]="lineChartOptions1" [colors]="lineChartColors1" [legend]="lineChartLegend" [chartType]="lineChartType"
+        [plugins]="lineChartPlugins">
+      </canvas>
+    </div>
+  </div>
+  <div class="m-2 rounded-md overflow-hidden shadow-md bg-white margin-top-card" *ngIf="outcomeGraph?.length >0">
+    <h3 class="text-xl font-bold margin-bottom-text">Outcome</h3>
+    <div style="display: block;">
+      <canvas baseChart width="400" height="400" [datasets]="lineChartData2" [labels]="lineChartLabels2"
+        [options]="lineChartOptions2" [colors]="lineChartColors3" [legend]="lineChartLegend" [chartType]="lineChartType"
+        [plugins]="lineChartPlugins">
+      </canvas>
+    </div>
+  </div>
+  <div class="m-2 rounded-md overflow-hidden shadow-md bg-white margin-top-card" *ngIf="reflectGraph?.length > 0">
+    <h3 class="text-xl font-bold margin-bottom-text">Reflection</h3>
+    <div style="display: block;">
+      <canvas baseChart width="400" height="400" [datasets]="lineChartData3" [labels]="lineChartLabels3"
+        [options]="lineChartOptions3" [colors]="lineChartColors4" [legend]="lineChartLegend" [chartType]="lineChartType"
+        [plugins]="lineChartPlugins">
+      </canvas>
+    </div>
+  </div>
+  <div class="m-2 rounded-md overflow-hidden shadow-md bg-white margin-top-card" *ngIf="enlistGraph?.length >0">
+    <h3 class="text-xl font-bold margin-bottom-text">Sprint Crew Engagement</h3>
+    <div style="display: block;" class="margin-bottom-graph">
+      <canvas baseChart width="400" height="400" [datasets]="lineChartData4" [labels]="lineChartLabels4"
+        [options]="lineChartOptions4" [colors]="lineChartColors4" [legend]="lineChartLegend" [chartType]="lineChartType"
+        [plugins]="lineChartPlugins">
+      </canvas>
+    </div>
+  </div>
+  <!-- <app-trend-line-chart [labels]="behaviourLabel" [data]="behaviour" [details]="behaviourLegend" title="Behaviors"
+    [borderColor]="behaviourStyle.borderColor" [backgroundColor]="behaviourStyle.backgroundColor"
+    [textColor]="behaviourStyle.textColor" infoText="Identified behaviours that you have taken to develop">
+  </app-trend-line-chart> -->
+
+  <!-- <app-trend-line-chart [labels]="outcomeLabel" [data]="outcome" [details]="outcomeLegend" title="Outcomes"
+    [borderColor]="outcomeStyle.borderColor" [backgroundColor]="outcomeStyle.backgroundColor"
+    [textColor]="outcomeStyle.textColor" infoText="Outcomes achieved during your sprint"></app-trend-line-chart> -->
+
+  <!-- <app-trend-line-chart [labels]="reflectLabel" [data]="[reflect]" [details]="[]" title="Reflect"
+    [borderColor]="reflectStyle.borderColor" [backgroundColor]="reflectStyle.backgroundColor"
+    [textColor]="reflectStyle.textColor" [hideLegend]="true" infoText=""></app-trend-line-chart> -->
+
+  <!-- <div style="margin-bottom: 55px">
+    <app-trend-line-chart [labels]="enlistLabel" [data]="[enlist]" [details]="[]" title="Enlist"
+      [borderColor]="enlistStyle.borderColor" [backgroundColor]="enlistStyle.backgroundColor"
+      [textColor]="enlistStyle.textColor" [hideLegend]="true"
+      infoText="Additional support and resources you need to achieve desired outcomes"></app-trend-line-chart>
+  </div> -->
+</div>
+
+<div class="w-full fixed bottom-0">
+  <app-team-bottom-nav></app-team-bottom-nav>
+</div>

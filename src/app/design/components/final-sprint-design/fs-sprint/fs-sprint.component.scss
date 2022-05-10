@@ -1,0 +1,14 @@
+.day-dot {
+    cursor: pointer;
+    height: 6px;
+    width: 6px;
+    margin: 0 2px;
+    background-color: #B480D130;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+  
+  .day-dot-active {
+    background-color: #B480D1;
+  }

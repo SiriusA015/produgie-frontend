@@ -1,0 +1,90 @@
+<div class="pg-container mx-auto" style="padding: 0 10rem">
+  <div class="mt-4"></div>
+  <div class="mb-2 flex flex-row justify-between">
+    <div class="flex flex-row items-center">
+      <span class="text-3xl">Strength To Leverage</span>
+      <label class="pg-tooltip flex flex-row items-center ml-2"
+        ><mat-icon
+          svgIcon="info"
+          class="text-gray-200"
+          aria-hidden="false"
+        ></mat-icon
+        ><input type="checkbox" />
+        <div>
+          <h4 class="font-medium mb-1">Strengths To Leverage</h4>
+          <span class="font-light text-xs">
+            Consider current on-the-job challenges you have that will require
+            you to Set Vision and Inspire Action. Common challenges that stretch
+            this area are listed below. If one of them matches your on-the-job
+            challenge, select it for your development sprint. If not, please
+            select the custom sprint option.
+          </span>
+        </div>
+      </label>
+    </div>
+    <div class="flex flex-row items-center">
+      <!-- <div class="flex flex-row items-center cursor-pointer">
+        <button class="bg-transparent flex items-center">
+          <mat-icon class="ml-2 text-gray-600" aria-hidden="false"
+            >keyboard_backspace</mat-icon
+          >
+          <span class="text-sm text-gray-600">Prev</span>
+        </button>
+      </div> -->
+      <div
+        class="flex flex-row items-center cursor-pointer ml-4 text-gray-600"
+        [ngClass]="{ 'pg-txt-orange-strength': selectedStrength.size >= 3 }"
+      >
+        <button
+          class="bg-transparent flex items-center focus:outline-none"
+          [disabled]="selectedStrength.size < 3"
+          [routerLink]="['sprint-focus']" 
+        >
+          <span class="text-sm">Next</span
+          ><mat-icon class="ml-2" aria-hidden="false">arrow_right_alt</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="mb-2 flex flex-row items-center">
+    <span class="pg-txt-blue-bright text-2xl">SELECT UP TO 3</span>
+    <label class="pg-tooltip flex flex-row items-center ml-2"
+      ><mat-icon
+        svgIcon="info"
+        class="text-gray-200"
+        aria-hidden="false"
+      ></mat-icon
+      ><input type="checkbox" />
+      <div class="font-light text-xs">Strengths in description.</div>
+    </label>
+  </div>
+  <div class="grid grid-cols-2 gap-4">
+    <div
+      *ngFor="let strength of strengths"
+      class="rounded overflow-hidden shadow-lg cursor-pointer"
+      (click)="selectStrength(strength.id)"
+      [ngClass]="
+        selectedStrength.has(strength.id) ? 'pg-bg-orange-strength' : 'bg-white'
+      "
+    >
+      <div class="px-6 py-8 flex flex-row items-center">
+        <mat-icon
+          svgIcon="triangle"
+          class="mat-icon-10"
+          aria-hidden="false"
+          [ngClass]="
+            selectedStrength.has(strength.id) ? 'text-white' : 'text-orange-400'
+          "
+        ></mat-icon>
+        <span
+          class="text-base font-normal ml-2"
+          [ngClass]="
+            selectedStrength.has(strength.id) ? 'text-white' : 'text-black'
+          "
+          >{{ strength.title }}</span
+        >
+      </div>
+    </div>
+  </div>
+</div>
+<app-mat-svg-icon></app-mat-svg-icon>

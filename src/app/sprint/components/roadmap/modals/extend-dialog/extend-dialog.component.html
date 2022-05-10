@@ -1,0 +1,23 @@
+<div class="my-2 flex items-center justify-center">
+    <div class="w-10 h-2 bg-gray-400 rounded-md" (click)="onClose()"></div>
+</div>
+<div *ngIf="isLoading">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div class="flex justify-center items-center">
+    <span class="font-bold text-2xl">Extend Sprint</span>
+</div>
+<mat-radio-group
+  aria-labelledby="example-radio-group-label"
+  class="example-radio-group"
+  [(ngModel)]="selectedExtendWeek"
+>
+  <mat-radio-button
+    class="example-radio-button"
+    *ngFor="let ser of sprintExtendRange; let i = index"
+    [value]="ser"
+    (click)="!isLoading && selectRange(ser)"
+  >
+    {{ ser }} Week
+  </mat-radio-button>
+</mat-radio-group>

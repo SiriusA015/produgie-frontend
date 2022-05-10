@@ -1,0 +1,104 @@
+<div class="event-wrapper">
+	<div class="flex justify-between flex-wrap">
+		<div class="title">Schedule Events</div>
+
+		<div class="flex flex-wrap">
+			<div class="relative mr-4 mb-4">
+				<div class="icon search-blue-icon" (keyup)="filterData(search)" (keydown.enter)="filterData(search)"></div>
+				<input class="search-bar focus:outline-none focus:shadow-outline" type="text" (keyup.enter)="filterData($event.target)" #search>
+			</div>
+
+			<div class="select-dropdown filter">
+				<div class="dropdown">
+					<mat-select placeholder="Filters" [(ngModel)]="filterOption" (selectionChange)="doFilter()">
+						<mat-option value="session">Session</mat-option>
+						<mat-option value="holder">Holder</mat-option>
+						<mat-option value="audience">Audience</mat-option>
+					</mat-select>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="table-container">
+		<table class="table-auto">
+			<thead>
+				<tr>
+					<th>Session</th>
+					<th>Holder</th>
+					<th>Audience</th>
+					<th>
+						<div class="flex cursor-pointer" (click)="sorting('date')">
+							Date
+							<div class="sort-desc-icon"></div>
+						</div>
+					</th>
+					<th>Time</th>
+
+					<th class="flex justify-center">
+						<div class="flex cursor-pointer" (click)="sorting('action')">
+							Action
+							<div class="sort-desc-icon"></div>
+						</div>
+					</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td *ngIf="isTableLoading" colspan="7">
+						<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+					</td>
+					<td *ngIf="!isTableLoading && (!data || data?.length == 0)" colspan="7" class="text-center">No Data</td>
+				</tr>
+				<tr *ngFor="let item of data">
+					<td class="font-700">{{ item.title }}</td>
+					<td class="white-box-wrap">
+						<span [class.color-blue]="item.tenant.name == 'Produgie'" class="color-orange box">
+							{{ item.tenant.name || 'N/A' }}
+						</span>
+					</td>
+					<td>
+						<ng-container *ngIf="item.visibilities.length">
+							<div *ngFor="let nestedItem of item.visibilities" class="white-box-wrap mb-2">
+								<div class="box">{{ nestedItem.name || 'N/A'}}</div>
+							</div>
+						</ng-container>
+						<ng-container *ngIf="item.visibilities.length === 0" class="text-center">
+							N/A
+						</ng-container>
+					</td>
+					<td class="font-700">{{ item.startDate.tz(timeZone) | date: 'MMM d, y'}}</td>
+					<td>
+						{{ item.startDate.tz(timeZone).format("hh:mm a (z)") }} to {{ item.endDate.tz(timeZone).format("hh:mm a (z)") }}
+					</td>
+
+					<td class="box-btn text-center" [class.blue-box-btn]="item.eventStatus !== EventStatus.registered" [class.white-box-btn]="item.eventStatus === EventStatus.registered" [class.disabled]="item.eventStatus === EventStatus.full">
+
+						<div class="box" *ngIf="item.eventStatus !== EventStatus.registered && item.eventStatus !== EventStatus.startingNow" (click)="item.eventStatus === EventStatus.full ? '' : registerEvent(item)">Register</div>
+						<div class="box" *ngIf="item.eventStatus === EventStatus.startingNow" (click)="routeTo(item)">Join the session</div>
+						<div class="box" *ngIf="item.eventStatus === EventStatus.registered" (click)="popupDetail(item)">View details</div>
+
+						<div class="box-description">
+							{{ item.eventStatus === EventStatus.startingNow ? 'Registered' :
+							item.eventStatus === EventStatus.full ? 'Full' : ''}}
+						</div>
+					</td>
+					<td class="cursor-pointer relative mr-8" [matMenuTriggerFor]="menu1" #menuTrigger1="matMenuTrigger" (focus)="menuTrigger1.openMenu()">
+						<img class="max-w-none" src="/assets/icons/three_vertical_dots.svg">
+						<mat-menu #menu1="matMenu" [overlapTrigger]="true" xPosition="before" yPosition="above">
+							<span (mouseleave)="menuTrigger1.closeMenu()">
+								<button *ngIf="item.eventStatus !== EventStatus.registered" mat-menu-item (click)="popupDetail(item)">View detail</button>
+								<button *ngIf="!(item.eventStatus === EventStatus.eventCanBook || item.eventStatus === EventStatus.full)" mat-menu-item (click)="popupCancel(item)">Cancel</button>
+							</span>
+						</mat-menu>
+					</td>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<mat-paginator *ngIf="data" [length]="totalCount" [pageIndex]="params.page" [pageSize]="params.size" [pageSizeOptions]="pageSizeOptions" (page)="pagination($event)" aria-label="Select page">
+	</mat-paginator>
+</div>

@@ -1,0 +1,124 @@
+.pg-register-btn {
+	width: 163px;
+}
+.pg-text-date {
+	color: #707070;
+}
+
+.card {
+	margin: 8rem auto;
+	display: flex;
+	width: 75%;
+	background: #f3f8ff;
+	border-radius: 4px;
+	border: 0;
+	box-shadow: none;
+}
+
+p {
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.py {
+	border-radius: 14px;
+}
+
+.h {
+	height: 100px;
+}
+
+.mat-card {
+	position: relative;
+	padding: 1.5rem;
+	border-radius: 4px;
+	box-shadow: none;
+	// background: none;
+}
+
+.matdiv {
+	display: flex;
+	padding: 1.5rem;
+	background: none;
+}
+
+.opbtn {
+	background: #9ac9f4 !important;
+	border-radius: 15px !important;
+	color: white;
+	border: none;
+	width: 100px;
+	height: 32px;
+}
+
+// .rgbtn{
+//     background: #278ce9 !important;
+//     color: white;
+//     font-size: 16px;
+//     padding: 1rem !important;
+//     border-radius: 0.5rem;
+//     width: 96px;
+//     height: 44px;
+// }
+
+.time {
+	font-size: 12px;
+	letter-spacing: 0.96px;
+}
+
+.dt {
+	font-size: 16px;
+}
+
+.sub {
+	font-size: 10px;
+	letter-spacing: 0.96px;
+}
+
+.pg-container {
+	// padding-left:1rem;
+	//  padding-right: 2rem;
+	// border-radius: 15px;
+
+	.par-div {
+		border-radius: 15px;
+		background-color: #fff;
+	}
+}
+.date-text {
+	font-size: 1.6rem;
+	color: #278ce9;
+}
+.width-name {
+	width: 100% !important;
+}
+.margin-left-text {
+	margin-left: 32px;
+}
+.width-date {
+	width: 90% !important;
+}
+.width-session {
+	width: 80% !important;
+}
+
+.par-div {
+	padding: 2.5rem;
+	margin-top: 2.5rem;
+}
+.mat-card {
+	padding: 0;
+}
+.matdiv {
+	padding: 2.5rem 0;
+	.font-16-heading,
+	.time {
+		font-weight: 400;
+	}
+}
+
+@media screen and (max-width: 991px) {
+	.card {
+		width: 109%;
+	}
+}

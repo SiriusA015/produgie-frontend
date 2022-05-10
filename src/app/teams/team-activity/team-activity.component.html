@@ -1,0 +1,221 @@
+<header></header>
+<div *ngIf="isLoading || !isAccessChecked" class="loader-top">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div class="flex w-full flex-row h-full relative development-plan" *ngIf="isAccessChecked">
+  <div class="pg-container pg">
+    <div class="pg__inner">
+      <div class="flex flex-row justify-between items-center mb-8">
+        <span class="heading">Team Members Activity</span>
+      </div>
+      <div *ngIf="isLoading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>
+      <div class="row team-cards" *ngIf="activityData?.length">
+        <div class="col-4 team-card">
+          <mat-card class="mb-4 current-sprint background-sprint matCard"
+            style="border-radius: 15px">
+            <div class="row">
+              <div class="col-4 mt-8">
+                <div class="user-activity__block-left">
+                  <circle-progress
+                    [percent]="devPlanShared"
+                    [radius]="50"
+                    [outerStrokeWidth]="12"
+                    [innerStrokeWidth]="8"
+                    [outerStrokeColor]="'#278ce9'"
+                    [innerStrokeColor]="'#a7c0e1'"
+                    [animation]="true"
+                    [animationDuration]="300"
+                  ></circle-progress>
+                </div>
+              </div>
+              <div class="col-8 mt-12">
+                <span class="team_circular_info"
+                >Team Members Shared Development plan</span
+              >
+              </div>
+             
+            
+            </div>
+          </mat-card>
+        </div>
+        <div class="col-4 team-card">
+          <mat-card
+            class="mb-4 current-sprint background-sprint matCard"
+            style="border-radius: 15px"
+          >
+            <div class="row">
+              <div class="col-4 mt-8">
+                <div class="user-activity__block-left">
+                  <circle-progress
+                    [percent]="completedSprint"
+                    [radius]="50"
+                    [outerStrokeWidth]="12"
+                    [innerStrokeWidth]="8"
+                    [outerStrokeColor]="'#278ce9'"
+                    [innerStrokeColor]="'#a7c0e1'"
+                    [animation]="true"
+                    [animationDuration]="300"
+                  ></circle-progress>
+                </div>
+              </div>
+              <div class="col-8 mt-12">
+                <span class="team_circular_info">Team Members Completed 1st Sprint</span>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+
+        <div class="col-4 team-card">
+          <mat-card class="mb-4 current-sprint background-sprint" style="border-radius: 15px">
+            <div class="row" style="height: 17.5rem;">
+              <div class="user-activity__block-left thirdBlock col-3">
+                {{crew}}
+              </div>
+              <div class="col-9 mt-44">
+                <span class="team_circular_info mt-16 mr-4">Team Members Serving on Sprint Crew</span>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+
+      <!-- If Activity Data Not Available -->
+      <div *ngIf="!activityData?.length">
+        <mat-card class="current-sprint-tab-cards" >
+            <mat-card-content >
+            <p>No data available</p>
+            </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="flex flex-row justify-between items-center mb-8">
+        <span class="heading">Team Safety & Inclusion</span>
+      </div>
+      <div *ngIf="isLoading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>
+      <div class="flex team-cards" *ngIf="inclusion?.scaleList?.length">
+        <div class="col-6 team-card" style="padding: 15px" *ngFor="let item of inclusion?.scaleList">
+            <mat-card
+              class="mb-4 current-sprint background-sprint"
+              style="border-radius: 15px"
+            >
+              <div class="row">
+                <div class="circular_info col-8">
+                  <div class="subheading">{{item?.scale}}</div>
+                  <div class="descript mt-2">{{item?.description}}</div>
+                </div>
+                <div class="user-activity__block-left col-4 circular">
+                  <circle-progress
+                    [percent]="item?.percentage"
+                    [radius]="50"
+                    [outerStrokeWidth]="12"
+                    [innerStrokeWidth]="8"
+                    [outerStrokeColor]="'#278ce9'"
+                    [innerStrokeColor]="'#a7c0e1'"
+                    [animation]="true"
+                    [animationDuration]="300"
+                  ></circle-progress>
+                </div>
+              </div>
+            </mat-card>
+        
+        </div>
+      </div>
+
+      <!-- If Inclusion and Safety Data Not Available -->
+      <div *ngIf="!inclusion?.scaleList.length">
+        <mat-card class="current-sprint-tab-cards" >
+            <mat-card-content >
+            <p>No data available</p>
+            </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="flex flex-row justify-between items-center mb-8">
+        <span class="heading">Team Sprint</span>
+      </div>
+      <app-current-sprint 
+        [userSprint]="userSprint"
+        [sprintNo]="userSprint?.sprintNumber"
+        [design]="design"></app-current-sprint>
+      <div class="flex flex-row justify-between items-center mb-8">
+        <span class="crew-heading">Sprint Crew Members</span>
+      </div>
+      <app-sprint-crew [crews]="crewMember"></app-sprint-crew>
+      <app-action-behaviour-outcome
+        [actions]="allaction"
+        [outcomes]="alloutcome"
+        [behaviours]="allbehavior"
+        [sprintId]="data?.userSprint?.sprintId"
+      ></app-action-behaviour-outcome>
+    
+      <mat-tab-group>
+        <mat-tab label="Feedback"> 
+          <mat-card class="current-sprint-tab-cards" >
+              <mat-card-content>
+                <div class="row">
+                  <ng-container *ngIf="feedback?.length >0">
+                    <div class="column" *ngFor="let feed of feedback">
+                      <h2>
+                        <img src="assets/avatars/user_avatar.png">
+                        <div class="flex justify-between">
+                          <div class="flex flex-col">
+                            <span>{{ feed?.name}}</span>
+                            <span class="user-role">{{ feed?.role_name}}</span>
+                          </div>
+                          <div class="ml-12"><span class="user-role">{{ feed?.createdDate | dateAgo}}</span></div>
+                        </div>
+                      </h2>
+                      <p>{{ feed?.feedback}}</p>
+                    </div>
+                  </ng-container>
+                  <ng-container *ngIf="feedback?.length <= 0">
+                    <div class="column">
+                      <p>No feedback available </p>
+                    </div>
+                  </ng-container>
+                </div>
+          </mat-card-content>
+          <!-- <div class="w-full view-all-button">
+            <button mat-stroked-button class="btn btn-white">
+              <b>View All</b>
+            </button>
+          </div> -->
+        </mat-card>
+        </mat-tab>
+          <mat-tab label="Advice"> 
+            <mat-card class="current-sprint-tab-cards" >
+              <mat-card-content>
+                <div class="row">
+                  <ng-container *ngIf="advice?.length > 0">
+                    <div class="column" *ngFor="let ad of advice" >
+                      <h2>
+                        <img src="assets/avatars/user_avatar.png">
+                        <div class="flex justify-between">
+                          <div class="flex flex-col">
+                            <span>{{ ad?.name}}</span>
+                            <span class="user-role">{{ ad?.role_name}}</span>
+                          </div>
+                          <div class="ml-12"><span class="user-role">{{ ad?.createdDate | dateAgo }}</span></div>
+                        </div>
+                      </h2>
+                      <p>{{ ad?.advice}}</p>
+                    </div>
+                  </ng-container>
+                  <ng-container *ngIf="advice?.length <=0 ">
+                    <div class="column">
+                      <p>No advice available </p>
+                    </div>
+                  </ng-container>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
+<app-mat-svg-icon></app-mat-svg-icon>

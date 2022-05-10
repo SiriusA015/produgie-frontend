@@ -1,0 +1,26 @@
+.nav-submenu {
+  padding    : 0rem 5rem;
+  background : #f3f8ff;
+  width      : 100%;
+  display    : flex;
+  align-items: center;
+  height     : 50px;
+  // top        : 50px;
+  // position   : fixed;
+}
+
+.text-font {
+  margin-left: 20px;
+  font-size  : 16px;
+  cursor     : pointer;
+}
+
+.nav-active {
+  color      : #278CE9;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: none;
+  color          : #278CE9;
+}

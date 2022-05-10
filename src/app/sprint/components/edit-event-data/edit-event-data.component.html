@@ -1,0 +1,274 @@
+<div >
+  <h2 class="heading-2 d-flex items-center justify-between">Edit Event
+    <span class="material-icons cross-right" (click)="onNoClick()">
+      clear
+    </span>
+  </h2>
+  <ngx-spinner bdColor="rgba(245,245,245,0.8)" size="medium" color="#46d9aa" type="ball-spin-fade-rotating"
+    [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+  </ngx-spinner>
+  <form (ngSubmit)="ceateEvent()" #f="ngForm">
+    <div class="background-color">
+      <ng-container *ngIf="dataFromRoadMap">
+        <p>
+          {{dataFromRoadMap.data.action.description}}
+        </p>
+      </ng-container>
+      <ng-container *ngIf="!dataFromRoadMap">
+        <p>
+          {{model.action}}
+        </p>
+
+      </ng-container>
+
+      <ng-container>
+        <span>
+          <div class="border-bottom"></div>
+          <div class="text-font">Select One Activity</div>
+          <div class="margin-top-dropdown">
+            <mat-form-field class="custom-mat-select" floatLabel="never">
+              <mat-label>Select an option</mat-label>
+              <mat-select [(ngModel)]="model.title" [ngModelOptions]="{standalone: true}"
+                (selectionChange)="getOptions($event)">
+                <mat-option value="Align & Communicate Action With Stakeholder">Align & Communicate Action With
+                  Stakeholder </mat-option>
+                <mat-option value="Engage With Sprint Crew Member(s)"> Engage With Sprint crew Member</mat-option>
+                <mat-option value="Self Directed Learning">Self Directed Learning</mat-option>
+                <mat-option value="Formal/ Structured Learning">Formal/Structured Learning</mat-option>
+                <mat-option value="Others">Other</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </span>
+
+        <div class="border-bottom"></div>
+        <div *ngIf="showStakeDiv">
+          <div class="text-color d-flex items-center justify-between">Select Stakeholders
+            <span class="material-icons cross-right" (click)="openBottomSheet()">
+              person_add
+            </span>
+          </div>
+          <div class="margin-top-dropdown">
+            <mat-form-field class="custom-mat-select" floatLabel="never">
+              <mat-label>Select an option</mat-label>
+              <mat-select [(ngModel)]="model.stakeHolderName" (ngModelChane)="model.stakeHolderName" name="stakeholder"  #mySelect1
+                (selectionChange)="getstakeId($event)" multiple>
+                <div class="d-flex items-center justify-between" style="padding: 15px;">
+                  <p class="text-select">Select Stakeholders</p>
+                  <span class="material-icons cross-right" (click)="matClose()">
+                    clear
+                  </span>
+                </div>
+                
+                
+                <mat-option [value]="data.id" *ngFor="let data of stakeHolders" class="option-height" style="padding: 15px;">
+                  <div class="image-container">
+                    <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553__340.png"
+                      style="border-radius: 2px;width: 20px; height:20px;"/>
+                    <span class="font-weight-bold user-text">{{data.name }}</span>
+                  </div>
+                </mat-option>
+                <div class="padding5 margin-top" style="padding: 0 15px;">
+                  <p class="dn-btn" (click)="matClose()">Done</p>
+                </div>
+              </mat-select>
+            </mat-form-field>
+            <div class="border-bottom"></div>
+          </div>
+        </div>
+        <div *ngIf="showCrewDiv">
+          <div class="text-color">Select Sprint Crew</div>
+          <div class="margin-top-dropdown">
+            <mat-form-field class="custom-mat-select" floatLabel="never">
+              <mat-label>Select an option</mat-label>
+              <mat-select [(ngModel)]="model.crewName" (ngModelChane)="model.crewName" name="crewName" #mySelect (selectionChange)="getCrewId($event)" multiple>
+                <div class="d-flex items-center justify-between" style="padding: 15px;">
+                  <p class="text-select">Select Crew</p>
+                  <span class="material-icons cross-right" (click)="close()">
+                    clear
+                  </span>
+                </div>
+                
+                
+                <mat-option [value]="data.id" *ngFor="let data of crewMember" class="option-height" style="padding: 15px;">
+
+                  
+                    <div class="image-container">
+                      <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553__340.png"
+                        style="border-radius: 2px;width: 20px; height:20px;" />
+                      <span class="font-weight-bold user-text">{{data.name}}</span>
+                    </div>
+
+                  
+
+
+
+                </mat-option>
+                <div class="padding5 margin-top" style="padding: 0 15px;">
+                  <p class="dn-btn" (click)="close()">Done</p>
+                </div>
+              </mat-select>
+            </mat-form-field>
+            <div class="border-bottom"></div>
+          </div>
+        </div>
+        <!-- <div class="border-bottom"></div> -->
+        <ng-container>
+          <div class="text-color">Date and Time</div>
+          <div class="margin-top-dropdown">
+            <mat-form-field class="custom-mat-select-date mat-border" floatLabel="never">
+              <mat-label>Choose a date</mat-label>
+              <input matInput readonly [matDatepicker]="picker" [(ngModel)]="model.date" [ngModelOptions]="{standalone: true}"
+                (dateChange)="handleDateChange($event)">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div>
+              <div>
+                <div class="display-div-inline margin-top-dropdown">
+                  <mat-form-field class="custom-mat-select-time mat-border" floatLabel="never">
+                    <mat-label>From</mat-label>
+                    <mat-select [(value)]="mstart" [(ngModel)]="model.from" [ngModelOptions]="{standalone: true}"
+                      (selectionChange)="getStartTime($event.value)">
+                      <ng-container *ngIf="newEventdate == newCurrentDate">
+                        <mat-option *ngFor="let week of timeslots" [value]="week.value" [disabled]="week.value < currentTime">
+                          <mat-radio-button [disabled]="week.value < currentTime">{{week.viewValue}}</mat-radio-button>
+                        </mat-option>
+                      </ng-container>
+                      <ng-container *ngIf="newEventdate != newCurrentDate">
+                        <mat-option *ngFor="let week of timeslots" [value]="week.value">
+                          <mat-radio-button>{{week.viewValue}}</mat-radio-button>
+                        </mat-option>
+                      </ng-container>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="custom-mat-select-time mat-border ml-5" floatLabel="never">
+                    <mat-label>AM / PM</mat-label>
+                    <mat-select [(value)]="startMeridian" [(ngModel)]="model.fromMeridian"
+                      [ngModelOptions]="{standalone: true}" (selectionChange)="getStartMeridian($event.value)">
+                      <ng-container *ngIf="newEventdate == newCurrentDate">
+                        <mat-option *ngFor="let week of timezone" [value]="week.value" [disabled]="week.value < currentMeridian">
+                          <mat-radio-button [disabled]="week.value < currentMeridian">{{week.viewValue}}</mat-radio-button>
+                        </mat-option>
+                      </ng-container>
+                      <ng-container *ngIf="newEventdate != newCurrentDate">
+                        <mat-option *ngFor="let week of timezone" [value]="week.value">
+                          <mat-radio-button>{{week.viewValue}}</mat-radio-button>
+                        </mat-option>
+                      </ng-container>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="display-div-inline margin-top-dropdown">
+                  <mat-form-field class="custom-mat-select-time mat-border" floatLabel="never">
+                    <mat-label>To</mat-label>
+                    <mat-select [(value)]="mend" [(ngModel)]="model.to" [ngModelOptions]="{standalone: true}"
+                      (selectionChange)="getEndTime($event.value)">
+                      <mat-option *ngFor="let week of timeslots" [value]="week.value">
+                        <mat-radio-button [value]="week.value">{{week.viewValue}}</mat-radio-button>
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="custom-mat-select-time mat-border ml-5" floatLabel="never">
+                    <mat-label>AM / PM</mat-label>
+                    <mat-select [(value)]="endMeridian" [(ngModel)]="model.toMeridian"
+                      [ngModelOptions]="{standalone: true}" (selectionChange)="getendMeridian($event.value)">
+                      <mat-option *ngFor="let week of timezone" [value]="week.value">
+                        <mat-radio-button>{{week.viewValue}}</mat-radio-button>
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div *ngIf="!isvalidTime">
+                  <span style="color: red">Start time should be less than End Time</span>
+                </div>
+
+              </div>
+
+            </div>
+
+
+          </div>
+          <div class="border-bottom"></div>
+          <div class="margin-top-dropdown">
+            <div>
+              <h3 class="text-color">Offline/Online Meeting</h3>
+              <div class="margin-top-dropdown display-button">
+                <div class="on-button">
+                  <button type="button" class="btn" [ngClass]="{'button-background-color': onlineDiv }"
+                    (click)="getOnlineEvent('Online')">Online</button>
+                </div>
+                <div class="on-button">
+                  <button type="button" class="btn btn-margin" [ngClass]="{'button-background-color': oflineDiv }"
+                    (click)="getOfflineEvent('Offline')">Offline</button>
+                </div>
+
+              </div>
+              <div class="margin-top-dropdown" *ngIf="onlineDiv">
+                <mat-form-field class="example-full-width" floatLabel="never">
+                  <input matInput placeholder="https://meet.google.com/xzb-rgrx-fk" name="link"
+                    [(ngModel)]="model.link" (keyup)="onkeyenter($event)" >
+                </mat-form-field>
+                <div>
+                  <span style="color: red">{{errorMsg}}</span>
+                </div>
+              </div>
+              <div class="margin-top-dropdown" *ngIf="oflineDiv">
+                <mat-form-field class="example-full-width" floatLabel="never">
+                  <input matInput placeholder="Meeting Address" name="link" [(ngModel)]="model.address">
+                </mat-form-field>
+                <!-- <mat-tab-group class="remove-border-bottom" (selectedTabChange)="tabChanged($event)">
+                    <mat-tab label="Online" class="tab-border mat-active"> 
+                        <div class="margin-top-dropdown">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="https://meet.google.com/xzb-rgrx-fk" name="link" [(ngModel)]="model.link">
+                              </mat-form-field>
+                        </div>   
+                    </mat-tab>
+                    <mat-tab label="Offline"> 
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Meeting Address" name="address" [(ngModel)]="model.address">
+                      </mat-form-field>
+                    </mat-tab>
+                  </mat-tab-group> -->
+                 
+              </div>
+
+            </div>
+            <div class="margin-top-dropdown" *ngIf="desDiv">
+              <h3 class="text-font">Title</h3>
+              <div class="margin-top-dropdown">
+                <mat-form-field class="example-full-width" floatLabel="never">
+                  <input matInput class="input-middle" placeholder="Lorem ipsum dolor sit amet, 
+                    consectetur adipiscing elit. In eget pretium arcu" name="eventTitle"
+                    [(ngModel)]="model.eventTitle">
+                </mat-form-field>
+              </div>
+
+            </div>
+            <div class="margin-top-dropdown" *ngIf="desDiv">
+              <h3 class="text-font">Descriptions</h3>
+              <div class="margin-top-dropdown">
+                <mat-form-field class="example-full-width" floatLabel="never">
+                  <input matInput placeholder="Lorem ipsum dolor sit amet, 
+                    consectetur adipiscing elit. In eget pretium arcu" name="description"
+                    [(ngModel)]="model.description">
+                </mat-form-field>
+              </div>
+
+            </div>
+            <div class="div-border-bottom">
+            </div>
+          </div>
+          <div class="button-container">
+            <button class="create-btn">Edit Event</button>
+          </div>
+        </ng-container>
+
+
+      </ng-container>
+
+
+    </div>
+  </form>

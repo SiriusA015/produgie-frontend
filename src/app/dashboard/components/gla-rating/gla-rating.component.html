@@ -1,0 +1,821 @@
+<div class="mx-20" *ngIf="!transformDone || !performDone || !energiseDone">
+  <div class="py-4 pg-border-gray">
+    <div class="flex flex-col justify-start items-start">
+      <!-- <span
+        class="h-12 w-12 rounded-full shadow-md bg-white flex justify-center items-center"
+      >
+        <mat-icon fontSet="material-icons-outlined" class="pg-txt-blue-bright"
+          >send</mat-icon
+        >
+      </span> -->
+      <span class="text-2xl font-bold ml-4"> GL360 Rating </span>
+      <span class="mb-4 ml-4 text-lg font-semibold"
+        >To succeed, leader in organisations need to deliver today's
+        performance, energize their teams and transform their organisations for
+        tomorrow. The growth leader 360 focuses on nine capabilities that are
+        critical for leaders to drive growth</span
+      >
+      <span class="mb-4 ml-4 text-lg">Please provide your ratings</span>
+    </div>
+  </div>
+  <div class="" [formGroup]="transformForm" *ngIf="!transformDone">
+    <div class="w-full border-b pg-border-gray py-4 px-2">
+      <div class="flex flex-row items-center">
+        <span class="mr-2 text-center flex items-center justify-center">
+          <!-- <mat-icon
+            svgIcon="timer"
+            class="pg-txt-green"
+            aria-hidden="false"
+          ></mat-icon> -->
+        </span>
+        <span class="font-bold">Transform</span>
+      </div>
+    </div>
+    <div class="w-full p-4">
+      <div
+        class="flex flex-col py-4 pg-list-items"
+        *ngFor="let item of transformCapability; let i = index"
+        formArrayName="transformFeedback"
+      >
+        <div class="mb-2">
+          <span class="font-bold text-sm mb-4">{{ item.label }}</span>
+        </div>
+        <div class="flex flex-col justify-between w-full mb-6">
+          <h4 class="font-bold mb-2">100% Rating</h4>
+          <div class="flex flex-col justify-between w-full" [formGroupName]="i">
+            <div class="flex flex-row justify-between w-full">
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="0"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">Can't rate</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="10"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">10%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="20"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">20%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="30"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">30%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="40"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">40%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="50"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">50%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="60"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">60%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="70"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">70%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="80"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">80%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="90"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">90%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="100"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">100%</span>
+                </label>
+              </div>
+            </div>
+            <div class="text-red-600" *ngIf="isTransformSubmit && getTransformFormArray(i).get('percentRating').invalid">
+              100% rating is required
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col justify-between w-full mb-6">
+          <h4 class="font-bold mb-2">Importance Rating</h4>
+          <div class="flex flex-col justify-between w-full" [formGroupName]="i">
+            <div class="flex flex-row justify-between w-full">
+              <div class="flex w-1/2 justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="0"
+                    formControlName="importanceRating"
+                  />
+                  <span class="font-semibold">Can't rate</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="1"
+                    formControlName="importanceRating"
+                  />
+                  <span class="font-semibold">Not Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="2"
+                    formControlName="importanceRating"
+                  />
+                  <span class="font-semibold">Slightly Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="3"
+                    formControlName="importanceRating"
+                  />
+                  <span class="font-semibold">Moderately Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="4"
+                    formControlName="importanceRating"
+                  />
+                  <span class="font-semibold">Very Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="5"
+                    formControlName="importanceRating"
+                  />
+                  <span class="font-semibold">Excellent Important</span>
+                </label>
+              </div>
+            </div>
+            <div class="text-red-600" *ngIf="isTransformSubmit && getTransformFormArray(i).get('importanceRating').invalid">
+              Importance rating is required
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col justify-between w-full">
+          <h4 class="font-bold mb-2">Advice Text</h4>
+          <div class="flex flex-row justify-between w-full" [formGroupName]="i">
+            <div class="w-full py-4">
+              <textarea
+                formControlName="adviceText"
+                class="w-full border rounded-sm border-gray-400 focus:outline-none p-4 text-xs"
+                rows="5"
+                matInput
+                [placeholder]="placeholderText"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-row m-2 justify-end">
+      <button
+        class="px-8 py-3 text-white uppercase focus:outline-none "
+        [ngClass]="{
+          'bg-gray-400': transformForm.invalid,
+          'pg-bg-blue-dark': transformForm.valid
+        }"
+        
+        (click)="storeTransformData()"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+  <div
+    class=""
+    [formGroup]="performForm"
+    *ngIf="transformDone && !performDone && !energiseDone"
+  >
+    <div class="w-full border-b pg-border-gray py-4 px-2">
+      <div class="flex flex-row items-center">
+        <span class="mr-2 text-center flex items-center justify-center">
+          <!-- <mat-icon
+            svgIcon="timer"
+            class="pg-txt-green"
+            aria-hidden="false"
+          ></mat-icon> -->
+        </span>
+        <span class="font-bold">Perform</span>
+      </div>
+    </div>
+    <div class="w-full p-4">
+      <div
+        class="flex flex-col py-4 pg-list-items"
+        *ngFor="let item of performCapability; let i = index"
+        formArrayName="performFeedback"
+      >
+        <div class="mb-2">
+          <span class="font-bold text-sm mb-4">{{ item.label }}</span>
+        </div>
+        <div class="flex flex-col justify-between w-full mb-6">
+          <h4 class="font-bold mb-2">100% Rating</h4>
+          <div class="flex flex-col justify-between w-full" [formGroupName]="i">
+            <div class="flex flex-row justify-between w-full">
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="0"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">Can't rate</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="10"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">10%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="20"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">20%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="30"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">30%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="40"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">40%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="50"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">50%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="60"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">60%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="70"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">70%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="80"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">80%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="90"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">90%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="100"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">100%</span>
+                </label>
+              </div>
+            </div>
+            <div class="text-red-600" *ngIf="isPerformSubmit && getPerformFormArray(i).get('percentRating').invalid">
+              100% rating is required
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col justify-between w-full mb-6">
+          <h4 class="font-bold mb-2">Importance Rating</h4>
+          <div class="flex flex-col justify-between w-full" [formGroupName]="i">
+            <div class="flex flex-row justify-between w-full">
+              <div class="flex w-1/2 justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="0"
+                    formControlName="importanceRating"
+                  />
+                  <span class="font-semibold">Can't rate</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="1"
+                    formControlName="importanceRating"
+                  />
+                  <span class="font-semibold">Not Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="2"
+                    formControlName="importanceRating"
+                  />
+                  <span class="font-semibold">Slightly Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="3"
+                    formControlName="importanceRating"
+                  />
+                  <span class="font-semibold">Moderately Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="4"
+                    formControlName="importanceRating"
+                  />
+                  <span class="font-semibold">Very Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="5"
+                    formControlName="importanceRating"
+                  />
+                  <span class="font-semibold">Excellent Important</span>
+                </label>
+              </div>
+            </div>
+            <div class="text-red-600" *ngIf="isPerformSubmit && getPerformFormArray(i).get('importanceRating').invalid">
+              Importance rating is required
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col justify-between w-full">
+          <h4 class="font-bold mb-2">Advice Text</h4>
+          <div class="flex flex-row justify-between w-full" [formGroupName]="i">
+            <div class="w-full py-4">
+              <textarea
+                formControlName="adviceText"
+                class="w-full border rounded-sm border-gray-400 focus:outline-none p-4 text-xs"
+                rows="5"
+                matInput
+                [placeholder]="placeholderText"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-row m-2 justify-end">
+      <button
+        class="px-8 py-3 text-white uppercase focus:outline-none "
+        [ngClass]="{
+          'bg-gray-400': performForm.invalid,
+          'pg-bg-blue-dark': performForm.valid
+        }"
+        (click)="storePerformData()"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+  <div
+    class=""
+    [formGroup]="energiseForm"
+    *ngIf="transformDone && performDone && !energiseDone"
+  >
+    <div class="w-full border-b pg-border-gray py-4 px-2">
+      <div class="flex flex-row items-center">
+        <span class="mr-2 text-center flex items-center justify-center">
+          <!-- <mat-icon
+            svgIcon="timer"
+            class="pg-txt-green"
+            aria-hidden="false"
+          ></mat-icon> -->
+        </span>
+        <span class="font-bold">Energize</span>
+      </div>
+    </div>
+    <div class="w-full p-4">
+      <div
+        class="flex flex-col py-4 pg-list-items"
+        *ngFor="let item of energiseCapability; let i = index"
+        formArrayName="energiseFeedback"
+      >
+        <div class="mb-2">
+          <span class="font-bold text-sm mb-4">{{ item.label }}</span>
+        </div>
+        <div class="flex flex-col justify-between w-full mb-6">
+          <h4 class="font-bold mb-2">100% Rating</h4>
+          <div class="flex flex-col justify-between w-full" [formGroupName]="i">
+            <div class="flex flex-row justify-between w-full">
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="0"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">Can't rate</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="10"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">10%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="20"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">20%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="30"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">30%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="40"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">40%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="50"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">50%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="60"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">60%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="70"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">70%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="80"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">80%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="90"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">90%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="100"
+                    formControlName="percentRating"
+                  />
+                  <span class="font-semibold">100%</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="text-red-600" *ngIf="isEnergiseSubmit && getEnergiseFormArray(i).get('percentRating').invalid">
+            100% rating is required
+          </div>
+        </div>
+
+        <div class="flex flex-col justify-between w-full mb-6">
+          <h4 class="font-bold mb-2">Importance Rating</h4>
+          <div class="flex flex-col justify-between w-full" [formGroupName]="i">
+            <div class="flex flex-row justify-between w-full">
+              <div class="flex w-1/2 justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="0"
+                    formControlName="importanceRating"
+                  />
+                  <span class="font-semibold">Can't rate</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="1"
+                    formControlName="importanceRating"
+                  />
+                  <span class="font-semibold">Not Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="2"
+                    formControlName="importanceRating"
+                  />
+                  <span class="font-semibold">Slightly Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="3"
+                    formControlName="importanceRating"
+                  />
+                  <span class="font-semibold">Moderately Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="4"
+                    formControlName="importanceRating"
+                  />
+                  <span class="font-semibold">Very Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="5"
+                    formControlName="importanceRating"
+                  />
+                  <span class="font-semibold">Excellent Important</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="text-red-600" *ngIf="isEnergiseSubmit && getEnergiseFormArray(i).get('importanceRating').invalid">
+            Importance rating is required
+          </div>
+        </div>
+        <div class="flex flex-col justify-between w-full">
+          <h4 class="font-bold mb-2">Advice Text</h4>
+          <div class="flex flex-row justify-between w-full" [formGroupName]="i">
+            <div class="w-full py-4">
+              <textarea
+                formControlName="adviceText"
+                class="w-full border rounded-sm border-gray-400 focus:outline-none p-4 text-xs"
+                rows="5"
+                matInput
+                [placeholder]="placeholderText"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-row m-2 justify-end">
+      <button
+        class="px-8 py-3 text-white uppercase focus:outline-none "
+        [ngClass]="{
+          'bg-gray-400': energiseForm.invalid,
+          'pg-bg-blue-dark': energiseForm.valid
+        }"
+        (click)="storeEnergiseData()"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</div>
+<div
+  class="flex flex-col pg-h-screen-w-header w-full justify-center items-center pg-bg-green"
+  *ngIf="transformDone && performDone && energiseDone"
+>
+  <div class="flex h-full w-full justify-center items-end">
+    <span class="text-white font-bold text-4xl">Thank You so much!</span>
+  </div>
+  <div class="flex h-full w-full justify-center items-center">
+    <button
+      class="px-6 py-4 bg-white text-green-500 font-bold text-lg rounded-full focus:outline-none"
+    >
+      CLOSE
+    </button>
+  </div>
+</div>
+<app-mat-svg-icon></app-mat-svg-icon>

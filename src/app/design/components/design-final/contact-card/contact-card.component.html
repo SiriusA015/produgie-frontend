@@ -1,0 +1,93 @@
+<div class="flex flex-row justify-between">
+  <div class="w-full flex flex-wrap">
+    <div
+      *ngFor="let crew of crews"
+      class="
+        flex
+        items-center
+        bg-white
+        mr-4
+        mb-4
+        p-4
+        rounded-md
+        c-card
+        shadow-lg
+      "
+    >
+      <div class="h-16 w-16 p-1 rounded-full bg-white">
+        <span
+          class="
+            pg-stakeholder-image-bg
+            rounded-full
+            h-full
+            w-full
+            flex
+            justify-center
+            items-center
+            border-white
+            text-white
+            uppercase
+          "
+        >
+          {{ crew.name.charAt(0) }}
+        </span>
+      </div>
+      <div class="text-sm">
+        <p class="font-14-heading">{{ crew.name | titlecase}}</p>
+        <p class="font-12-heading">{{ getRole(crew) | titlecase }}</p>
+      </div>
+    </div>
+    <div
+      class="
+        flex
+        items-center
+        bg-white
+        mr-4
+        mb-4
+        p-4
+        rounded-md
+        c-card
+        shadow-lg
+        relative
+      "
+    >
+      <div id="icon">
+        <mat-icon
+          svgIcon="bookmark"
+          class="mt-10"
+          aria-hidden="false"
+        ></mat-icon>
+      </div>
+      <div class="h-16 w-16 p-1 rounded-full bg-white">
+        <span
+          *ngIf="username != null"
+          class="
+            pg-stakeholder-image-bg
+            rounded-full
+            h-full
+            w-full
+            flex
+            justify-center
+            items-center
+            border-white
+            text-white
+            uppercase
+          "
+        >
+          {{ username.charAt(0) }}
+        </span>
+      </div>
+      <div class="text-sm">
+        <p
+          class="font-14-heading"
+          *ngIf="username != null && design == 'design'"
+        >
+          {{ username | titlecase}}
+        </p>
+
+        <p class="font-14-heading" *ngIf="design != 'design'">{{ self | titlecase}}</p>
+        <p class="font-12-heading">Self</p>
+      </div>
+    </div>
+  </div>
+</div>

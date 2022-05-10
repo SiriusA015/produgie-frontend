@@ -1,0 +1,18 @@
+<div
+  class="flex flex-col pg-h-screen-w-header-s w-full items-center justify-between congratz-wrapper"
+  style="background-color: #1fbae6; bottom: 50px"
+>
+  <div class="flex flex-col w-full h-full items-center justify-center">
+    <span class="text-white font-bold" style="font-size: 2rem"
+      >Congratulations!!</span
+    >
+    <span class="text-white font-semibold text-2xl"
+      >You successfully completed the Sprint</span
+    >
+  </div>
+    <button class="pg-w-btn py-8 bg-white mb-4 font-bold rounded-sm" (click)="openReviewDialog()"> Schedule a Sprint Review</button>
+</div>
+
+<div class="fixed w-full bottom-0" style="z-index: 999;">
+  <app-bottom-nav></app-bottom-nav>
+</div>

@@ -1,0 +1,68 @@
+<div class="flex h-full flex-col notification-popup">
+    <div class="flex flex-col">
+      <div
+        class="flex flex-row justify-between items-center border-b border-gray-500 pb-4 mb-4"
+      >
+        <div class="flex flex-row items-center">
+          <mat-icon class="pg-txt-blue-bright">notifications_none</mat-icon>
+          <span class="heading-2">Notification</span>
+        </div>
+        <div class="flex justify-end items-center">
+          <span
+            class="text-right text-xs pg-txt-blue-bright cursor-pointer mr-4 font-14-heading"
+            *ngIf="unreadNotification.length !== 0"
+            (click)="markAllAsRead()"
+            >mark all as read</span
+          >
+          <mat-icon class="cursor-pointer" (click)="onClose()">close</mat-icon>
+        </div>
+      </div>
+      <div *ngIf="loadCounter > 0">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        <p align="center">Loading notifications...</p>
+      </div>
+      <div *ngIf="isLoading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>
+      <div class="flex flex-col" *ngIf="loadCounter === 0">
+        <div class="border-b">
+          <div class="mb-4 heading-5">Unread</div>
+          <div
+            class="flex flex-row items-center border border-green-400 rounded-sm"
+            *ngFor="let unread of unreadNotification"
+          >
+            
+            <span class="font-14-heading">{{ unread.text }}</span>
+            <div class="flex justify-end items-center">
+              <span
+                *ngIf="unread.notificationType === 'frequency check-in'"
+                class="text-right btn"
+                (click)="openwcNotificationDialog(unread)"
+                >Rate Check-In</span>
+            </div>
+            <span
+              *ngIf="unread.notificationType !== 'frequency check-in' && unread.notificationType !='Team Join Invite'"
+              class="text-right btn"
+              (click)="markAsRead(unread.notificationId)"
+              >mark as read</span>
+              <div class="flex mt-16" *ngIf=" unread.notificationType =='Team Join Invite'">
+                <button class="btn btn-primary btn-rounded waves-effect" type="button" (click)="joinTeam($event)"
+                  value="Accepted">Accept</button>
+                <button class="btn btn-primary btn-rounded waves-effect declineBtn" (click)="joinTeam($event)" type="button"
+                  value="Declined">Decline</button>
+              </div>
+          </div>
+        </div>
+        <div class="border-b">
+          <div class="mb-4 heading-5">Read</div>
+          <div
+            class="flex flex-row items-center border"
+            *ngFor="let read of readNotification"
+          >
+            <span class="font-14-heading ">{{ read.text }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

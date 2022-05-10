@@ -1,0 +1,38 @@
+<div class="flex w-full flex-row h-full relative development-plan">
+  <div class="pg-container pg">
+    <div class="pg__inner">
+      <div class="flex flex-row justify-between items-center mb-8">
+        <span class="heading-1" (click)="openAdvice()">Team Development Plan</span>
+
+        <button *ngIf="checkEmpty(advice)"
+          class="px-8 py-4 flex flex-row justify-between items-center bg-white rounded-md border border-gray-400 focus:outline-none"
+          (click)="openAdvice(); $event.stopPropagation()">
+          <mat-icon class="pg-txt-blue-bright mr-2">send</mat-icon>
+          <span class="pg-txt-blue-bright font-bold">Provide Advice</span>
+        </button>
+        <button *ngIf="!checkEmpty(advice)"
+          class="px-8 py-4 flex flex-row justify-between items-center text-white rounded-md border border-gray-400 focus:outline-none"
+          (click)="editAdvice(); $event.stopPropagation()">
+          <mat-icon fontSet="material-icons-outlined" class="pg-txt-blue-bright mr-2">edit</mat-icon>
+          <span class="pg-txt-blue-bright text-md font-semibold text-gray-500">Edit Advice</span>
+        </button>
+      </div>
+      <app-strength-and-priorities [strenghts]="capabilities" [fads]="FadArray" [priority]="priority">
+      </app-strength-and-priorities>
+      <app-current-sprint [userSprint]="userSprint" [design]="design" [sprintNo]="userSprint?.sprintNumber">
+      </app-current-sprint>
+      <app-action-behaviour-outcome [actions]="allaction" [outcomes]="alloutcome" [behaviours]="allbehavior">
+      </app-action-behaviour-outcome>
+      <div class="flex flex-row justify-between items-center mb-8">
+        <span class="text-2xl font-bold"> Team Sprint Crew</span>
+      </div>
+      <app-sprint-crew [crews]="crewMember"></app-sprint-crew>
+    </div>
+  </div>
+</div>
+
+<div class="bg-transparent fixed top-0 left-0 h-screen" *ngIf="stored">
+  <app-team-thank-you [username]="username"></app-team-thank-you>
+</div>
+
+<app-mat-svg-icon></app-mat-svg-icon>

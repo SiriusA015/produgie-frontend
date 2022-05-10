@@ -1,0 +1,30 @@
+<app-dev-loader *ngIf="isLoader"></app-dev-loader>
+<div class="flex w-full flex-col h-full relative development-plan" *ngIf="!isLoader">
+    <div class="pg-container pg">
+        <div class="pg__inner">
+            <!-- <div class="mb-10"> -->
+                <!-- <div class="pt-8"></div> -->
+                <div class="flex flex-row justify-between mb-10">
+                    <span class="heading-1">{{data.name.fullname}}'s Development Plan</span>
+                </div>
+                <app-summary-details [strenghts]="capabilities" [fads]="data?.capability" [priority]="data?.priority">
+                </app-summary-details>
+                <!-- <app-sprint-duration-overview [frequency]="data?.userSprint"></app-sprint-duration-overview> -->
+                <!-- <app-snapshot [userSprint]="userSprint"  [sprint]="data?.sprint" [sprintNo]="data?.sprintNo" [frequency]="data?.userSprint"></app-snapshot> -->
+                <app-snapshot [userSprint]="data?.userSprint" [sprint]="data?.sprint" [sprintNo]="data?.sprintNo" [frequency]="data?.userSprint"></app-snapshot>
+                <app-key [actions]="allaction" [outcomes]="alloutcome" [behaviours]="allbehavior" [sprintId]="sprintId">
+                </app-key>
+                <div class="flex flex-row justify-between">
+                    <!-- <div class="w-full flex flex-col lg:flex-row justify-between bg-white py-6 px-8 shadow-lg mb-4 rounded"> -->
+                    <div class="w-full justify-center mb-4 lg:mb-0 lg:w-1/5 flex items-center lg:justify-start">
+                        <h3 class="heading-2">Sprint Crew</h3>
+                    </div>
+                    <!-- </div> -->
+                </div>
+                <app-contact-card *ngIf="data?.crew" [crews]="data?.crew"
+                    [self]="data.name.fullname"></app-contact-card>
+            <!-- </div> -->
+        </div>
+    </div>
+</div>
+<app-mat-svg-icon></app-mat-svg-icon>

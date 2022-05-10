@@ -1,0 +1,81 @@
+.dot {
+  cursor: pointer;
+  height: 10px;
+  width: 10px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.dot-active {
+  background-color: #000;
+}
+
+.list-key {
+  border-bottom: 1px solid #EBEBEB
+}
+.list-key:nth-last-child(1) {
+  border: none;
+}
+
+.badge-orange {
+  .mat-badge-content {
+    background : #FF5D00;
+  }
+}
+
+
+.badge-cyan {
+  .mat-badge-content {
+    background : #02A0FC;
+  }
+}
+
+.pg-dd-shadow {
+  -webkit-box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.2);
+  box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.2);
+}
+.key-focus-card-wrap {
+  height: calc(100% - 60px);
+}
+
+
+.pd-card {
+  height: 243px;
+  width: 203px;
+}
+
+.mat-card:not([class*=mat-elevation-z]){
+  box-shadow: none !important;
+}
+.bold-text{
+  font-weight: bold;
+}
+.span-margin-bottom{
+  margin-bottom: 30px;
+}
+
+.advice-area{
+  height: 415px;
+  overflow: auto;
+}
+
+.advice-area-nodata{
+  height: 415px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+::ng-deep .mat-form-field{
+  width: 100%;
+  overflow: hidden;
+}
+
+::ng-deep .mat-form-field-infix{
+  background-color: #ffffff !important;
+  padding: 10px !important;
+}

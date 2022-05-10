@@ -1,0 +1,493 @@
+<div class="flex w-full flex-row h-full relative">
+  <div class="w-1/8 bg-white left-nav">
+    <app-left-nav></app-left-nav>
+  </div>
+  <div class="pg-info">
+    <label class="pg-tooltip-left flex flex-row items-center ml-2">
+      <mat-icon
+        class="text-gray-500 mat-icon-18"
+        fontSet="material-icons-outlined"
+        >info</mat-icon
+      >
+      <input type="checkbox" />
+      <div class="font-light text-xs">
+        Mouse over the sidebar to track your progress in creating your sprint
+      </div>
+    </label>
+  </div>
+  <div class="pg-container pg">
+    <div class="pg__inner">
+      <div class="flex items-center">
+        <span class="heading-1">Select Sprint Crew & Assign Roles</span>
+        <label
+          class="pg-tooltip flex flex-row items-center ml-2 focus:outline-none"
+        >
+          <mat-icon
+            fontSet="material-icons-outlined"
+            class="text-gray-500 mat-icon-18"
+            >info</mat-icon
+          ><input type="checkbox" />
+          <div class="heading-4">
+            Add Sprint Crew members that can observe the Sprint and support you
+            in achieving your development goal
+          </div>
+        </label>
+      </div>
+      <span class="heading-4">Select Sprint Crew members who can observe your behaviour face-to-face or remotely</span>
+
+      <div>
+        <button class="copy-template-url-btn" [cdkCopyToClipboard]="copyTemplateUrl()" (click)="onCopied()">Copy template URL</button>
+      </div>
+
+      <mat-card class="mat margin-top-div mat-elevation-z">
+        <div
+          class="flex flex-col w-full items-center border-form"
+          [formGroup]="crewForm"
+        >
+          <div class="flex w-full mb-15">
+            <div class="w-1/6 font-bold title-label">Name</div>
+            <div class="w-2/6 font-bold title-label">Email</div>
+            <div class="w-1/6 font-bold title-label">Role</div>
+            <div class="w-1/6 font-bold title-label">Advice and Review</div>
+            <div class="font-bold title-label fed">Feedback</div>
+          </div>
+        </div>
+        <div class="flex flex-col w-full items-center" [formGroup]="crewForm">
+          <div class="w-full flex items-center">
+            <div class="w-1/6 pr-4">
+              <input
+                class="
+                  appearance-none
+                  inputboxborder
+                  bg-transparent
+                  w-full
+                  text-gray-600
+                  leading-tight
+                  focus:outline-none
+                  font-semibold
+                " type="text"
+                placeholder="Name*"
+                (keypress)="blockStartWhiteSpace($event);"
+                formControlName="name"
+                [matAutocomplete]="auto"
+                required
+              />
+              <mat-autocomplete
+                #auto="matAutocomplete"
+                (optionSelected)="onSelectionChange($event.option.value)"
+              >
+                <mat-option
+                  *ngFor="let state of sprintCachingData"
+                  [value]="state"
+                >
+                  <span>{{ state.name }}</span>
+                </mat-option>
+              </mat-autocomplete>
+            </div>
+            <div class="w-2/6 pr-4">
+              <input
+                class="
+                  appearance-none
+                  bg-transparent
+                  inputboxborder
+                  w-full
+                  text-gray-600
+                  leading-tight
+                  focus:outline-none
+                  font-semibold
+                "
+                type="text"
+                placeholder="Email*" 
+                formControlName="email"
+                [matAutocomplete]="auto1"
+                required
+              />
+              <mat-autocomplete
+                #auto1="matAutocomplete"
+                (optionSelected)="onEmailChange($event.option.value)"
+              >
+                <mat-option
+                  *ngFor="let state of sprintCachingData"
+                  [value]="state"
+                >
+                  <span>{{ state.email }}</span>
+                </mat-option>
+              </mat-autocomplete>
+            </div>
+            <div class="w-1/6 pr-8 flex relative">
+              <span
+                class="
+                  flex
+                  w-full
+                  justify-between
+                  items-center
+                  inputboxborder
+                  border-b-2
+                  select-padding
+                "
+              >
+                <mat-select formControlName="role" placeholder="Select Role">
+                  <mat-option value="manager">Manager</mat-option>
+                  <mat-option value="mentor">Mentor</mat-option>
+                  <mat-option value="peer">Peer</mat-option>
+                  <mat-option value="team">Team</mat-option>
+                  <mat-option value="customer">Customer</mat-option>
+                  <mat-option value="coach">Coach</mat-option>
+                  <mat-option value="other">Other</mat-option>
+                </mat-select>
+              </span>
+            </div>
+            <div class="w-1/6 pr-4">
+              <label class="switch">
+                <input
+                  type="checkbox"
+                  formControlName="isFastForward"
+                  (change)="changeToFalse($event)"
+                />
+                <div
+                  class="
+                    slider
+                    round
+                    text-white
+                    flex
+                    justify-between
+                    items-center
+                    px-2
+                    pg-txt-75
+                  "
+                >
+                  <span class="toggle-text">YES</span
+                  ><span class="toggle-text">NO</span>
+                </div>
+              </label>
+              <!-- <mat-slide-toggle formControlName="isFastForward" (change)="changeToFalse($event)"></mat-slide-toggle> -->
+            </div>
+            <div class="w-1/6 pr-4 flex justify-between items-center">
+              <label class="switch">
+                <input
+                  type="checkbox"
+                  formControlName="isFeedbackGoalsNBehaviour"
+                  (change)="changeToFalse($event)"
+                />
+                <div
+                  class="
+                    slider
+                    round
+                    text-white
+                    flex
+                    justify-between
+                    items-center
+                    px-2
+                    pg-txt-75
+                  "
+                >
+                  <span class="toggle-text">YES</span
+                  ><span class="toggle-text">NO</span>
+                </div>
+              </label>
+              <!-- <mat-slide-toggle formControlName="isFeedbackGoalsNBehaviour" (change)="changeToFalse($event)">
+            </mat-slide-toggle> -->
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="flex w-full items-center mt-8 relative"
+          [ngClass]="{
+            'cursor-not-allowed': crewForm.invalid
+          }"
+        >
+          <span class="addbtn btn" (click)="addItemField()"> + Add </span>
+        </div>
+      </mat-card>
+
+      <div class="flex items-center crew">
+        <span class="heading-2">Current Sprint crew</span>
+      </div>
+
+      <div class="table-border">
+        <table class="schematable">
+          <tr align="left">
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Advice and Review</th>
+            <th>Feedback</th>
+            <th>Actions</th>
+            <hr />
+          </tr>
+
+          <tr align="left" *ngFor="let data of crewdata">
+            <td>{{ data.name }}</td>
+            <td>{{ data.email }}</td>
+            <td><span *ngIf="data.role == 'Self'">Self</span></td>
+            <td>
+              <!-- <mat-slide-toggle [checked]="data.isFastForward" (click)="$event.preventDefault()"></mat-slide-toggle> -->
+              <div class="w-1/6 pr-4">
+                <label class="switch">
+                  <input
+                    type="checkbox"
+                    [checked]="data.isFastForward"
+                    (click)="$event.preventDefault()"
+                  />
+                  <div
+                    class="
+                      slider
+                      round
+                      text-white
+                      flex
+                      justify-between
+                      items-center
+                      px-2
+                      pg-txt-75
+                    "
+                  >
+                    <span>YES</span><span>NO</span>
+                  </div>
+                </label>
+              </div>
+            </td>
+            <td>
+              <div class="w-1/6 pr-4">
+                <label class="switch">
+                  <input
+                    type="checkbox"
+                    [checked]="data.isFeedbackGoalsNBehaviour"
+                    (click)="$event.preventDefault()"
+                  />
+                  <div
+                    class="
+                      slider
+                      round
+                      text-white
+                      flex
+                      justify-between
+                      items-center
+                      px-2
+                      pg-txt-75
+                    "
+                  >
+                    <span>YES</span><span>NO</span>
+                  </div>
+                </label>
+              </div>
+            </td>
+            <hr />
+          </tr>
+
+          <tr align="left" *ngFor="let data of dataSource">
+            <td>{{ data.name }}</td>
+            <td>{{ data.email }}</td>
+            <td>
+              <span *ngIf="data.role == 'Self'">Self</span>
+              <span *ngIf="data.isManager == true">Manager</span>
+              <span *ngIf="data.isMentor == true">Mentor</span>
+              <span *ngIf="data.isPeerOthers == true">Peer</span>
+              <span *ngIf="data.isCoach == true">Coach</span>
+              <span *ngIf="data.isTeam == true">Team</span>
+              <span *ngIf="data.isOther == true">Other</span>
+              <span *ngIf="data.isCustomer == true">Customer</span>
+            </td>
+            <td>
+              <div class="w-1/6 pr-4">
+                <label class="switch">
+                  <input
+                    type="checkbox"
+                    [checked]="data.isFastForward"
+                    (click)="$event.preventDefault()"
+                  />
+                  <div
+                    class="
+                      slider
+                      round
+                      text-white
+                      flex
+                      justify-between
+                      items-center
+                      px-2
+                      pg-txt-75
+                    "
+                  >
+                    <span>YES</span><span>NO</span>
+                  </div>
+                </label>
+              </div>
+            </td>
+            <td>
+              <div class="w-1/6 pr-4">
+                <label class="switch">
+                  <input
+                    type="checkbox"
+                    [checked]="data.isFeedbackGoalsNBehaviour"
+                    (click)="$event.preventDefault()"
+                  />
+                  <div
+                    class="
+                      slider
+                      round
+                      text-white
+                      flex
+                      justify-between
+                      items-center
+                      px-2
+                      pg-txt-75
+                    "
+                  >
+                    <span>YES</span><span>NO</span>
+                  </div>
+                </label>
+              </div>
+            </td>
+            <td>
+              <button
+                (click)="editCrew(data)"
+                class="icon-edit"
+                *ngIf="data.email != crew.email"
+              >
+                <span class="material-icons icon-color">edit</span>
+              </button>
+              <button
+                (click)="deleteCrew(data)"
+                class="icon-delete"
+                *ngIf="data.email != crew.email"
+              >
+                <span class="material-icons icon-color">delete</span>
+              </button>
+            </td>
+            <hr />
+          </tr>
+        </table>
+      </div>
+
+      <div
+        class="
+          flex flex-row
+          items-center
+          justify-center
+          cursor-pointer
+          pg-bg-blue-light
+          btn
+          text-white
+          continuebtn
+        "
+        *ngIf="editData?.example !== true"
+        [ngClass]="{
+          'pg-bg-blue-dark': tableData.length > 0,
+          'cursor-not-allowed': tableData.length == 0
+        }"
+      >
+        
+        <button
+          class="
+            bg-transparent
+            flex
+            items-center
+            focus:outline-none
+            h-full
+            justify-center
+          "
+          (click)="storeCrew()"
+        >
+          <label
+            class="pg-tooltip flex flex-row items-center mb-0"
+            *ngIf="tableData.length > 0"
+          >
+            <input type="checkbox" />
+            <div class="font-light text-xs">Please fill the crew form</div>
+          </label>
+          Next
+        </button>
+      </div>
+      <div
+        class="
+          flex flex-row
+          items-center
+          justify-center
+          cursor-pointer
+          pg-bg-blue-light
+          btn
+          text-white
+          continuebtn
+        "
+        *ngIf="editData?.example !== true && isEditState"
+        [ngClass]="{
+          'pg-bg-blue-dark': tableData.length > 0,
+          'cursor-not-allowed': tableData.length == 0
+        }"
+      >
+        <button
+          class="
+            bg-transparent
+            flex
+            items-center
+            focus:outline-none
+            h-full
+            justify-center
+          "
+          (click)="saveCrew()"
+         
+        >
+          <label
+            class="pg-tooltip flex flex-row items-center mb-0"
+            *ngIf="tableData.length > 0"
+          >
+            <input type="checkbox" />
+            <div class="font-light text-xs">Please fill the crew form</div>
+          </label>
+          Complete
+        </button>
+      </div>
+      <div
+        class="
+          flex flex-row
+          items-center
+          justify-center
+          cursor-pointer
+          pg-bg-blue-light
+          btn
+          text-white
+          continuebtn
+        "
+        *ngIf="editData?.example == true"
+        [ngClass]="{
+          'pg-bg-blue-dark': tableData.length > 0,
+          'cursor-not-allowed': tableData.length == 0
+        }"
+      >
+        <button
+          class="
+            bg-transparent
+            flex
+            items-center
+            focus:outline-none
+            h-full
+            justify-center
+          "
+          (click)="storeCrew()"
+        >
+          <label
+            class="pg-tooltip flex flex-row items-center mb-0"
+            *ngIf="tableData.length > 0"
+          >
+            <!-- <mat-icon class="" aria-hidden="false">navigate_next</mat-icon> -->
+            <input type="checkbox" />
+            <div class="font-light text-xs">
+              Please fill the crew form
+            </div> </label
+          >Update
+        </button>
+      </div>
+
+      <div class="flex flex-row items-center justify-center cursor-pointer
+      pg-bg-blue-light
+      btn
+      text-white
+      continuebtn">
+        <button class="flex items-center" (click)="back()">
+          Back
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-mat-svg-icon></app-mat-svg-icon>

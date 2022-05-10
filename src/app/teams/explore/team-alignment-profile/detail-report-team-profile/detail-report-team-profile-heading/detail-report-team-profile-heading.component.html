@@ -1,0 +1,94 @@
+<div class="flex pg-h-screen-w-header-m flex-col mx-20 lg:mx-32">
+    <div class="flex justify-end items-center flex-shrink-0 text-white mt-10">
+        <img src="/assets/images/logo2.png" alt="logo" width="120" />
+    </div>
+    <div class="flex flex-col pg-w-h justify-center">
+        <span class="mb-10 text-6xl font-bold text-gray-700">Team Alignment Profile</span>
+        <span data-html2canvas-ignore="true" class="print-helper-text" *ngIf="isFirefox">For best results, download and
+            print from the pdf report</span>
+        <div class="flex justify-between items-center">
+            <span class="text-xl font-semibold text-gray-700">Report for {{ teamName }}</span>
+            <div class="flex download-buttons print-view" data-html2canvas-ignore="true">
+                <button (click)="downloadReport()" [disabled]="!isReportAnabled"
+                    [ngClass]="{ btnDisabled: !isReportAnabled }"
+                    class="border border-gray-500 rounded-md flex flex-row justify-evenly items-center bg-white px-6 py-4 focus:outline-none right-margin">
+                    <mat-icon role="img"
+                        class="mat-icon notranslate pg-txt-blue-bright material-icons mat-icon-no-color"
+                        aria-hidden="true">download_for_offline</mat-icon>
+                    <span class="pg-txt-blue-bright font-bold" id="download">Download</span>
+                </button>
+                <button printSectionId="printMe" [useExistingCss]="true" [disabled]="!isReportAnabled"
+                    styleSheetFile="{{ styleName }}" ngxPrint [ngClass]="{ btnDisabled: !isReportAnabled }"
+                    class="border border-gray-500 rounded-md flex flex-row justify-evenly items-center bg-white px-6 py-4 focus:outline-none">
+                    <mat-icon role="img"
+                        class="mat-icon notranslate pg-txt-blue-bright material-icons mat-icon-no-color"
+                        aria-hidden="true">print</mat-icon>
+                    <span class="pg-txt-blue-bright font-bold">Print</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-break"></div>
+<div class="mx-20 lg:mx-32 intro">
+    <div class="mb-10">
+        <span class="font-bold text-2xl font20">About Team Alignment Profile</span>
+    </div>
+    <!-- <div class="mb-10">
+        <span class="font14">A Growth Leader requires capabilities to deliver results, energize others
+            and build capabilities for the future. This is true for employees at all
+            levels of the business – although not all capabilities are important in
+            all roles. Your Growth Leader Profile includes:</span>
+    </div>
+    <div class="mb-10 pl-6">
+        <ul class="list-disc">
+            <li>
+                <span class="font-semibold font14">Style: </span><span class="font14">Characteristics that influence
+                    behavior on-the-job. These are slow to
+                    change</span>
+            </li>
+            <li>
+                <span class="font-semibold font14">Strategy: </span><span class="font14">Management best practices and
+                    routines you can learn more
+                    rapidly</span>
+            </li>
+        </ul>
+    </div>
+    <div class="mb-10">
+        <span class="font14">
+            Strategies can help you overcome a Style challenge. For example, some
+            people are naturally introverted. However, they can implement routines and
+            practices that help them connect with others in the organization.
+        </span>
+    </div>
+    <div class="mb-10">
+        <span class="font14">Each style and strategy has multiple measures so it’s possible to have
+            both a strength and an area of improvement for the same style or strategy.
+            For example, in Deliberate and Organized, you might apply much energy to
+            completing work, but not be very planful or well organized.</span>
+    </div>
+    <div class="mb-10">
+        <span class="font14">Your profile is compared to professionals and leaders in some great
+            companies around the world. Don’t expect all of your scores to be ‘high’
+            against this benchmark!</span>
+    </div>
+    <div class="mb-10">
+        <span class="font14">Use insights from your Growth Leader Profile to help you focus on
+            developing capabilities that will help you manage your current challenges
+            and have even greater impact. Over time, develop new capabilities that
+            will help you prepare for future job challenges.
+        </span>
+    </div>
+    <div class="mb-10">
+        <span class="font14">All material contained within this report is confidential and is copy
+            right protected (©2021 Organisation Solutions Pte Ltd)
+        </span>
+    </div> -->
+    <!-- <div class="page-break"></div> -->
+    <div class="spacing" style="page-break-after: always">
+        <div class="donut-sizer">
+            <app-alignment-profile-structure></app-alignment-profile-structure>
+        </div>
+    </div>
+</div>
+<app-mat-svg-icon></app-mat-svg-icon>

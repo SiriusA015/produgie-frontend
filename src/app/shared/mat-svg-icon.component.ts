@@ -1,0 +1,333 @@
+
+import { Component, OnInit } from '@angular/core';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+
+@Component({
+  selector: 'app-mat-svg-icon',
+  template: ''
+})
+export class MatSvgIconComponent implements OnInit {
+
+  constructor(
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer,
+  ) {
+    iconRegistry.addSvgIcon(
+      'Profile',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/Profile.svg')
+    );
+      iconRegistry.addSvgIcon(
+        'flash',
+        sanitizer.bypassSecurityTrustResourceUrl('assets/icons/flash.svg')
+      );
+
+    iconRegistry.addSvgIcon(
+      'idea',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/idea.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'file',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/file.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'cube',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/cube.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'dot',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/dot.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'ball',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/ball.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'vision',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/vision.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'tick',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/tick.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'fire',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/fire.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'gift',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/gift.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'timer',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/timer.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'science',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/science.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'grow',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/grow.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'surface',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/surface.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'progress',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/arrow.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'pause',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/pause.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'pulse',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/pulse.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'info',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/info.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'triangle',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/triangle.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'action_1',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/action_1.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'action_2',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/action_2.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'action_3',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/action_3.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'cap_5',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/develop.svg')
+    );
+
+    iconRegistry.addSvgIcon(
+      'bookmark',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/self.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'pencil',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/pencil.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'filter',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/filter.svg')
+    );
+    iconRegistry.addSvgIcon(
+      '3M',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/3M.svg')
+    );
+    // cap icons
+    iconRegistry.addSvgIcon(
+      'cap_1',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/cap_icons/3_Structure&Execute.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'cap_1grey',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/grey_icons/3_Structure&Execute.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'cap_2',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/cap_icons/2_manage.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'cap_2grey',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/grey_icons/2_manage.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'cap_3',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/cap_icons/1_Build.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'cap_3grey',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/grey_icons/1_Build.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'cap_4',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/cap_icons/4_SetVisionAnd.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'cap_4grey',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/grey_icons/4_SetVisionAnd.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'cap_5',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/cap_icons/5_Develop.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'cap_5grey',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/grey_icons/5_Develop.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'cap_6',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/cap_icons/6_BuildStakeholder.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'cap_6grey',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/grey_icons/6_BuildStakeholder.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'cap_7',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/cap_icons/7_DevelopGrowth.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'cap_7grey',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/grey_icons/7_DevelopGrowth.svg')
+    );
+    
+    iconRegistry.addSvgIcon(
+      'cap_8',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/cap_icons/8_Lead.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'cap_8grey',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/grey_icons/8_Lead.svg')
+    );
+
+    iconRegistry.addSvgIcon(
+      'cap_9',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/cap_icons/9_Shape.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'cap_9grey',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/grey_icons/9_Shape.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'cap_10',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/cap_icons/9_Shape.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'cap_10grey',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/grey_icons/9_Shape.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'snaphot_circle',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/snaphot_circle.svg')
+    );
+   
+    iconRegistry.addSvgIcon(
+      'snaphot_box',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/snaphot_box.svg')
+    ); 
+
+    iconRegistry.addSvgIcon(
+      'snapshot_cycle',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/snapshot_cycle.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'snapshot_cycle1',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/snapshot_cycle1.svg')
+    );
+
+    iconRegistry.addSvgIcon(
+      'Graph_View',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/Graph_View.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'Graph_View1',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/Graph_View1.svg')
+    );
+
+    iconRegistry.addSvgIcon(
+      'Color',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/Color.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'Color1',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/Color1.svg')
+    );
+   
+    iconRegistry.addSvgIcon(
+      'avatar_1',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/avatars/avatar_1.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'avatar_2',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/avatars/avatar_2.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'avatar_3',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/avatars/avatar_3.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'avatar_4',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/avatars/avatar_4.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'avatar_5',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/avatars/avatar_5.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'avatar_6',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/avatars/avatar_6.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'avatar_7',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/avatars/avatar_7.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'avatar_8',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/avatars/avatar_8.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'avatar_9',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/avatars/avatar_9.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'avatar_10',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/avatars/avatar_10.svg')
+    );
+    // icons
+    iconRegistry.addSvgIcon(
+      'Change_leader',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/cap_icons/Change_leader.svg')
+    );
+
+    iconRegistry.addSvgIcon(
+      'Change Leader',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/cap_icons/change_leader2.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'Communicator',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/cap_icons/Communicator.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'Deliverable',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/cap_icons/Deliverable.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'Digital Leader',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/cap_icons/Digital.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'Measurable',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/cap_icons/Measurable.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'Observable',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/cap_icons/Observable.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'Empty',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/cap_icons/Empty.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'Qrcode',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/qrcode/alpha-produgie.svg')
+    );
+  }
+
+  ngOnInit(): void {
+  }
+
+}

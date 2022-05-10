@@ -1,0 +1,37 @@
+.sprintbox {
+    background-color: #e2e8f0;
+    border-radius: 2rem;
+    padding: 2rem;
+}
+
+.example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+    border-radius: 2rem;
+}
+
+.example-margin {
+    margin: 0 10px;
+}
+
+.text-xs {
+    color: #278ce9;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.progressbar-style {
+    width: 60%;
+    height: 20%;
+    padding: 30px;
+}
+
+.pbtn{
+    background-color: #9ac9f4 !important;
+    padding: 0.5rem;
+    border-radius: 2rem !important;
+    font-size: 12px !important;
+    color: #fff;
+}

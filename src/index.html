@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="//fast.appcues.com/81825.js"></script>
+    <meta charset="utf-8" />
+    <title>Produgie</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1976d2">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate, post-check=0, pre-check=0">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="pragma" content="no-cache">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined"
+      rel="stylesheet"
+    />
+    <!-- <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swapp"
+      rel="stylesheet"
+    /> -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      href="assets/images/iosIcons/Icon-29x29@3x.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="assets/images/iosIcons/Icon-60x60@2x.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/images/iosIcons/Icon-60x60@3x.png"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link
+      href="assets/images/iosSplash/LaunchImage-Portrait@2x~ipad_2048x2732.png"
+      sizes="2048x2732"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      href="assets/images/iosSplash/LaunchImage-Portrait@2x~ipad_1668x2224.png"
+      sizes="1668x2224"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      href="assets/images/iosSplash/LaunchImage-Portrait@2x~ipad_1536x2048.png"
+      sizes="1536x2048"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      href="assets/images/iosSplash/LaunchImage-1125@3x~iphoneX-portrait_1125x2436.png"
+      sizes="1125x2436"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      href="assets/images/iosSplash/LaunchImage-1242@3x~iphone6s-portrait_1242x2208.png"
+      sizes="1242x2208"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      href="assets/images/iosSplash/LaunchImage-750@2x~iphone6-portrait_750x1334.png"
+      sizes="750x1334"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      href="assets/images/iosSplash/LaunchImage-568h@2x~iphone_640x1136.png"
+      sizes="640x1136"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      rel="manifest"
+      crossorigin="use-credentials"
+      href="./manifest.webmanifest"
+    />
+    <style>
+      .add-button {
+        position: absolute;
+        top: 1px;
+        left: 1px;
+      }
+    </style>
+
+	<script
+	src="https://code.jquery.com/jquery-3.6.0.slim.js"
+	integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY="
+	crossorigin="anonymous"></script>
+    <script>
+      var global = global || window;
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  </head>
+  <body style="background-color: #fff">
+    <app-root></app-root>
+    <!-- <button class="add-button">Add to home screen</button> -->
+    <script>
+      window.fwSettings = {
+        widget_id: 51000000664,
+      };
+      !(function () {
+        if ("function" != typeof window.FreshworksWidget) {
+          var n = function () {
+            n.q.push(arguments);
+          };
+          (n.q = []), (window.FreshworksWidget = n);
+        }
+      })();
+    </script>
+    <script
+      type="text/javascript"
+      src="https://aus-widget.freshworks.com/widgets/51000000664.js"
+      async
+      defer
+    ></script>
+    <script type="text/javascript">
+      let deferredPrompt;
+
+    window.addEventListener("beforeinstallprompt", (e) => {
+      // Prevent the mini-infobar from appearing on mobile
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      window.deferredPrompt = e;
+      // Update UI notify the user they can install the PWA
+      // window.showInstallPromotion();
+    });
+    window.addEventListener("appinstalled", (evt) => {
+      // Log install to analytics
+      console.log("INSTALL: Success");
+    });
+    window.addEventListener("DOMContentLoaded", () => {
+      let displayMode = "browser tab";
+      if (navigator.standalone) {
+        displayMode = "standalone-ios";
+      }
+      if (window.matchMedia("(display-mode: standalone)").matches) {
+        displayMode = "standalone";
+      }
+      // Log launch display mode to analytics
+      console.log("DISPLAY_MODE_LAUNCH:", displayMode);
+    });
+    window.addEventListener("DOMContentLoaded", () => {
+      window.matchMedia("(display-mode: standalone)").addListener((evt) => {
+        let displayMode = "browser tab";
+        if (evt.matches) {
+          displayMode = "standalone";
+        }
+        // Log display mode change to analytics
+      });
+    });
+  </script>
+  <!-- Hotjar Tracking Code for http://alpha.produgie.com -->
+  <script>
+    (function (h, o, t, j, a, r) {
+      h.hj =
+        h.hj ||
+        function () {
+          (h.hj.q = h.hj.q || []).push(arguments);
+        };
+      h._hjSettings = { hjid: 2130951, hjsv: 6 };
+      a = o.getElementsByTagName("head")[0];
+      r = o.createElement("script");
+      r.async = 1;
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+  </script>
+  <script type="text/javascript">
+    // Detects if device is on iOS
+    const isIos = () => {
+      const userAgent = window.navigator.userAgent.toLowerCase();
+      return /iphone|ipad|ipod/.test(userAgent);
+    };
+    // Detects if device is in standalone mode
+    const isInStandaloneMode = () =>
+      "standalone" in window.navigator && window.navigator.standalone;
+
+    // Checks if should display install popup notification:
+    if (isIos() && !isInStandaloneMode()) {
+      this.setState({ showInstallMessage: true });
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<div class="rounded flex flex-col bg-white justify-between items-center ff-c-card p-6">
+
+  <div class="block h-24 w-24 rounded-full overflow-hidden focus:outline-none focus:border-none">
+    <img
+      class="h-full w-full object-cover"
+      [src]="supportCrew?.image"
+      [alt]="supportCrew?.name"
+    />
+  </div>
+
+  <div class="text-center text-2xl">
+    <p>
+      {{supportCrew?.name}}
+    </p>
+    <p>
+      {{supportCrew?.position}}
+    </p>
+  </div>
+
+  <div>
+    <label class="switch">
+      <input type="checkbox" [checked]="supportCrew?.available">
+      <span class="slider round"></span>
+    </label>
+  </div>
+
+</div>

@@ -1,0 +1,89 @@
+<!-- <app-dev-loader *ngIf="isLoader"></app-dev-loader> -->
+<div class="flex w-full flex-row h-full relative development-plan">
+    <div class="pg-container pg">
+      <div class="pg__inner">
+        <div class="mb-10">
+          <div class="flex items-center flex-row justify-between">
+            <!-- <span class="heading-1"
+              >{{ data.name?.firstname + " " + data.name?.lastname }}'s
+              Development Plan</span
+            > -->
+            <span class="heading-1"
+            >Guest
+            Development Plan</span
+          >
+            <!-- <span class="heading-1"> {{ username }}'s Development Plan</span> -->
+  
+            <!-- <button
+              *ngIf="checkEmpty(feedback)"
+              class="
+                px-8
+                py-4
+                flex flex-row
+                justify-between
+                items-center
+                bg-white
+                rounded-md
+                border border-gray-400
+                focus:outline-none
+              "
+              (click)="openFeedback(); $event.stopPropagation()"
+            >
+              <mat-icon
+                fontSet="material-icons-outlined"
+                class="pg-txt-blue-bright mr-2"
+                >send</mat-icon
+              >
+              <span class="pg-txt-blue-bright font-bold">Provide Feedback</span>
+            </button> -->
+            <!-- <button
+              *ngIf="!checkEmpty(feedback)"
+              class="
+                px-8
+                py-4
+                flex flex-row
+                justify-between
+                bg-white
+                items-center
+                text-white
+                rounded-md
+                border border-gray-400
+                focus:outline-none
+              "
+              (click)="editFeedback(); $event.stopPropagation()"
+            >
+              <mat-icon
+                fontSet="material-icons-outlined"
+                class="pg-txt-blue-bright mr-2"
+                >edit</mat-icon
+              >
+              <span class="pg-txt-blue-bright font-semibold text-gray-500"
+                >Edit Feedback</span
+              >
+            </button> -->
+          </div>
+        </div>
+        <app-strength-and-priorities [strenghts]="capabilities" [fads]="fadArray" [priority]="priority">
+        </app-strength-and-priorities>
+        <app-current-sprint [userSprint]="userSprint"
+                            [sprintNo]="userSprint?.sprintNumber"
+                            [design]="design"></app-current-sprint>
+        <app-action-behaviour-outcome [actions]="allaction" [outcomes]="alloutcome" [behaviours]="allbehavior"></app-action-behaviour-outcome>
+        <div class="flex flex-row justify-between items-center mb-8">
+          <span class="text-2xl font-bold"> Team Sprint Crew</span>
+        </div>
+        <app-sprint-crew [crews]="crewMember"></app-sprint-crew>
+      </div>
+    </div>
+  </div>
+  
+  <div
+    class="bg-transparent fixed top-0 left-0 h-screen"
+    style="z-index: 10000"
+  >
+    <!-- <app-thank-you
+      [userName]="userdata.firstname + ' ' + userdata.lastname"
+    ></app-thank-you> -->
+  </div>
+  
+  <app-mat-svg-icon></app-mat-svg-icon>

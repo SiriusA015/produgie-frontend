@@ -1,0 +1,13 @@
+.pg-w-btn {
+  width: 95vw;
+}
+
+.congratz-wrapper {
+  margin-top: 20rem;
+}
+
+@media (max-width: 768px) {
+  .congratz-wrapper {
+    margin-top: 15rem;
+  }
+}

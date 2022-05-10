@@ -1,0 +1,51 @@
+.pg-p-15{
+    padding: .15rem;
+}
+.pg-active-link>button>div>.mat-icon{
+    color: #4339f2 !important;
+}
+
+nav {
+    border-top: 2px solid #EBF2FB;
+}
+.sprint-bottom-menu {
+    li {
+        padding: 15px 10px;
+        position: relative;
+        img {
+            height: 16px;
+            width: 16px;
+            object-fit: contain;
+            object-position: center;
+        }
+        .blue-img {
+            display: none;
+        }
+        &:before {
+            content: "";
+            position: absolute;
+            display: block;
+            background: #278CE9;
+            width: 100%;
+            height: 2.5px;
+            bottom: 0;
+            left: 0;
+            border-radius: 10px 10px 0 0;
+            opacity: 0;
+        }
+        &.active {
+            &:before {
+                opacity: 1;
+            }
+            .blue-img {
+                display: block;
+            }
+            .gray-img {
+                display: none;
+            }
+            .blue-font {
+                color: #278CE9;
+            }
+        }
+    }
+}

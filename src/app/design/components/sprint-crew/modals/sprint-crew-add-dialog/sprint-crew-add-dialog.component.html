@@ -1,0 +1,57 @@
+<div class="p-4">
+  <div class="flex flex-row justify-between mb-4">
+    <span class="text-2xl font-medium">Add Support Crew Member</span>
+    <mat-icon class="text-gray-600 text-3xl cursor-pointer" (click)="onClose()">close</mat-icon>
+  </div>
+  <div class="flex flex-col">
+    <form class="w-full flex flex-col justify-around" [formGroup]="crewForm">
+      <div class="w-full" formArrayName="crew" *ngFor="let item of crewForm.get('crew').value; let i = index;">
+        <div class="w-full flex flex-row justify-between mb-4" [formGroupName]="i">
+            <div class="w-1/4 flex items-center border-b border-gray-600 mr-6">
+                <input
+                  class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                  type="text"
+                  placeholder="Name*"
+                  formControlName="name"
+                />
+              </div>
+              <div class="w-1/2 flex items-center border-b border-gray-600">
+                <input
+                  class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                  type="text"
+                  placeholder="Email*"
+                  formControlName="email"
+                />
+              </div>
+              <div class="w-1/4 flex flex-row justify-between items-center border-b border-gray-600 ml-6">
+                <input
+                  class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                  type="text"
+                  placeholder="Jane Doe"
+                  formControlName="role"
+                />
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                  </div>
+              </div>
+              <div class="flex items-center ml-6">
+                  <button
+                    class="bg-transparent focus:outline-none text-orange-400 font-semibold py-2 px-6 border border-orange-400"
+                  >
+                    Invite
+                  </button>
+                </div>
+        </div>
+      </div>
+    </form>
+    <div class="flex justify-start">
+        <button
+        (click)="addItemField()"
+        class="bg-transparent focus:outline-none text-blue-500 font-semibold py-4 flex items-center"
+      >
+        <mat-icon>add</mat-icon>Add another
+      </button>
+  
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="w-full flex flex-row items-center justify-between">
+  <div class="pg-final-heading flex flex-row w-1/2 mr-4 rounded-r-full">
+    <div class="pg-heading-symbol"></div>
+    <h1 class="text-2xl font-bold">Focus your Development</h1>
+  </div>
+  <div class="flex flex-row items-center justify-end w-1/2">
+    <mat-icon svgIcon="pencil" class="mr-2 align-middle">edit</mat-icon>
+    <span class="mr-10 text-2xl font-medium" style="color: #2C3E50;">Edit</span>
+  </div>
+</div>
+
+<div class="pg-margin-inner mt-5 mb-10">
+  <div class="w-full flex-col">
+    <div
+      class="w-1/3 flex flex-row items-center justify-start"
+      *ngFor="let item of selected; let i = index" cdkDrag>
+      <div
+        class="h-10 w-10 text-center flex items-center justify-center mr-3 rounded-sm development-orange"
+        [ngClass]="{'development-green': selectedDevelopment === item.id}">
+        <span *ngIf="selectedDevelopment !== item.id">{{ i+1 }}</span>
+        <mat-icon *ngIf="selectedDevelopment === item.id" style="color: white;">done</mat-icon>
+      </div>
+      <div class="flex flex-col items-start">
+        <span class="font-medium">{{ item.value }}</span>
+        <span class="font-medium" style="color: #E0713F;">{{ item.type === 'roleDemand' ? 'Role Demands' : 'Lowest Scoring'}}</span>
+      </div>
+    </div>
+
+  </div>
+</div>

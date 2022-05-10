@@ -1,0 +1,148 @@
+.event-wrapper {
+  min-height: 100vh;
+  background-color: #f3f8ff;
+  padding: 5rem;
+
+  .title {
+    font-size: 2.4rem;
+    font-weight: bold;
+    margin-bottom: 2.5rem;
+  }
+
+  .filter {
+    border-radius: 3px;
+    border: 1px solid #828282;
+    padding: 1rem 2.1rem;
+    color: #828282;
+    font-weight: 600;
+    font-size: 16px;
+    height: fit-content;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .select-dropdown {
+	  padding: 1.3rem 1.5rem;
+	  height: 4.349rem;
+  }
+
+  .search-bar {
+    padding: 1.3rem 1.5rem 1.3rem 4.5rem;
+    width: 29.249rem;
+    height: 4.349rem;
+    border-radius: 3px;
+  }
+
+  .search-blue-icon {
+    position: absolute;
+    margin: 1.3rem 1.5rem;
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  table {
+    white-space: nowrap;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+
+    th,
+    tbody tr td {
+      border-bottom: #dbdde1 2px solid;
+      padding: 2.5rem 1rem 2rem 1rem;
+      font-size: 16px;
+    }
+
+	th tr td:first-child, tbody tr td:first-child {
+		max-width: 12rem;
+		overflow-wrap: anywhere;
+		white-space: break-spaces;
+	}
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .font-700 {
+      font-weight: 700;
+    }
+
+    .white-box-wrap {
+      .box {
+        background-color: white;
+        font-weight: 500;
+        font-size: 14px;
+        color: #333333;
+        padding: 0.5rem 1.5rem;
+        border-radius: 3px;
+        width: fit-content;
+      }
+    }
+
+    .color-orange {
+      color: #f2994a !important;
+    }
+
+    .color-blue {
+      color: #2f80ed !important;
+    }
+
+    .box-btn {
+      .box {
+        padding: 10px 15px;
+        letter-spacing: 0.02em;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0px 0px 4px 0px #00000040;
+        border-radius: 3px;
+        width: fit-content;
+        margin-inline: auto;
+        margin-bottom: 5px;
+      }
+
+      .box-description {
+        font-size: 12px;
+        font-weight: 400;
+        color: #278ce9;
+      }
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+
+    .blue-box-btn {
+      .box {
+        background-color: #278ce9;
+        color: white;
+      }
+    }
+
+    .white-box-btn {
+      .box {
+        background-color: white;
+        border: 1px solid #2f80ed;
+        color: #2f80ed;
+      }
+    }
+
+    .disabled {
+      .box {
+        border: none;
+        color: white;
+        background-color: #e0e0e0;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+:host ::ng-deep .mat-paginator-container {
+  color: black;
+  background-color: #f3f8ff;
+}

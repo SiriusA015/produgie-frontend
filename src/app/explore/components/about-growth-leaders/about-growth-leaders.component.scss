@@ -1,0 +1,134 @@
+.video-card {
+	max-height: 568px;
+}
+
+@media (min-width: 480px) {
+	.video-card {
+		height: 180px;
+		width: 300px;
+		.video {
+			// height: 130px;
+			height: 100%;
+		}
+		// .video-description {
+		//   height: 50px;
+		// }
+	}
+}
+@media (min-width: 576px) {
+	.video-card {
+		height: 320px;
+		width: 426px;
+		.video {
+			// height: 250px;
+			height: 100%;
+		}
+		// .video-description {
+		//   height: 70px;
+		// }
+	}
+}
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+	.video-card {
+		height: 350px;
+		width: 560px;
+		.video {
+			// height: 280px;
+			height: 100%;
+		}
+		// .video-description {
+		//   height: 70px;
+		// }
+	}
+}
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+	.video-card {
+		height: 441px;
+		width: 660px;
+		.video {
+			// height: 369px;
+			height: 100%;
+		}
+		// .video-description {
+		//   height: 70px;
+		// }
+	}
+}
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+	.video-card {
+		height: 558px;
+		width: 860px;
+		.video {
+			// height: 486px;
+			height: 100%;
+		}
+		// .video-description {
+		//   height: 70px;
+		// }
+	}
+}
+@media (min-width: 1400px) {
+	.video-card {
+		height: 568px;
+		width: 842px;
+		.video {
+			// height: 472px;
+			height: 100%;
+		}
+		// .video-description {
+		//   height: 96px;
+		// }
+	}
+}
+::ng-deep .mat-tab-labels {
+	display: flex;
+}
+
+::ng-deep .mat-tab-label {
+	// color: white;
+	min-width: 25px !important;
+	padding: 5px;
+	color: #278ce9;
+	font-weight: 700;
+	flex: 1;
+	border-top-left-radius: 14px;
+	border-top-right-radius: 14px;
+	opacity: 1;
+}
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+	background-color: #278ce9;
+	color: #fff;
+	border-top-left-radius: 14px;
+	border-top-right-radius: 14px;
+}
+
+::ng-deep .mat-tab-label-active {
+	// background-color: #f3f8ff;
+	// color: #278ce9;
+	background-color: #278ce9;
+	color: #f3f8ff;
+
+	border-top-left-radius: 14px;
+	border-top-right-radius: 14px;
+}
+
+.mat-tab-group {
+	margin: 130px auto;
+	width: 88%;
+	background-color: #f3f8ff;
+	border-top-left-radius: 14px;
+	border-top-right-radius: 14px;
+}
+
+@media screen and (max-width: 991px) {
+	.mat-tab-group {
+		margin: 150px;
+	}
+	.map-tabs {
+		flex-wrap: wrap;
+	}
+}

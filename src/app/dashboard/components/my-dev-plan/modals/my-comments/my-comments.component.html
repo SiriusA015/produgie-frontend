@@ -1,0 +1,38 @@
+<div class="">
+    <div class="p-4 flex flex-row justify-between">
+        <div class="flex flex-row justify-start items-center">
+            <span class="h-12 w-12 rounded-full shadow-md bg-white flex justify-center items-center">
+                <mat-icon fontSet="material-icons-outlined" class="pg-txt-blue-bright">send</mat-icon>
+            </span>
+            <span class="text-sm font-bold ml-4">
+                Comments
+            </span>
+        </div>
+        <div class="flex flex-row justify-between items-center">
+            <span class="relative ml-2 text-gray-600 font-semibold pg-font-12"
+                    >{{ selectedDate }}</span
+                  >
+                  <svg
+                    class="h-4 w-4 text-gray-600"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <div class="flex flex-col p-4 pg-advice" *ngFor="let comment of comments">
+            <div class="border rounded-sm p-4 border-gray-400">
+                <p class="text-xs font-semibold">{{comment.title}}</p>
+            </div>
+        </div>
+    </div>
+</div>

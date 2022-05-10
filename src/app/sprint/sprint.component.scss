@@ -1,0 +1,33 @@
+$left-panel-max-width: 45rem;
+
+.sprint-mobile-dialog-container {
+  width: #{$left-panel-max-width};
+  position: fixed;
+  right: 0;
+}
+
+.left-panel-max-width {
+  width: calc(100% - #{$left-panel-max-width});
+}
+
+@media screen and (max-width: 991px) {
+  $left-panel-max-width: 35rem;
+
+  .sprint-mobile-dialog-container {
+    width: #{$left-panel-max-width};
+  }
+
+  .left-panel-max-width {
+    width: calc(100% - #{$left-panel-max-width});
+  }
+}
+
+@media (max-width: 768px) {
+  .sprint-mobile-dialog-container {
+    display: none;
+  }
+
+  .left-panel-max-width {
+    width: 100%;
+  }
+}

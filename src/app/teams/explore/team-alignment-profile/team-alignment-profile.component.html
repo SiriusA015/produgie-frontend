@@ -1,0 +1,58 @@
+<app-explore-navbar></app-explore-navbar>
+
+<mat-card class="card-section">
+  <div class="col-md-12">
+    <ng-container *ngIf="!isErrorInReport">
+      <div class="row">
+        <div class="col-lg-8 order-2 order-md-1">
+          <div *ngIf="isLoading">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </div>
+          <div class="margin-top-circle">
+            <app-alignment-profile-structure [filteredData]="updateFilteredData" *ngIf="!isLoading && filteredData"></app-alignment-profile-structure>
+          </div>
+        </div>
+        <div class="col-lg-4 order-1 order-md-2 order-lg-2">
+          <div class="detailed-btn">
+            <div class="width bg-white shadow bg-white cursor-pointer py-3">
+              <mat-icon class="mat-icon pg-txt-blue-bright align-middle mat-icon-18  material-icons">insert_drive_file
+              </mat-icon>
+              <span class="text-2x1 font-semibold font view-font" (click)="openTeamAlignReport()">View Detailed Report</span>
+            </div>
+  
+          </div>
+          <!-- <div class="row"> -->
+            <mat-card class="mt-10 col-md-6 col-lg-12">
+              <p class="font-medium filter-text">Filter</p>
+              <p class="checkboxstyle mt-4">
+                <input class="input-width" type="checkbox" value="high" [checked]="isHighest" name="high"
+                  (click)="changeHighest()"> <span class="checkbox-text spanArea">Highest</span>
+              </p>
+              <p class="checkboxstyle">
+                <input class="input-width" type="checkbox" value="low" [checked]="isLowest" name="low"
+                  (click)="changeLowest()"> <span class="checkbox-text spanArea">Lowest</span>
+              </p>
+              <p class="checkboxstyle">
+                <input class="input-width" type="checkbox" value="recommended" [checked]="isRecommended" name="recommended"
+                  (click)="changeRecommendCheck()"> <span class="checkbox-text spanArea">Recommended</span>
+              </p>
+              <p class="checkboxstyle">
+                <input class="input-width" type="checkbox" value="rank" [checked]="isRankOrder" name="rank"
+                  (click)="changeRankCheck()"> <span class="checkbox-text spanArea">Rank Order</span>
+              </p>
+            </mat-card>
+          <!-- </div> -->
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="isErrorInReport">
+      <div class="flex flex-col justify-center items-center h w-full">
+      <div class="text-2xl font-semibold">{{ infoMsg || 'Something went wrong' }}</div>
+    </div>
+    </ng-container>
+  </div>
+</mat-card>
+<!-- <div ngFor="let item of data">
+
+</div> -->
+<app-mat-svg-icon></app-mat-svg-icon>

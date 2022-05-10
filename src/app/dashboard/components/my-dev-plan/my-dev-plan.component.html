@@ -1,0 +1,56 @@
+<div class="flex w-full flex-col h-full relative">
+  <div class="pg-container pg">
+    <div class="pg__inner">
+    <div class="flex flex-row justify-between items-center mb-8">
+      <span class="text-2xl font-bold">My Development Plan</span>
+      <button
+        (click)="redirectToDesign()"
+        class="px-8 py-4 flex flex-row justify-between items-center text-white bg-gray-300 rounded-md focus:outline-none"
+        [ngClass]="{
+          'cursor-not-allowed': !isStop && (!isFinished || !data?.userSprint?.sprintReviewEndTime || !sprintReviewEndTimeCheck(data?.userSprint?.sprintReviewEndTime)),
+          'pg-bg-blue-bright': !(!isStop && (!isFinished || !data?.userSprint?.sprintReviewEndTime || !sprintReviewEndTimeCheck(data?.userSprint?.sprintReviewEndTime)))
+        }"
+        [disabled]="!isStop && (!isFinished || !data?.userSprint?.sprintReviewEndTime || !sprintReviewEndTimeCheck(data?.userSprint?.sprintReviewEndTime))"
+      >
+        <mat-icon fontSet="material-icons-outlined" class="text-white mr-2"
+          >sms</mat-icon
+        >
+        <span class="text-md font-semibold">Send To Portfolio</span>
+      </button>
+    </div>
+    <app-md-fad-overview
+      [strenghts]="capabilities"
+      [fads]="data?.capability"
+      [priority]="data?.priority"
+    ></app-md-fad-overview>
+    <app-md-sprint-duration-overview
+      [frequency]="data?.userSprint"
+    ></app-md-sprint-duration-overview>
+    <app-md-sprint-overview
+      [sprint]="data?.sprint"
+      [sprintNo]="data?.sprintNo"
+    ></app-md-sprint-overview>
+    <app-md-abo-overview
+      [actions]="allaction"
+      [outcomes]="alloutcome"
+      [behaviours]="allbehavior"
+      [sprintId]="data?.userSprint?.sprintId"
+    ></app-md-abo-overview>
+    <div class="flex flex-row justify-between">
+      <div
+        class="w-full flex flex-col lg:flex-row justify-between bg-white py-6 px-8 shadow-lg mb-4 rounded"
+      >
+        <div
+          class="w-1/2 justify-center mb-4 lg:mb-0 lg:w-1/5 flex items-center lg:justify-start"
+        >
+          <h3 class="text-2xl lg:text-xl pg-text-333 font-bold">Sprint Crew</h3>
+        </div>
+      </div>
+    </div>
+    <app-md-sprint-crew-overview
+      [crews]="data?.crew"
+    ></app-md-sprint-crew-overview>
+  </div>
+  </div>
+</div>
+<app-mat-svg-icon></app-mat-svg-icon>

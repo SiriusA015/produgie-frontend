@@ -1,0 +1,56 @@
+// .pg-w-h {
+//   height: calc(100vh - 131px);
+// }
+
+.pg-w-h {
+  height: calc(100vh - 131px);
+}
+.right-margin{
+  margin-right: 20px;
+}
+
+.download-buttons{
+  justify-content: flex-end;
+}
+
+.font20{
+  font-size: 20px !important;
+}
+.font14{
+  font-size: 14px !important;
+}
+
+.border{
+  border-radius: 5px !important
+}
+.btnDisabled{
+  cursor: not-allowed !important;
+  opacity: 0.4 !important;
+  color: #ff0000;
+}
+@media print {
+  .print-view{
+    visibility: hidden;
+  }
+
+  .intro{
+    margin-top:90px;
+  }
+  .page-break{
+    page-break-after:always;
+  }
+
+}
+
+.spacing{
+  margin-top: 6rem;
+}
+
+.text-important{
+  // text-align: center;
+  margin-top: 50px;
+  // span{
+  //   background-color: yellow ;
+  // }
+}
+

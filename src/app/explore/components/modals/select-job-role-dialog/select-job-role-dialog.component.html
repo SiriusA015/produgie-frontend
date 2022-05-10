@@ -1,0 +1,508 @@
+<div class="select-job-body">
+  <div *ngIf="
+    !isinfoDiv &&
+    !isCurrentRoleLevel &&
+    !isMCQSection &&
+    !isCompletedFirstPart &&
+    currentView !== 'RESEARCH_QUESTIONS_1' &&
+    currentView !== 'RESEARCH_QUESTIONS_2'
+  " class="flex flex-col pg-bg-card role-level-main three-keys w-full">
+    <div class="flex w-full justify-between items-center survey-title">
+      <div class="flex items-center">
+        <span class="heading-2">{{ isAdded ? "The" : "Select the" }} top 3 key challenges in your
+          Current Role</span>
+      </div>
+      <!-- <div class="" style="width: 370px;"></div> -->
+      <mat-icon class="cursor-pointer" (click)="cancel()">close</mat-icon>
+    </div>
+
+    <div class="role-body overflow-auto">
+      <div class="
+        border-b border-solid border-gray-300
+        font-semibold
+        text-sm
+        cursor-pointer
+        flex flex-row
+        justify-between
+        items-center
+      " *ngFor="let item of currentRole" [ngClass]="{
+        'text-blue-600': selectedRoleDemands.includes(item.id)
+      }">
+        <span class="question-p">{{ item.title }}</span>
+        <!-- <span class="flex justify-center items-center" *ngIf="selectedRoleDemands.includes(item.id)">
+<mat-icon class="mat-icon-18" style="color: #5D82D3;">radio_button_checked</mat-icon>
+</span> -->
+
+        <span>
+          <mat-radio-group>
+            <mat-radio-button #button (click)="roleChallengesSelect(button, item.id, $event)" value="item.jobRoleId"
+              [checked]="selectedRoleDemands.includes(item.id)" [disabled]="isAdded">
+            </mat-radio-button>
+          </mat-radio-group>
+        </span>
+      </div>
+    </div>
+    <div class="flex justify-end mt-12">
+      <button (mouseover)="checkJobRole()" class="btn focus:outline-none uppercase relative" [ngClass]="{
+        'bg-gray-500': isAdded || selectedRoleDemands.length < 3,
+        'pg-bg-blue': selectedRoleDemands.length === 3
+      }" *ngIf="!isAdded" (click)="saveRoleChallenges()">
+        <!-- [ngClass]="{'bg-gray-500': radiobuttonroles.length < 3, 'pg-bg-blue': radiobuttonroles.length >= 3}" -->
+        Save
+      </button>
+    </div>
+  </div>
+  <!-- <div class="flex w-full justify-between" *ngIf="!isAdded">
+  <button
+  class="text-white px-6 py-2 rounded-md focus:outline-none uppercase my-2 bg-gray-500"
+  (click)="cancel()"
+  >
+  Cancel
+  </button>
+  <button
+  (mouseover)="checkJobRole()"
+  class="text-white px-6 py-2 rounded-md focus:outline-none uppercase my-2 relative"
+  [ngClass]="{'bg-gray-500': selectedRoleDemands.length < 3, ' pg-bg-blue-bright': selectedRoleDemands.length === 3}"
+  (click)="save()"
+  >
+  Save
+  </button>
+  </div> -->
+
+  <!--
+  <div *ngIf="!isinfoDiv && !isCurrentRoleLevel && !isMCQSection"
+    class="bg-white rounded-md flex flex-col pg-bg-card w-full">
+    <div class="flex w-full border-b border-gray-400 justify-between items-center px-8">
+      <div class="flex items-center">
+        <span class="py-8 font-bold">{{isAdded ? 'The' : 'Select the' }} top 3 key challenges for your Current Role</span>
+      </div>
+      <mat-icon class="cursor-pointer" (click)="cancel()">close</mat-icon>
+    </div>
+    <div class="mr-2 overflow-auto">
+      <div
+        class="pl-8 pr-4 py-4 border-b border-dashed border-gray-300 font-semibold text-sm cursor-pointer flex flex-row justify-between items-center"
+        *ngFor="let item of currentRole" [ngClass]="{
+          'bg-gray-100': selectedRoleDemands.includes(item.id)
+        }" (click)="selectRoleDemands(item.id)">
+        <span>{{ item.title }}</span>
+        <span class="flex justify-center items-center" *ngIf="selectedRoleDemands.includes(item.id)">
+          <mat-icon class="pg-txt-blue-bright mat-icon-14">check_circle</mat-icon>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="flex w-full justify-between" *ngIf="!isAdded && !isinfoDiv && !isCurrentRoleLevel && !isMCQSection">
+    <button class="text-white px-6 py-2 rounded-md focus:outline-none uppercase my-2 bg-gray-500" (click)="cancel()">
+      Cancel
+    </button>
+    <button (mouseover)="checkJobRole()"
+      class="text-white px-6 py-2 rounded-md focus:outline-none uppercase my-2 relative"
+      [ngClass]="{'bg-gray-500': selectedRoleDemands.length < 3, ' pg-bg-blue-bright': selectedRoleDemands.length === 3}"
+      (click)="save()">
+      Save
+    </button>
+  </div> -->
+
+  <!-- new work  -->
+  <div *ngIf="isinfoDiv">
+    <mat-icon class="cursor-pointer close-dialog" (click)="cancel()">close</mat-icon>
+    <p class="heading-2 mb-2">Growth Leader Assessment</p>
+    <hr />
+    <div class="info-main-div">
+      <p>
+        This questionnaire asks how strongly you agree with a series of
+        statements. There are no right or wrong answers, and your initial response
+        is usually the most accurate. Try to answer every question as your
+        responses will be summarised to create your report.
+      </p>
+      <p>
+        <span>Important!</span> There are 2 sections: Styles and Strategies. Each
+        will take about 20 minutes to complete. Your answers are saved as you go
+        so that you can exit the survey and return to complete it later.
+      </p>
+      <p><span>Please note:</span></p>
+      <p>
+        <span>'Customers'</span> refer to external customers/clients/partners. If
+        you do not manage external customers. please respond to these questions
+        with your 'internal customers' in mind
+      </p>
+      <p>
+        <span>'Stakeholders'</span> refer to internal or external groups (e.g.,
+        other leaders, suppliers, investors, etc.) that can affect or be affected
+        by you or your team
+      </p>
+      <p>
+        If you have questions, please contact <br />
+        <span><a mat-button href="produgie.support@produgie.com"
+            target="_blank">produgie.support@produgie.com</a></span>
+      </p>
+    </div>
+
+    <div mat-dialog-actions class="flex justify-center mb-2">
+      <div class="btn" (click)="selectRole()">Select Role</div>
+    </div>
+  </div>
+
+  <div *ngIf="isCurrentRoleLevel || isMCQSection" class="role-level-main">
+    <mat-icon class="cursor-pointer close-dialog" (click)="cancel()">close</mat-icon>
+    <p class="heading-2" *ngIf="isCurrentRoleLevel">
+      Some statements vary by role. Please select your Current role level:
+    </p>
+    <div class="survey-title">
+      <p class="title heading-1" *ngIf="isMCQSection">
+        Growth Leader Assessment : {{ questionsTitle }} 
+      </p>
+      <p class="subTitle heading-4" *ngIf="isMCQSection">
+        Click on the circle to answer the following questions.
+      </p>
+    </div>
+
+    <div class="role-body" *ngIf="isCurrentRoleLevel">
+      <div class="level-card-step1" *ngFor="let level of levelData; index as i">
+        <div class="level-card">
+          <div [ngClass]="{ 'active-tab': selectedLevel == level.role_code }">
+            <p class="card-title">{{ level.role }}</p>
+            <p>{{ level.description }}</p>
+          </div>
+          <div class="radio-section cursor-pointer">
+            <span class="material-icons" *ngIf="selectedLevel == level.role_code"
+              (click)="levelSelect(level.role_code)">
+              radio_button_checked
+            </span>
+            <span class="material-icons" *ngIf="selectedLevel !== level.role_code"
+              (click)="levelSelect(level.role_code)">
+              radio_button_unchecked
+            </span>
+          </div>
+        </div>
+        <hr />
+      </div>
+    </div>
+    <div class="role-body mcq-section" *ngIf="isMCQSection">
+      <div *ngIf="loadCounter > 0">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        <p align="center">Loading Questions...</p>
+      </div>
+      <mat-grid-list cols="10" class="mcq-optionHeading" rowHeight="100px">
+        <mat-grid-tile [colspan]="4" [rowspan]="1" [style.background]="lightblue">
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="6" [rowspan]="1" [style.background]="lightpink">
+          <div class="option-heading">
+            <p>Strongly Disagree</p>
+            <p>Somewhat Disagree</p>
+            <p>Neither Agree nor Disagree</p>
+            <p class="-mr-4">Somewhat Agree</p>
+            <p class="-mr-6">Strongly Agree</p>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <div class="question-body">
+        <mat-grid-list cols="10" class="mcq-optionHeading" rowHeight="65px"
+          *ngFor="let question of questionList; first as isFirst" style="margin: 20px 0">
+          <mat-grid-tile [colspan]="4" [rowspan]="1" [ngClass]="{ firstQuestion: isFirst }">
+            <div style="width: 100%; align-items: flex-start" class="question-p">
+              {{ question.question }}
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="6" [rowspan]="1">
+            <mat-radio-group (change)="radioChange($event, question.uniqueRefId)" class="option-heading">
+              <mat-radio-button value="Strongly disagree" [checked]="question?.answer === 'Strongly disagree'">
+              </mat-radio-button>
+              <mat-radio-button value="Somewhat disagree" [checked]="question?.answer === 'Somewhat disagree'">
+              </mat-radio-button>
+              <mat-radio-button value="Neither agree nor disagree"
+                [checked]="question?.answer === 'Neither agree nor disagree'"></mat-radio-button>
+              <mat-radio-button value="Somewhat agree" [checked]="question?.answer === 'Somewhat agree'">
+              </mat-radio-button>
+              <mat-radio-button value="Strongly agree" [checked]="question?.answer === 'Strongly agree'">
+              </mat-radio-button>
+            </mat-radio-group>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </div>
+    <div *ngIf="isMCQSection" class="progress-bar">
+      <mat-progress-bar mode="determinate" [value]="attemptedPercentage"></mat-progress-bar>
+
+      <mat-hint align="center">
+        {{ attemptedPercentage }}% Done,
+
+        {{ remainingQuestions }} questions more to go.
+      </mat-hint>
+    </div>
+    <!-- <div style="margin-bottom: 20px;"></div> -->
+    <div class="flex justify-between margin-btn">
+      <div class="font-semibold text-2xl col-6"  *ngIf="isMCQSection">
+        Page: {{ current_page }} out of {{ totalPages }}
+      </div>
+      <!-- <div class="submit-section">
+      <div class="info-div-button cursor-pointer continue-button btn ml-4"
+      *ngIf="isMCQSection"
+      (click)="continueQuestion()"
+    >
+      Continue
+    </div> -->
+      <div class="flex justify-end col-6">
+        <div class="info-div-button cursor-pointer continue-button btn ml-4" 
+            *ngIf="isMCQSection"
+           (click)="continueQuestion()">
+           Next ({{number}}/3 Section)
+        </div>
+        <div class="info-div-button cursor-pointer btn ml-4" *ngIf="isMCQSection" (click)="saveAndExit()">
+          Save & Exit
+        </div>
+      </div>
+      <div class="flex justify-start" *ngIf="!isMCQSection">
+        <div class="save-continue cursor-pointer btn ml-4" 
+          [ngClass]="{ disabledButton: !selectedLevel }" (click)="selectRolesubmit()">
+          Save & Continue 
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- -------------------------------------- Research Component 1--------------------------- -->
+  <div *ngIf="currentView === 'RESEARCH_QUESTIONS_1'">
+    <div class="flex flex-col pg-bg-card w-full container p-0" style="background-color: #f3f7fe; border-radius: 15px">
+      <div class="flex w-full justify-between items-center mb-3">
+        <div class="flex items-center">
+          <span class="heading-2 head">Research Questions </span>
+        </div>
+
+        <mat-icon class="cursor-pointer" (click)="cancel()">close</mat-icon>
+      </div>
+      <!-- Heading -->
+      <p class="text font-16-heading">
+        These questions are only for research (e.g., to ensure there is no bias,
+        to understand cultural differences). Answers are not part of your report
+        and will not be shared with others. If you feel uncomfortable answering a
+        question, please skip it.
+      </p>
+      <!-- Age -->
+      <div class="container1">
+        <form [formGroup]="researchQuestions">
+          <h5 class="font-16-heading">Please indicate your age (optional)</h5>
+          <div class="select" style="justify-content: space-between">
+            <div class="radio_button" *ngFor="let age of AgeList; let idx = index">
+              <label for="age" class="selectOne">{{ age.displayName }}</label><br />
+              <br />
+              <input id="age{{ idx }}" type="radio" name="age" [value]="age.value" formControlName="age"
+                class="input-border" />
+            </div>
+            <div class="" style="width: 300px"></div>
+          </div>
+
+          <!-- Gender -->
+          <h5 class="font-16-heading">What is your gender (optional)</h5>
+          <div class="select">
+            <div *ngFor="let gndr of Genders; let idx = index" class="radio_button" style="width: 163px">
+              <label for="male" class="selectOne">{{ gndr.displayName }}</label><br />
+              <br />
+              <input type="radio" id="gender{{ idx }}" name="gender" formControlName="gender"
+                (click)="genderChange($event)" [value]="gndr.value" />
+            </div>
+            <div class="">
+              <label for="other" class="selectOne">Other</label> <br />
+              <input type="text" name="genderOther" height="46px" formControlName="genderOther"
+                (change)="genderChange($event, true)" placeholder="please specify..l" class="input-style" />
+            </div>
+          </div>
+          <!-- choose Education -->
+          <div class="section" style="margin-top: 20px">
+            <h5 class="font-16-heading">
+              What is the highest level of education you have completed?(optional)
+            </h5>
+            <div class="background-color-div select">
+              <mat-form-field appearance="none" class="input-style">
+                <mat-select formControlName="education">
+                  <mat-option *ngFor="let level of EducationLevels" [value]="level.value">
+                    {{ level.displayName }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <!-- choose country -->
+          <div class="section">
+            <h5 class="font-16-heading">
+              In which country do you live? (optional)
+            </h5>
+            <div class="background-color-div select">
+              <mat-form-field appearance="none" class="input-style">
+                <mat-select formControlName="country">
+                  <mat-option *ngFor="let code of countryCodes" [value]="code.name">
+                    {{ code.name }}
+                  </mat-option>
+                  <!-- <mat-option *ngFor="let country of CountryList" [value]="country.value">
+                  {{ country.displayName }}
+                </mat-option> -->
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="font-16-heading"></div>
+          <!-- button -->
+        </form>
+      </div>
+      <div class="flex justify-end mt-10">
+        <!-- <button (mouseover)="checkJobRole()" class="focus:outline-none btn relative" [ngClass]="{
+        'bg-gray-500': selectedRoleDemands?.length < 3,
+        'pg-bg-blue': selectedRoleDemands?.length === 3
+      }" (click)="continueResearchQuestions()">
+      Continue
+    </button> -->
+        <button (mouseover)="checkJobRole()" class="focus:outline-none btn relative"
+          (click)="continueResearchQuestions()">
+          Next ({{number}}/3 Section)
+        </button>
+      </div>
+      <div style="padding: 8px"></div>
+    </div>
+  </div>
+  <!-- -------------------------------------- Research Component 2 -------------------------- -->
+
+  <div *ngIf="currentView === 'RESEARCH_QUESTIONS_2'">
+    <div class="flex flex-col pg-bg-card w-full container p-0" style="background-color: #f3f7fe; border-radius: 15px">
+      <div class="flex w-full justify-between items-center mb-3">
+        <div class="flex items-center">
+          <span class="heading-2 head">Research Questions</span>
+        </div>
+
+        <mat-icon class="cursor-pointer" (click)="cancel()">close</mat-icon>
+      </div>
+      <!-- Heading -->
+      <p class="text font-16-heading">
+        These questions are only for research (e.g., to ensure there is no bias,
+        to understand cultural differences). Answers are not part of your report
+        and will not be shared with others. If you feel uncomfortable answering a
+        question, please skip it.
+      </p>
+      <!-- Age -->
+      <div class="container1">
+        <form [formGroup]="researchQuestions">
+          <h5 class="head1 font-16-heading">
+            Are you of Hispanic, Latino or of Spanish Origin? (optional)
+          </h5>
+          <div class="select">
+            <div class="radio_button">
+              <label for="origin" class="selectOne">Yes</label><br />
+              <br />
+              <input type="radio" name="origin" [value]="'Yes'" formControlName="origin" />
+            </div>
+            <div class="radio_button" style="padding-left: 60px">
+              <label for="origin" class="selectOne">No</label><br />
+              <br />
+              <input type="radio" name="origin" [value]="'No'" formControlName="origin" />
+            </div>
+            <!-- <mat-radio-group aria-label="Select an option" [(ngModel)]="researchQuestionsAge" (change)="ageChange($event)">
+          <mat-radio-button [value]="1" *ngFor="let age of AgeList; let idx = index;">{{age.displayName}}</mat-radio-button>
+        </mat-radio-group> -->
+            <div class="" style="width: 300px"></div>
+          </div>
+
+          <!-- cultural group -->
+          <h5 class="head1 font-16-heading">
+            Please select the cultural group that you most identify with
+            (optional)
+          </h5>
+          <div class="select">
+            <div class="div-width">
+              <mat-form-field appearance="none" class="input-style" style="width: 100% !important">
+                <mat-select formControlName="culturalGroup" (selectionChange)="culturalGroupChange($event)">
+                  <mat-option *ngFor="let group of CulturalGroups" [value]="group.value">
+                    {{ group.displayName }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="other-field">
+              <!-- <label for="other" class="selectOne">Other</label> <br /> -->
+              <input type="text" name="culturalGroupOther" height="46px" (change)="culturalGroupChange($event, true)"
+                formControlName="culturalGroupOther" placeholder="please specify..l" class="input-style" />
+            </div>
+          </div>
+          <!-- choose ethnical group -->
+          <div class="section">
+            <h5 class="head1 font-16-heading">
+              Which of the following best describes you in terms of how you
+              identify ethnically? (optional)
+            </h5>
+            <div class="select">
+              <div class="div-width">
+                <mat-form-field appearance="none" class="input-style" style="width: 100% !important">
+                  <mat-select formControlName="ethnicalIdentification"
+                    (selectionChange)="ethnicalIdentificationChange($event)">
+                    <mat-option *ngFor="let group of EthnicalGroups" [value]="group.value">
+                      {{ group.displayName }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="other-field">
+                <!-- <label for="other" class="selectOne">Other</label> <br /> -->
+                <input type="text" name="ethnicalIdentificationOther" height="46px"
+                  (change)="ethnicalIdentificationChange($event, true)" formControlName="ethnicalIdentificationOther"
+                  placeholder="please specify..l" class="input-style" />
+              </div>
+            </div>
+          </div>
+
+          <!-- choose current role -->
+          <div class="section">
+            <h5 class="head1 font-16-heading">
+              Which function or business group below best describes your current
+              role? (optional)
+            </h5>
+            <div class="select">
+              <div class="div-width">
+                <mat-form-field appearance="none" class="input-style" style="width: 100% !important">
+                  <mat-select formControlName="currentRole" (selectionChange)="currentRoleChange($event)">
+                    <mat-option *ngFor="let role of BusinessGroups" [value]="role.value">
+                      {{ role.displayName }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="other-field">
+                <!-- <label for="other" class="selectOne">Other</label> <br /> -->
+                <input type="text" name="currentRoleOther" height="46px" formControlName="currentRoleOther"
+                  (change)="currentRoleChange($event, true)" placeholder="please specify..l" class="input-style" />
+              </div>
+            </div>
+          </div>
+
+          <div class="head1"></div>
+          <!-- button -->
+        </form>
+      </div>
+      <div class="flex justify-end mt-12">
+        <!-- <button (mouseover)="checkJobRole()"  class="btn focus:outline-none relative" [ngClass]="{
+        'bg-gray-500': selectedRoleDemands?.length < 3,
+        'pg-bg-blue': selectedRoleDemands?.length === 3
+      }" (click)="continueResearchQuestions()">
+      Continue
+    </button> -->
+        <button (mouseover)="checkJobRole()" class="btn focus:outline-none relative"
+          (click)="continueResearchQuestions()">
+          Next ({{number}}/3 Section)
+        </button>
+      </div>
+      <div></div>
+    </div>
+  </div>
+
+  <!-- -------------------------------------------------------------------------------------- -->
+  <div *ngIf="isCompletedFirstPart" class="confirmation-box">
+    <mat-icon class="cursor-pointer close-dialog" (click)="cancel()">close</mat-icon>
+    <p class="heading-5">You have completed the "Style" survey.</p>
+    <p class="heading-5">Click on Next to complete the "Strategy" survey</p>
+
+    <div mat-dialog-actions>
+      <div class="info-div-button cursor-pointer confirmation-box-button btn" (click)="selectRole()">
+        Next
+      </div>
+    </div>
+  </div>
+</div>

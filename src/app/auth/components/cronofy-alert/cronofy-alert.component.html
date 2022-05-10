@@ -1,0 +1,19 @@
+<div>
+    <div class="flex justify-between align-center my-0">
+        <h2 class="text-4xl font-bold not-italic tracking-wider">Authorize to Sync Calender</h2> 
+        <div class="flex items center">
+            <mat-icon class="cursor-pointer" (click)="closeCronifyModel(false)">close</mat-icon>
+        </div>        
+    </div>
+    <hr />       
+    <div class="message">
+        <p>
+            For a more seamless experience you need to authorize your organization with Cronofy calendaring  application. Click below to proceed.
+        </p>
+    </div>
+    <div class="flex justify-around align-center flex-wrap my-0">
+        <button mat-raised-button class="primary" (click)="onAuthorization()">Authenticate</button>
+        <button mat-stroked-button class="btn-later" (click)="closeCronifyModel(false)">Configure Later</button>
+    </div>
+</div>
+

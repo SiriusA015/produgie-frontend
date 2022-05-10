@@ -1,0 +1,39 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon">close</mat-icon>
+</button>
+<div *ngIf="loadCounter > 0">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    <p align="center">Loading report...</p>
+</div>
+<div class="popup-style-1" *ngIf="loadCounter === 0">
+    <div class="py-4">
+        <div class="flex flex-row justify-start items-center">
+            <span class="heading">
+                {{filterdata[0].team_role}}
+            </span>
+        </div>
+    </div>
+    <hr />
+    <div class="user-activity__block-left circle">
+        <circle-progress style="font-weight: 900;" [percent]="filterdata[0].rolePercentage" [radius]="50"
+            [outerStrokeWidth]="12" [innerStrokeWidth]="8" [outerStrokeColor]="'#278ce9'" [innerStrokeColor]="'#a7c0e1'"
+            [animation]="true" [animationDuration]="300" [titleFontWeight]=900 [unitsFontSize]=20></circle-progress>
+    </div>
+    <div class="title"> {{filterdata[0].rolePercentage | number: '1.0-0' }} % of Team Fulfilling Role checked</div>
+    <div class="leading-10 mt-10">
+        <span class="heading-2">Team At Its Best</span>
+        <li *ngFor="let des of performance">
+            {{des.team_description}}
+        </li>
+
+    </div>
+
+    <div class="leading-10  mt-10">
+        <span class="heading-2">Team At Its Worst</span>
+        <li *ngFor="let des of performanceW">
+            {{des.team_description}}
+        </li>
+
+    </div>
+
+</div>

@@ -1,0 +1,62 @@
+<div *ngIf="loadCounter > 0">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div class="flex flex-col w-full" *ngIf="loadCounter === 0">
+  <div class="flex flex-col w-full mb-4">
+    <span class="text-2xl mb-4 font-bold">
+      {{ data.capabilityType }}
+    </span>
+    <span class="text-xl font-semibold">{{ data.label }}</span>
+  </div>
+  <div class="flex w-full mb-10 font-semibold">
+    {{ description }}
+  </div>
+  <div class="flex w-full justify-start font-semibold text-lg">
+    100% Definition Ratings
+  </div>
+  <div class="flex w-full justify-end font-semibold">50% Benchmark</div>
+  <div class="flex w-full mb-10">
+    <div class="w-5/6" style="display: block">
+      <canvas
+        baseChart
+        [datasets]="barChartData"
+        [colors]="chartColors"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [chartType]="barChartType"
+      >
+      </canvas>
+    </div>
+    <div class="w-1/6 mb-10 mt-16 flex flex-col justify-around items-center">
+      <div class="font-semibold" *ngFor="let bm of benchmark">{{ bm }}</div>
+    </div>
+  </div>
+  <div class="flex w-full justify-start font-semibold text-lg">
+    Importance to Develop
+  </div>
+  <div class="flex w-full mb-10">
+    <div class="w-full" style="display: block; height: 250px">
+      <canvas
+        baseChart
+        [datasets]="barChartDataImportance"
+        [colors]="chartColorsImportance"
+        [labels]="barChartLabels"
+        [options]="barChartOptionsImportance"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [chartType]="barChartType"
+      >
+      </canvas>
+    </div>
+  </div>
+  <div class="font-semibold text-lg mb-5">Advice and Suggestions</div>
+  <div>
+    <ul class="ml-4">
+      <li class="mb-2 font-semibold" *ngFor="let item of advices">
+        {{ item }}
+      </li>
+    </ul>
+  </div>
+</div>

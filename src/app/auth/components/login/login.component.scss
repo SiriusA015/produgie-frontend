@@ -1,0 +1,13 @@
+.loginUI{
+display:flex;
+justify-content: center;
+}
+
+#okta-signin-container{
+    margin-top:3rem;
+}
+
+.disabled{
+    opacity: 0.5;
+    pointer-events:none;
+}

@@ -1,0 +1,134 @@
+<div class="">
+  <div class="p-4 pg-border-gray">
+    <div class="flex flex-row justify-start items-center">
+      <span
+        class="h-12 w-12 rounded-full shadow-md bg-white flex justify-center items-center"
+      >
+        <mat-icon fontSet="material-icons-outlined" class="pg-txt-blue-bright"
+          >send</mat-icon
+        >
+      </span>
+      <span class="text-sm font-bold ml-4"> Provide Feedback </span>
+    </div>
+  </div>
+  <div class="" [formGroup]="feedbackForm">
+    <div class="w-full border-b pg-border-gray p-4">
+      <div class="flex flex-row items-center">
+        <span class="mr-2 text-center flex items-center justify-center">
+          <mat-icon
+            svgIcon="timer"
+            class="pg-txt-green"
+            aria-hidden="false"
+          ></mat-icon>
+        </span>
+        <span class="font-bold">Behaviors</span>
+      </div>
+    </div>
+    <div class="w-full p-4">
+      <div
+        class="flex flex-col py-4 pg-list-items"
+        *ngFor="let item of data?.behaviour; let i = index;"
+        formArrayName="behaviourFeedback"
+      >
+        <div class="mb-2">
+          <span class="font-bold text-sm mb-4"
+            >What progress is being made on demonstrating these behaviors? {{ item.label }}</span
+          >
+        </div>
+        <div class="flex flex-row justify-evenly w-full">
+          <div class="flex flex-row justify-evenly" [formGroupName]="i">
+            <label class="flex flex-col items-start">
+              <input class="mr-2" type="radio" [value]="1" formControlName="rating" />
+              <span>No progress seen</span>
+            </label>
+            <label class="flex flex-col items-start">
+              <input class="mr-2" type="radio" [value]="2" formControlName="rating" />
+              <span>Slight progress seen</span>
+            </label>
+            <label class="flex flex-col items-start">
+              <input class="mr-2" type="radio" [value]="3" formControlName="rating" />
+              <span>Progress being made; on target</span>
+            </label>
+            <label class="flex flex-col items-start">
+              <input class="mr-2" type="radio" [value]="4" formControlName="rating" />
+              <span>Strong progress being made</span>
+            </label>
+            <label class="flex flex-col items-start">
+              <input class="mr-2" type="radio" [value]="5" formControlName="rating" />
+              <span>Excellent progress</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full border-b pg-border-gray p-4">
+      <div class="flex flex-row items-center">
+        <span class="mr-2 text-center flex items-center justify-center">
+          <mat-icon class="pg-txt-green" aria-hidden="false">done_all</mat-icon>
+        </span>
+        <span class="font-bold">Outcomes</span>
+      </div>
+    </div>
+    <div class="w-full p-4">
+      <div
+        class="flex flex-col py-4 pg-list-items"
+        *ngFor="let item of data?.outcome; let i = index;"
+        formArrayName="outcomeFeedback"
+      >
+        <div class="mb-2">
+          <span class="font-bold text-sm mb-4"
+            >How do you rate user on {{ item.label }}</span
+          >
+        </div>
+        <div class="flex flex-row justify-evenly w-full">
+            <div class="flex flex-row justify-evenly" [formGroupName]="i">
+              <label class="flex flex-col items-start">
+                <input class="mr-2" type="radio" [value]="1" formControlName="rating" />
+                <span>No progress seen</span>
+              </label>
+              <label class="flex flex-col items-start">
+                <input class="mr-2" type="radio" [value]="2" formControlName="rating" />
+                <span>Slight progress seen</span>
+              </label>
+              <label class="flex flex-col items-start">
+                <input class="mr-2" type="radio" [value]="3" formControlName="rating" />
+                <span>Progress being made; on target</span>
+              </label>
+              <label class="flex flex-col items-start">
+                <input class="mr-2" type="radio" [value]="4" formControlName="rating" />
+                <span>Strong progress being made</span>
+              </label>
+              <label class="flex flex-col items-start">
+                <input class="mr-2" type="radio" [value]="5" formControlName="rating" />
+                <span>Excellent progress</span>
+              </label>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="w-full p-4">
+      <span class="font-bold"
+        >WoPlease share advice or feedback for greater improvement
+      </span>
+    </div>
+    <div class="w-full p-4">
+      <textarea
+        formControlName="feedback"
+        class="w-full border rounded-sm border-gray-400 focus:outline-none p-4 text-xs"
+        rows="5"
+        matInput
+        [placeholder]="placeholderText"
+      ></textarea>
+      <div class="flex flex-row mt-2">
+        <button
+          class="px-8 py-3 pg-bg-blue-dark text-white uppercase rounded-sm focus:outline-none" (click)="storeFeedback()"
+        >
+          Submit
+        </button>
+        <button class="ml-8 py-3 text-gray-500 uppercase focus:outline-none" (click)="saveFeedback()">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

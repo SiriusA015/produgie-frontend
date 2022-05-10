@@ -1,0 +1,274 @@
+<div class="flex w-full flex-row h-full relative">
+  <div class="w-1/8 bg-white left-nav">
+    <app-left-nav></app-left-nav>
+  </div>
+  <div class="pg-info">
+    <label class="pg-tooltip-left flex flex-row items-center ml-2">
+      <mat-icon class="text-gray-500 mat-icon-18" fontSet="material-icons-outlined">info</mat-icon>
+      <input type="checkbox" />
+      <div class="font-light text-xs">
+        Mouse over the sidebar to track your progress in creating your sprint
+      </div>
+    </label>
+  </div>
+  <div class="pg-container pg">
+    <div class="pg__inner">
+      <div class="flex flex-row items-center mb-10">
+        <span class="Select-3-Priorities-for-your-Development heading-1">Schedule a Routine</span>
+      </div>
+      <!-- <br /> -->
+      <div class="flex flex-row justify-end" *ngIf="message.isSprint">
+        <button class="
+            border border-gray-500
+            rounded-md
+            flex flex-row
+            justify-evenly
+            items-center
+            bg-white
+            px-6f
+            py-4
+            focus:outline-none
+          " [ngClass]="{ 'bg-gray-300': !validDate }" [disabled]="!validDate" (click)="storeCheckIn()">
+          <label class="pg-tooltip flex flex-row items-center" *ngIf="!validDate">
+            <mat-icon class="pg-txt-blue-bright">save</mat-icon>
+            <span class="pg-txt-blue-bright font-bold">Update</span>
+            <input type="checkbox" />
+            <div class="font-light text-xs">Plese Select a Valid Date</div>
+          </label>
+          <div *ngIf="validDate" class="flex items-center">
+            <mat-icon class="pg-txt-blue-bright">save</mat-icon>
+            <span class="pg-txt-blue-bright font-bold">Update</span>
+          </div>
+        </button>
+      </div>
+      <!-- <br> -->
+      <div class="flex flex-row items-center mb-6">
+        <span class="font-16-heading"> Set Feedback Frequency</span>
+        <label class="
+            pg-tooltip-left
+            flex flex-row
+            items-center
+            ml-2
+            focus:outline-none
+          ">
+          <mat-icon fontSet="material-icons-outlined" class="text-gray-500 mat-icon-18">info</mat-icon><input
+            type="checkbox" />
+          <div class="font-light text-xs">
+            Select how often you want a subset of your Sprint Crew to provide
+            you with feedback
+          </div>
+        </label>
+      </div>
+      <mat-card class="feedback-freq" style="display: inline-flex">
+        <!-- <div *ngFor="let frequency of frequencies" (click)="selectFrequency(frequency.day)" [ngClass]="
+          selectedFrequency === frequency.day
+            ? ''
+            : ''
+        ">
+        <mat-radio-button [checked] = "selectedFrequency === frequency.day">
+          <span class="text-base font-semibold" [ngClass]="
+                selectedFrequency === frequency.day
+                  ? 'text-black'
+                  : 'text-black'
+              ">{{ frequency.title }}</span>
+        </mat-radio-button>
+      </div> -->
+        <div>
+          <mat-radio-group class="grid gap-24" [ngClass]="frequencies.length > 3 ? 'grid-cols-4' : 'grid-cols-3'">
+            <mat-radio-button [ngClass]="selectedFrequency === frequency.day ? '' : ''"
+              [checked]="selectedFrequency === frequency.day" *ngFor="let frequency of frequencies"
+              [value]="frequency.day" (click)="selectFrequency(frequency.day)">
+              <span class="text-base font-semibold" [ngClass]="
+                  selectedFrequency === frequency.day
+                    ? 'text-black'
+                    : 'text-black'
+                ">{{ frequency.title }}</span>
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </mat-card>
+      <div class="flex flex-row items-center mt-20 mb-4">
+        <span class="font-16-heading">Step 2: Set Sprint Description</span>
+      </div>
+      <div class="bg-white w-full lg:w-1/2 xl:w-1/3 rounded-md mb-4">
+        <textarea placeholder="Sprint description" [formControl]="sprintDescription" id="" cols="30" rows="5"
+          class="w-full rounded-md p-4 focus:outline-none"></textarea>
+      </div>
+      <div class="flex flex-row items-center mt-20 mb-4">
+        <span class="font-16-heading">
+          Set Date and Time for Weekly Check-ins</span>
+        <label class="
+            pg-tooltip-left
+            flex flex-row
+            items-center
+            ml-2
+            focus:outline-none
+          ">
+          <mat-icon fontSet="material-icons-outlined" class="text-gray-500 mat-icon-18">info</mat-icon><input
+            type="checkbox" />
+          <div class="font-light text-xs">
+            Schedule time each week to plan your Sprint actions and review
+            progress
+          </div>
+        </label>
+      </div>
+      <div class="bg-white padding-div calendar-main">
+        <div class="grid grid-cols-2">
+          <div class="calendar-show">
+            <div class="
+                flex flex-row
+                justify-center
+                items-center
+                cal cal-month-view
+              ">
+              <div class="" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
+                <mat-icon class="inconcolor">keyboard_arrow_left</mat-icon>
+              </div>
+              <div style="padding: 0">
+                <h3 class="font-bold">
+                  {{ viewDate | calendarDate: view + "ViewTitle" }}
+                </h3>
+              </div>
+              <div mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">
+                <mat-icon class="inconcolor">keyboard_arrow_right</mat-icon>
+              </div>
+            </div>
+            <div class="cal">
+              <mwl-calendar-month-view [events]="events" [(viewDate)]="viewDate" [cellTemplate]="customCellTemplate"
+                (dayClicked)="daySelected($event.day)" (beforeViewRender)="beforeMonthViewRender($event)">
+              </mwl-calendar-month-view>
+            </div>
+          </div>
+
+          <div class="spacing">
+            <div>
+              <span>Produgie will remind you before each weekly check-in and ask
+                you to rate the impact of your session afterwards
+              </span>
+            </div>
+            <div class="calendar-form">
+              <mat-form-field class="box-resize" appearance="fill">
+                <mat-label>From</mat-label>
+                <mat-select [(value)]="mstart" (selectionChange)="getStartTime($event.value)">
+                  <mat-option *ngFor="let week of timeslots" [value]="week.value">
+                    <mat-radio-button>{{ week.viewValue }}</mat-radio-button>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="box-resize" appearance="fill">
+                <mat-label>AM / PM</mat-label>
+                <mat-select [(value)]="startMeridian" (selectionChange)="getStartMeridian($event.value)">
+                  <mat-option *ngFor="let week of timezone" [value]="week.value">
+                    <mat-radio-button>{{ week.viewValue }}</mat-radio-button>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br/>
+              <mat-form-field class="box-resize" appearance="fill">
+                <mat-label>To</mat-label>
+                <mat-select [(value)]="mend" (selectionChange)="getEndTime($event.value)">
+                  <mat-option *ngFor="let week of timeslots" [value]="week.value">
+                    <mat-radio-button [value]="week.value">{{
+                      week.viewValue
+                      }}</mat-radio-button>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="box-resize" appearance="fill">
+                <mat-label>AM / PM</mat-label>
+                <mat-select [(value)]="endMeridian" (selectionChange)="getendMeridian($event.value)">
+                  <mat-option *ngFor="let week of timezone" [value]="week.value">
+                    <mat-radio-button>{{ week.viewValue }}</mat-radio-button>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <div *ngIf="!isvalidTime">
+                <span style="color: red">Start time should be less than End Time</span>
+              </div>
+
+              <div class="" *ngIf="!message.isSprint">
+                <div class="">
+                  <div class="pg-bg-blue-light btn text-white btn-margin" [ngClass]="{
+                      'pg-bg-blue-dark':
+                        selectedFrequency &&
+                        validDate &&
+                        isvalidTime &&
+                        sprintDescription.valid,
+                      'cursor-not-allowed button-grey':
+                        !selectedFrequency ||
+                        !validDate ||
+                        sprintDescription.invalid ||
+                        !isvalidTime
+                    }">
+                    <button class="
+                        bg-transparent
+                        flex
+                        items-center
+                        focus:outline-none
+                        w-full
+                        h-full
+                        justify-center
+                      " [ngClass]="{
+                        'cursor-text':
+                          !selectedFrequency ||
+                          !validDate ||
+                          sprintDescription.invalid ||
+                          !isvalidTime
+                      }" [disabled]="
+                        !selectedFrequency ||
+                        !validDate ||
+                        sprintDescription.invalid ||
+                        !isvalidTime
+                      " (click)="storeCheckIn()">
+                      <label class="pg-tooltip flex flex-row items-center" *ngIf="
+                          !selectedFrequency ||
+                          !validDate ||
+                          sprintDescription.invalid
+                        ">
+                        <input type="checkbox" />
+                        <div class="font-light text-xs">
+                          Set Feedback Frequency & Set Weekly Check-in & Fill
+                          description
+                        </div>
+                      </label>Confirm Routine
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!message.isSprint" class="flex flex-row mt-8 items-center justify-end" [disabled]="isnext">
+        <button (click)="storeCheckInnext()" class="btn next-btn mb-45" [ngClass]="{'pg-bg-blue-dark': buttonDisable,'cursor-not-allowed': !buttonDisable}">
+          Next
+        </button>
+      </div>
+
+      <app-mat-svg-icon></app-mat-svg-icon>
+      <ng-template class="h-8" #customCellTemplate let-day="day" let-locale="locale">
+        <div [ngClass]="day?.events[0]?.color">
+          <span class="flex h-full justify-center font-medium items-center">{{
+            day.date | calendarDate: "monthViewDayNumber":locale
+            }}</span>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <!-- <ng-template #customCellTemplate let-day="day" let-locale="locale">
+  <div class="">
+      <span class="flex justify-start font-medium">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+
+  </div>
+  <div class="flex flex-col justify-evenly h-full">
+      <span *ngFor="let event of day.events" class="w-full flex justify-center items-center pg-event-4" [ngClass]="event.color">
+          <span class="h-4 w-4 flex justify-center items-center rounded-full" [ngClass]="event.color">
+              <mat-icon class="text-white pg-mat-icon-10">
+                  {{ event.title }}
+              </mat-icon>
+          </span>
+      </span>
+  </div>
+</ng-template> -->
+</div>

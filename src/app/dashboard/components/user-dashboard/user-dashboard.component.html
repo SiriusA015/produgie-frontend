@@ -1,0 +1,168 @@
+<div class="fixed left-0 w-full h-screen flex justify-center items-center bg-white" style="z-index: 999; top: 76px"
+  *ngIf="loadCounter > 0">
+  <div class="loader"></div>
+</div>
+<div class="flex w-full flex-row h-full relative">
+  <div class="">
+    <app-dash-left-nav></app-dash-left-nav>
+  </div>
+  <div class="pg-container ml-16" style="padding-left: 5rem; padding-right: 2rem">
+    <!-- <div
+  class="flex w-full flex-col pg-h-screen-w-header justify-center items-center"
+  *ngIf="zeroSprint && loadCounter === 0"
+>
+  <span class="text-2xl font-bold"
+    >No data found. Please design your sprint first!</span
+  >
+</div> -->
+    <div class="flex w-full flex-col h-full relative" *ngIf="loadCounter === 0">
+      <div class="pg-container" style="padding-left: 5rem; padding-right: 5rem">
+        <div class="pt-8"></div>
+        <!-- <div class="flex flex-row justify-between items-center mb-8">
+      <span class="text-2xl font-bold">My Development Plan</span>
+      <button class="px-8 py-4 flex flex-row justify-between items-center text-white bg-white rounded-md focus:outline-none" [disabled]="!isStop">
+            <mat-icon fontSet="material-icons-outlined" class="text-white mr-2">sms</mat-icon>
+            <span class="text-md font-semibold">Send To Portfolio</span>
+        </button>
+    </div> -->
+        <!-- <app-md-fad-overview
+      [strenghts]="capabilities"
+      [fads]="data?.capability"
+      [priority]="data?.priority"
+    ></app-md-fad-overview> -->
+        <div *ngIf="!data?.userSprint"
+          class="bg-white w-full flex justify-center items-center p-8 mb-4 shadow-lg rounded-md">
+          <span class="text-2xl font-bold">Please design your Sprint!</span>
+        </div>
+        <app-md-sprint-duration-overview *ngIf="data?.userSprint" [frequency]="data?.userSprint">
+        </app-md-sprint-duration-overview>
+        <app-md-sprint-overview *ngIf="data?.sprint" [sprint]="data?.sprint" [sprintNo]="data?.sprintNo">
+        </app-md-sprint-overview>
+        <app-md-abo-overview *ngIf="allaction.length > 0" [actions]="allaction" [outcomes]="alloutcome"
+          [behaviours]="allbehavior" [sprintId]="data?.userSprint?.sprintId"></app-md-abo-overview>
+        <div class="w-full flex flex-col lg:flex-row justify-between bg-white py-4 px-8 shadow-lg mb-4 rounded"
+          *ngIf="data?.crew">
+          <div class="flex w-full justify-between mb-4 lg:mb-0 items-center">
+            <h3 class="text-2xl lg:text-xl pg-text-333 font-bold">
+              Sprint Crew
+            </h3>
+            <div class="flex justify-end items-center">
+              <div class="flex items-center cursor-pointer py-2 px-4" (click)="openAdvice()">
+                <mat-icon fontSet="material-icons-outlined" class="mat-icon-24 pg-txt-blue-bright" aria-hidden="false"
+                  matBadgeColor="warn">sms</mat-icon>
+                <span class="ml-2 text-gray-500">Advice</span>
+              </div>
+              <div class="flex items-center cursor-pointer py-2 px-4" (click)="openComment()">
+                <mat-icon fontSet="material-icons-outlined" class="mat-icon-24 pg-txt-blue-bright" aria-hidden="false"
+                  matBadgeColor="warn">send</mat-icon>
+                <span class="ml-2 text-gray-500">Comments</span>
+              </div>
+              <div class="flex items-center cursor-pointer py-2 px-4">
+                <mat-icon fontSet="material-icons-outlined" class="mat-icon-24 text-gray-400" aria-hidden="false">done
+                </mat-icon>
+                <span class="ml-2 text-gray-400">Review</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <app-md-sprint-crew-overview
+          *ngIf="data?.crew"
+          [crews]="data?.crew"
+        ></app-md-sprint-crew-overview> -->
+        <div class="mb-4">
+          <span class="text-2xl font-bold">Trending Now in Produgie</span>
+        </div>
+        <div class="flex flex-col lg:flex-row justify-between mb-4">
+          <div class="w-full bg-white rounded-md flex justify-center items-center p-1 mr-4 shadow-lg">
+            <div class="h-full w-full rounded overflow-hidden bg-white">
+              <div class="pt-4 flex flex-col h-full">
+                <div class="text-xl px-4 mb-2 flex flex-row items-center justify-between">
+                  <div class="flex flex-row items-center">
+                    <div>
+                      <span class="ml-3 mr-2 text-center flex items-center justify-center">
+                      </span>
+                    </div>
+                    <span class="font-semibold">Top 3 Role Demands</span>
+                  </div>
+                </div>
+                <hr />
+                <div class="flex h-full px-4 pt-4">
+                  <ul class="w-full flex flex-col justify-evenly">
+                    <li class="list-key flex flex-row items-center mb-3 pb-3" *ngFor="let jobrole of jobRoles">
+                      <!-- <mat-icon class="pg-txt-green mr-4" aria-hidden="false"
+                        >settings</mat-icon
+                      > -->
+                      <span class="text-base font-semibold">{{
+                        jobrole.title
+                        }}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="w-full bg-white rounded-md flex justify-center items-center p-1 mr-4 shadow-lg">
+            <div class="h-full w-full rounded overflow-hidden bg-white">
+              <div class="pt-4 flex flex-col h-full">
+                <div class="text-xl px-4 mb-2 flex flex-row items-center justify-between">
+                  <div class="flex flex-row items-center">
+                    <div>
+                      <span class="ml-3 mr-2 text-center flex items-center justify-center">
+                      </span>
+                    </div>
+                    <span class="font-semibold">Top 3 Priorities</span>
+                  </div>
+                </div>
+                <hr />
+                <div class="flex h-full px-4 pt-4">
+                  <ul class="w-full flex flex-col justify-evenly">
+                    <li class="list-key flex flex-row items-center mb-3 pb-3" *ngFor="let strength of fadPriorities">
+                      <span class="h-8 w-8 flex items-center justify-center mr-4">
+                        <mat-icon [svgIcon]="strength.icon" class="w-full h-full pg-txt-green" aria-hidden="false">
+                        </mat-icon>
+                      </span>
+                      <span class="text-base font-semibold">{{
+                        strength.label
+                        }}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="w-full bg-white rounded-md flex justify-center items-center p-1 shadow-lg">
+            <div class="h-full w-full rounded overflow-hidden bg-white">
+              <div class="pt-4 flex flex-col h-full">
+                <div class="text-xl px-4 mb-2 flex flex-row items-center justify-between">
+                  <div class="flex flex-row items-center">
+                    <div>
+                      <span class="ml-3 mr-2 text-center flex items-center justify-center">
+                      </span>
+                    </div>
+                    <span class="font-semibold">Top 3 Sprint Focus Areas</span>
+                  </div>
+                </div>
+                <hr />
+                <div class="flex h-full px-4 pt-4">
+                  <ul class="w-full flex flex-col justify-evenly">
+                    <li class="list-key flex flex-row items-center mb-3 pb-3" *ngFor="let fad of FADs">
+                      <span class="h-8 w-8 flex items-center justify-center mr-4">
+                        <mat-icon [svgIcon]="fad.icon" class="w-full h-full pg-txt-green" aria-hidden="false">
+                        </mat-icon>
+                      </span>
+                      <span class="text-base font-semibold">{{
+                        fad.label
+                        }}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-mat-svg-icon></app-mat-svg-icon>
+</div>

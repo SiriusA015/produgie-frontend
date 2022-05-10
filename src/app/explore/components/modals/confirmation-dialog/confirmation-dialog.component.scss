@@ -1,0 +1,55 @@
+section {
+    display: table;
+  }
+  
+  .example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+  }
+  
+  .example-button-row {
+    text-align: center;
+  }
+  
+  .example-button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+  }
+
+
+
+  // .mat-raised-button{
+  //   margin: 0.5rem;
+  //   // background-color: red;
+  //   padding: 8px;
+  //   color: white;
+  //   font-weight: 800;
+  //   border-radius: 5px;
+  // }
+  .continue-button{
+    background-color: #3d5dff;
+      }
+  .cancel{
+      background-color: grey;
+  }  
+
+  mat-grid-list {
+    margin-bottom: 10px;
+}
+
+.font-16-heading {
+  font-weight: 400;
+}

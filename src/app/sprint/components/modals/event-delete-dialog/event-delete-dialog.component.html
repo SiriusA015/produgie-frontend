@@ -1,0 +1,23 @@
+<!-- <div class="p-4">
+    <div class="flex justify-center">
+        <span class="font-bold text-gray-700">Are you sure to delete?</span>
+    </div>
+    <div class="flex flex-row justify-between items-center mt-4">
+        <button class="px-6 py-2 bg-gray-400 font-semibold text-gray-700 rounded-sm focus:outline-none" (click)="onNoClick()">No</button>
+        <button class="px-6 py-2 pg-bg-orange-strength font-semibold text-white rounded-sm focus:outline-none" (click)="onYesClick()">Yes</button>
+    </div>
+</div> -->
+<h1 class="font-heading">
+    Confirmation
+    <span class="material-icons float-right"  (click)="onNoClick()">clear</span>
+  </h1>
+  
+  <div class="margin-top-div">
+    <p class="font-text">Are you sure you want to delete this ?</p>
+  </div>
+  
+  <div class="float-right">
+    <button  class="btn_submit"  (click)="onYesClick()">Yes</button>
+    <button class="btn_submit-del"  (click)="onNoClick()">No</button>
+   
+  </div>

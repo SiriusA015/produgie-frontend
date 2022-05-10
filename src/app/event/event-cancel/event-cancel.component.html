@@ -1,0 +1,25 @@
+<div class="event-cancel-wrapper flex flex-col justify-between">
+	<div class="icon cross-icon" (click)="dismiss()"></div>
+
+	<div class="img-holder">
+		<img src="/assets/icons/cancel_blue_event.svg">
+	</div>
+	<div class="heading-2 text-center">Do you want to cancel your registration?</div>
+
+	<div class="mt-5">Reason for not attending:</div>
+	<div>
+		<mat-form-field appearance="fill">
+			<mat-select [(value)]="selectedReason">
+				<mat-option *ngFor="let reason of reasons" [value]="reason">
+					{{reason}}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</div>
+
+	<div class="w-full flex justify-center">
+		<button class="btn-blue bg-blue-600" (click)="close()">
+			Cancel
+		</button>
+	</div>
+</div>

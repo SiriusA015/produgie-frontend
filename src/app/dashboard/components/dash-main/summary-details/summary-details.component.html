@@ -1,0 +1,158 @@
+<div class="pg-container flex flex-col lg:flex-row justify-between">
+  <div
+    class="w-full lg:w-1/3 xl:w-1/4 mr-4 mb-4 rounded overflow-hidden shadow-lg bg-white"
+  >
+    <div class="px-6 py-4 flex flex-col h-full">
+      <div class="text-xl mb-2 flex flex-row items-center justify-between">
+        <div class="flex flex-row items-center">
+          <div>
+            <span class="pg-w-50 pg-h-50 mr-2 text-center rounded-full bg-green-200 flex items-center justify-center">
+              <mat-icon svgIcon="flash" class="text-green-700" aria-hidden="false"></mat-icon>
+            </span>
+          </div>
+          <span>Strengths To Leverage</span>
+        </div>
+
+        <mat-icon aria-hidden="false" class="text-gray-500 cursor-pointer">more_vert</mat-icon>
+      </div>
+
+      <div class="flex mb-4 mt-3">
+        <ul class="w-full">
+          <li class="list-key flex flex-row items-center mb-3 pb-3 pl-2">
+            <span class="pg-w-36 pg-h-36 mr-8 text-center rounded-full bg-green-200 flex items-center justify-center">
+              <mat-icon svgIcon="science" class="mat-icon-18 text-green-700" aria-hidden="false"></mat-icon>
+            </span>
+            <span class="text-xs">Manage Complexity</span>
+          </li>
+          <li class="list-key flex flex-row items-center mb-3 pb-3 pl-2">
+            <span class="pg-w-36 pg-h-36 mr-8 text-center rounded-full bg-green-200 flex items-center justify-center">
+              <mat-icon svgIcon="grow" class="mat-icon-18 text-green-700" aria-hidden="false"></mat-icon>
+            </span>
+            <span class="text-xs">Develop Growth Mindset</span>
+          </li>
+          <li class="list-key flex flex-row items-center pb-3 pl-2">
+            <span class="pg-w-36 pg-h-36 mr-8 text-center rounded-full bg-green-200 flex items-center justify-center">
+              <mat-icon svgIcon="surface" class="mat-icon-18 text-green-700" aria-hidden="false"></mat-icon>
+            </span>
+            <span class="text-xs">Build Stakeholder Relationship</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="w-full lg:w-1/3 xl:w-2/4 mr-4 mb-4 overflow-hidden flex flex-col">
+    <div class="flex flex-row justify-between items-center mb-4 xl:mx-4">
+      <h3 class="font-medium text-xl">Priorities for Development</h3>
+      <button class="focus:outline-none">
+        <span
+          class="h-10 w-10 r-2 text-center rounded-full flex items-center justify-center hover:bg-gray-600" style="background-color: #686868;"
+        >
+          <mat-icon aria-hidden="false" class="text-white">reply</mat-icon>
+        </span>
+      </button>
+    </div>
+    <div class="flex flex-col xl:flex-row justify-between items-center  key-focus-card-wrap">
+      <div class="pd-card flex flex-col w-full h-full rounded shadow-lg bg-white items-center justify-center border border-orange-500 border-opacity-75 mb-4 xl:mb-0 xl:mx-4">
+        <p class="font-normal text-sm mt-4 mx-4 text-center">Build Resilience</p>
+        <span
+          class="pg-w-126 pg-h-126 r-2 rounded-full pg-bg-orange-light flex items-center justify-center my-6"
+        >
+          <mat-icon class="mat-icon-42 pg-txt-orange" svgIcon="fire" aria-hidden="false"></mat-icon>
+        </span>
+      </div>
+      <div class="pd-card flex flex-col w-full h-full rounded shadow-lg bg-white items-center justify-center xl:mx-4 mb-4 xl:mb-0">
+        <p class="font-normal text-sm mt-4 mx-4 text-center">Lead Innovation</p>
+        <span
+          class="pg-w-126 pg-h-126 r-2 rounded-full pg-bg-red-light flex items-center justify-center my-6"
+        >
+          <mat-icon class="mat-icon-42 pg-txt-red" svgIcon="idea" aria-hidden="false"></mat-icon>
+        </span>
+      </div>
+      <div class="pd-card flex flex-col w-full h-full rounded shadow-lg bg-white items-center justify-center xl:mx-4 xl:mb-0">
+        <p class="font-normal text-sm mt-4 mx-4 text-center">Set vision and inspire action</p>
+        <span
+          class="pg-w-126 pg-h-126 r-2 rounded-full pg-bg-blue-light flex items-center justify-center my-6"
+        >
+          <mat-icon svgIcon="vision" aria-hidden="false" class="pg-txt-blue  mat-icon-48"></mat-icon>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    class="w-full lg:w-1/3 xl:w-1/4 mb-4 rounded overflow-hidden shadow-lg bg-white"
+  >
+    <div class="px-6 py-4 flex flex-col h-full">
+      <div class="text-xl mb-2 flex flex-row items-center justify-between">
+        <div class="flex flex-row items-center">
+          <span class="pg-w-50 pg-h-50 mr-2 text-center rounded-full bg-blue-200 flex items-center justify-center">
+            <mat-icon svgIcon="file" class="text-blue-700" aria-hidden="false"></mat-icon>
+          </span>
+          <span class="mr-3">Portfolio</span>
+        </div>
+        <div>
+          <mat-icon class="mr-3 cursor-pointer">save_alt</mat-icon>
+          <mat-icon class="mr-3 cursor-pointer" aria-label="sort-by" (click)="isOpen = !isOpen" cdkOverlayOrigin #trigger="cdkOverlayOrigin">sort</mat-icon>
+          <button
+            *ngIf="isOpen"
+            (click)="isOpen = false"
+            tabindex="-1"
+            class="fixed inset-0 h-full w-full cursor-default"
+          ></button>
+          <ng-template
+            cdkConnectedOverlay
+            [cdkConnectedOverlayOrigin]="trigger"
+            [cdkConnectedOverlayOpen]="isOpen"
+          >
+            <ul class="py-2 px-1 bg-white rounded-lg pg-dd-shadow">
+              <li class="px-2 py-2 rounded-md text-gray-800 hover:bg-indigo-500 hover:text-white">Newest</li>
+              <li class="px-2 py-2 rounded-md text-gray-800 hover:bg-indigo-500 hover:text-white">Option 2</li>
+              <li class="px-2 py-2 rounded-md text-gray-800 hover:bg-indigo-500 hover:text-white">Option 3</li>
+            </ul>
+          </ng-template>
+          <mat-icon aria-hidden="false" class="text-gray-500 cursor-pointer">more_vert</mat-icon>
+        </div>
+      </div>
+
+      <div class="flex mb-4 mt-3">
+        <ul class="w-full">
+          <li class="list-key flex flex-row items-center mb-3 pb-3 pl-2">
+            <div class="mr-8">
+              <span class="pg-w-36 pg-h-36 text-center rounded-full pg-bg-orange-light flex items-center justify-center badge-orange">
+                <span class="h-6 w-6 rounded-full pg-bg-orange-light flex items-center justify-center" matBadge="1" matBadgeSize="small">
+                  <mat-icon svgIcon="fire" class="mat-icon-18 pg-txt-orange" aria-hidden="false"></mat-icon>
+                </span>
+              </span>
+            </div>
+
+            <span class="text-xs font-medium">Develop a new Strategy (Discover): Gather and analyse market & customer trends, identity internal needs</span>
+          </li>
+          <li class="list-key flex flex-row items-center mb-3 pb-3 pl-2">
+            <div class="mr-8">
+              <span class="pg-w-36 pg-h-36 text-center rounded-full pg-bg-orange-light flex items-center justify-center badge-orange">
+                <span class="h-6 w-6 rounded-full pg-bg-orange-light flex items-center justify-center" matBadge="2" matBadgeSize="small">
+                  <mat-icon svgIcon="fire" class="mat-icon-18 pg-txt-orange" aria-hidden="false"></mat-icon>
+                </span>
+              </span>
+            </div>
+            <span class="text-xs font-medium">Develop a new Strategy (Decide): Identity strategic options and gather stakeholder input to decide strategy</span>
+          </li>
+          <li class="list-key flex flex-row items-center pb-3 pl-2">
+            <div class="mr-8">
+              <span class="pg-w-36 pg-h-36 text-center rounded-full pg-bg-blue-light flex items-center justify-center badge-cyan">
+                <span class="h-6 w-6 rounded-full pg-bg-blue-light flex items-center justify-center" matBadge="3" matBadgeSize="small">
+                  <mat-icon svgIcon="vision" aria-hidden="false" class="pg-txt-blue mat-icon-18"></mat-icon>
+                </span>
+              </span>
+            </div>
+
+            <span class="text-xs font-medium">Develop a new Strategy (Deliver): Complete strategy plan, communicate and begin implementation</span>
+          </li>
+        </ul>
+      </div>
+
+
+    </div>
+  </div>
+</div>

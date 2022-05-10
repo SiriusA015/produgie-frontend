@@ -1,0 +1,251 @@
+.day-dot {
+    cursor: pointer;
+    height: 6px;
+    width: 6px;
+    margin: 0 2px;
+    background-color: #b480d130;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+  
+  .day-dot-active {
+    background-color: #b480d1;
+  }
+  
+  .bgcolor{
+    background-color: #278ce9;
+  }
+  
+  .day-dot-white {
+    cursor: pointer;
+    height: 6px;
+    width: 6px;
+    margin: 0 2px;
+    background-color: #ffffff30;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+  
+  .day-dot-active-white {
+    background-color: #ffffff;
+  }
+  
+  ::ng-deep .cal-month-view .cal-cell {
+    display: flex !important;
+    height: 100% !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-direction: row !important;
+  }
+  ::ng-deep .cal-month-view .cal-days {
+    border: none !important;
+    border-bottom: none !important;
+  }
+  ::ng-deep  .cal-month-view .cal-day-cell {
+    border: none !important;
+    border-bottom: none !important;
+    min-height: 70px !important;
+  }
+  
+  
+  ::ng-deep .cal-month-view .cal-days .cal-cell-row{
+    border: none !important;
+    border-bottom: none !important;
+  }
+  ::ng-deep .cal-month-view .cal-header {
+    text-align: center;
+    font-weight: normal;
+    // background-color: rgb(240, 240, 240);
+    border-radius: 50px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: #278ce9;
+  }
+  ::ng-deep .cal-month-view .cal-day-cell.cal-today {
+    background-color: #004ffa26;
+  }
+  
+  ::ng-deep .pg-event-day{
+      // background-color: #3AA76D !important;
+      background-color: #278ce9 !important;
+  }
+  ::ng-deep.ngx-timepicker-control{
+    padding:0 !important;
+    width: 25px !important;
+    height: 18px !important;
+  }
+  
+  ::ng-deep.ngx-timepicker{
+    border: none !important;
+  }
+  ::ng-deep.ngx-timepicker-control__input{
+    font-size: 12px !important;
+    padding: 0 !important;
+  }
+  ::ng-deep.ngx-timepicker-control__arrows{
+    display: none !important;
+  }
+  ::ng-deep.period-control__arrow{
+    margin: 0 !important;
+  }
+  ::ng-deep.period-control__button{
+    font-size: 12px !important;
+    width: 48px !important;
+  }
+  ::ng-deep.period-selector{
+    padding: 0 !important;
+  }
+  ::ng-deep.period-selector__button{
+    line-height: 5px !important;
+    height: 30px !important;
+  }
+  ::ng-deep.ngx-timepicker__time-colon{
+    margin: 0 !important;
+  }
+  
+  ::ng-deep.cal-month-view{
+    background-color: #f3f8ff !important;
+    // margin: 2rem;
+    // border-bottom-left-radius: 2rem;
+    // border-bottom-right-radius: 2rem;
+  }
+  
+  // ::ng-deep .mat-form-field-underline{
+  //   width: 0% !important;
+  // }
+    
+  ::ng-deep .mat-select-arrow{
+  color: #278ce9;
+  }
+
+  .btn-disabled{
+    padding: 1.5rem;
+    background-color: darkgrey;
+  }
+
+  .btn-shown{
+    padding: 1.5rem;
+    background-color: #278ce9;
+    color: #ffffff;
+  }
+  
+  // mat-option{
+  //   height: auto  !important;
+  // }
+  
+  // .spacing{
+  //   margin-top: -65px; 
+  //    font-size: 14px;
+  //    font-family: DMSans;
+  // }
+  
+  
+  // ::ng-deep .mat-form-field-flex {
+  //   // border: 1px solid gray;
+  //   //   background-color: #fff;
+  // }
+  
+  // .Select-3-Priorities-for-your-Development {
+  //   font-size: 20px;
+  //   font-weight: bold;
+  //   color: #051532;
+  //   margin: -2rem;
+  // }
+  
+  // ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex{
+  //     // width: 10rem;
+  //     // background-color: #fff;
+  // }
+  
+  // ::ng-deep .mat-form-field-wrapper{
+  //   // margin: 1rem;
+  // }
+  
+  .inconcolor{
+    color: #278ce9;
+  }
+  
+  // .pg{
+  //   padding-bottom: 4rem !important;
+  // }
+  .h-56{
+    height:56%;
+  }
+  .mt-20{
+    margin-top:20px;
+  }
+  .btn-align-right{
+    float:right;
+  }
+  .btn-width{
+    width:5rem !important;
+    margin-top: 30px;
+  }
+  .mb-45{
+  margin-bottom:45px;
+  }
+  // .padding-div{
+  //   padding:1.1rem;
+  // }
+  .btn-margin{
+    margin-left:12px;
+    margin-top: 40px;
+  }
+  
+  .align{
+    margin-top: -170px;
+    margin-left: -15px;
+  }
+  
+  // swapnali
+  .feedback-freq {
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    box-shadow: none !important;
+    .text-base {
+      font-size: 1.6rem;
+      color: #051532;
+    }
+  }
+  
+  .calendar-main {
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    .calendar-show {
+      padding: 2.5rem;
+      background-color: #f3f8ff;
+      border-radius: 2rem;
+    }
+    .cal-month-view {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      h3.font-bold {
+        font-size: 1.8rem;
+        color: #051532;
+      }
+      .cal-month-view {
+        width: 100%;
+        display: block;
+        margin: 0;
+      }
+    }
+    .spacing {
+      padding-left: 2.5rem;
+    }
+  }
+  
+  @media screen and (max-width: 991px) {
+    .cal-month-view .cal-day-cell {
+      min-height: 40px !important;
+    }
+  }
+  .button-grey{
+    background-color: #8e9aae;
+    color:white;
+    border-color: #8e9aae;
+  }
+  
+  

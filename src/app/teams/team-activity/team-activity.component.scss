@@ -1,0 +1,223 @@
+@media screen and (max-width: 1199px) {
+  .user-activity__block-right {
+    padding-left: 1rem;
+  }
+
+  .sprintStyling {
+    padding: 2.5rem;
+  }
+
+  .user-activity__block {
+    padding: 2rem 1.5rem;
+  }
+
+  .user-activity__block-left {
+    font-size: 40px;
+  }
+}
+
+.team_circular_info {
+  align-items: center;
+  display: flex;
+  padding: 15px;
+}
+
+.lastone {
+  font-size: 78px;
+  padding: 5px;
+  color: #27ec;
+  font-weight: bolder;
+}
+
+.circular_info {
+  align-items: center;
+  display: flex;
+  padding: 15px;
+  display: block;
+}
+
+.circular {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  position: relative;
+  left: -105px;
+}
+
+.column {
+  // float: left;
+  width: 28%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+h2 {
+  font-weight: 900;
+  display: flex;
+}
+
+p {
+  padding-top: 20px;
+}
+
+img {
+  padding: 5px;
+  height: 38px;
+  border-radius: 20px;
+}
+
+span {
+  font-family: DM Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+  text-align: left;
+}
+
+::ng-deep .mat-tab-list {
+  flex-grow: 0 !important;
+}
+
+::ng-deep .mat-tab-labels {
+  display: flex;
+}
+
+::ng-deep .mat-tab-header {
+  border: none !important;
+}
+
+::ng-deep .mat-tab-label {
+  // color: white;
+  height: 35px;
+  min-width: 25px !important;
+  padding: 5px;
+  background-color: #ffffff;
+  color: #278ce9;
+
+  // font-weight: 700;
+  // background:red ;
+  flex: 1;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  opacity: 1;
+}
+
+::ng-deep .mat-tab-body-content {
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: transparent;
+}
+
+::ng-deep .mat-tab-label-active {
+  background-color: #278ce9;
+  color: #fff;
+  font-weight: 700;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.mat-tab-group {
+  background-color: #f3f8ff;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.heading {
+  font-family: DM Sans;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.crew-heading {
+  //styleName: Style / 18 (1);
+  font-family: DM Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 27px;
+  letter-spacing: 0.02em;
+  text-align: left;
+}
+
+// .inclusion-css{
+.subheading {
+  //styleName: Style / 18 (1);
+  font-family: DM Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 27px;
+  letter-spacing: 0.02em;
+  text-align: left;
+}
+
+.descript {
+  //styleName: Style / 16 (2);
+  font-family: DM Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+  text-align: left;
+}
+
+.user-role {
+  font-weight: 400;
+  color: #8e9aae;
+}
+
+.thirdBlock {
+  font-size: 9.5rem;
+  color: #278ce9;
+}
+
+.matCard {
+  height: 21rem;
+}
+
+.pg {
+  margin: 7rem;
+}
+
+@media (max-width: 991px) {
+  .development-plan {
+    .pg {
+      margin-top: 6rem !important;
+      margin: 0;
+    }
+  }
+  .team-cards {
+    flex-direction: column;
+    .team-card {
+      flex-basis: 100%;
+      max-width: 100%;
+    }
+  }
+}

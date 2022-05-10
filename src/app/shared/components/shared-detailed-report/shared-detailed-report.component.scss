@@ -1,0 +1,44 @@
+.pg-text-not-black{
+    color: #273645;
+}
+.pg-description-text{
+    color: #484848;
+}
+.pg-lh-button{
+    background-color: #70707020;
+}
+.pg-lh-text{
+    color: #707070;
+}
+.min-w-160{
+    min-width: 160px;
+}
+.pg-blue-dot{
+    width: 28px;
+    height: 12px;
+    border-radius: 4px;
+}
+
+.close-button{
+    float: right;
+    top:-24px;
+    right:-24px;
+  }
+  
+  .close-icon {
+    transition: 1s ease-in-out;
+  }
+  
+  // .close-icon:hover {
+  //   transform: rotate(180deg);
+  // }
+  
+  ::ng-deep .icon-outside .close-button{
+    float: right;
+    top:-52px;
+    right:-52px;
+  }
+  
+  ::ng-deep .icon-outside .mat-dialog-container {
+   overflow: unset
+  }

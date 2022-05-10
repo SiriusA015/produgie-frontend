@@ -1,0 +1,136 @@
+<div>
+  <ngx-spinner bdColor="rgba(245,245,245,0.8)" size="medium" color="#46d9aa" type="ball-spin-fade-rotating"
+    [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+  </ngx-spinner>
+  <h3 class="heading-view">
+    View Event
+    <span class="material-icons cross-right cursor-none" (click)="onNoClick()">
+      clear
+    </span>
+    <span class="material-icons cross-right icon-color"  (click)="opedEditEvent()">
+      edit
+    </span>
+    <span class="material-icons cross-right icon-color" (click)="opedDeleteEvent()">
+      delete
+    </span>
+  </h3>
+  <div class="background-color">
+    <div>
+      <div>
+          <div class="div-margin-top">
+              <h3 class="h-title">{{eventData?.action?.label}}</h3>
+              <p class="p-text">
+                {{eventData?.action?.description}}
+              </p>
+            </div>
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <h3 class="h-title">Activity</h3>
+        <p class="p-text">
+          {{eventData?.activity_type?.title}}
+        </p>
+      </div>
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <h3 class="h-title">Date and Time</h3>
+
+        <div class="d-flex items-center div-margin-top">
+          <span class="d-width p-text">Date</span>
+          <span class="p-text">{{ eventData?.meeting_date| date}}</span>
+        </div>
+
+        <div class="d-flex items-center div-margin-top">
+          <span class="d-width p-text">Time</span>
+          <span class="p-text">{{timeFrom}}  {{fromMeridian}}</span>
+          <span class="btn-margin p-text">{{timeTo}}  {{toMeridian}}</span>
+        </div>
+
+        <div class="border-bottom"></div>
+
+      </div>
+      <!-- <div class="border-bottom"></div> -->
+      <div class="font-bold tab-margin-top slider-font" style="padding: 0.5em;" *ngIf="eventData?.crew_members?.length > 0">Sprint Crew</div>
+      <ng-container *ngIf="eventData?.crew_members?.length > 0">
+        <div class="display-div d-flex flex-wrap">
+          <div class="text-center mx-2"  *ngFor="let cr of eventData?.crew_members">
+            <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553__340.png"
+              style="border-radius: 2px;width: 3em;" />
+          
+            <div class="user-text font-weight-bold">{{cr?.name | titlecase}}</div>
+          </div>
+        </div>
+      </ng-container>
+      <div class="font-bold tab-margin-top slider-font" style="padding: 0.5em;" *ngIf="eventData?.stake_holders?.length > 0">Stakeholders</div>
+      <ng-container *ngIf="eventData?.stake_holders?.length > 0">
+          <div class="display-div d-flex flex-wrap">
+            <div class="text-center mx-2"  *ngFor="let cr of eventData?.stake_holders">
+              <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553__340.png"
+                style="border-radius: 2px;width: 3em;" />
+            
+              <div class="user-text font-weight-bold">{{cr?.name | titlecase}}</div>
+            </div>
+          </div>
+        </ng-container>
+      <!-- <div class="font-bold tab-margin-top slider-font" style="padding: 0.5em;">Stakeholders</div>
+      <ng-container *ngIf="stakeholder?.length > 0">
+        <div class="display-div d-flex flex-wrap">
+          <div class="text-center mx-2"  *ngFor="let cr of stakeholder">
+            <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553__340.png"
+              style="border-radius: 2px;width: 3em;" />
+          
+            <div class="user-text font-weight-bold">{{cr?.name | titlecase}}</div>
+          </div>
+        </div>
+      </ng-container> -->
+
+     
+     
+      <div class="div-margin-top">
+          <div>
+          <h3 class="h-title">Online/Offline Meeting</h3>
+          <div class="div-margin-top display-button">
+            <div class="on-button">
+              <button type="button" class="btn" [ngClass]="{'button-background-color':eventData?.is_online == true}"
+                (click)="getOnlineEvent('Online')">Online</button>
+            </div>
+            <div class="on-button">
+              <button type="button" class="btn btn-margin" [ngClass]="{'button-background-color': eventData?.is_online == false }"
+                (click)="getOfflineEvent('Offline')">Offline</button>
+            </div>
+
+          </div>
+          <div class="margin-top-dropdown" *ngIf="eventData?.is_online == true">
+            <p class="p-text">
+              {{eventData?.meeting_url}}
+            </p>
+          </div>
+          <div class="margin-top-dropdown" *ngIf="eventData?.isOnline == false">
+            <p class="p-text">
+              {{eventData?.address}}
+            </p>
+
+          </div>
+
+        </div>  
+        <!-- </div> -->
+      </div>
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <h3 class="h-title">Description</h3>
+        <p class="p-text">
+          {{eventData?.description}}
+        </p>
+      </div>
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <h3 class="h-title">Title</h3>
+        <p class="p-text">
+          {{eventData?.activity_type?.title}}
+        </p>
+      </div>
+    </div>
+    
+  </div>
+
+</div>

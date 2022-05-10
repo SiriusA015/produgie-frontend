@@ -1,0 +1,229 @@
+.main-container {
+  position: relative;
+  width: 100%;
+}
+.wrap-mat-radio-label {
+  white-space: normal;
+}
+
+.overlay-hide {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: 0.5s ease;
+}
+.first {
+  display: block;
+  width: 100%;
+  height: 100vh;
+}
+.overlay-show {
+  bottom: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  width: 100%;
+  transition: 0.5s ease;
+  box-shadow: 0px -4px 3px rgba(128, 128, 128, 0.2);
+}
+.overlay-sh-show {
+  bottom: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  width: 100%;
+  transition: 0.5s ease;
+  box-shadow: 0px -4px 3px rgba(128, 128, 128, 0.2);
+}
+.overlay-sh-hide {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: 0.5s ease;
+}
+.overlay-ssh-show {
+  bottom: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  width: 100%;
+  transition: 0.5s ease;
+  box-shadow: 0px -4px 3px rgba(128, 128, 128, 0.2);
+}
+.overlay-ssh-hide {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: 0.5s ease;
+}
+.overlay-sc-show {
+  bottom: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  width: 100%;
+  transition: 0.5s ease;
+  box-shadow: 0px -4px 3px rgba(128, 128, 128, 0.2);
+}
+.overlay-sc-hide {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: 0.5s ease;
+}
+.pg-stakeholder-input {
+  font-size: 14pt;
+}
+.text {
+  font-size: 20px;
+  position: relative;
+  bottom: 0;
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+  text-align: center;
+}
+.pg-min-h-42 {
+  min-height: 54px;
+}
+.pg-hr {
+  width: 20%;
+}
+
+.pg-action-labels {
+  font-size: 12pt;
+}
+
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 10px;
+}
+
+.example-radio-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  min-height: 48px;
+  font-size: 12pt;
+}
+::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle,
+.mat-radio-outer-circle {
+  border-color: #4339f2 !important;
+}
+
+::ng-deep.mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: #4339f2 !important;
+}
+
+::ng-deep
+  .mat-checkbox-checked.mat-accent
+  .mat-checkbox-ripple
+  .mat-ripple-element {
+  opacity: 0.03 !important;
+  background-color: #22ae73 !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: #22ae73;
+}
+.pg-stakeholder-image-bg {
+  background-color: #1e88e5;
+}
+::ng-deep.mat-button-toggle-checked {
+  background-color: #4339f2;
+}
+::ng-deep.mat-button-toggle-checked.mat-button-toggle-appearance-standard {
+  color: #fff;
+}
+::ng-deep.ngx-timepicker-control {
+  padding: 0 !important;
+  width: 25px !important;
+  height: 18px !important;
+}
+
+::ng-deep.ngx-timepicker {
+  border: none !important;
+}
+::ng-deep.ngx-timepicker-control__input {
+  font-size: 12px !important;
+  padding: 0 !important;
+}
+::ng-deep.ngx-timepicker-control__arrows {
+  display: none !important;
+}
+::ng-deep.period-control__arrow {
+  margin: 0 !important;
+}
+::ng-deep.period-control__button {
+  font-size: 12px !important;
+  width: 48px !important;
+}
+::ng-deep.period-selector {
+  padding: 0 !important;
+  right: 0 !important;
+  width: auto !important;
+  max-width: fit-content !important;
+}
+::ng-deep.period-selector__button {
+  line-height: 5px !important;
+  height: 30px !important;
+}
+::ng-deep.ngx-timepicker__time-colon {
+  margin: 0 !important;
+}
+.date-picker {
+  ::ng-deep {
+    input {
+      &:last-child {
+        font-size: 12px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: normal;
+        background-color: transparent;
+        border-bottom: 1px solid #707070;
+        text-align: end;
+      }
+    }
+  }
+}
+.date-picker {
+  ::ng-deep {
+    input:focus {
+      &:last-child {
+        outline: none;
+        font-size: 12px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: normal;
+        background-color: transparent;
+        border-bottom: 1px solid #707070;
+        text-align: end;
+      }
+    }
+  }
+}

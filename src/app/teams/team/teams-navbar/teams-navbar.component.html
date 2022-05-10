@@ -1,0 +1,10 @@
+<div class="flex w-full flex-row h-full relative">
+  <div class="nav-submenu">
+    <a [routerLink]="['/teams/create-team']" routerLinkActive='nav-active' class="text-font" *ngIf="!isTeamCreated">Team Set Up</a>
+    <ng-container *ngIf="isTeamCreated">
+      <a [routerLink]="['/teams/viewing-rights']" routerLinkActive='nav-active' class="text-font">Viewing Rights</a>
+      <a [routerLink]="['/teams/team-settings']" [ngClass]="{'nav-active':isSettingActivated }" class="text-font">Team Settings</a>
+      <a [routerLink]="['/teams/team-settings']" [queryParams]="{prev:'viewing-rights'}" routerLinkActive='nav-active' class="text-font">Add New Team</a>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,222 @@
+<div class="">
+    <div class="p-4 pg-border-gray">
+      <div class="flex flex-row justify-between items-center">
+        <div class="flex items-center">
+          <span
+          class="h-12 w-12 rounded-full shadow-md bg-white flex justify-center items-center"
+        >
+          <mat-icon fontSet="material-icons-outlined" class="pg-txt-blue-bright"
+            >send</mat-icon
+          >
+        </span>
+        <span class="heading-1 ml-4"> Final Feedback </span>
+
+        </div>
+        <div class="flex items-center">
+          <span class="mr-4">Based on</span>
+          <span>{{data.dateRange.firstDate | date: 'mediumDate'}} - {{data.dateRange.lastDate | date: 'mediumDate'}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="" [formGroup]="feedbackForm">
+      <div class="w-full border-b pg-border-gray p-4">
+        <div class="flex flex-row items-center">
+          <span class="mr-2 text-center flex items-center justify-center">
+            <mat-icon
+              svgIcon="timer"
+              class="pg-txt-green"
+              aria-hidden="false"
+            ></mat-icon>
+          </span>
+          <span class="heading-2">Behaviors</span>
+        </div>
+      </div>
+      <div class="w-full p-4">
+        <div class="mt-2">
+          <span class="font-16-heading"
+            >What progress is being made on demonstrating these behaviors?</span
+          >
+        </div>
+        <div
+          class="flex flex-col py-4 pg-list-items"
+          *ngFor="let item of data?.behaviour; let i = index;"
+          formArrayName="behaviourFeedback"
+        >
+          <div class="flex flex-col mb-8">
+            <span class="font-bold textStyle pg-txt-blue-bright"
+              >{{ item.label }}</span
+            >
+            <span class="font-14-heading"
+              >{{ item.description }}</span
+            >
+          </div>
+          <div class="flex flex-row justify-evenly w-full">
+            <div class="w-full flex flex-row justify-between" [formGroupName]="i">
+              <label class="flex flex-row items-start">
+                <input class="mr-2 mt-2" type="radio" [value]="1" formControlName="rating" />
+                <span>No progress seen</span>
+              </label>
+              <label class="flex flex-row items-start">
+                <input class="mr-2 mt-2" type="radio" [value]="2" formControlName="rating" />
+                <span>Slight progress seen</span>
+              </label>
+              <label class="flex flex-row items-start">
+                <input class="mr-2 mt-2" type="radio" [value]="3" formControlName="rating" />
+                <span>Progress being made; on target</span>
+              </label>
+              <label class="flex flex-row items-start">
+                <input class="mr-2 mt-2" type="radio" [value]="4" formControlName="rating" />
+                <span>Strong progress being made</span>
+              </label>
+              <label class="flex flex-row items-start">
+                <input class="mr-2 mt-2" type="radio" [value]="5" formControlName="rating" />
+                <span>Excellent progress</span>
+              </label>
+            </div>
+          </div>
+          <div *ngIf="submitted && f.behaviourFeedback.controls" class="invalid-feedback">
+            <div *ngIf="f.behaviourFeedback.controls[i].status=='INVALID'">Behaviour feedback is required</div>
+        </div>
+        </div>
+      </div>
+      <div class="w-full border-b pg-border-gray p-4">
+        <div class="flex flex-row items-center">
+          <span class="mr-2 text-center flex items-center justify-center">
+            <mat-icon class="pg-txt-green" aria-hidden="false">done_all</mat-icon>
+          </span>
+          <span class="heading-2">Outcomes</span>
+        </div>
+      </div>
+      <div class="w-full p-4">
+        <div class="mt-2">
+          <span class="font-16-heading"
+            >How do you rate user on?</span
+          >
+        </div>
+        <div
+          class="flex flex-col py-4 pg-list-items"
+          *ngFor="let item of data?.outcome; let i = index;"
+          formArrayName="outcomeFeedback"
+        >
+        <div class="flex flex-col mb-8">
+          <span class="font-bold textStyle pg-txt-blue-bright"
+            >{{ item.label }}</span
+          >
+          <span class="font-14-heading"
+            >{{ item.description }}</span
+          >
+        </div>
+          <div class="flex flex-row justify-evenly w-full">
+              <div class="w-full flex flex-row justify-between" [formGroupName]="i">
+                <label class="flex flex-row items-start">
+                  <input class="mr-2 mt-2" type="radio" [value]="1" formControlName="rating" />
+                  <span>No progress seen</span>
+                </label>
+                <label class="flex flex-row items-start">
+                  <input class="mr-2 mt-2" type="radio" [value]="2" formControlName="rating" />
+                  <span>Slight progress seen</span>
+                </label>
+                <label class="flex flex-row items-start">
+                  <input class="mr-2 mt-2" type="radio" [value]="3" formControlName="rating" />
+                  <span>Progress being made; on target</span>
+                </label>
+                <label class="flex flex-row items-start">
+                  <input class="mr-2 mt-2" type="radio" [value]="4" formControlName="rating" />
+                  <span>Strong progress being made</span>
+                </label>
+                <label class="flex flex-row items-start">
+                  <input class="mr-2 mt-2" type="radio" [value]="5" formControlName="rating" />
+                  <span>Excellent progress</span>
+                </label>
+              </div>
+            </div>
+            <div *ngIf="submitted && f.outcomeFeedback.controls" class="invalid-feedback">
+              <div *ngIf="f.outcomeFeedback.controls[i].status=='INVALID'">Outcome feedback is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="w-full p-4">
+        <span class="font-16-heading"
+          >Please share advice or feedback for greater improvement
+        </span>
+      </div>
+      <div class="w-full p-4">
+        <textarea
+          formControlName="feedback"
+          class="w-full border rounded-sm border-gray-400 focus:outline-none p-4 text-xs input-style"
+          rows="5"
+          matInput
+          [placeholder]="placeholderText"
+        ></textarea>
+        <div *ngIf="submitted && f.feedback.errors" class="invalid-feedback">
+          <div *ngIf="f.feedback.errors.required">Advice Feedback is required</div>
+        </div>
+      </div>
+      <div class="w-full px-4">
+        <div class="mt-2">
+          <span class="font-16-heading"
+            >Rate the Sprint</span
+          >
+        </div>
+        <div class="flex flex-row justify-evenly w-full mt-10">
+            <div class="w-full flex flex-row justify-between">
+              <label class="flex flex-row items-start">
+                <input class="mr-2 mt-2" type="radio" [value]="1" formControlName="sprintRating" />
+                <span class="capitalize">not a good choice of Sprint</span>
+              </label>
+              <label class="flex flex-row items-start">
+                <input class="mr-2 mt-2" type="radio" [value]="2" formControlName="sprintRating" />
+                <span class="capitalize">a good Sprint but not good timing</span>
+              </label>
+              <label class="flex flex-row items-start">
+                <input class="mr-2 mt-2" type="radio" [value]="3" formControlName="sprintRating" />
+                <span class="capitalize">a good Sprint but not executed very well</span>
+              </label>
+              <label class="flex flex-row items-start">
+                <input class="mr-2 mt-2" type="radio" [value]="4" formControlName="sprintRating" />
+                <span class="capitalize">a good Sprint well executed</span>
+              </label>
+              <label class="flex flex-row items-start">
+                <input class="mr-2 mt-2" type="radio" [value]="5" formControlName="sprintRating" />
+                <span class="capitalize">a good Sprint with strong outcomes</span>
+              </label>
+              
+            </div>
+          </div>
+          <div *ngIf="submitted && f.sprintRating.errors" class="invalid-feedback">
+            <div *ngIf="f.sprintRating.errors.required">Advice Feedback is required</div>
+          </div>
+      </div>
+      <div class="w-full px-4 mt-4">
+        <span class="font-16-heading"
+          >Now that the Sprint is complete, please share 1 piece of advice to help the user on their next Sprint
+        </span>
+      </div>
+      <div class="w-full p-4">
+        <textarea
+          formControlName="feedbackAdvice"
+          class="w-full border rounded-sm border-gray-400 focus:outline-none p-4 text-xs input-style"
+          rows="5"
+          matInput
+          [placeholder]="placeholderText"
+        ></textarea>
+        <div *ngIf="submitted && f.feedbackAdvice.errors" class="invalid-feedback">
+          <div *ngIf="f.feedbackAdvice.errors.required">Advice Feedback is required</div>
+        </div>
+        
+        <div *ngIf="isLoading">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </div>
+          <div class="flex flex-row mt-2">
+            <button
+              class="px-8 py-3 pg-bg-blue-dark text-white uppercase rounded-sm focus:outline-none" [disabled]="isLoading" (click)="storeFeedback()" [ngStyle]="isLoading ? {'cursor': 'not-allowed'} : {'cursor': 'pointer'}"
+            >
+              Submit
+            </button>
+            <button class="ml-8 py-3 text-gray-500 uppercase focus:outline-none hover:text-gray-700" [disabled]="isLoading" (click)="saveFeedback()" [ngStyle]=" isLoading ? {'cursor': 'not-allowed'} : {'cursor': 'pointer'}">
+              Save
+            </button>
+          </div>
+      </div>
+    </div>
+  </div>

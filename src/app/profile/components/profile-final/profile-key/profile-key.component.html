@@ -1,0 +1,122 @@
+<div class="devlopment-keys margin-top-keys">
+
+  <!-- Action Carous -->
+  <div class="w-full mr-4 mb-4 rounded-md overflow-hidden ">
+    <div class=" flex flex-col h-full">
+      <div class="text-xl mb-2 flex flex-row justify-between items-center">
+        <div class="flex flex-row justify-between">
+          <span class="mr-2 text-center flex items-center justify-center">
+            <mat-icon class="pg-txt-green" aria-hidden="false"></mat-icon>
+          </span>
+          <span class="heading-2">Actions</span>
+        </div>
+      </div>
+      <div *ngIf="carouselItems.length != 0" class="px-24">
+        <ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="carouselItems">
+          <div *nguCarouselDef="let item; let ind = index" class="item">
+            <div class="tile flex flex-row justify-start items-center">
+              <div class="flex flex-col justify-center items-start bg-white custom-rounded-border">
+                 <mat-icon svgIcon="cap_5" class="mat-icon-18 mb-4" aria-hidden="false"></mat-icon>
+                <div class="mb-1 heading-5">{{item.label}}</div>
+                <div class="font-14-heading">{{item.description}}</div>
+              </div>
+            </div>
+          </div>
+
+          <button NguCarouselPrev class="leftRs" [ngClass]="{'hidden': carouselItems.length === 1}">
+            <mat-icon class="maticon" [class]="myCarousel.isFirst?'fc-8E':''">keyboard_arrow_left</mat-icon>
+          </button>
+          <button NguCarouselNext class="rightRs" [ngClass]="{'hidden': carouselItems.length === 1}">
+            <mat-icon class="maticon" [class]="myCarousel.isLast?'fc-8E':''">keyboard_arrow_right</mat-icon>
+          </button>
+
+          <ul class="myPoint" NguCarouselPoint>
+            <li *ngFor="let j of myCarousel.pointNumbers; let i = index" [class.active]="i===myCarousel.activePoint"
+              (click)="myCarousel.moveTo(i)"></li>
+          </ul>
+        </ngu-carousel>
+      </div>
+    </div>
+  </div>
+
+  <!-- Behaviors Carous -->
+  <div class="w-full mr-4 mb-4 rounded-md overflow-hidden ">
+    <div class="flex flex-col h-full w-full">
+      <div class="text-xl mb-2 flex flex-row items-center justify-between">
+        <div class="flex flex-row items-center">
+          <span class="mr-2 text-center flex items-center justify-center">
+            <mat-icon class="pg-txt-green" aria-hidden="false"></mat-icon>
+          </span>
+          <span class="heading-2">Behaviors</span>
+        </div>
+      </div>
+      <div *ngIf="carouselItems1.length !== 0" class="px-24">
+        <ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="carouselItems1">
+          <div *nguCarouselDef="let item; let ind = index" class="item">
+            <div class="tile flex flex-row justify-start items-center">
+              <div class="flex items-center justify-center">
+              </div>
+              <div class="flex flex-col justify-center items-start bg-white custom-rounded-border">
+                <mat-icon svgIcon="cap_5" class="mat-icon-18 mb-4" aria-hidden="false"></mat-icon>
+                <div class="mb-1 heading-5">{{item.label}}</div>
+                <div class="font-14-heading">{{item.description}}</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <button NguCarouselPrev class="leftRs" [ngClass]="{'hidden': carouselItems1.length === 1}">
+            <mat-icon class="maticon">keyboard_arrow_left</mat-icon>
+          </button>
+          <button NguCarouselNext class="rightRs" [ngClass]="{'hidden': carouselItems1.length === 1}">
+            <mat-icon class="maticon">keyboard_arrow_right</mat-icon>
+          </button> -->
+
+          <ul class="myPoint" NguCarouselPoint>
+            <li *ngFor="let j of myCarousel.pointNumbers; let i = index" [class.active]="i===myCarousel.activePoint"
+              (click)="myCarousel.moveTo(i)"></li>
+          </ul>
+        </ngu-carousel>
+      </div>
+    </div>
+  </div>
+
+  <!-- Outcome Carous -->
+  <div class="w-full mb-4 rounded-md overflow-hidden">
+    <div class="flex flex-col h-full">
+      <div class="text-xl mb-2 flex flex-row items-center justify-between">
+        <div class="flex flex-row items-center">
+          <span class="mr-10 text-center flex items-center justify-center">
+          </span>
+          <span class="heading-2">Outcome</span>
+        </div>
+      </div>
+      <div *ngIf="carouselItems2.length !== 0" class="px-24">
+        <ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="carouselItems2">
+          <div *nguCarouselDef="let item; let ind = index" class="item">
+            <div class="tile flex flex-row justify-start items-center">
+              <div class="flex items-center justify-center">
+                </div>
+              <div class="flex flex-col justify-center items-start bg-white custom-rounded-border">
+                <mat-icon svgIcon="cap_5" class="mat-icon-18 mb-4" aria-hidden="false"></mat-icon>
+                <div class="mb-1 heading-5">{{item.label}}</div>
+                <div class="font-14-heading">{{item.description}}</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <button NguCarouselPrev class="leftRs" [ngClass]="{'hidden': carouselItems2.length === 1}">
+            <mat-icon class="maticon">keyboard_arrow_left</mat-icon>
+          </button>
+          <button NguCarouselNext class="rightRs" [ngClass]="{'hidden': carouselItems2.length === 1}">
+            <mat-icon class="maticon">keyboard_arrow_right</mat-icon>
+          </button> -->
+
+          <ul class="myPoint" NguCarouselPoint>
+            <li *ngFor="let j of myCarousel.pointNumbers; let i = index" [class.active]="i===myCarousel.activePoint"
+              (click)="myCarousel.moveTo(i)"></li>
+          </ul>
+        </ngu-carousel>
+      </div>
+    </div>
+  </div>
+</div>

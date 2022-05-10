@@ -1,0 +1,49 @@
+.icon {
+	background-repeat: no-repeat;
+	background-size: contain;
+	cursor: pointer;
+}
+
+.cross-icon {
+	background-image: url("/assets/icons/cross_black.svg");
+	position: absolute;
+	top: 2rem;
+	right: 2rem;
+	width: 3rem;
+	height: 3rem;
+	transition: transform 50ms;
+
+	&:hover {
+		transform: scale(1.5);
+	}
+}
+
+.arrow-down-grey-icon {
+	background-image: url("/assets/icons/arrow_down_grey.svg");
+	width: 1.5rem;
+	height: 0.926rem;
+}
+
+.search-blue-icon {
+	background-image: url("/assets/icons/search_blue.svg");
+	width: 1.749rem;
+	height: 1.749rem;
+}
+
+.sort-desc-icon {
+	background-image: url("/assets/icons/sort_desc_icon.svg");
+	background-repeat: no-repeat;
+	cursor: pointer;
+	margin: 1rem 0 0 1rem;
+	width: 1.749rem;
+	height: 1.749rem;
+}
+
+.sort-desc-icon {
+  background-image: url("/assets/icons/sort_desc_icon.svg");
+  background-repeat: no-repeat;
+  cursor: pointer;
+  margin: 1rem 0 0 1rem;
+  width: 1.749rem;
+  height: 1.749rem;
+}

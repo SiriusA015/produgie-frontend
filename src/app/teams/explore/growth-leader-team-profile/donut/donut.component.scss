@@ -1,0 +1,234 @@
+.pg-snapshot-graph {
+  background-image   : url("/assets/images/graph-teams.svg"); 
+  background-position: center;
+  background-repeat  : no-repeat;
+  background-size    : contain;
+}
+
+#wrapper {
+  // min-width: 640px;
+  min-width    : 590px;
+  padding      : 10rem 15rem;
+  // margin-top: -150px;
+}
+
+
+.action {
+  height          : 6rem;
+  width           : 6rem;
+ /*  border          : 0.7rem solid #007bff; */
+  border-radius   : 50%;
+  background-color: white;
+  box-shadow      : 0px 4px 8px #00000029;
+}
+
+#perform-1 {
+  left: 10%;
+  top : 14%;
+
+  .action-title {
+    text-align: right;
+    // left      : -360%;
+    left: -261%;
+    top       : 10%;
+  }
+
+  mat-icon {
+    color: #0d47a1;
+  }
+}
+
+#perform-2 {
+  left: 45%;
+  top : 3%;
+
+  .action-title {
+    left: -35%;
+    top: -70%;
+    /* text-align: center; */
+    width: 260%;
+  }
+
+  mat-icon {
+    color: #0d47a1;
+  }
+}
+
+#perform-3 {
+  right: 10%;
+  top  : 14%;
+
+  .action-title {
+    width: 100px;
+    // right: -260%;
+    right: -181%;
+    top  : 10%;
+  }
+
+  mat-icon {
+    color: #0d47a1;
+  }
+}
+
+#energize-1 {
+  right: -3%;
+  top  : 38%;
+
+  .action-title {
+    width: 100px;
+    // right: -120px;
+    right: -109px;
+    top  : 20%;
+  }
+
+  mat-icon {
+    color: #1e88e5;
+  }
+}
+
+#energize-2 {
+  right: 1%;
+  top  : 65%;
+
+  .action-title {
+    width: 100px;
+    // right: -260%;
+    right: -179%;
+    top  : 20%;
+  }
+
+  mat-icon {
+    color: #1e88e5;
+  }
+}
+
+#energize-3 {
+  right : 25%;
+  bottom: 6%;
+
+  .action-title {
+    right: -155%;
+    top  : 120%;
+  }
+
+  mat-icon {
+    color: #1e88e5;
+  }
+}
+
+#transform-1 {
+  left  : 28%;
+  bottom: 6%;
+
+  .action-title {
+    text-align: right;
+    width     : 140px;
+    left      : -150%;
+    top       : 120%;
+  }
+
+  mat-icon {
+    color: #64b5f6;
+  }
+}
+
+#transform-2 {
+  left: 1%;
+  top : 65%;
+
+  .action-title {
+    text-align: right;
+    width     : 100px;
+    // left      : -260%;
+    left: -185%;
+    top       : 20%;
+  }
+
+  mat-icon {
+    color: #64b5f6;
+  }
+}
+
+#transform-3 {
+  left: -4%;
+  top : 38%;
+
+  .action-title {
+    text-align: right;
+    text-align: right;
+    left: -262%;
+  }
+
+  mat-icon {
+    color: #64b5f6;
+  }
+}
+
+::ng-deep.action.mat-badge-medium.mat-badge-above .mat-badge-content {
+  top          : 35%;
+  border-radius: 22% !important;
+}
+
+.action-title {
+  max-width: 150px;
+}
+
+.profile-img {
+  border          : 10px solid white;
+  width           : 110px;
+  height          : 110px;
+  object-fit      : cover;
+  background-color: #e2e8f0;
+}
+
+#circle-text-1 {
+  color      : white;
+  font-size  : 1.7rem;
+  font-weight: bold;
+  top        : 15%;
+  left       : 44%;
+}
+
+#circle-text-2 {
+  color      : white;
+  font-size  : 1.7rem;
+  font-weight: bold;
+  top        : 61%;
+  left       : 10%;
+}
+
+#circle-text-3 {
+  color      : white;
+  font-size  : 1.7rem;
+  font-weight: bold;
+  top        : 61%;
+  right      : 14%;
+}
+
+.circular {
+  border       : 6px solid #278ce9;
+  border-radius: 50%;
+}
+
+.design {
+  height            : 640px;
+  /* justify-content: center; */
+  // margin-left: 25%;
+}
+
+.heading-4 {
+  font-size  : 1.5rem;
+  line-height: 1.2;
+  color      : #8e9aae;
+  font-weight: 400;
+}
+
+.cursor-pointer {
+  border       : 6px solid #278ce9;
+  border-radius: 100%;
+}
+
+.selectedCircluar{
+  border: 0.7rem solid #007bff;
+  border-radius   : 50%;
+}

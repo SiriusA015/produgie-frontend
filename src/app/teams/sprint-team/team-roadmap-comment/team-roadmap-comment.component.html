@@ -1,0 +1,37 @@
+<div>
+    <div class="material-icons d-flex justify-end cursor-pointer" (click)="onDismiss()">clear</div>
+    <div class="commnet-main-div">
+        <form [formGroup]="commentForm">
+            <div class="commnet-second-div">
+                <textarea class="text-area-border" placeholder="Write Comment" formControlName="comment"></textarea>
+            </div>
+            <div class="d-flex justify-start padding-20">
+                <button class="btn color-white" (click)="submitComment()">Comment</button>  
+            </div>
+        </form>
+       
+    </div>
+    <div class="mt-5">
+        <div>
+            <p class="color-comment">Comments
+            </p>
+            <div class="border-comment"></div>
+        </div>
+                <div class="display-div w-full d-block mt-5" *ngFor="let data of comments">
+                    <div class="d-flex w-full mb-2">
+                        <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553__340.png"
+                            style="border-radius: 2px; width: 38px; height: 38px" />
+                        <div class="user-text">
+                            <span class="font-weight-bold ml-2 d-flex justify-center">{{data.name}}</span>
+                            <!-- <span class="designation">Manager</span> -->
+                        </div>
+                    </div>
+                    <p class="content">
+                       {{data.comment}}
+                    </p>
+
+                    <div class="border-bottom my-8"></div>
+                </div>
+            
+    </div>
+</div>

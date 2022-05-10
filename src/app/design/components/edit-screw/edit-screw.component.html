@@ -1,0 +1,84 @@
+<app-loader *ngIf="loader"></app-loader>
+<div>
+  <h2 class="heading-2">Edit Current Sprint Crew 
+    <span class="material-icons float-right cursor-pointer" (click)="onNoClick()">clear</span>
+  </h2>
+  <form [formGroup]="editScrewForm" (ngSubmit)="onEditScrew()">
+    <div class="margin-top-div">
+      <div class="main-div">
+        <div class="box-left">
+          <div class="form-inline">
+            <label for="" class="title-label font-bold">Name:
+            </label>
+
+            <mat-form-field class="form-field" appearance="none">
+              <!-- <mat-label>Name</mat-label> -->
+              <input matInput formControlName="name" (keypress)="blockStartWhiteSpace($event);" class="inputboxborder">
+            </mat-form-field>
+
+          </div>
+          <div class="form-inline">
+            <label for="" class="title-label font-bold">Email:
+            </label>
+
+            <mat-form-field class="form-field" appearance="none">
+              <!-- <mat-label>Name</mat-label> -->
+              <input matInput formControlName="email" (keypress)="blockStartWhiteSpace($event);" class="inputboxborder">
+            </mat-form-field>
+
+          </div>
+          
+          <div class="form-inline margin-top-div">
+            <label for="" class="title-label font-bold">Roles:
+            </label>
+            <div class="w-1/6 pr-8 flex relative custom-select">
+              <span class="flex w-full justify-between items-center inputboxborder border-b-2">
+                <mat-select formControlName="role">
+                  <mat-option value="manager">Manager</mat-option>
+                  <mat-option value="mentor">Mentor</mat-option>
+                  <mat-option value="peer">Peer</mat-option>
+                  <mat-option value="team">Team</mat-option>
+                  <mat-option value="customer">Customer</mat-option>
+                  <mat-option value="coach">Coach</mat-option>
+                  <mat-option value="other">Other</mat-option>
+                </mat-select>
+              </span>
+            </div>
+          </div>
+
+
+          <div class="margin-top-div">
+            <label for="" class="title-label font-bold">Advice And Review :</label>
+
+            <div class="w-1/6 pr-4">
+              <label class="switch">
+                <input type="checkbox" formControlName="isFastForward" (change)="changeToFalse($event)" />
+                <div class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                  <span>yes</span><span>no</span>
+                </div>
+              </label>
+            </div>
+
+          </div>
+          <div class="margin-top-div">
+            <label for="" class="title-label font-bold"> Feedback :</label>
+            <div class="w-1/6 pr-4">
+              <label class="switch">
+                <input type="checkbox" formControlName="isFeedbackGoalsNBehaviour" (change)="changeToFalse($event)" />
+                <div class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                  <span>yes</span><span>no</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="box-right">
+        </div>
+        <div class="submit-button">
+          <button class="btn">SUBMIT</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+</div>

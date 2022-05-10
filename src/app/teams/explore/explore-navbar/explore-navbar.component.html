@@ -1,0 +1,20 @@
+<div class="flex w-full flex-row h-full relative setting">
+  <div class="nav-submenu">
+    <div *ngIf="isTeamPortalVisible" [routerLink]="['/teams/explore/team-portal']" routerLinkActive="nav-active"
+      class="text-font">Team Portal</div>
+      <div *ngIf="isLoading">
+        <mat-spinner mode="indeterminate" diameter="20" class="ml-5"></mat-spinner>
+    </div>
+    <div *ngIf="(isCompletedForGLA && isTeamPortalVisible) || isReportAllowed || isCompleted" 
+      [routerLink]="['/teams/explore/growth-leader-teams-profile']" routerLinkActive="nav-active" class="text-font">
+      Growth Leader Team Profile  
+    </div>
+    <div *ngIf="isStatusLoading">
+      <mat-spinner mode="indeterminate" diameter="20" class="ml-5"></mat-spinner>
+  </div>
+    <div *ngIf="surveyStatus == 'Generated' || surveyStatusForTAR == 'Generated' || isReportAllowed" [routerLink]="['/teams/explore/teams-alignment-profile']"
+      routerLinkActive="nav-active" class="text-font">
+      Team Alignment Profile
+    </div>
+  </div>
+</div>

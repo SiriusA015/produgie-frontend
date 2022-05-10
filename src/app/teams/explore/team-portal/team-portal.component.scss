@@ -1,0 +1,127 @@
+.pg-bg-green-button {
+  background-color: #3aa76d20;
+}
+
+.pg-text-gray {
+  color: #484848;
+}
+
+.pg-gl-list {
+  border-bottom: #e0e0e0 solid 2px;
+}
+
+.pg-gl-list:nth-last-child(1) {
+  border: none;
+}
+
+.spinner:before {
+  border: 4px solid #fff;
+  border-top-color: #fff;
+  display: none;
+}
+
+.example-margin {
+  margin: 0 12px;
+}
+
+.main-div {
+  background-color: white;
+  .card-section {
+    .card-body-step1 {
+      border-radius: 15px;
+    }
+  }
+
+  .leve-dialog {
+    background-color: red !important;
+  }
+}
+
+.text-font {
+  font-size: 14px;
+  color: #8e9aae;
+  margin-top: 2rem;
+}
+
+.color-grey {
+  color: #8e9aae;
+}
+
+.role-margin {
+  margin-top: 2rem;
+  padding-left: unset !important;
+}
+
+.padding-b {
+  padding-bottom: 1rem;
+}
+
+.btn-color {
+  background-color: #278ce9 !important;
+}
+
+.border-radius-card {
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+}
+
+.pt-1 {
+  padding-top: 1rem !important;
+}
+
+.pb-1 {
+  padding-bottom: 1rem !important;
+}
+
+.mt-2 {
+  margin-top: 20px !important;
+}
+
+.title-label {
+  font-size: 1.6rem;
+  color: #051532;
+}
+
+.matIcon {
+  color: #8e9aae;
+  margin-left: 15%;
+}
+
+.tableHeader {
+  width: 100%;
+  th {
+    font-weight: bold;
+    font-size: 16px;
+    color: #000000;
+  }
+}
+
+.titles {
+  margin-left: 1.5rem;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+}
+
+.survey {
+  background-color: #278ce9 !important;
+}
+
+.disable:hover {
+  cursor: not-allowed;
+}
+.disable:active {
+  pointer-events: none;
+}
+
+// .mat-tooltip.tooltip {
+//   // background-color: darkblue;
+//   font-size: 14px;
+//   width: 100%;
+// }
+
+.my-portal {
+  margin-top: 10rem;
+}

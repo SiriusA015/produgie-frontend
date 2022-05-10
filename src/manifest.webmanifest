@@ -1,0 +1,38 @@
+{
+  "name": "Produgie",
+  "short_name": "Produgie",
+  "theme_color": "#1976d2",
+  "background_color": "#fafafa",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "./assets/images/logo.svg",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "./assets/images/logo.svg",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "sprint/dashboard",
+  "scope": "/",
+  "shortcuts": [
+    {
+      "name": "Sprint: Mobile",
+      "short_name": "Sprint",
+      "description": "User Sprint",
+      "url": "sprint/dashboard",
+      "icons": [{ "src": "./assets/images/logo.svg", "sizes": "192x192" }]
+    },
+    {
+      "name": "Sprint: Mobile",
+      "short_name": "Sprint",
+      "description": "User Sprint",
+      "url": "sprint/dashboard",
+      "icons": [{ "src": "./assets/images/logo.svg", "sizes": "192x192" }]
+    }
+  ]
+}

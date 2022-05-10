@@ -1,0 +1,67 @@
+<nav
+  class="flex flex-row items-center justify-between px-4 bg-white"
+  *ngIf="isHandset$ | async"
+>
+  <ul class="flex w-full justify-between items-center sprint-bottom-menu">
+    <li class="flex justify-center items-center" [routerLink]="['/sprint/dashboard']" routerLinkActive="active" class="pb-2 pt-3">
+      <button class="focus:outline-none text-gray-600 rounded-full">
+        <div>
+          <!-- <mat-icon class="material-icons-outlined mat-icon-20 text-xl cursor-pointer text-gray-500 " 
+            >dashboard</mat-icon
+          > -->
+          <div class="flex flex-row justify-center"><img src="../../../../assets/images/menu/dashboard.svg" class="gray-img"/></div>
+          <div class="flex flex-row justify-center"><img src="../../../../assets/images/menu/dashboard-1.svg" class="blue-img"/></div>
+          <div style="font-size: 10px;" class="blue-font">Plan</div>
+        </div>
+      </button>
+    </li>
+    <li class="flex justify-center items-center" [routerLink]="['/sprint/roadmap']" routerLinkActive="active" class="pb-2 pt-3">
+        <button class="focus:outline-none text-gray-600 rounded-full">
+          <div>
+            <!-- <mat-icon class="material-icons-outlined mat-icon-20 text-xl cursor-pointer text-gray-500"
+              >double_arrow</mat-icon
+            > -->
+            <div class="flex flex-row justify-center"><img src="../../../../assets/images/menu/roadmap.svg" class="gray-img"/></div>
+            <div class="flex flex-row justify-center"><img src="../../../../assets/images/menu/roadmap-1.svg" class="blue-img"/></div>
+            <div style="font-size: 10px;" class="blue-font">Roadmap</div>
+          </div>
+        </button>
+      </li>
+    <li class="flex justify-center items-center" [routerLink]="['/sprint/calendar']" routerLinkActive="active" class="pb-2 pt-3">
+      <button class="focus:outline-none text-gray-600 rounded-full">
+        <div>
+          <!-- <mat-icon class="material-icons-outlined mat-icon-20 text-xl cursor-pointer text-gray-500"
+            >event</mat-icon
+          > -->
+          <div class="flex flex-row justify-center"><img src="../../../../assets/images/menu/calendar.svg" class="gray-img"/></div>
+          <div class="flex flex-row justify-center"><img src="../../../../assets/images/menu/calendar-1.svg" class="blue-img"/></div>
+          <div style="font-size: 10px;" class="blue-font">Calendar</div>
+        </div>
+      </button>
+    </li>
+    <li class="flex justify-center items-center" [routerLink]="['/sprint/effort']" routerLinkActive="active" class="pb-2 pt-3">
+      <button class="focus:outline-none text-gray-600 rounded-full">
+        <div>
+            <!-- <mat-icon svgIcon="snaphot_box" class="cursor-pointer text-gray-500 mat-icon-20 text-x pg-p-15">
+            </mat-icon> -->
+          <div class="flex flex-row justify-center"><img src="../../../../assets/images/menu/return-on-effort.svg" class="gray-img"/></div>
+          <div class="flex flex-row justify-center"><img src="../../../../assets/images/menu/return-on-effort-1.svg" class="blue-img"/></div>
+          <div style="font-size: 10px;" class="blue-font">ROE</div>
+        </div>
+      </button>
+    </li>
+    <li class="flex justify-center items-center" [routerLink]="['/sprint/trend']" routerLinkActive="active" class="pb-2 pt-3">
+        <button class="focus:outline-none text-gray-600 rounded-full">
+          <div>
+            <!-- <mat-icon class="material-icons-outlined mat-icon-20 text-xl cursor-pointer text-gray-500"
+            >timeline</mat-icon
+          > -->
+            <div class="flex flex-row justify-center"><img src="../../../../assets/images/menu/trends.svg" class="gray-img"/></div>
+            <div class="flex flex-row justify-center"><img src="../../../../assets/images/menu/trends-1.svg" class="blue-img"/></div>
+            <div style="font-size: 10px;" class="blue-font">Analytics</div>
+          </div>
+        </button>
+      </li>
+  </ul>
+</nav>
+<app-mat-svg-icon></app-mat-svg-icon>

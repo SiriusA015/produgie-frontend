@@ -1,0 +1,29 @@
+.profile-img {
+	border-radius: 100%;
+	overflow: hidden;
+	margin: 0 auto 20px;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 100%;
+		z-index: 1;
+	}
+
+	mat-icon {
+		position: absolute;
+		display: block;
+		color: #0d47a1;
+	}
+}
+
+.viewing-right {
+	width: 100%;
+
+	.pg {
+		width: 70%;
+		max-width: 70%;
+		margin: 6rem auto;
+	}
+}

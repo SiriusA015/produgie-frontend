@@ -1,0 +1,201 @@
+<div class="flex w-full flex-row h-full relative">
+  <div class="w-1/8 hover:w-2/6 bg-white  left-nav">
+    <app-left-nav></app-left-nav>
+  </div>
+  <div class="pg-container" style="padding-left:5rem; padding-right: 5rem">
+    <div class="mt-4"></div>
+    <div class="mb-2 flex flex-row justify-between">
+      <div class="flex flex-row items-center">
+        <span class="text-3xl">Focus Your Development</span
+        ><label class="pg-tooltip flex flex-row items-center ml-2"
+          ><mat-icon
+            svgIcon="info"
+            class="text-gray-200"
+            aria-hidden="false"
+          ></mat-icon
+          ><input type="checkbox" />
+          <div>
+            <h4 class="font-medium mb-1">Focus Your Development Description</h4>
+            <span class="font-light text-xs">
+              Consider current on-the-job challenges you have that will require
+              you to Set Vision and Inspire Action. Common challenges that stretch
+              this area are listed below. If one of them matches your on-the-job
+              challenge, select it for your development sprint. If not, please
+              select the custom sprint option.
+            </span>
+          </div>
+        </label>
+      </div>
+      <div class="flex flex-row items-center">
+        <div class="flex flex-row items-center cursor-pointer bg-white rounded-full">
+          <button
+            class="bg-transparent flex items-center focus:outline-none justify-center h-12 w-12"
+            [routerLink]="['/design']"
+          >
+            <mat-icon class="pg-txt-blue-bright" aria-hidden="false"
+              >navigate_before</mat-icon
+            >
+          </button>
+        </div>
+        <div
+          class="flex flex-row items-center justify-center h-12 w-12 cursor-pointer ml-4 pg-bg-blue-light rounded-full text-white"
+          [ngClass]="{ 'pg-bg-blue-dark': selected.length >= 3  && selectedDevelopment}"
+          (click)="delete()"
+        >
+          <button
+            class="bg-transparent flex items-center focus:outline-none"
+            [disabled]="selected.length < 3 || !selectedDevelopment"
+          ><mat-icon class="" aria-hidden="false">navigate_next</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-5 flex flex-row items-center">
+      <span class="text-2xl" style="color: #3d5dff">SELECT DEVELOPMENT</span
+      ><label class="pg-tooltip flex flex-row items-center ml-2"
+        ><mat-icon
+          svgIcon="info"
+          class="text-gray-200"
+          aria-hidden="false"
+        ></mat-icon
+        ><input type="checkbox" />
+        <div class="font-light text-xs">Development in description.</div>
+      </label>
+    </div>
+
+    <app-divider></app-divider>
+
+    <div class="w-full flex flex-col lg:flex-row mt-5 mb-5">
+      <div class="w-full lg:w-1/2">
+        <h5 class="flex items-center font-medium mb-5" style="color: #e0713f">
+          Recommended from Role Demands
+          <label class="pg-tooltip flex flex-row items-center ml-2"
+            ><mat-icon
+              svgIcon="info"
+              class="text-gray-200"
+              aria-hidden="false"
+            ></mat-icon
+            ><input type="checkbox" />
+            <div class="font-light text-xs">Role Demand in description.</div>
+          </label>
+        </h5>
+        <ul
+          class="font-medium"
+          style="color: #4b4b4b; font-size: 18px"
+          cdkDropList
+          #roleDemandsList="cdkDropList"
+          (cdkDropListDropped)="drop($event)"
+          [cdkDropListData]="roleDemands"
+          [cdkDropListConnectedTo]="[selectedList]"
+          [cdkDropListDisabled]="selected.length >= 3"
+        >
+          <li
+            class="flex items-center mb-5"
+            *ngFor="let item of roleDemands; let i = index"
+          >
+            <div cdkDrag [ngClass]="{ 'cursor-move': selected.length < 3 }">
+              <mat-icon
+                class="mr-4 align-middle cursor-pointer"
+                (click)="addToAddedList(i, item.type)"
+                >add</mat-icon
+              >
+              {{ item.value }}
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="w-full lg:w-1/2">
+        <h5 class="flex items-center font-medium mb-5" style="color: #e0713f">
+          Lowest Scoring
+          <label class="pg-tooltip flex flex-row items-center ml-2"
+            ><mat-icon
+              svgIcon="info"
+              class="text-gray-200"
+              aria-hidden="false"
+            ></mat-icon
+            ><input type="checkbox" />
+            <div class="font-light text-xs">Lowest Scoring in description.</div>
+          </label>
+        </h5>
+        <ul
+          class="font-medium"
+          style="color: #4b4b4b; font-size: 18px"
+          cdkDropList
+          #lowestScoringsList="cdkDropList"
+          (cdkDropListDropped)="drop($event)"
+          [cdkDropListData]="lowestScorings"
+          [cdkDropListConnectedTo]="[selectedList]"
+          [cdkDropListDisabled]="selected.length >= 3"
+        >
+          <li
+            class="flex items-center mb-5"
+            *ngFor="let item of lowestScorings; let i = index"
+          >
+            <div cdkDrag [ngClass]="{ 'cursor-move': selected.length < 3 }">
+              <mat-icon
+                class="mr-4 align-middle cursor-pointer"
+                (click)="addToAddedList(i, item.type)"
+                >add</mat-icon
+              >
+              {{ item.value }}
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="w-full border-dashed rounded-lg border-2 px-16"
+      cdkDropList
+      #selectedList="cdkDropList"
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListData]="selected"
+      [cdkDropListConnectedTo]="[roleDemandsList, lowestScoringsList]"
+      [cdkDropListDisabled]="selected.length >= 3"
+    >
+      <div
+        class="mx-auto rounded-b-lg px-16 py-3 font-medium"
+        style="background-color: #bdb9bf; width: max-content; color: #13001e"
+      >
+        <span>Select 3 priorities for Development from above</span>
+      </div>
+      <div class="w-full flex py-12">
+        <div
+          class="w-1/3 flex flex-row items-center justify-start"
+          [ngClass]="{
+            'cursor-move': selected.length < 3,
+            'cursor-pointer': selected.length === 3
+          }"
+          (click)="selectDevelopment(item.id)"
+          *ngFor="let item of selected; let i = index"
+          cdkDrag
+        >
+          <div
+            class="h-10 w-10 text-center flex items-center justify-center mr-3 rounded-sm development-orange"
+            [ngClass]="{ 'development-green': selectedDevelopment === item.id }"
+          >
+            <span *ngIf="selectedDevelopment !== item.id">{{ i + 1 }}</span>
+            <mat-icon *ngIf="selectedDevelopment === item.id" style="color: white"
+              >done</mat-icon
+            >
+          </div>
+          <div class="flex flex-col items-start">
+            <span class="font-medium"
+              >{{ item.value }}
+              <mat-icon
+                class="pg-txt-orange ml-2 align-middle cursor-pointer"
+                (click)="deleteFromAddedList(i, item.type)"
+                >remove_circle</mat-icon
+              ></span
+            >
+            <span class="font-medium" style="color: #e0713f">{{
+              item.type === "roleDemand" ? "Role Demands" : "Lowest Scoring"
+            }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-mat-svg-icon></app-mat-svg-icon>

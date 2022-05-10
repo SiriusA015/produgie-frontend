@@ -1,0 +1,66 @@
+.cross-right{
+    float:right;
+    color:#88898c;
+    font-size: 20px;
+}
+.background-color{
+    background-color: #F3F8FF;
+    border-radius:10px;
+    margin-top:20px;
+    padding: 0 15px;
+    position: relative;
+}
+.border-bottom{
+    border-bottom:1px solid #dbdde1 !important;
+}
+.text-margin{
+    padding: 15px 0 0;
+}
+.button-container{
+    text-align:center;
+    margin-top:30px;
+}
+.btn{
+  
+    // text-align: center;
+    // border: 1px solid#278ce9;
+    padding: 15px;
+    // background-color:#278ce9;
+    // color: white;
+    // font-weight: bold;
+   
+}
+.display-span{
+    display: inline-flex;
+}
+.color{
+    color:#278ce9;
+    position: absolute;
+    right: 15px;
+}
+.margin-title{
+    margin-left:10px;
+}
+.date-font{
+    font-size: 16px;
+}
+.title-font{
+    font-size: 12px;
+    font-weight:bold;
+    padding-right: 15px;
+}
+.date-font{
+    color:#8e9aae;
+    font-size:12px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+.event-date-font{
+    font-size:16px;
+    color:#051532;
+    font-weight: bold;
+}
+
+::ng-deep .mat-dialog-container {
+    padding: 20px;
+}

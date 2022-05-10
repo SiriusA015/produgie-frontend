@@ -1,0 +1,254 @@
+<!-- *ngIf="actions.length > 0 || customActions.length > 0" -->
+<div class="relative config-sprint" *ngIf="outcome.length > 0 || customActions.length > 0">
+  <div class="bg-white rounded-md flex flex-col shadow-lg border"
+    [ngClass]="grayOverlay ? 'border-gray-500' : ' border-green-600 bod'">
+    <div class="flex flex-row">
+      <span class="heading-5">Outcomes to Deliver</span>
+      <label class="pg-tooltip flex flex-row items-center focus:outline-none">
+        <mat-icon fontSet="material-icons-outlined" class="text-gray-500 mat-icon-18">info</mat-icon><input
+          type="checkbox" />
+        <div class="font-light text-xs">
+          Select outcomes you want to achieve from this Sprint
+        </div>
+      </label>
+    </div>
+    <div class="flex justify-between items-center">
+      <span class="font-12-heading">(Select up to {{ maxSelection }})</span>
+      <!-- <span
+        class="cursor-pointer pg-txt-blue-bright text-xs font-semibold"
+        (click)="expandAll()"
+        >{{
+          this.shownAction.size === this.actions.length &&
+          this.shownActionCustom.size === this.customActions.length
+            ? "Collapse All"
+            : "Expand All"
+        }}</span
+      > -->
+    </div>
+    <!-- <hr /> -->
+    <!-- *ngIf="actions.length > 0" 
+    *ngFor="let action of actions; let i = index"-->
+    <div *ngIf="outcome.length > 0" class="mt-3">
+      <div *ngFor="let action of outcome; let i = index" class="border cursor-pointer pg-box-preview position-block"
+        (click)="selectAction(action, i)" [ngClass]="{
+          'border-2 pg-border-green-bright backg pg-selected':
+            selectedActions.has(action.id),
+          'pg-border-b-none': selectedActions.has(outcome[i + 1]?.id)
+        }">
+        <span class="material-icons cursor-pointer position-cross" *ngIf="action.isCustom"
+        (click)="deleteOutcome(action)">cancel</span>
+
+        <div class="
+            relative
+            h-full
+            ml-label
+            flex flex-row
+            justify-between
+            items-center
+          ">
+          <!-- <span *ngIf="selectedActions.has(action.id)"
+            class="h-16 w-16 top-0 right-0 absolute border rounded-full pg-bg-green -mr-8 -mt-8">
+            <mat-icon class="text-white mat-icon-18 selection-green-tick"
+              >check</mat-icon>
+          </span> -->
+          <div class="flex flex-row">
+            <div class="flex flex-col">
+              <span class="heading-5">{{ action.label }}</span>
+            </div>
+            <div class="mr-10">
+              <!-- <mat-icon [svgIcon]="action.icon" class="mat-icon-28 icon-width" [ngClass]="action.iconclass" aria-hidden="false">
+              </mat-icon> -->
+            </div>
+          </div>
+          <div class="flex flex-row items-center justify-between">
+            <!-- <mat-icon
+              class="pg-txt-blue-bright"
+              (click)="showDescription(action.id); $event.stopPropagation()"
+              >{{
+                shownAction.has(action.id)
+                  ? "keyboard_arrow_up"
+                  : "keyboard_arrow_down"
+              }}</mat-icon
+            > -->
+          </div>
+          <!-- <div
+          class="flex ">
+          <button class="flex bg-transparent justify-center items-center focus:outline-none"
+            [disabled]="!selectedActions.has(action.id)">
+            <mat-icon class="person-add" aria-hidden="false">person_add</mat-icon>
+          </button>
+        </div> -->
+        </div>
+        <div class="flex flex-row justify-between items-center padding-des">
+          <span class="text-base font-14-heading word-break">
+            {{ action.description }}
+          </span>
+        </div>
+        <!-- <hr /> -->
+      </div>
+    </div>
+
+    <!-- <hr /> -->
+    <div *ngIf="customActions.length > 0">
+      <div class="flex flex-row py-4">
+        <span class="text-lg font-bold font-14-heading">Custom Outcome</span>
+        <label class="pg-tooltip flex flex-row items-center ml-2 mb-0">
+          <mat-icon svgIcon="info" class="text-gray-200" aria-hidden="false"></mat-icon><input type="checkbox" />
+          <div class="font-light text-xs">
+            Select Custom Outcome in description.
+          </div>
+        </label>
+      </div>
+      <div *ngFor="let action of customActions; let i = index"
+        class="cursor-pointer overflow-hidden pg-box-preview border" (click)="selectActionCustom(action, i)" [ngClass]="{
+          'border-2 pg-border-green-bright backg pg-selected':
+            selectedActionsCustom.has(action.id),
+          'pg-border-b-none': selectedActionsCustom.has(
+            customActions[i + 1]?.id
+          )
+        }">
+        <div class="relative h-full flex flex-row justify-between items-center">
+          <!-- <span *ngIf="selectedActionsCustom.has(action.id)"
+            class="h-16 w-16 top-0 right-0 absolute border rounded-full pg-bg-green -mr-8 -mt-8">
+            <mat-icon class="text-white mat-icon-18 selection-green-tick">check
+            </mat-icon>
+          </span> -->
+          <div class="flex flex-row items-center">
+            <!-- <mat-icon
+              [svgIcon]="action.icon"
+              class="mat-icon-28"
+              [ngClass]="action.iconclass"
+              aria-hidden="false"
+            >
+            </mat-icon> -->
+            <div class="flex flex-col">
+              <span class="heading-5">{{ action.label }}</span>
+            </div>
+          </div>
+          <!-- <div class="flex flex-row items-center justify-between">
+            <mat-icon class="pg-txt-blue-bright" (click)="
+                showDescriptionCustom(action.id); $event.stopPropagation()
+              ">
+              {{
+              shownActionCustom.has(action.id)
+              ? "keyboard_arrow_up"
+              : "keyboard_arrow_down"
+              }}
+            </mat-icon>
+          </div> -->
+        </div>
+        <div class="flex flex-row justify-between items-center">
+          <span class="font-14-heading">
+            {{ action.description }}
+          </span>
+        </div>
+        <!-- <hr /> -->
+      </div>
+    </div>
+
+    <div class="flex justify-start items-center mt-4">
+      <button class="bg-transparent flex items-center focus:outline-none custombtn" [helipopper]="custom"
+        helipopperTrigger="manual" (click)="customMenu.show(); clearCustomForm(); stopPropagation($event)"
+        #customMenu="helipopper" helipopperAlignment="start" helipopperPlacement="auto" helipopperVariation="popper">
+        <!-- <mat-icon class="mat-icon-14 ">add</mat-icon> -->
+        <span style="color: #278ce9">+ add custom</span>
+        <label class="
+            pg-tooltip
+            flex flex-row
+            items-center
+            ml-2
+            mb-0
+            focus:outline-none
+          ">
+          <mat-icon fontSet="material-icons-outlined" class="text-gray-500 mat-icon-18">info</mat-icon><input
+            type="checkbox" />
+          <div class="font-light text-xs">
+            Click to add items to make this Sprint more meaningful to you and
+            your role
+          </div>
+        </label>
+      </button>
+    </div>
+
+    <!-- <div class="flex justify-end mt-10">
+      <button class="donebtn btn" (click)="next()" *ngIf="grayOverlay == false">
+        Done
+      </button>
+    </div> -->
+  </div>
+
+  <ng-template #custom>
+    <div class="bg-white w-full" (click)="stopPropagation($event)" [formGroup]="customForm">
+      <div class="flex flex-row justify-between items-center" (click)="stopPropagation($event)">
+        <span class="font-14-heading">Add Custom Outcome</span>
+      </div>
+      <div class="my-2" (click)="stopPropagation($event)">
+        <input class="
+            appearance-none
+            bg-transparent
+            border-b border-gray-600
+            w-full
+            text-gray-700
+            py-2
+            leading-tight
+            focus:outline-none
+          " type="text" formControlName="label" placeholder="Label*" />
+      </div>
+      <div class="my-2" (click)="stopPropagation($event)">
+        <textarea placeholder="Description*" class="
+            border-b border-gray-600
+            text-gray-700
+            py-2
+            w-full
+            focus:outline-none
+            bg-transparent
+          " rows="3" formControlName="description"></textarea>
+      </div>
+      <div class="" (click)="stopPropagation($event)">
+        <button class="btn focus:outline-none" [ngClass]="
+            customForm.valid
+              ? 'pg-bg-blue-dark text-white'
+              : 'bg-gray-400 pg-txt-blue-bright'
+          " [disabled]="customForm.invalid" (click)="
+            addCustom();
+            customMenu.hide();
+            clearCustomForm();
+            stopPropagation($event)
+          ">
+          Add
+        </button>
+      </div>
+    </div>
+  </ng-template>
+  <div class="
+      absolute
+      top-0
+      left-0
+      bg-gray-100
+      w-full
+      h-full
+      opacity-50
+      cursor-pointer
+    " *ngIf="grayOverlay" (click)="grayClicked()"></div>
+  <div class="
+      absolute
+      top-0
+      left-0
+      bg-gray-100
+      w-full
+      h-full
+      opacity-50
+      cursor-pointer
+    " *ngIf="isLoading"></div>
+  <div class="
+      absolute
+      top-0
+      left-0
+      bg-transparent
+      w-full
+      h-full
+      cursor-pointer
+      spinner
+    " *ngIf="isLoading"></div>
+</div>
+<app-mat-svg-icon></app-mat-svg-icon>

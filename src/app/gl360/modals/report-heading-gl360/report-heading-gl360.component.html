@@ -1,0 +1,146 @@
+<div class="flex pg-h-screen-w-header-m flex-col mx-20 lg:mx-32">
+  <div class="flex justify-end items-center flex-shrink-0 text-white mt-10">
+    <img src="/assets/images/logo2.png" alt="logo" width="120" />
+  </div>
+  <div class="flex flex-col pg-w-h justify-center">
+    <span class="mb-10 text-6xl font-bold text-gray-700" style="margin-top: 10%"
+      >GROWTH LEADER 360<sup>0</sup></span
+    >
+    <span class="text-xl font-semibold text-gray-700"
+      >Report for {{ username }}</span
+    >
+    <div style="page-break-after: always"></div>
+    <div
+      class="flex download-buttons print-view"
+      data-html2canvas-ignore="true"
+    >
+      <button
+        (click)="downloadReport()"
+        [disabled]="!isReportAnabled"
+        [ngClass]="{ btnDisabled: !isReportAnabled }"
+        class="border border-gray-500 rounded-md flex flex-row justify-evenly items-center bg-white px-6 py-4 focus:outline-none right-margin"
+      >
+        <mat-icon
+          role="img"
+          class="mat-icon notranslate pg-txt-blue-bright material-icons mat-icon-no-color"
+          aria-hidden="true"
+          >download_for_offline</mat-icon
+        >
+        <span class="pg-txt-blue-bright font-bold" id="download">Download</span>
+      </button>
+
+      <!--  -->
+
+      <button
+        printSectionId="printMe"
+        [useExistingCss]="true"
+        styleSheetFile="{{ styleName }}"
+        [disabled]="!isReportAnabled"
+        [ngClass]="{ btnDisabled: !isReportAnabled }"
+        ngxPrint
+        class="border border-gray-500 rounded-md flex flex-row justify-evenly items-center bg-white px-6 py-4 focus:outline-none"
+      >
+        <mat-icon
+          role="img"
+          class="mat-icon notranslate pg-txt-blue-bright material-icons mat-icon-no-color"
+          aria-hidden="true"
+          >print</mat-icon
+        >
+        <span class="pg-txt-blue-bright font-bold">Print</span>
+      </button>
+      <!-- [disabled]="!isReportAnabled"
+        [ngClass]="{'btnDisabled': !isReportAnabled}" -->
+    </div>
+  </div>
+</div>
+<div style="page-break-after: always"></div>
+<div class="mx-20 lg:mx-32">
+  <div class="mb-10">
+    <span class="font-bold text-2xl"
+      >About Your Growth Leader 360<sup>0</sup></span
+    >
+  </div>
+  <div class="mb-10">
+    <span
+      >A Growth Leader requires capabilities to deliver results, energize others
+      and build capabilities for the future. This is true for employees at all
+      levels of the business – although not all capabilities are important in
+      all roles.</span
+    >
+  </div>
+  <div class="mb-10">
+    <span
+      >Your Growth Leader 360<sup>0</sup> includes input from your stakeholders
+      on</span
+    >
+  </div>
+  <div class="mb-10 pl-6">
+    <ul class="list-disc">
+      <li>
+        <span class="font-semibold">Outcomes vs. 100% Definitions. </span
+        ><span
+          >Stakeholders rated how well you exhibit a capability against the
+          ideal outcomes someone would achieve if the capability were executed
+          perfectly</span
+        >
+      </li>
+      <li>
+        <span class="font-semibold">Importance to Develop. </span
+        ><span
+          >Stakeholders rated the importance of developing this capability
+          now</span
+        >
+      </li>
+      <li>
+        <span class="font-semibold">Advice and Input. </span
+        ><span
+          >Stakeholders provided suggestions of actions you can take to
+          improve</span
+        >
+      </li>
+    </ul>
+  </div>
+  <div class="mb-10">
+    <span
+      >Your profile is compared to professionals and leaders in some great
+      companies around the world. Don’t expect all of your scores to be ‘high’
+      against this benchmark!</span
+    >
+  </div>
+  <div class="mb-10">
+    <span>
+      When reviewing your report, prioritize development in areas where:
+    </span>
+  </div>
+  <div class="mb-10 pl-10">
+    <ul class="list-disc">
+      <li>
+        <span>Many stakeholders rate the area as important to develop</span>
+      </li>
+      <li>
+        <span>You score lower vs. the other capabilities</span>
+      </li>
+      <li>
+        <span
+          >You score low in an area for an important stakeholder group (e.g.,
+          your team rating you low on Develop and Empower Talent)</span
+        >
+      </li>
+    </ul>
+  </div>
+  <div class="mb-10">
+    <span>
+      All material contained within this report is confidential and is copy
+      right protected (©2021 Organisation Solutions Pte Ltd)
+    </span>
+  </div>
+  <div class="mb-10">
+    <app-growth-leader-circle
+      [capabilities]="fCapabilities"
+      [perform]="capPerform"
+      [transform]="capTransform"
+      [energize]="capEnergise"
+    ></app-growth-leader-circle>
+  </div>
+</div>
+<app-mat-svg-icon></app-mat-svg-icon>

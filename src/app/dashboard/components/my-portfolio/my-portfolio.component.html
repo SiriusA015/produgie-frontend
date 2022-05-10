@@ -1,0 +1,92 @@
+<div class="fixed left-0 w-full h-screen flex justify-center items-center bg-white" style="z-index: 999; top: 76px;" *ngIf="loadCounter>0">
+  <div class="loader"></div>
+</div>
+<div class="flex w-full flex-row h-full relative">
+  <div class="">
+    <app-dash-left-nav></app-dash-left-nav>
+  </div>
+  <div class="pg-container ml-16" style="padding-left: 5rem; padding-right: 2rem">
+    <div class="pt-8"></div>
+    <div class="flex flex-row justify-between items-center mb-8">
+      <span class="text-2xl font-bold">Portfolio</span>
+    </div>
+    <div class="flex justify-center items-center pg-h" *ngIf="nullPortfolio">
+      <span class="text-2-xl font-semibold capitalize">
+        you are yet to store your development plan to portfolio </span>
+    </div>
+    <div *ngIf="!nullPortfolio">
+      <app-sprint-selection-details
+        *ngIf="data?.userSprint && data?.sprint"
+        [frequency]="data?.userSprint"
+        [userSprints]="userSprints"
+        [selectedUserSprint]="data?.userSprint"
+        [sprint]="data?.sprint"
+        [sprintNo] = "data?.sprintNo"
+        (selectedSprint)="onSprintSelect($event)"
+      ></app-sprint-selection-details>
+      <app-md-abo-overview
+        [actions]="allaction"
+        [outcomes]="alloutcome"
+        [behaviours]="allbehavior"
+        [sprintId]="data?.userSprint?.sprintId"
+      ></app-md-abo-overview>
+      <div
+        class="w-full flex flex-col lg:flex-row justify-between bg-white py-4 px-8 shadow-lg mb-4 rounded"
+      >
+        <div class="flex w-full justify-between mb-4 lg:mb-0 items-center">
+          <h3 class="text-2xl lg:text-xl pg-text-333 font-bold">Sprint Crew</h3>
+          <div class="flex justify-end items-center">
+            <div
+              class="flex items-center cursor-pointer py-2 px-4"
+              (click)="openAdvice()"
+            >
+              <mat-icon
+                fontSet="material-icons-outlined"
+                class="mat-icon-24 pg-txt-blue-bright"
+                aria-hidden="false"
+                matBadgeColor="warn"
+                >sms</mat-icon
+              >
+              <span class="ml-2 text-gray-500">Advice</span>
+            </div>
+            <div
+              class="flex items-center cursor-pointer py-2 px-4"
+              (click)="openComment()"
+            >
+              <mat-icon
+                fontSet="material-icons-outlined"
+                class="mat-icon-24 pg-txt-blue-bright"
+                aria-hidden="false"
+                matBadgeColor="warn"
+                >send</mat-icon
+              >
+              <span class="ml-2 text-gray-500">Feedback</span>
+            </div>
+            <div class="flex items-center cursor-pointer py-2 px-4">
+              <mat-icon
+                fontSet="material-icons-outlined"
+                class="mat-icon-24 text-gray-400"
+                aria-hidden="false"
+                >done</mat-icon
+              >
+              <span class="ml-2 text-gray-400">Review</span>
+            </div>
+            <div class="flex items-center cursor-pointer py-2 px-4">
+              <mat-icon
+                fontSet="material-icons-outlined"
+                class="mat-icon-24 pg-txt-blue-bright"
+                aria-hidden="false"
+                >people_outline</mat-icon
+              >
+              <span class="ml-2 text-gray-400">Engagement</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <app-md-sprint-crew-overview
+        [crews]="data?.crew"
+      ></app-md-sprint-crew-overview>
+    </div>
+  </div>
+</div>
+<app-mat-svg-icon></app-mat-svg-icon>

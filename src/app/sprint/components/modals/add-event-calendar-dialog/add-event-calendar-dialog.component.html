@@ -1,0 +1,554 @@
+<div class="main-container h-full">
+  <div class="flex flex-col justify-between h-full">
+    <div class="flex flex-col justify-between" [formGroup]="eventForm">
+      <div
+        class="flex flex-row justify-between items-start p-8 border-b border-gray-300"
+      >
+        <div class="flex flex-col">
+          <span class="font-bold text-2xl"
+            >{{ data.isEdit ? "Edit " : "Add " }} Event
+          </span>
+          <span class="text-base text-gray-500">
+            {{ date | date: "mediumDate" }} | {{ date | date: "EEEE" }}
+          </span>
+        </div>
+        <div class="flex flex-row justify-between items-center">
+          <mat-icon (click)="onNoClick()">close</mat-icon>
+        </div>
+      </div>
+      <div *ngIf="loadCounter > 0">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>
+      <div
+        class="flex p-8 border-b border-gray-300"
+        *ngIf="
+          data?.data?.event?.eventType?.code !== 'WC' &&
+          data?.data?.event?.eventType?.code !== 'FF'
+        "
+      >
+        <div
+          *ngIf="!data?.isEdit"
+          class="flex w-full flex-row justify-between items-center"
+          (click)="showActionChange()"
+        >
+        <span class="text-sm pg-text-sprint-card font-semibold" *ngIf="selectedAction.id === 0">
+          {{ selectedAction.label }}
+        </span>
+          <span class="text-sm pg-text-sprint-card font-semibold" *ngIf="selectedAction.id !== 0">
+            {{ selectedAction.label }}: {{selectedAction.description}}
+          </span>
+          <mat-icon>expand_more</mat-icon>
+        </div>
+        <div
+          *ngIf="data?.isEdit"
+          class="flex w-full flex-row justify-between items-center"
+        >
+          <span class="text-base font-semibold">
+            {{ selectedAction.label }}
+          </span>
+        </div>
+      </div>
+      <div
+        class="flex p-8 border-b border-gray-300"
+        *ngIf="selectedAction.id !== 0"
+      >
+        <div
+          class="flex w-full flex-row justify-between items-center"
+          (click)="showActivityChange()"
+        >
+          <span class="text-sm font-semibold">
+            {{ selectedActivity.title }}
+          </span>
+          <mat-icon>expand_more</mat-icon>
+        </div>
+      </div>
+      <div
+        class="flex flex-row pg-bg-green-light p-8"
+        *ngIf="
+          data?.data?.event?.eventType?.code === 'WC' ||
+          data?.data?.event?.eventType?.code === 'FF'
+        "
+      >
+        <span class="pg-txt-green text-sm font-semibold">{{
+          data?.data?.event?.eventType?.title
+        }}</span>
+      </div>
+      <div
+        class="flex flex-row justify-between items-center p-8 date-picker"
+        *ngIf="data?.data?.event?.eventType?.code === 'WC' && data.isEdit"
+      >
+        <div class="flex w-full flex-row justify-between items-center">
+          <span class="text-sm font-semibold"> Change Date </span>
+          <dp-date-picker
+            [mode]="'day'"
+            [placeholder]="date | date: 'dd-MM-yyyy'"
+            [(ngModel)]="selectedDate"
+            (onSelect)="changeDate($event)"
+            [config]="datePickerConfig"
+          ></dp-date-picker>
+        </div>
+      </div>
+      <div
+        class="flex flex-row justify-between items-center p-8"
+        *ngIf="data?.data?.event?.eventType?.code === 'WC' && data.isEdit"
+      >
+        <div class="flex w-full flex-row justify-between items-center">
+          <span class="text-sm font-semibold"> Schedule </span>
+          <ng-template #timePickerElse [ngOutletContext]="context">
+            <ngx-timepicker-field
+              [defaultTime]="'12:00 AM'"
+              (timeChanged)="getStartTime($event)"
+              [controlOnly]="true"
+            ></ngx-timepicker-field>
+            <span class="mx-2">-</span>
+            <ngx-timepicker-field
+              [defaultTime]="'01:00 AM'"
+              (timeChanged)="getEndTime($event)"
+              [controlOnly]="true"
+            ></ngx-timepicker-field>
+          </ng-template>
+          <div
+            class="flex flex-row"
+            *ngIf="
+              meetingStart != null && meetingEnd != null;
+              else timePickerElse
+            "
+          >
+            <ngx-timepicker-field
+              [defaultTime]="meetingStart"
+              (timeChanged)="getStartTime($event)"
+              [controlOnly]="true"
+            ></ngx-timepicker-field>
+            <ngx-timepicker-field
+              [defaultTime]="meetingEnd"
+              (timeChanged)="getEndTime($event)"
+              [controlOnly]="true"
+            ></ngx-timepicker-field>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex flex-col"
+        *ngIf="
+          selectedActivity.title !== 'Select Activity' &&
+          data?.data?.event?.eventType?.code !== 'WC' &&
+          data?.data?.event?.eventType?.code !== 'FF'
+        "
+      >
+        <div
+          class="flex flex-row justify-between items-center p-8 border-b border-gray-300"
+          *ngIf="selectedActivity.code === 'ACS'"
+        >
+          <span
+            class="text-sm font-semibold flex items-center"
+            (click)="showSelectStakeholderChange()"
+          >
+            Select Stakeholder
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </span>
+          <div class="flex flex-row justify-center items-center">
+            <span
+              class="flex justify-end items-center -mr-4"
+              *ngIf="activityStakeHolder.length > 0"
+            >
+              <div
+                class="h-10 w-10 p-1 rounded-full bg-white -ml-4"
+                *ngFor="let sh of activityStakeHolder"
+              >
+                <span
+                  class="pg-stakeholder-image-bg rounded-full h-full w-full flex justify-center items-center border-white text-white uppercase"
+                >
+                  {{ sh.name.charAt(0) }}
+                </span>
+              </div>
+            </span>
+            <div
+              class="rounded-full pg-light-outer w-10 h-10 flex justify-center items-center"
+              *ngIf="activityStakeHolder.length === 0"
+            >
+              <div
+                class="rounded-full pg-dark-outer w-6 h-6 flex justify-center items-center"
+              >
+                <div class="flex justify-center items-center p-2">
+                  <button
+                    class="flex bg-transparent justify-center items-center focus:outline-none"
+                  >
+                    <mat-icon
+                      class="text-gray-500 mat-icon-18"
+                      aria-hidden="false"
+                      (click)="showStakeholderChange()"
+                      >person_add</mat-icon
+                    >
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              class="rounded-full bg-white border border-dashed border-gray-500 w-8 h-8 p-1 flex justify-center items-center"
+              *ngIf="activityStakeHolder.length > 0"
+            >
+              <button
+                class="flex bg-transparent justify-center items-center focus:outline-none"
+              >
+                <mat-icon
+                  class="bg-white mat-icon-12 pg-txt-blue-bright"
+                  aria-hidden="false"
+                  (click)="showStakeholderChange()"
+                  >person_add</mat-icon
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex flex-row justify-between items-center p-8 border-b border-gray-300"
+          *ngIf="selectedActivity.code === 'ESC'"
+        >
+          <span class="text-sm font-semibold flex items-center" (click)="showSelectCrewChange()">
+            Select Support Crew
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </span>
+          <span
+            class="flex justify-end items-center -mr-4"
+            *ngIf="activityCrew.length > 0"
+          >
+            <div
+              class="h-10 w-10 p-1 rounded-full bg-white -ml-4"
+              *ngFor="let crew of activityCrew"
+            >
+              <span
+                class="pg-stakeholder-image-bg rounded-full h-full w-full flex justify-center items-center border-white text-white uppercase"
+              >
+                {{ crew.name.charAt(0) }}
+              </span>
+            </div>
+          </span>
+        </div>
+        <div
+          class="flex flex-row justify-between items-center px-8 pt-2"
+          *ngIf="selectedActivity.code !== 'FSL'"
+        >
+          <mat-button-toggle-group
+            #group="matButtonToggleGroup"
+            class="focus:outline-none"
+            name="fontStyle"
+            aria-label="Font Style"
+            [value]="meetingType"
+            (change)="onValChange(group.value)"
+          >
+            <mat-button-toggle value="online" class="focus:outline-none"
+              >Online</mat-button-toggle
+            >
+            <mat-button-toggle value="offline" class="focus: outline-none"
+              >Offline</mat-button-toggle
+            >
+          </mat-button-toggle-group>
+        </div>
+        <div
+          class="flex flex-row justify-between items-center p-8"
+          *ngIf="selectedActivity.code !== 'FSL'"
+        >
+          <input
+            class="appearance-none bg-transparent border-b border-gray-500 w-full pg-text-sprint-card pt-2 pb-4 leading-tight focus:outline-none text-sm"
+            type="text"
+            formControlName="meeting"
+            placeholder="{{
+              meetingType === 'online' ? 'Meeting link (optional)' : 'Meeting address (optional)'
+            }}"
+          />
+        </div>
+        <div
+          class="flex flex-row justify-between items-center p-8 date-picker"
+          *ngIf="data.isEdit"
+        >
+          <div class="flex w-full flex-row justify-between items-center">
+            <span class="text-sm pg-text-sprint-card font-semibold">
+              Change Date
+            </span>
+            <dp-date-picker
+              [mode]="'day'"
+              [placeholder]="date | date: 'dd-MM-yyyy'"
+              [(ngModel)]="selectedDate"
+              (onSelect)="changeDate($event)"
+              [config]="datePickerConfig"
+            ></dp-date-picker>
+          </div>
+        </div>
+        <div class="flex flex-row justify-between items-center p-8">
+          <div class="flex w-full flex-row justify-between items-center">
+            <span class="text-sm pg-text-sprint-card font-semibold">
+              Schedule
+            </span>
+            <div class="flex flex-row">
+              <ngx-timepicker-field
+                [defaultTime]="meetingStart"
+                (timeChanged)="getStartTime($event)"
+                [controlOnly]="true"
+              ></ngx-timepicker-field>
+              <span class="mx-2 font-bold">-</span>
+              <ngx-timepicker-field
+                [defaultTime]="meetingEnd"
+                (timeChanged)="getEndTime($event)"
+                [controlOnly]="true"
+              ></ngx-timepicker-field>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-row justify-between items-center p-8">
+          <textarea
+            formControlName="description"
+            class="w-full border-b border-gray-500 focus:outline-none"
+            rows="3"
+            matInput
+            placeholder="Description (optional)"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+    <button
+      class="flex w-full pg-bg-blue-bright rounded-t-md py-4 text-center justify-center text-white"
+      *ngIf="
+        data?.data?.event?.eventType?.code === 'WC' ||
+        data?.data?.event?.eventType?.code === 'FF'
+      "
+      (click)="updateWC()"
+    >
+      UPDATE
+    </button>
+    <button
+      class="flex w-full pg-bg-blue-bright rounded-t-md py-6 text-center justify-center text-white text-lg font-semibold"
+      [ngClass]="{'bg-gray-400': eventForm.invalid || loadCounter > 0}"
+      *ngIf="selectedActivity.title !== 'Select Activity'"
+      [disabled]="eventForm.invalid || loadCounter > 0"
+      (click)="data.isEdit ? updateEvent() : storeEvent()"
+    >
+      {{ data.isEdit ? "Save" : "Confirm" }}
+    </button>
+  </div>
+  <div
+    class="bg-white rounded-t-md relative"
+    [ngClass]="showAction ? 'overlay-se-show' : 'overlay-se-hide'"
+  >
+    <div class="flex justify-center items-center py-2">
+      <div
+        class="w-8 h-2 bg-gray-300 rounded-md"
+        (click)="showAction = false"
+      ></div>
+    </div>
+    <div class="text w-full">
+      <div class="flex font-bold justify-center mt-6 mb-4 text-lg">
+        Select Action
+      </div>
+      <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+        [(ngModel)]="selectedAction"
+      >
+        <div class="flex items-center" *ngFor="let action of actionsSelected">
+          <mat-radio-button
+            class="example-radio-button"
+            [value]="action"
+            (click)="selectAction(action)"
+          >
+            <span class="text-left text-base font-semibold">
+              {{ action.label }}</span
+            >
+          </mat-radio-button>
+        </div>
+      </mat-radio-group>
+      <div class="flex flex-col content-between">
+        <!-- <div class="flex flex-row w-full justify-around items-center pg-min-h-42" (click)="selectActivity()">
+                  <span class="flex w-1/5 justify-center">
+                    <input type="radio" name="activity">
+                  </span>
+                  <span class="w-4/5 text-left justify-start pg-action-labels font-semibold">Align & Communicate with Stakeholders</span>
+              </div>
+            -->
+      </div>
+    </div>
+  </div>
+  <div
+    class="bg-white rounded-t-md relative"
+    [ngClass]="showActivity ? 'overlay-show' : 'overlay-hide'"
+  >
+    <div class="flex justify-center items-center py-2">
+      <div
+        class="w-8 h-2 bg-gray-300 rounded-md"
+        (click)="showActivity = false"
+      ></div>
+    </div>
+    <div class="text w-full">
+      <div class="flex font-bold justify-center mt-6 mb-4 text-lg">
+        Select Activity
+      </div>
+      <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+        [(ngModel)]="selectedActivity"
+      >
+        <div class="flex items-center" *ngFor="let activity of activities">
+          <mat-radio-button
+            class="example-radio-button"
+            [value]="activity"
+            (click)="selectActivity(activity)"
+          >
+            <span class="text-left text-base font-semibold">{{
+              activity.title
+            }}</span>
+          </mat-radio-button>
+        </div>
+      </mat-radio-group>
+      <div class="flex flex-col content-between">
+        <!-- <div class="flex flex-row w-full justify-around items-center pg-min-h-42" (click)="selectActivity()">
+                  <span class="flex w-1/5 justify-center">
+                    <input type="radio" name="activity">
+                  </span>
+                  <span class="w-4/5 text-left justify-start pg-action-labels font-semibold">Align & Communicate with Stakeholders</span>
+              </div>
+            -->
+      </div>
+    </div>
+  </div>
+  <div
+    class="bg-white rounded-t-md relative"
+    [ngClass]="showStakeHolder ? 'overlay-sh-show' : 'overlay-sh-hide'"
+  >
+    <div class="text w-full absolute top-0">
+      <div class="flex justify-center items-center py-2">
+        <div
+          class="w-8 h-2 bg-gray-300 rounded-md"
+          (click)="showStakeHolder = false"
+        ></div>
+      </div>
+      <div class="flex font-bold justify-center mt-6 mb-4 text-lg">
+        Add Stakeholder
+      </div>
+      <div class="bg-white h-full flex flex-col" [formGroup]="stakeholderForm">
+        <div class="my-2 mx-2">
+          <input
+            class="appearance-none bg-transparent text-base border-b border-gray-500 w-full pg-text-sprint-card pt-2 pb-4 leading-tight focus:outline-none"
+            type="text"
+            formControlName="name"
+            placeholder="Name*"
+          />
+        </div>
+        <div class="my-2 mx-2">
+          <input
+            class="appearance-none bg-transparent text-base border-b border-gray-500 w-full pg-text-sprint-card pt-2 pb-4 leading-tight focus:outline-none"
+            type="email"
+            formControlName="email"
+            placeholder="Email*"
+          />
+        </div>
+        <button
+          class="w-full py-2 rounded-t-md focus:outline-none"
+          [ngClass]="
+            stakeholderForm.valid
+              ? 'pg-bg-blue-bright text-white'
+              : 'bg-gray-400 pg-txt-blue-bright'
+          "
+          [disabled]="stakeholderForm.invalid"
+          (click)="storeStakeHolder(); clearForm(); stopPropagation($event)"
+        >
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="bg-white rounded-t-md relative"
+    [ngClass]="showSelectStakeHolder ? 'overlay-ssh-show' : 'overlay-ssh-hide'"
+  >
+    <div class="flex justify-center items-center py-2">
+      <div
+        class="w-8 h-2 bg-gray-300 rounded-md"
+        (click)="showSelectStakeHolder = false"
+      ></div>
+    </div>
+    <div class="text w-full absolute top-0">
+      <div class="flex font-bold justify-center mt-6 mb-4 text-lg">
+        Select StakeHolder
+      </div>
+      <div
+        class="bg-white h-full flex flex-col mb-2"
+        *ngIf="stakeholder.length === 0"
+      >
+        <span> Add stakeholder first. </span>
+      </div>
+      <div class="bg-white h-full flex flex-col" *ngIf="stakeholder.length > 0">
+        <div
+          class="flex flex-row items-center pl-8"
+          *ngFor="let sh of stakeholder"
+        >
+          <mat-checkbox
+            class="example-margin"
+            [checked]="selectedStakeHolder.has(sh.id)"
+            (change)="addToSelectedStakeHolder(sh); stopPropagation($event)"
+          >
+            <div class="flex flex-row pl-4 items-center">
+              <div class="h-16 w-16 p-1 rounded-full bg-white">
+                <span
+                  class="pg-stakeholder-image-bg rounded-full h-full w-full flex justify-center items-center border-white text-white uppercase"
+                >
+                  {{ sh.name.charAt(0) }}
+                </span>
+              </div>
+              <span class="pl-2">{{ sh.name }}</span>
+            </div>
+          </mat-checkbox>
+        </div>
+        <button
+          class="w-full py-6 rounded-t-md focus:outline-none mt-2 pg-bg-blue-bright text-white text-lg font-semibold"
+          (click)="addToActivityStakeholder()"
+        >
+          {{ selectedStakeHolder.size === 0 ? "Done" : "Select" }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="bg-white rounded-t-md relative"
+    [ngClass]="showSelectCrew ? 'overlay-sc-show' : 'overlay-sc-hide'"
+  >
+    <div class="flex justify-center items-center py-2">
+      <div
+        class="w-8 h-2 bg-gray-300 rounded-md"
+        (click)="showSelectCrew = false"
+      ></div>
+    </div>
+    <div class="text w-full absolute top-0">
+      <div class="flex text-lg font-bold justify-center mt-6 mb-4">
+        Select Crew
+      </div>
+      <div class="bg-white h-full flex flex-col">
+        <div
+          class="flex flex-row items-center pl-8"
+          *ngFor="let crew of sprintCrew"
+        >
+          <mat-checkbox
+            class="example-margin"
+            [checked]="selectedCrew.has(crew.id)"
+            (change)="addToSelectedCrew(crew); stopPropagation($event)"
+          >
+            <div class="flex flex-row pl-4 items-center">
+              <div class="h-16 w-16 p-1 rounded-full bg-white">
+                <span
+                  class="pg-stakeholder-image-bg rounded-full h-full w-full flex justify-center items-center border-white text-white uppercase"
+                >
+                  {{ crew.name.charAt(0) }}
+                </span>
+              </div>
+              <span class="pl-2">{{ crew.name }}</span>
+            </div>
+          </mat-checkbox>
+        </div>
+        <button
+          class="w-full py-6 rounded-t-md focus:outline-none mt-2 pg-bg-blue-bright text-white text-lg font-semibold"
+          (click)="addToActivityCrew()"
+        >
+          {{ selectedCrew.size > 0 ? "Select" : "Done" }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

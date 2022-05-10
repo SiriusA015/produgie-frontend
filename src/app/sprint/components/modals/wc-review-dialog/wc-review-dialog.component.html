@@ -1,0 +1,38 @@
+<div class="flex flex-col h-screen justify-between">
+  <div class="mt-10 pt-40">
+    <div class="flex flex-row items-start justify-between mx-4">
+      <span class="text-2xl font-bold">How did your weekly check-in go?</span>
+      <mat-icon class="cursor-pointer" (click)="onClose()">close</mat-icon>
+    </div>
+    <div class="flex flex-row justify-start items-center mx-4 my-6">
+      <mat-icon class="pg-txt-green mat-icon-18">today</mat-icon>
+      <span class="text-sm font-semibold"
+        >Check-in: {{ data.createdAt | date: "mediumDate" }}</span
+      >
+    </div>
+    <div *ngIf="loadCounter > 0">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <hr />
+    <div class="mt-4">
+      <div
+        class="mx-4 my-2 border border-gray-400 rounded-md px-4 py-6"
+        *ngFor="let ans of options"
+        (click)="onSelect(ans)"
+        [ngClass]="{
+          'pg-bg-blue-bright': selectedOption === ans,
+          'text-white': selectedOption === ans
+        }"
+      >
+        <span class="font-semibold">{{ ans.label }}</span>
+      </div>
+    </div>
+  </div>
+  <button
+    class="flex w-full pg-bg-blue-bright rounded-t-md py-6 text-center justify-center text-white bottom-0 font-bold"
+    [disabled]="!selectedOption"
+    (click)="onSubmit()"
+  >
+    SUBMIT
+  </button>
+</div>

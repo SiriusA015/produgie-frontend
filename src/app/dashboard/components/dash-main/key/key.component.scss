@@ -1,0 +1,323 @@
+.dot {
+  cursor: pointer;
+  height: 10px;
+  width: 10px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.dot-active {
+  background-color: #000;
+}
+
+.outcome-carousel {
+  position: relative;
+}
+
+.outcome-carousel-inner {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.outcome-carousel-open:checked + .outcome-carousel-item {
+  position: static;
+  opacity: 100;
+}
+
+.outcome-carousel-item {
+  position: absolute;
+  opacity: 0;
+  -webkit-transition: opacity 0.1s ease;
+  transition: opacity 0.1s ease;
+}
+
+.outcome-carousel-item img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+.outcome-carousel-control {
+  background: #4a5568;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  font-size: 40px;
+  height: 30px;
+  line-height: 27px;
+  position: absolute;
+  top: 35%;
+  -webkit-transform: translate(0, -50%);
+  cursor: pointer;
+  transform: translate(0, -50%);
+  text-align: center;
+  width: 30px;
+  z-index: 10;
+}
+
+.outcome-carousel-control.prev {
+  left: 2%;
+}
+
+.outcome-carousel-control.next {
+  right: 2%;
+}
+
+.outcome-carousel-control:hover {
+  background: #4a5568;
+  color: #fff;
+}
+
+#outcome-carousel-1:checked ~ .control-1,
+#outcome-carousel-2:checked ~ .control-2,
+#outcome-carousel-3:checked ~ .control-3 {
+  display: block;
+}
+
+.outcome-carousel-indicators {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  bottom: 2%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 10;
+}
+
+.outcome-carousel-indicators li {
+  display: inline-block;
+  margin: 0;
+}
+
+.outcome-carousel-bullet {
+  color: #bbb;
+  cursor: pointer;
+  display: block;
+  font-size: 35px;
+}
+
+.outcome-carousel-bullet:hover {
+  color: #aaaaaa;
+}
+
+#outcome-carousel-1:checked ~ .control-1 ~ .outcome-carousel-indicators li:nth-child(1) .outcome-carousel-bullet,
+#outcome-carousel-2:checked ~ .control-2 ~ .outcome-carousel-indicators li:nth-child(2) .outcome-carousel-bullet,
+#outcome-carousel-3:checked ~ .control-3 ~ .outcome-carousel-indicators li:nth-child(3) .outcome-carousel-bullet {
+  color: #000000;
+}
+
+
+.actions-carousal {
+  position: relative;
+}
+
+.actions-carousal-inner {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.actions-carousal-open:checked + .actions-carousal-item {
+  position: static;
+  opacity: 100;
+}
+
+.actions-carousal-item {
+  position: absolute;
+  opacity: 0;
+  -webkit-transition: opacity 0.6s ease-out;
+  transition: opacity 0.6s ease-out;
+}
+
+.actions-carousal-item img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+.actions-carousal-control {
+  background: #4a5568;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  font-size: 40px;
+  height: 30px;
+  line-height: 27px;
+  position: absolute;
+  top: 35%;
+  -webkit-transform: translate(0, -50%);
+  cursor: pointer;
+  transform: translate(0, -50%);
+  text-align: center;
+  width: 30px;
+  z-index: 10;
+}
+
+.actions-carousal-control.prev {
+  left: 2%;
+}
+
+.actions-carousal-control.next {
+  right: 2%;
+}
+
+.actions-carousal-control:hover {
+  background: #4a5568;
+  color: #fff;
+}
+
+#actions-carousal-1:checked ~ .control-1,
+#actions-carousal-2:checked ~ .control-2,
+#actions-carousal-3:checked ~ .control-3 {
+  display: block;
+}
+
+.actions-carousal-indicators {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  bottom: 2%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 10;
+}
+
+.actions-carousal-indicators li {
+  display: inline-block;
+  margin: 0;
+}
+
+.actions-carousal-bullet {
+  color: #bbb;
+  cursor: pointer;
+  display: block;
+  font-size: 35px;
+}
+
+.actions-carousal-bullet:hover {
+  color: #aaaaaa;
+}
+
+#actions-carousal-1:checked ~ .control-1 ~ .actions-carousal-indicators li:nth-child(1) .actions-carousal-bullet,
+#actions-carousal-2:checked ~ .control-2 ~ .actions-carousal-indicators li:nth-child(2) .actions-carousal-bullet,
+#actions-carousal-3:checked ~ .control-3 ~ .actions-carousal-indicators li:nth-child(3) .actions-carousal-bullet {
+  color: #000000;
+}
+.behaviour-carousal {
+  position: relative;
+}
+
+.behaviour-carousal-inner {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.behaviour-carousal-open:checked + .behaviour-carousal-item {
+  position: static;
+  opacity: 100;
+}
+
+.behaviour-carousal-item {
+  position: absolute;
+  opacity: 0;
+  -webkit-transition: opacity 0.6s ease-out;
+  transition: opacity 0.6s ease-out;
+}
+
+.behaviour-carousal-item img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+.behaviour-carousal-control {
+  background: #4a5568;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  font-size: 40px;
+  height: 30px;
+  line-height: 27px;
+  position: absolute;
+  top: 35%;
+  -webkit-transform: translate(0, -50%);
+  cursor: pointer;
+  transform: translate(0, -50%);
+  text-align: center;
+  width: 30px;
+  z-index: 10;
+}
+
+.behaviour-carousal-control.prev {
+  left: 2%;
+}
+
+.behaviour-carousal-control.next {
+  right: 2%;
+}
+
+.behaviour-carousal-control:hover {
+  background: #4a5568;
+  color: #fff;
+}
+
+#behaviour-carousal-1:checked ~ .control-1,
+#behaviour-carousal-2:checked ~ .control-2,
+#behaviour-carousal-3:checked ~ .control-3 {
+  display: block;
+}
+
+.behaviour-carousal-indicators {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  bottom: 2%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 10;
+}
+
+.behaviour-carousal-indicators li {
+  display: inline-block;
+  margin: 0;
+}
+
+.behaviour-carousal-bullet {
+  color: #bbb;
+  cursor: pointer;
+  display: block;
+  font-size: 35px;
+}
+
+.behaviour-carousal-bullet:hover {
+  color: #aaaaaa;
+}
+
+#behaviour-carousal-1:checked ~ .control-1 ~ .behaviour-carousal-indicators li:nth-child(1) .behaviour-carousal-bullet,
+#behaviour-carousal-2:checked ~ .control-2 ~ .behaviour-carousal-indicators li:nth-child(2) .behaviour-carousal-bullet,
+#behaviour-carousal-3:checked ~ .control-3 ~ .behaviour-carousal-indicators li:nth-child(3) .behaviour-carousal-bullet {
+  color: #000000;
+}
+#title {
+  width: 100%;
+  position: absolute;
+  padding: 0px;
+  margin: 0px auto;
+  text-align: center;
+  font-size: 27px;
+  color: rgba(255, 255, 255, 1);
+  font-family: 'Open Sans', sans-serif;
+  z-index: 9999;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.33), -1px 0px 2px rgba(255, 255, 255, 0);
+}

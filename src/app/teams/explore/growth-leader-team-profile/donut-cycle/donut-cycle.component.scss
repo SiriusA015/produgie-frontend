@@ -1,0 +1,429 @@
+.pg-snapshot-graph {
+  background-image   : url("/assets/images/cycle.svg");
+  background-position: center;
+  background-repeat  : no-repeat;
+  background-size    : contain;
+}
+
+#wrapper {
+  min-width : 590px;
+  padding   : 5rem;
+  margin-top: -50px;
+}
+
+.action {
+  height          : 13%;
+  width           : 13%;
+  border-radius   : 50%;
+  background-color: white;
+  box-shadow      : 0px 4px 8px #00000029;
+}
+
+#perform-1 {
+  left: 8%;
+  top : 6%;
+
+  .action-title {
+    text-align: right;
+    left      : -240%;
+    top       : 0;
+  }
+
+  .profile {
+    position: absolute;
+    top     : -82px;
+  }
+
+  mat-icon {
+    color: #0d47a1;
+  }
+}
+
+#perform-2 {
+  left: 43.5%;
+  top : -5%;
+
+  .action-title {
+    left: -9%;
+    top : -70%;
+  }
+
+  mat-icon {
+    color: #0d47a1;
+  }
+}
+
+#perform-3 {
+  right: 10%;
+  top  : 6%;
+
+  .action-title {
+    width: 100px;
+
+    right: -170%;
+    top  : 10%;
+  }
+
+  mat-icon {
+    color: #0d47a1;
+  }
+}
+
+#energize-1 {
+  right: -3%;
+  top  : 36%;
+
+  .action-title {
+    width: 124px;
+    right: -191%;
+    top  : 0%;
+  }
+
+  mat-icon {
+    color: #1e88e5;
+  }
+}
+
+#energize-2 {
+  right: 1%;
+  top  : 65%;
+
+  .action-title {
+    width: 140px;
+    right: -224%;
+    top  : 7%;
+  }
+
+  mat-icon {
+    color: #1e88e5;
+  }
+}
+
+#energize-3 {
+  right : 25%;
+  bottom: -1%;
+
+  .action-title {
+    right: -210%;
+    top  : 105%;
+  }
+
+  mat-icon {
+    color: #1e88e5;
+  }
+}
+
+#transform-1 {
+  left  : 25%;
+  bottom: -1%;
+
+  .action-title {
+    text-align: right;
+    width     : 140px;
+    left      : -130%;
+    top       : 105%;
+  }
+
+  mat-icon {
+    color: #64b5f6;
+  }
+}
+
+#transform-2 {
+  left: 1%;
+  top : 65%;
+
+  .action-title {
+    text-align: right;
+    width     : 100px;
+    left      : -176%;
+    top       : 20%;
+  }
+
+  mat-icon {
+    color: #64b5f6;
+  }
+}
+
+#transform-3 {
+  left: -4%;
+  top : 36%;
+
+  .action-title {
+    text-align: right;
+    width     : 132px;
+    left      : -220%;
+    bottom    : 0;
+  }
+
+  mat-icon {
+    color: #64b5f6;
+  }
+}
+
+::ng-deep.action.mat-badge-medium.mat-badge-above .mat-badge-content {
+  top          : 35%;
+  border-radius: 22% !important;
+}
+
+.action-title {
+  max-width: 150px;
+}
+
+.profile-img {
+  border          : 10px solid white;
+  width           : 110px;
+  height          : 110px;
+  object-fit      : cover;
+  background-color: #e2e8f0;
+}
+
+#circle-text-1 {
+  color      : #9564e6;
+  font-size  : 1.7rem;
+  font-weight: bold;
+  top        : 38%;
+  left       : 32%;
+}
+
+#circle-text-2 {
+  color      : #278ce9;
+  font-size  : 1.7rem;
+  font-weight: bold;
+  top        : 38%;
+  right      : 29%;
+}
+
+#circle-text-3 {
+  color      : #3adf90;
+  font-size  : 1.7rem;
+  font-weight: bold;
+  top        : 61%;
+  right      : 41%;
+}
+
+.circular {
+  border       : 6px solid #278ce9;
+  border-radius: 50%;
+}
+
+.design {
+  height: 640px;
+}
+
+.heading-4 {
+  font-size  : 1.8rem;
+  line-height: 1.2;
+  color      : #8e9aae;
+  font-weight: 400;
+}
+
+.cursor-pointer {
+  border       : 6px solid #278ce9;
+  border-radius: 100%;
+}
+
+#Change-1 {
+  font-size  : 1.5rem;
+  font-weight: bold;
+  top        : 43.5%;
+  right      : 77.5%;
+  cursor: pointer;
+
+
+  div {
+    position: absolute;
+    top     : -25px;
+    left    : -60px;
+  }
+
+  .badge-div{
+    position: absolute;
+    top     : 2px;
+    left    : -35px;
+  }
+
+  .profile-intro-style {
+    align-items    : center;
+    justify-content: space-between;
+  }
+
+  .sub-profile-intro-style {
+    left    : -2px;
+    width: 36px;
+    position: relative;
+  }
+
+
+}
+
+#Change-2 {
+  font-size  : 1.5rem;
+  font-weight: bold;
+  top        : 18%;
+  left       : 27.5%;
+  cursor: pointer;
+
+
+  div {
+   position: absolute;
+    left    : -15px;
+    top     : -75px;
+  }
+  .badge-div{
+    position: absolute;
+    left: 30px;
+    top: -55px;
+  }
+
+  .profile-entre-style {
+    align-items    : center;
+    justify-content: space-between;
+  }
+
+  .sub-profile-entre-style {
+    top     : 5px;
+    width: 36px;
+    position: relative;
+  }
+}
+
+#Execute-1 {
+  font-size  : 1.5rem;
+  font-weight: bold;
+  top        : 18%;
+  right      : 26%;
+  cursor: pointer;
+
+
+  div {
+    position: absolute;
+    top     : -82px;
+  }
+  .badge-div{
+    position: absolute;
+    top     : -50px;
+  }
+
+  .profile-res-style {
+    align-items    : center;
+    justify-content: space-between;
+  }
+
+  .sub-profile-res-style {
+    top     : 5px;
+    position: relative;
+    width: 36px;
+  }
+}
+
+#Execute-2 {
+  font-size  : 1.5rem;
+  font-weight: bold;
+  top        : 43.5%;
+  right      : 8%;
+  cursor: pointer;
+
+
+  div {
+    position: absolute;
+    top     : -36px;
+    left    : 98px;
+  }
+  .badge-div{
+    position: absolute;
+    top     : -36px;
+    left    : 90px;
+  }
+
+  .profile-struct-style {
+    // align-items    : center;
+    // justify-content: space-between;
+    margin-top: 50px;
+
+  }
+
+  .sub-profile-struct-style {
+    left: 5px;
+    position: relative;
+    width: 36px;
+    padding: 2px;
+    // margin-bottom: 40px;
+  }
+}
+
+#Connect-1 {
+  font-size  : 1.5rem;
+  font-weight: bold;
+  bottom     : 26.5%;
+  right      : 22.5%;
+  cursor: pointer;
+
+  div {
+    position: absolute;
+    bottom  : -85px;
+  }
+  .badge-div{
+    position: absolute;
+    bottom: -40px;
+  }
+
+  .profile-rel-style {
+    align-items    : center;
+    justify-content: space-between;
+
+  }
+
+  .sub-profile-rel-style {
+    width: 36px;
+    bottom  : 5px;
+    position: relative;
+  }
+}
+
+
+#Connect-2 {
+  font-size  : 1.5rem;
+  font-weight: bold;
+  bottom     : 26.5%;
+  left       : 25.5%;
+  cursor: pointer;
+
+  div {
+    position: absolute;
+    bottom  : -85px;
+  }
+  .badge-div{
+    position: absolute;
+    bottom: -40px;
+  }
+
+  .profile-style {
+    align-items    : center;
+    justify-content: space-between;
+
+  }
+
+  .sub-profile-style {
+    // bottom: 60px  !important;
+    // position: relative !important;
+    // margin-bottom: -108px;
+    width: 36px;
+    bottom  : 0px;
+    position: relative;
+  }
+}
+
+
+@media screen and (max-width: 991px) {
+  #wrapper {
+    padding   : 0;
+    margin-top: -60px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .pg-snapshot-graph div {
+    font-size: 1.3rem !important;
+  }
+}

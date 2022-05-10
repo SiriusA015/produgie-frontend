@@ -1,0 +1,87 @@
+<!-- <mat-card class="card-section"> -->
+  <div class="col-md-12 overflow" *ngIf="reportGenerated">
+    <div class="row">
+      <div class="col-lg-8 order-2 order-md-1 order-lg-1">
+        <div class="margin-top-circle">
+          <app-snapshot-circle [capabilities]="fCapabilities" [perform]="capPerform" [transform]="capTransform"
+            [energize]="capEnergise" [rankChecked]="rankChecked" [recommendChecked]="isRecommendChecked"
+            *ngIf="isCircle">
+          </app-snapshot-circle>
+          <app-snapshot-box [capabilities]="fCapabilities" [rankChecked]="rankChecked"
+            [recommendChecked]="isRecommendChecked" *ngIf="!isCircle"></app-snapshot-box>
+        </div>
+      </div>
+      <div class="col-lg-4 order-1 order-md-2 order-lg-2">
+        <div class="row">
+          <div class="col-md-6 col-lg-12">
+            <div class="row">
+              <div class="col-md-6 col-lg-6 filtercs padding-view">
+                <label class="pg-tooltip flex-row ml-3 text-lg view-text">View as:</label>
+                <label class="pg-tooltip flex-row ml-3">
+                  <mat-icon svgIcon="snaphot_circle" class="mr-4 mat-icon-28 cursor-pointer text-gray-500 icon-size"
+                    [ngClass]="{ 'pg-txt-blue-bright': isCircle }" (click)="onViewChange('circle')" aria-hidden="false">
+                  </mat-icon>
+                  <input type="checkbox" />
+                  <div class="font-light text-xs gla-tooltip">
+                    View your 9 capabilities on the Growth Leader Framework
+                  </div>
+                </label>
+                <label class="pg-tooltip flex-row ml-3">
+                  <mat-icon svgIcon="snaphot_box" class="mat-icon-28 cursor-pointer text-gray-500 icon-size"
+                    [ngClass]="{ 'pg-txt-blue-bright': !isCircle }" (click)="onViewChange('grid')" aria-hidden="false">
+                  </mat-icon>
+                  <input type="checkbox" />
+                  <div class="font-light text-xs gla-tooltip">
+                    View Strength and Development needs on a 2 x 2 Grid
+                  </div>
+                </label>
+              </div>
+
+              <div class="col-md-6 col-lg-6">
+                <div class="width bg-white shadow bg-white cursor-pointer py-3">
+                  <mat-icon class="mat-icon pg-txt-blue-bright align-middle mat-icon-18  material-icons">
+                    insert_drive_file
+                  </mat-icon>
+                  <span class="text-2x1 font-semibold font view-font" (click)="openDetailedDialog()">View Detailed Report</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <mat-card class="mt-10 col-md-6 col-lg-11" style="margin-left: 20px;">
+            <p class="text-base font-medium filter-text">Filter</p>
+            <div class="filtercs mt-4">
+              <div class="width-div">
+                <input class="input-width" type="checkbox" value="high" [checked]="isHighest" name="rank"
+                  (click)="changeHighest()" />
+                <span class="verticle-align-text text-ml text-font">Highest</span>
+              </div>
+              <div class="width-div">
+                <input class="input-width" type="checkbox" value="low" [checked]="isLowest" name="rank" (click)="changeLowest()" />
+                <span class="verticle-align-text text-ml text-font">Lowest</span>
+              </div>
+              <div class="width-recomend-div">
+                <input class="input-width" type="checkbox" [checked]="isRecommendChecked" (change)="changeRecommendCheck()" />
+                <span class="verticle-align-text text-ml text-font">Recommended</span>
+                <div class="flex flex-col ml-4" *ngIf="isRecommendChecked">
+                  <div class="flex flex-row py-2 items-center" *ngFor="let item of selectedJobRoles; let i = index">
+                    <mat-icon class="pg-txt-blue-bright mat-icon-14">check_circle</mat-icon>
+                    <span class="ml-2">{{ item.title }}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="width-rank-div">
+                <input class="input-width" type="checkbox" [checked]="rankChecked" (change)="changeRankCheck()" />
+                <span class="verticle-align-text text-ml text-font">Rank Order</span>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- </mat-card> -->
+<div class="flex flex-col justify-center items-center pg-h-screen-w-header w-full" *ngIf="!reportGenerated">
+  <span class="text-2x-1 font-semibold">Survey not completed yet!</span>
+</div>
+
+<app-mat-svg-icon></app-mat-svg-icon>

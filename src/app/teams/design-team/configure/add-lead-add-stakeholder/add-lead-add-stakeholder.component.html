@@ -1,0 +1,84 @@
+<div>
+    <h1 class="font-heading">
+        Add Stakeholder
+        <span class="material-icons cursor-pointer float-right" (click)="onNoClick()">clear</span>
+    </h1>
+    <form [formGroup]="stakeholderForm">
+        <div class="flex margin-top">
+            <div class="width-div">
+                <label> Name*</label>
+                <!-- <input type="text" class="input" formControlName="name" [ngClass]="{ 'is-invalid': f.name.errors }" />
+                <div *ngIf="f.name.touched && f.name.errors" class="text-red-500">
+                    <div *ngIf="f.name.errors.required">Name is required</div>
+                </div> -->
+                <input
+                    class="appearance-none inputboxborder bg-transparent w-full text-gray-600 leading-tight focus:outline-none font-semibold"
+                    type="text" formControlName="name"
+                    [ngClass]="{ 'is-invalid': f.name.errors }" />
+
+                <div *ngIf="f.name.touched && f.name.errors" class="text-red-500">
+                    <div *ngIf="f.name.errors.required">Name is required</div>
+                </div>
+
+            </div>
+            <div class="width-div margin-left">
+                <label>Email*</label>
+                <!-- <input type="text" class="input" formControlName="email"
+                [ngClass]="{ 'is-invalid': f.email.errors }" />
+                <div *ngIf="f.email.touched && f.email.errors" class="text-red-500">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                </div> -->
+                <input
+                    class="appearance-none bg-transparent inputboxborder w-full text-gray-600 leading-tight focus:outline-none  font-semibold"
+                    type="text" formControlName="email"
+                    [ngClass]="{ 'is-invalid': f.email.errors }" />
+
+                <div *ngIf="f.email.touched && f.email.errors" class="text-red-500">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Email must be valid</div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="btn-container">
+            <button class="btn-submit margin-top" type="submit" [disabled]="!myForm.valid">Add</button>
+        </div> -->
+        <div class="btn-container margin-top" [ngClass]="{
+            'cursor-not-allowed': stakeholderForm.invalid}">
+            <span class="addbtn btn" (click)="onSubmit()">
+                Add
+                <mat-icon *ngIf="isStakeholderSubmited">
+                    <mat-spinner diameter="20" class=""></mat-spinner>
+                </mat-icon>
+            </span>
+        </div>
+
+    </form>
+
+
+
+    <div class="border margin-top-top"></div>
+
+    <div class="margin-top-top">
+        <h1 class="font-heading">
+            Add Lead
+        </h1>
+        <!-- <form [formGroup]="leadForm" (ngSubmit)="addLead()"> -->
+        <div class="margin-top-top flex justify-between">
+            <mat-form-field appearance="none" class="custom-mat-select">
+                <mat-select [ngModel]="selectedDevice" (ngModelChange)="onChange($event)" placeholder="Select Lead">
+                    <mat-option *ngFor="let item of leadList" [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="btn-container">
+                <button class="addbtn btn" (click)="addLead()">
+                    <mat-icon *ngIf="isLeadSubmited">
+                        <mat-spinner diameter="20" class=""></mat-spinner>
+                    </mat-icon>Add</button>
+                
+            </div>
+        </div>
+        <!-- </form> -->
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<mat-card class="dg">
+  <h3 class="heading-1">For wipeout click on button</h3>
+  <div class="wipeout">
+    <mat-card class="dg">
+      <section class="wipeout__inner">
+        <div class="example-label"></div>
+        <div class="example-button-row">
+          <button style="background-color: #3fb5b5;" class="btn" (click)="survey()">Survey</button>
+          <button style="background-color: #d6a026;" class="btn" (click)="sprint()">Sprint</button>
+
+
+          <div class="text-center mt-6">
+            <button color="primary" class="btn" (click)="back()">Back</button>
+          </div>
+        </div>
+      </section>
+    </mat-card>
+    <mat-card class="dg">
+      <mat-card-header>
+        <mat-card-title class="heading-2"> Delete Nominee and Report</mat-card-title>
+      </mat-card-header>
+      <mat-card-content> </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button style="background-color:#28a745;" class="btn font-bold text-lg"
+          (click)="nominee()">Nominee</button>
+
+        <button mat-raised-button color="primary" class="btn font-bold text-lg" (click)="generateReport()">
+          Generate Report
+        </button>
+        <button mat-raised-button color="warn" class="btn font-bold text-lg" (click)="deleteReport()">
+          Delete Report
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</mat-card>

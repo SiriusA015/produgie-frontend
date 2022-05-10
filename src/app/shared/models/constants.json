@@ -1,0 +1,325 @@
+{
+  "styleAndStrategy": {
+    "assessment": "ASSESSMENT",
+    "roleLevel": "ROLE-LEVEL",
+    "stylePart1": "STYLE_PART_1",
+    "stylePart2": "STYLE_PART_2",
+    "researchQuestions1": "RESEARCH_QUESTIONS_1",
+    "researchQuestions2": "RESEARCH_QUESTIONS_2"
+  },
+  "apiData": {
+    "countryList": [
+      {
+        "displayName": "Afghanistan",
+        "value": "Afghanistan"
+      },
+      {
+        "displayName": "Albania",
+        "value": "Albania"
+      },
+      {
+        "displayName": "Algeria",
+        "value": "Algeria"
+      },
+      {
+        "displayName": "Andorra",
+        "value": "Andorra"
+      },
+      {
+        "displayName": "Angola",
+        "value": "Angola"
+      },
+      {
+        "displayName": "Antigua and Barbuda",
+        "value": "Antigua and Barbuda"
+      },
+      {
+        "displayName": "Argentina",
+        "value": "Argentina"
+      },
+      {
+        "displayName": "Armenia",
+        "value": "Armenia"
+      },
+      {
+        "displayName": "Australia",
+        "value": "Australia"
+      },
+      {
+        "displayName": "Austria",
+        "value": "Austria"
+      },
+      {
+        "displayName": "Azerbaijan",
+        "value": "Azerbaijan"
+      },
+      {
+        "displayName": "Bahamas",
+        "value": "Bahamas"
+      },
+      {
+        "displayName": "Bahrain",
+        "value": "Bahrain"
+      },
+      {
+        "displayName": "Bangladesh",
+        "value": "Bangladesh"
+      },
+      {
+        "displayName": "Barbados",
+        "value": "Barbados"
+      },
+      {
+        "displayName": "Belarus",
+        "value": "Belarus"
+      },
+      {
+        "displayName": "Belgium",
+        "value": "Belgium"
+      },
+      {
+        "displayName": "Belize",
+        "value": "Belize"
+      },
+      {
+        "displayName": "Benin",
+        "value": "Benin"
+      },
+      {
+        "displayName": "Bhutan",
+        "value": "Bhutan"
+      },
+      {
+        "displayName": "Bolivia",
+        "value": "Bolivia"
+      },
+      {
+        "displayName": "Bosnia and Herzegovina",
+        "value": "Bosnia and Herzegovina"
+      },
+      {
+        "displayName": "Botswana",
+        "value": "Botswana"
+      },
+      {
+        "displayName": "Brazil",
+        "value": "Brazil"
+      },
+      {
+        "displayName": "Brunei Darussalam",
+        "value": "Brunei Darussalam"
+      },
+      {
+        "displayName": "Bulgaria",
+        "value": "Bulgaria"
+      },
+      {
+        "displayName": "Burkina Faso",
+        "value": "Burkina Faso"
+      },
+      {
+        "displayName": "Burundi",
+        "value": "Burundi"
+      },
+      {
+        "displayName": "Cambodia",
+        "value": "Cambodia"
+      },
+      {
+        "displayName": "Cameroon",
+        "value": "Cameroon"
+      },
+      {
+        "displayName": "Canada",
+        "value": "Canada"
+      },
+      {
+        "displayName": "Cape Verde",
+        "value": "Cape Verde"
+      },
+      {
+        "displayName": "Central African Republic",
+        "value": "Central African Republic"
+      },
+      {
+        "displayName": "Chad",
+        "value": "Chad"
+      },
+      {
+        "displayName": "Chile",
+        "value": "Chile"
+      },
+      {
+        "displayName": "China",
+        "value": "China"
+      },
+      {
+        "displayName": "Colombia",
+        "value": "Colombia"
+      },
+      {
+        "displayName": "Comoros",
+        "value": "Comoros"
+      },
+      {
+        "displayName": "Congo",
+        "value": "Congo"
+      },
+      {
+        "displayName": "Other",
+        "value": "Other"
+      }
+    ],
+    "businessGroups": [
+      {
+        "displayName": "Customer Service (e.g., call center services, technical support, customer relations)",
+        "value": "Customer Service (e.g., call center services, technical support, customer relations)"
+      },
+      {
+        "displayName": "External Relations (e.g., government, public or investor relations, communications)",
+        "value": "External Relations (e.g., government, public or investor relations, communications)"
+      },
+      {
+        "displayName": "Facilities (e.g., maintenance, property development, security)",
+        "value": "Facilities (e.g., maintenance, property development, security)"
+      },
+      {
+        "displayName": "Finance (e.g., accounting, credit, treasury)",
+        "value": "Finance (e.g., accounting, credit, treasury)"
+      },
+      {
+        "displayName": "Human Resources (e.g., employee relations, training, staffing)",
+        "value": "Human Resources (e.g., employee relations, training, staffing)"
+      },
+      {
+        "displayName": "Legal (e.g., contracting, regulatory support)",
+        "value": "Legal (e.g., contracting, regulatory support)"
+      },
+      {
+        "displayName": "Logistics or Distribution (e.g., shipping, receiving, distribution, warehousing)",
+        "value": "Logistics or Distribution (e.g., shipping, receiving, distribution, warehousing)"
+      },
+      {
+        "displayName": "Marketing (e.g., advertising, branding, marketing research, media)",
+        "value": "Marketing (e.g., advertising, branding, marketing research, media)"
+      },
+      {
+        "displayName": "Operations (e.g., manufacturing, assembly, refining, production)",
+        "value": "Operations (e.g., manufacturing, assembly, refining, production)"
+      },
+      {
+        "displayName": "Procurement (e.g., purchasing, contracting)",
+        "value": "Procurement (e.g., purchasing, contracting)"
+      },
+      {
+        "displayName": "Product/Service Development (e.g., research and development, engineering)",
+        "value": "Product/Service Development (e.g., research and development, engineering)"
+      },
+      {
+        "displayName": "Sales (e.g., account management, telesales)",
+        "value": "Sales (e.g., account management, telesales)"
+      },
+      {
+        "displayName": "Technology (e.g., infrastructure, software design, support)",
+        "value": "Technology (e.g., infrastructure, software design, support)"
+      },
+      {
+        "displayName": "Other",
+        "value": "Other"
+      }
+    ],
+    "ethnicalGroups": [
+      {
+        "displayName": "American Indian or Alaska Native",
+        "value": "American Indian or Alaska Native"
+      },
+      {
+        "displayName": "Asian",
+        "value": "Asian"
+      },
+      {
+        "displayName": "Black or African American",
+        "value": "Black or African American"
+      },
+      {
+        "displayName": "Native Hawaiian or Other Pacific Islander",
+        "value": "Native Hawaiian or Other Pacific Islander"
+      },
+      {
+        "displayName": "White",
+        "value": "White"
+      },
+      {
+        "displayName": "Other",
+        "value": "Other"
+      }
+    ],
+    "culturalGroups": [
+      {
+        "displayName": "Anglo (e.g., USA, England, Canada, Australia)",
+        "value": "Anglo (e.g., USA, England, Canada, Australia)"
+      },
+      {
+        "displayName": "Asian, Confucian (e.g., China, Japan, Singapore, South Korea)",
+        "value": "Asian, Confucian (e.g., China, Japan, Singapore, South Korea)"
+      },
+      {
+        "displayName": "Asian, Southern (e.g., India, Indonesia, Malaysia, Philippines, Thailand)",
+        "value": "Asian, Southern (e.g., India, Indonesia, Malaysia, Philippines, Thailand)"
+      },
+      {
+        "displayName": "Europe, Eastern (e.g., Greece, Hungary, Poland, Russia, Kazakhstan)",
+        "value": "Europe, Eastern (e.g., Greece, Hungary, Poland, Russia, Kazakhstan)"
+      },
+      {
+        "displayName": "Europe, Germanic (e.g., Germany, Austria, Netherlands)",
+        "value": "Europe, Germanic (e.g., Germany, Austria, Netherlands)"
+      },
+      {
+        "displayName": "Europe, Latin (e.g., France, Italy, Spain, Israel)",
+        "value": "Europe, Latin (e.g., France, Italy, Spain, Israel)"
+      },
+      {
+        "displayName": "Europe, Nordic (e.g., Norway, Sweden, Denmark)",
+        "value": "Europe, Nordic (e.g., Norway, Sweden, Denmark)"
+      },
+      {
+        "displayName": "Latin America (e.g., Mexico, Brazil, Argentina, Chile)",
+        "value": "Latin America (e.g., Mexico, Brazil, Argentina, Chile)"
+      },
+      {
+        "displayName": "Middle East (e.g., Egypt, Morocco, Turkey)",
+        "value": "Middle East (e.g., Egypt, Morocco, Turkey)"
+      },
+      {
+        "displayName": "Sub-Saharan Africa (e.g., Nigeria, Zambia, Zimbabwe, South Africa)",
+        "value": "Sub-Saharan Africa (e.g., Nigeria, Zambia, Zimbabwe, South Africa)"
+      },
+      {
+        "displayName": "Other",
+        "value": "Other"
+      }
+    ],
+    "manageSprint": [
+      {
+        "displayName": "Extend 2 weeks",
+        "value": "1"
+      },
+      {
+        "displayName": "Cancel",
+        "value": "2"
+      },
+      {
+        "displayName": "Save to Portfolio",
+        "value": "3"
+      }
+    ]
+  },
+  "snackbarMessage": {
+    "SUCCESS_RESEARCH_QUESTION_SAVE": "Style And Strategy Updated",
+    "FAIL_RESEARCH_QUESTION_SAVE": "Error!! Please try again after sometime",
+    "SAVE_CHALLENGES_FAIL": "Error!! Please try again after sometime",
+    "ROLE_UPDATE_FAIL": "Error!! Please try again after sometime",
+    "API_FAILED": "Error!! Please try again after sometime"
+  }
+}

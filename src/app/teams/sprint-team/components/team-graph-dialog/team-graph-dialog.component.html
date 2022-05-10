@@ -1,0 +1,72 @@
+<div class="relative">
+    <div class="py-4 px-1" *ngIf="loadCounter > 0">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <!-- <app-trend-line-chart
+      *ngIf="chartData.length > 0 && loadCounter === 0"
+      [labels]="label"
+      [data]="chartItem"
+      [details]="legend"
+      [title]="this.data"
+      [borderColor]="style.borderColor"
+      [backgroundColor]="style.backgroundColor"
+      [textColor]="style.textColor"
+      [hideLegend]="hidelegend"
+      infoText="Identified on-the-job opportunities that accelerate your development"
+    ></app-trend-line-chart> -->
+    <div class="m-2 rounded-md overflow-hidden shadow-md bg-white margin-card padding-card" *ngIf="actionGraph?.length == 0">
+      <h3 class="text-xl font-bold margin-bottom-text">Action</h3>
+      <div style="display: block;" class="margin-top-text">
+        <!-- <h2 class="no-data-text"> No Data Found</h2> -->
+        <span class="font-semibold"> Your feedback data will be displayed here after it's received</span>
+      </div>
+    </div>
+    <div class="m-2 rounded-md overflow-hidden shadow-md bg-white margin-card padding-card" *ngIf="behaviorGraph?.length == 0">
+      <h3 class="text-xl font-bold margin-bottom-text">Behaviour</h3>
+      <div style="display: block;"  class="margin-top-text">
+        <!-- <h2 class="no-data-text"> No Data Found</h2> -->
+        <span class="font-semibold"> Your feedback data will be displayed here after it's received</span>
+      </div>
+    </div>
+    <div class="m-2 rounded-md overflow-hidden shadow-md bg-white margin-card padding-card" *ngIf="outcomeGraph?.length == 0">
+      <h3 class="text-xl font-bold margin-bottom-text">Outcome</h3>
+      <div style="display: block;" class="margin-top-text ">
+        <!-- <h2 class="no-data-text"> No Data Found</h2> -->
+        <span class="font-semibold"> Your feedback data will be displayed here after it's received</span>
+      </div>
+    </div>
+    <div class="m-2 rounded-md overflow-hidden shadow-md bg-white padding-card" *ngIf="actionGraph?.length >0">
+      <h3 class="text-xl font-bold margin-bottom-text">Action</h3>
+      <div style="display: block;">
+        <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels"
+          [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+          [plugins]="lineChartPlugins">
+        </canvas>
+      </div>
+    </div>
+    <div class="m-2 rounded-md overflow-hidden shadow-md bg-white margin-top-card padding-card" *ngIf="behaviorGraph?.length >0">
+      <h3 class="text-xl font-bold margin-bottom-text">Behaviour</h3>
+      <div style="display: block;">
+        <canvas baseChart width="400" height="400" [datasets]="lineChartData1" [labels]="lineChartLabels1"
+          [options]="lineChartOptions1" [colors]="lineChartColors1" [legend]="lineChartLegend" [chartType]="lineChartType"
+          [plugins]="lineChartPlugins">
+        </canvas>
+      </div>
+    </div>
+    <div class="m-2 rounded-md overflow-hidden shadow-md bg-white margin-top-card padding-card" *ngIf="outcomeGraph?.length >0">
+      <h3 class="text-xl font-bold margin-bottom-text">Outcome</h3>
+      <div style="display: block;">
+        <canvas baseChart width="400" height="400" [datasets]="lineChartData2" [labels]="lineChartLabels2"
+          [options]="lineChartOptions2" [colors]="lineChartColors2" [legend]="lineChartLegend" [chartType]="lineChartType"
+          [plugins]="lineChartPlugins">
+        </canvas>
+      </div>
+    </div>
+  </div>
+  <!-- <div
+    class="flex h-full w-full justify-center items-center py-32"
+    *ngIf="chartData.length === 0 && loadCounter === 0"
+  >
+    <span class="font-semibold"> Your feedback data will be displayed here after it's received</span>
+  </div> -->
+  

@@ -1,0 +1,461 @@
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #c9c9c9;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  text-align: end;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  // bottom: 3px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  // background-color: #3d5dff;
+  // background-color: #3adf90;
+}
+
+input:checked+.slider {
+  background-color: #3adf90;
+  text-align: start;
+}
+
+input:checked+.slider:before {
+  bottom: 3px;
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #3d5dff;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+  border: 1px #c9c9c9 solid;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.example-list {
+  width: 100px;
+  right: 0;
+}
+
+.pg-w-40 {
+  width: 40rem;
+}
+
+// We need to use ::ng-deep to overcome view encapsulation
+::ng-deep {
+  .custom-slider .ng5-slider .ng5-slider-bar {
+    background: #cbcedf;
+    // height: 10px;
+    height: 5px;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-selection {
+    background: #3adf90;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-pointer {
+    // width: 38px;
+    // height: 38px;
+    width: 25px;
+    height: 25px;
+    bottom: 0;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #3adf90;
+    // border-color: #3d5dff;
+    // background-color: rgb(255, 255, 255);
+    border-radius: 50px;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-pointer:focus {
+    outline: none;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-pointer:after {
+    display: none;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-bubble {
+    bottom: 10px;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-limit {
+    font-weight: bold;
+    color: #3d5dff;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-tick {
+    width: 0;
+    height: 10px;
+    margin-left: 4px;
+    border-radius: 0;
+    background: #adbbff;
+    top: -1px;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-tick.ng5-slider-selected {
+    background: #3d5dff;
+  }
+}
+
+.rounded {
+  // border-radius: 1.5rem;
+  // // border:1px solid grey;
+  // background-color: #fff;
+
+  background-color: #3d5dff;
+  font-size: small;
+}
+
+// .text-class{
+//   margin: 1rem 0.5rem 0.5rem;
+// }
+
+.ds {
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.border {
+  border: 1px solid gray;
+  border-radius: 1rem;
+  // margin: 2rem;
+  background-color: #f3f8ff;
+}
+
+.pg-info {
+  background-color: #f3f8ff;
+  border-radius: 2rem;
+}
+
+// .btn {
+//   padding: 1rem;
+// }
+
+.pg-bg-green {
+  color: #278ce9 !important;
+}
+
+// .pg {
+//   margin: 5rem;
+//   border-radius: 2rem;
+//   background-color: #f3f8ff;
+//   padding-left: 5rem;
+//   padding-right: 5rem;
+//   padding-bottom: 2rem;
+// }
+
+// .mat {
+//   background-color: white;
+//   border-radius: 2rem;
+//   padding: 1rem;
+// }
+
+.backg {
+  background-color: #fff !important;
+}
+
+// ::ng-deep .mat-form-field-flex {
+//   border: 1px solid gray;
+//   background-color: #fff !important;
+// }
+
+::ng-deep .mat-select-arrow {
+  color: #278ce9;
+}
+
+mat-option {
+  height: auto !important;
+  // width: 90% !important;
+  padding: 15px !important;
+  line-height: 30px !important;
+}
+
+::ng-deep .mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple) {
+  background-color: #fff !important;
+}
+
+::ng-deep .mat-select-panel {
+  max-height: 400px !important;
+}
+
+
+.display-div {
+  display: inline-flex;
+}
+
+.name-box {
+  margin-left: 1.5rem;
+  border-radius: 5px;
+}
+
+.cross-right {
+  float: right;
+  color: white;
+  font-size: 17px;
+  order: 2;
+}
+
+.div-height {
+  // width: 181px;
+  background-color: #278ce9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #9ac9f4;
+  padding: 1.3rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+// .text-line-height {
+//   line-height: 4;
+//   margin-left: 15px;
+// }
+
+.align-checkbox {
+  vertical-align: middle;
+}
+
+.ml-10 {
+  margin-left: 8px;
+}
+
+.display-div-inline {
+  display: inherit;
+  margin-left: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.option-height {
+  border: 1px solid #278ce9;
+  background-color: #fff;
+  
+}
+
+@media only screen and (max-width: 600px) {
+  .option-height {
+    max-height: 455px;
+  }
+}
+
+// .width-box {
+//   width: 6rem !important;
+// }
+
+.ml-5 {
+  margin-left: 5px !important;
+}
+
+.btn-width {
+  width: 6rem !important;
+  margin-top: 10px;
+}
+
+.btn-line-height {
+  line-height: 0 !important;
+}
+.clear-text{
+  color:#278ce9;
+  font-weight: bold;
+  margin-left:5px;
+  line-height:40px;
+}
+.wrap-text{
+  white-space: normal;
+}
+
+.pg-tooltip div {
+    top: unset !important; 
+     right: unset !important;
+     width: 180px !important;
+}
+.p-text{
+  font-weight: bold;
+  font-size:14px;
+  text-align: center;
+}
+.label-text{
+  font-weight: 500;
+}
+::ng-deep .mat-option:first-child .mat-pseudo-checkbox{ display: none; }
+
+// .theme-label{
+//   margin-top:40px;
+// }
+
+// label{
+//   margin-bottom: -1rem !important;
+// }
+// .border-class{
+//   border:1px solid grey;
+//   border-radius: 4px;
+//   padding:0px 15px;
+//   background-color: #fff;
+//   font-size: 14px;
+// }
+::ng-deep .mat-form-field-wrapper {
+  padding-bottom:0 !important;
+}
+.ml-0{
+  margin-left:0px !important;
+}
+.mt-20{
+  margin-top:20px;
+}
+
+
+// .tooltip {
+//   position: relative;
+//   display: inline-block;
+//   border-bottom: 1px dotted black;
+// }
+
+// .tooltip .tooltiptext {
+//   visibility: hidden;
+//   width: 120px;
+//   background-color: black;
+//   color: #fff;
+//   text-align: center;
+//   border-radius: 6px;
+//   padding: 5px 0;
+
+//   /* Position the tooltip */
+//   position: absolute;
+//   z-index: 1;
+// }
+
+// .tooltip:hover .tooltiptext {
+//   visibility: visible;
+// }
+
+// style by swapnali
+
+.display-div {
+  margin-top: 2rem;
+  .border-class {
+    
+    .mat-select {
+      border: 1px solid #8e9aae;
+      background: #fff;
+      padding: 1.5rem 1.8rem;
+      color: #8e9aae;
+      font-size: 1.4rem;
+    }
+  }
+}
+
+
+
+.sprint-list {
+  &__inner {
+    padding: 1.5rem;
+    background-color: #f3f8ff;
+    border: 1px solid #dbdde1;
+    border-radius: 1.5rem;
+    margin: 0.8rem;
+    .sprint-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      margin-right: 1.5rem;
+    }
+    .heading-5 {
+      line-height: 1;
+    }
+    .schedule-clock {
+      font-size: 1.4rem;
+      color: #8e9aae;
+      margin-bottom: 0.5rem;
+    }
+    .pg-text-sprint-card {
+      color: #8e9aae;
+      font-size: 1.4rem;
+    }
+    &.pg-selected {
+      .heading-5 {
+        color: #278ce9;
+      }
+      .pg-text-sprint-card {
+        color: #051532;
+      }
+    }
+  }
+}
+
+.pg {
+	margin-top: 3rem;
+}
+
+@media screen and (max-width: 991px) {
+  .div-height {
+    font-size: 1.2rem;
+    padding: 1rem 1.2rem;
+  }
+}
+
+.mat-select-panel .mat-option {
+  padding: 20px;
+  background-color: #fff;
+}
+.mat-option-text {
+  margin-top: 40px;
+}
+.align-middle {
+  margin-left: 10px;
+  font-size: 1.6rem;
+  color: #051532;
+}
+.custom-slider {
+  margin: 15px 0;
+}
+.mat-option.mat-active {
+  background: transparent;
+}
+.tooltip-width{
+  width:80px !important;
+}
+.word-wrap{
+  white-space: pre-wrap; 
+  width:142px !important;
+  
+}
+
+.pg-tooltip div {
+  right: -60px !important;
+}

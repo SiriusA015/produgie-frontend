@@ -1,0 +1,67 @@
+<div #wrapper id="wrapper" (window:resize)="onResize()">
+  <div class="w-full h-full pg-snapshot-graph relative">
+    <div
+      id="circle-text-1"
+      class="absolute"
+      *ngIf="showPurpose"
+      (click)="openDetailsDialog('Purpose')"
+    >
+      Purpose
+      <div
+        *ngIf="showBadge"
+        class="badge-div"
+        [matBadge]="purposeRank"
+        matBadgePosition="after"
+        matBadgeColor="accent"
+      ></div>
+    </div>
+
+    <div
+      id="circle-text-2"
+      class="absolute"
+      *ngIf="showProcess"
+      (click)="openDetailsDialog('Process')"
+    >
+      Process
+      <div
+        *ngIf="showBadge"
+        class="badge-div"
+        [matBadge]="processrank"
+        matBadgePosition="after"
+        matBadgeColor="accent"
+      ></div>
+    </div>
+
+    <div
+      id="circle-text-3"
+      class="absolute"
+      *ngIf="showPeople"
+      (click)="openDetailsDialog('People')"
+    >
+      People
+      <div
+        *ngIf="showBadge"
+        class="badge-div"
+        [matBadge]="peopleRank"
+        matBadgePosition="after"
+        matBadgeColor="accent"
+      ></div>
+    </div>
+
+    <div
+      id="circle-text-4"
+      class="absolute"
+      *ngIf="showStakeholder"
+      (click)="openDetailsDialog('Perspective of Stakeholders')"
+    >
+      Perspective of Stakeholders
+      <div
+        *ngIf="showBadge"
+        class="badge-div"
+        [matBadge]="stakeHoldersRank"
+        matBadgePosition="after"
+        matBadgeColor="accent"
+      ></div>
+    </div>
+  </div>
+</div>

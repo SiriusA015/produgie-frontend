@@ -1,0 +1,610 @@
+<div class="flex w-full flex-row h-full relative">
+  <div class="bg-white left-nav">
+    <app-left-nav></app-left-nav>
+  </div>
+  <!-- <div class="pg-info">
+    <label class="pg-tooltip-left flex flex-row items-center ml-2">
+      <mat-icon class="text-gray-500 mat-icon-18" fontSet="material-icons-outlined">info</mat-icon>
+       <input type="checkbox" />
+      <div class="font-light text-xs">
+        Mouse over the sidebar to track your progress in creating your sprint
+      </div>
+       </label>
+  </div> -->
+  <div class="pg-container pg">
+    <div class="pg__inner">
+      <div class="flex flex-col justify-end">
+        <div class="flex flex-row items-center justify-between">
+          <div class="flex flex-row items-center">
+            <span class="heading-1"
+              >Select Sprint for
+              <span style="color: #3d5dff; font-style: italic">{{
+                selectedCapability?.label
+              }}</span></span
+            >
+            <label
+              class="pg-tooltip flex flex-row items-center ml-2 bg-transparent"
+            >
+              <mat-icon class="text-gray-500" fontSet="material-icons-outlined"
+                >info</mat-icon
+              ><input type="checkbox" />
+              <div class="font-light text-xs">
+                Select an on-the-job development Sprint. Click on the Sprint
+                arrow to see a description.
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <!-- <div (click)="openFilter()">
+            <mat-icon svgIcon="filter" class="text-gray-200 mat-icon-18" aria-hidden="false"></mat-icon>
+            <span class="ml-2 font-semibold">Filters</span>
+          </div> -->
+            <div class="display-div">
+              <mat-form-field appearance="none" class="border-class">
+                <mat-label class="justify-space-between">Filter</mat-label>
+                <mat-select
+                  multiple
+                  [(ngModel)]="selectedvalue"
+                  (openedChange)="filterOpened($event)"
+                >
+                  <mat-option value="one" class="option-height">
+                    <div class="flex">
+                      <div class="w-full h-full" [formGroup]="filterForm">
+                        <div class="theme-label">
+                          <label class="w-full block font-16-heading label-text"
+                            >Theme</label
+                          >
+                        </div>
+                        <div class="mb-2">
+                          <div
+                            class="flex items-center"
+                            *ngFor="let data of Theme; let i = index"
+                          >
+                            <label>
+                              <input
+                                class="align-middle ml-0"
+                                type="checkbox"
+                                [value]="data.value"
+                                (change)="onThemeCheckboxChange($event)"
+                                [checked]="data.checked"
+                              />
+                              <span class="align-middle">{{ data.name }}</span>
+                            </label>
+                            <label
+                              class="pg-tooltip flex flex-row items-center focus:outline-none"
+                            >
+                              <mat-icon
+                                fontSet="material-icons-outlined"
+                                class="text-gray-500 mat-icon-18"
+                                >info
+                              </mat-icon>
+                              <input type="checkbox" />
+                              <div class="font-light text-xs wrap-text">
+                                <p>{{ data.info }}</p>
+                              </div>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="theme-label">
+                          <label class="w-full block font-16-heading label-text"
+                            >Levels</label
+                          >
+                        </div>
+                        <div class="mb-2">
+                          <div
+                            class="flex"
+                            *ngFor="let data of Level; let i = index"
+                          >
+                            <label>
+                              <input
+                                type="checkbox"
+                                class="align-checkbox"
+                                [value]="data.value"
+                                (change)="onLevelCheckboxChange($event)"
+                                [checked]="data.checked"
+                              />
+                              <span class="align-middle ml-10">{{
+                                data.name
+                              }}</span>
+                            </label>
+                            <label
+                              *ngIf="data.info !== ''"
+                              class="pg-tooltip flex flex-row items-center ml-2 focus:outline-none"
+                            >
+                              <mat-icon
+                                fontSet="material-icons-outlined"
+                                class="text-gray-500 mat-icon-18"
+                                >info
+                              </mat-icon>
+                              <input type="checkbox" />
+                              <div class="font-light text-xs wrap-text">
+                                {{ data.info }}
+                              </div>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="theme-label">
+                          <label class="w-full block font-16-heading label-text"
+                            >Sprint Duration (weeks)</label
+                          >
+                        </div>
+                        <div class="custom-slider">
+                          <ng5-slider
+                            [(value)]="value"
+                            [(highValue)]="highValue"
+                            [options]="options"
+                          ></ng5-slider>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                          <span class="text-class flex items-center"
+                            >Growth Leader Favourite
+                            <label
+                              class="pg-tooltip flex flex-row items-center ml-2 focus:outline-none tooltip-width"
+                            >
+                              <mat-icon
+                                fontSet="material-icons-outlined"
+                                class="text-gray-500 mat-icon-18"
+                                >info
+                              </mat-icon>
+                              <input type="checkbox" />
+                              <div class="font-light text-xs word-wrap">
+                                View Sprints suggested by leadersof high growth
+                                companies
+                              </div>
+                            </label>
+                          </span>
+                          <label class="switch">
+                            <input type="checkbox" formControlName="isGlf" />
+                            <div
+                              class="slider round text-white flex justify-between items-center px-2 pg-txt-75"
+                            ></div>
+                          </label>
+                        </div>
+
+                        <div
+                          class="flex flex-row justify-between items-center mb-10"
+                        >
+                          <!-- <div class="cursor-pointer" (click)="getSprint()"><span>Show all</span></div> -->
+                          <div class="">
+                            <button
+                              class="btn focus:shadow-outline focus:outline-none"
+                              type="button"
+                              (click)="applyFilter()"
+                            >
+                              Apply Filter
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </mat-option>
+                  <!-- <mat-option value="two">Second option</mat-option> -->
+                </mat-select>
+              </mat-form-field>
+              <div class="display-div-inline">
+                <div *ngFor="let data of Level">
+                  <div
+                    *ngIf="data.checked === true"
+                    class="name-box div-height cursor-pointer"
+                    title="{{ data.name }}"
+                  >
+                    <span
+                      *ngIf="data.checked === true"
+                      class="material-icons cross-right cursor-pointer"
+                      (click)="remove(data)"
+                    >
+                      clear
+                    </span>
+
+                    <span class="text-line-height"
+                      >{{ data.name }}
+                      <!-- <label class="pg-tooltip flex flex-row items-center ml-2 focus:outline-none">
+                    <mat-icon fontSet="material-icons-outlined" class="text-gray-500 mat-icon-18">info</mat-icon>
+                    <input type="checkbox" />
+                    <div class="font-light text-xs">
+                      {{data.name}}
+                    </div>
+                  </label>   -->
+                    </span>
+                  </div>
+                </div>
+                <br />
+                <div *ngFor="let data of Theme">
+                  <div
+                    *ngIf="data.checked === true"
+                    class="name-box div-height"
+                    title="{{ data.name }}"
+                  >
+                    <span
+                      *ngIf="data.checked === true"
+                      class="material-icons cross-right cursor-pointer"
+                      (click)="removeTheme(data)"
+                    >
+                      clear
+                    </span>
+                    <span class="text-line-height">{{ data.name }}</span>
+                  </div>
+                </div>
+                <span class="clear-text cursor-pointer" (click)="clear()"
+                  >Clear All</span
+                >
+              </div>
+            </div>
+
+            <div
+              *ngIf="isFilterOpen"
+              class="absolute py-2 pg-w-40 bg-white rounded-lg shadow-xl pg-dd-shadow"
+              style="z-index: 1; display: none"
+            >
+              <div class="container p-4">
+                <div class="flex flex-row justify-between items-center">
+                  <span class="text-lg">Filters</span>
+                  <span>
+                    <mat-icon
+                      class="mat-icon-18 cursor-pointer"
+                      (click)="isFilterOpen = false"
+                      >close</mat-icon
+                    >
+                  </span>
+                </div>
+                <div class="flex flex-row">
+                  <div class="w-full" [formGroup]="filterForm">
+                    <div>
+                      <label class="w-full block text-black label-text"
+                        >Theme</label
+                      >
+                    </div>
+                    <div class="flex">
+                      <div
+                        class="flex items-center"
+                        *ngFor="let data of Theme; let i = index"
+                      >
+                        <label>
+                          <input
+                            class="mr-2 align-middle"
+                            type="checkbox"
+                            [value]="data.value"
+                            (change)="onThemeCheckboxChange($event)"
+                            [checked]="data.checked"
+                          />
+                          <span class="align-middle text-black">{{
+                            data.name
+                          }}</span>
+                        </label>
+                        <label
+                          class="pg-tooltip flex flex-row items-center ml-2 focus:outline-none"
+                        >
+                          <mat-icon
+                            fontSet="material-icons-outlined"
+                            class="text-gray-500 mat-icon-18"
+                            >info</mat-icon
+                          >
+                          <input type="checkbox" />
+                          <div class="font-light text-xs">
+                            {{ data.info }}
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                    <div>
+                      <label class="w-full block text-black label-text"
+                        >Levels</label
+                      >
+                    </div>
+                    <div class="">
+                      <div
+                        class="flex"
+                        *ngFor="let data of Level; let i = index"
+                      >
+                        <label>
+                          <input
+                            class="mr-2 align-middle"
+                            type="checkbox"
+                            [value]="data.value"
+                            (change)="onLevelCheckboxChange($event)"
+                            [checked]="data.checked"
+                          />
+                          <span class="align-middle text-black">{{
+                            data.name
+                          }}</span>
+                        </label>
+                        <label
+                          *ngIf="data.info !== ''"
+                          class="pg-tooltip flex flex-row items-center ml-2 focus:outline-none"
+                        >
+                          <mat-icon
+                            fontSet="material-icons-outlined"
+                            class="text-gray-500 mat-icon-18"
+                            >info</mat-icon
+                          >
+                          <input type="checkbox" />
+                          <div class="font-light text-xs">
+                            {{ data.info }}
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                    <div>
+                      <label class="w-full block text-black label-text"
+                        >Sprint Duration (weeks)</label
+                      >
+                    </div>
+                    <div class="custom-slider mb-4">
+                      <ng5-slider
+                        [(value)]="value"
+                        [(highValue)]="highValue"
+                        [options]="options"
+                      ></ng5-slider>
+                    </div>
+
+                    <div class="flex mt-4 mb-8 items-center">
+                      <span>Growth Leader Favourite</span>
+                      <div class="font-light text-xs">
+                        View Sprints suggested by leadersof high growth
+                        companies
+                      </div>
+                      <label class="switch">
+                        <input type="checkbox" formControlName="isGlf" />
+                        <div
+                          class="slider round text-white flex justify-between items-center px-2 pg-txt-75"
+                        ></div>
+                      </label>
+                      <label
+                        class="pg-tooltip flex flex-row items-center ml-2 focus:outline-none"
+                      >
+                        <mat-icon
+                          fontSet="material-icons-outlined"
+                          class="text-gray-500 mat-icon-18"
+                          >info</mat-icon
+                        >
+                        <input type="checkbox" />
+                      </label>
+                    </div>
+
+                    <div class="flex flex-row justify-between items-center">
+                      <div class="cursor-pointer" (click)="getSprint()">
+                        <span>Show all</span>
+                      </div>
+                      <div class="">
+                        <button
+                          class="shadow pg-bg-blue-dark focus:shadow-outline focus:outline-none text-white font-light text-xs py-2 px-4 rounded"
+                          type="button"
+                          (click)="applyFilter()"
+                        >
+                          Apply Filter
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="my-2 flex flex-row items-center justify-end mx-4">
+        <span class="cursor-pointer pg-txt-blue-bright text-xs font-semibold" (click)="expandAll()">{{
+          shownDescription.size === sprints.length ? 'Collapse All' : 'Expand All'}}</span>
+      </div> -->
+        <!-- <div class="grid grid-cols-2 gap-4 mb-2"> -->
+        <div
+          class="flex flex-wrap w-full mat bg-white"
+          *ngIf="sprints.length > 0"
+        >
+          <!-- <div> -->
+          <div
+            *ngFor="let action of sprints"
+            class="w-full lg:w-1/3 sprint-list"
+          >
+            <div
+              (click)="selectAction(action); $event.stopPropagation()"
+              class="flex-none overflow-hidden cursor-pointer border sprint-list__inner"
+              [ngClass]="
+                selectedActions === action.id
+                  ? 'pg-border-green-bright backg  pg-selected'
+                  : 'border-2 border-gray-300'
+              "
+            >
+              <div class="relative h-full flex flex-col justify-between">
+                <!-- <span *ngIf="selectedActions === action.id"
+                  class="pg-w-70 pg-h-70 top-0 right-0 absolute border rounded-full pg-bg-green -mr-8 -mt-8">
+                  <mat-icon class="text-white mat-icon-18 selection-green-tick">check</mat-icon>
+                </span> -->
+                <div class="flex flex-row justify-between items-start">
+                  <div class="flex flex-row justify-start items-center">
+                    <div class="flex flex-col">
+                      <div class="flex flex-row items-center mb-4">
+                        <!-- <mat-icon [svgIcon]="action.icon | titlecase" class="sprint-icon" aria-hidden="false"
+                      [ngClass]="action.iconclass"></mat-icon> -->
+                        <!-- {{action.iconclass}} -->
+
+                        <mat-icon
+                          class="text-white"
+                          [svgIcon]="action.icon | titlecase"
+                          aria-hidden="false"
+                          [ngClass]="action.iconclass"
+                        ></mat-icon
+                        >&nbsp;
+                        <!-- {{action.icon}} -->
+                        <span class="heading-5">{{ action.label }}</span>
+                      </div>
+
+                      <div
+                        class="flex flex-row object-contain items-center justify-start relative schedule-clock"
+                        (click)="
+                          changeScheduleIsOpen(); $event.stopPropagation()
+                        "
+                        cdkOverlayOrigin
+                        #trigger="cdkOverlayOrigin"
+                        style="max-width: fit-content"
+                      >
+                        <mat-icon
+                          class="text-gray-500"
+                          aria-hidden="false"
+                          [ngClass]="{
+                            'pg-txt-green': selectedActions === action.id
+                          }"
+                          >schedule</mat-icon
+                        >
+                        <span
+                          class="relative ml-2"
+                          [ngClass]="{
+                            'pg-txt-green': selectedActions === action.id
+                          }"
+                          >{{ action.defaultLength }}
+                          {{
+                            action.defaultLength == 1 ? "Week" : "Weeks"
+                          }}</span
+                        >
+                        <svg
+                          *ngIf="selectedActions === action.id"
+                          class="h-4 w-4 text-gray-600"
+                          [ngClass]="{
+                            'pg-txt-green': selectedActions === action.id
+                          }"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </div>
+                      <ng-template
+                        cdkConnectedOverlay
+                        [cdkConnectedOverlayOrigin]="trigger"
+                        [cdkConnectedOverlayOpen]="
+                          isScheduleOpen && selectedActions === action.id
+                        "
+                      >
+                        <div
+                          class="flex flex-col bg-white rounded-lg shadow-xl pg-dd-shadow width-box"
+                        >
+                          <a
+                            *ngFor="let sd of sprintDuration"
+                            class="flex pg-schedule cursor-pointer font-semibold"
+                            (click)="changeSchedule(action.id, sd, true)"
+                          >
+                            <!-- <span class="flex justify-center items-center pl-2" *ngIf="sd === action.defaultLength">
+                              <mat-icon class="pg-txt-blue-bright mat-icon-18">check</mat-icon>
+                            </span> -->
+                            <span
+                              class="flex w-full"
+                              [ngClass]="{
+                                'pg-txt-blue-bright':
+                                  sd === action.defaultLength
+                              }"
+                              >{{ sd }}
+                              <span class="ml-5">{{
+                                sd == 1 ? "Week" : "Weeks"
+                              }}</span></span
+                            >
+                          </a>
+                        </div>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <!-- <mat-icon class="pg-txt-blue-bright" (click)="showDescription(action.id); $event.stopPropagation()">
+                    keyboard_arrow_down</mat-icon> -->
+                </div>
+                <div class="flex flex-row justify-between items-center">
+                  <span class="text-sm pg-text-sprint-card">
+                    {{ action.description }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- </div> -->
+        </div>
+        <div class="flex flex-wrap w-full mat" *ngIf="sprints.length == 0">
+          <!-- <ngx-spinner bdColor="rgb(255,255,255)" size="large" color="#278ce9" type="ball-spin-clockwise-fade"
+            [fullScreen]="false">
+            <p style="color: black"> Fetching Data... </p>
+          </ngx-spinner> -->
+          <p class="p-text">No Data Found</p>
+        </div>
+      </div>
+
+      <div class="flex flex-row items-center justify-end mt-5">
+        <!-- <div class="flex flex-row items-center cursor-pointer bg-white rounded-full" *ngIf="!message.isEdit">
+        <button
+          class="bg-transparent flex items-center focus:outline-none justify-center h-12 w-12"
+          [routerLink]="'/design/fad-priority/'"
+        >
+        <label
+        class="pg-tooltip flex flex-row items-center"
+      >
+        <mat-icon class="pg-txt-blue-bright" aria-hidden="false">navigate_before</mat-icon>
+        <input type="checkbox" />
+        <div class="font-light text-xs">
+          Current Page Selections will be erased. If you want to edit any previous choices, you can also edit later from Development Plan.
+        </div>
+      </label>
+        </button>
+      </div> -->
+
+        <div
+          class="flex flex-row items-center justify-center"
+        
+        >
+          <button
+            class="btn next-btn mr-3"
+            [ngClass]="{
+              'pg-bg-blue-dark': selectedActions && this.selectedActions != this.oldSelectedActions,
+              'cursor-not-allowed': !selectedActions || this.selectedActions != this.oldSelectedActions
+            }"
+            (click)="saveSprintFad()"
+            *ngIf="isEditState"
+          >
+            <label
+              class="pg-tooltip flex flex-row items-center mb-0"
+              *ngIf="!selectedActions"
+            >
+              <!-- <mat-icon class="" aria-hidden="false">navigate_next</mat-icon> -->
+              <input type="checkbox"/>
+              <div class="font-light text-xs">
+                Please select one sprint
+              </div> </label
+            >Complete
+            <!-- <mat-icon *ngIf="selectedActions" class="" aria-hidden="false">navigate_next</mat-icon> -->
+          </button>
+
+          <button class="btn next-btn mr-3" (click)="back()">
+            Back
+          </button>
+
+          <button
+            class="btn next-btn"
+            [ngClass]="{
+              'pg-bg-blue-dark': selectedActions,
+              'cursor-not-allowed': !selectedActions
+            }"
+            (click)="storeSprintFad()"
+          >
+            <label
+              class="pg-tooltip flex flex-row items-center mb-0"
+              *ngIf="!selectedActions"
+            >
+              <!-- <mat-icon class="" aria-hidden="false">navigate_next</mat-icon> -->
+              <input type="checkbox"/>
+              <div class="font-light text-xs">
+                Please select one sprint
+              </div> </label
+            >Next
+            <!-- <mat-icon *ngIf="selectedActions" class="" aria-hidden="false">navigate_next</mat-icon> -->
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-mat-svg-icon></app-mat-svg-icon>
+</div>

@@ -1,0 +1,35 @@
+.display-div{
+    display:inline-flex;
+}
+.circle{
+    border:1px solid #278CE9;
+    background-color:#278CE9;
+    height:25px;
+    border-radius: 50%;
+}
+.margin-left-circle{
+    margin-left:10px;
+}
+.icon-color{
+    color:#fff;
+}
+.h-point-five{
+    height:0.7rem !important;
+}
+
+.return-efforts {
+    width: 300px;
+}
+.sprint-start{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+}
+
+@media screen and (max-width: 400px) {
+    .return-efforts {
+        width: 250px;
+    }
+}

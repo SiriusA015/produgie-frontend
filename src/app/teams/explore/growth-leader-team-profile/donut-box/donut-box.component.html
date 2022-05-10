@@ -1,0 +1,65 @@
+<div class="flex flex-row w-full justify-center">
+  <div class="font-medium flex flex-col justify-between items-center  ml-20 mt-6 mb-20 mr-4 mt-12"
+  >
+  
+    <span class="text-sm font-semibold" style="writing-mode: vertical-lr; transform: rotate(-180deg);">HIGH</span>
+    <span class="text-lg font-semibold" style="writing-mode: vertical-lr; transform: rotate(-180deg);">Strategies</span>
+    <span class="text-sm font-semibold" style="writing-mode: vertical-lr; transform: rotate(-180deg);">LOW</span>
+  </div>
+<div class="flex-col justify-between mb-8" style="width: 45rem;">
+  <div #wrapper id="wrapper-box" class="w-full mt-5 bg-white" (window:resize)="onResize()">
+    <div class="w-full h-full p-4 pg-snapshot-graph relative">
+      <div class="w-full h-full relative p-6">
+        <div class="absolute pg-txt-green text-lg font-semibold left-0 top-0">Learned Capabilities</div>
+        <div class="absolute pg-txt-green text-lg font-semibold right-0 top-0">Key Strengths</div>
+        <div class="absolute pg-txt-green text-lg font-semibold bottom-0 left-0">Development Needs</div>
+        <div class="absolute pg-txt-green text-lg font-semibold bottom-0 right-0">Hidden Opportunities</div>
+        <div class="bg-white w-full h-full relative">
+          <div
+          class="absolute top-0 left-0 bg-gray-100 w-full h-full opacity-50 cursor-pointer z-10"
+          *ngIf="isExpand.style !== -1 && isExpand.strategy !== -1"
+          (click)="overlayToggle()"></div>
+
+          <div
+            class="absolute action-wrapper"
+            *ngFor="let action of filteredData; let i = index"
+            [ngClass]="{'z-20': isExpand.style === action.style && isExpand.strategy === action.strategy}"
+            [ngStyle]="{
+              'top': ((5-action.strategy) * 20) + '%',
+              'left': ((action.style * 20)-20) + '%',
+              'margin-left': action.style < 3 ? ( action.expand && (isExpand.style === action.style && isExpand.strategy === action.strategy) ?  'calc('+((action.count-1) * 10)+ '% + 20px)' : (action.count * 20) + 'px') : ( action.expand && (isExpand.style === action.style && isExpand.strategy === action.strategy) ?  'calc('+((matrix[action.style-1][action.strategy -1].length - action.count -1) * -10)+ '% - 20px)' : (action.count * 20) + 'px')
+            }"
+          >
+
+          
+          <div
+            class="action bg-white flex justify-center items-center rounded-full cursor-pointer"
+            
+            [matBadge]="action.rank" [matBadgeHidden]="!rankChecked" matBadgePosition="before" matBadgeColor="accent"
+            (click)="capabilityClicked(action)"
+            >
+              <mat-icon [svgIcon]="action.icon" class="mat-icon-28 pg-txt-blue-bright" aria-hidden="false"></mat-icon>
+            </div>
+
+          <div
+            class="relative font-semibold text-center"
+            [ngClass]="{'z-20': isExpand.style === action.style && isExpand.strategy === action.strategy}"
+            style="font-size: 8px;"
+            *ngIf="matrix[action.style-1][action.strategy -1].length === 1 || (action.expand && (isExpand.style === action.style && isExpand.strategy === action.strategy))"
+          >
+            {{action?.capabilityName}}
+          </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <div class="flex flex-row justify-between items-center mt-4" style="max-width: 640px;">
+    <span class="text-sm font-semibold">LOW</span>
+    <span class="text-lg font-semibold">Style</span>
+    <span class="text-sm font-semibold">HIGH</span>
+  </div>
+</div>
+</div>

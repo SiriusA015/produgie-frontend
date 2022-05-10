@@ -1,0 +1,73 @@
+.avatar {
+  font-size: 4rem !important;
+  width: 5rem !important;
+  height: 5rem !important;
+}
+
+.upload-btn {
+  padding: 10px;
+  background-color: #278ce9;
+  width: 150px;
+  border-radius: 0.5rem;
+  color: #fff;
+  font-weight: 900;
+  // cursor: pointer;
+  font-size: 14px;
+  height: 45px;
+  margin: 0 1rem;
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  background-color: #3adf90;
+  cursor: pointer;
+  width: 150px;
+  padding: 10px;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  margin: 0 1rem;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+  background-color: #3adf90;
+}
+
+// .input-file{
+//     border: 1px solid grey;
+//     width: 40%;
+// }
+
+// label{
+//     padding: 10px;
+//     background: #3adf90;
+//     display: table;
+//     color: #fff;
+//     width: 40%;
+// }
+
+.avatar-lists {
+  img {
+    width: 90px;
+    height: 90px;
+    margin: 1rem 0.5rem;
+  }
+
+  // matTooltip{
+  //   margin-top: -20px;
+  // }
+}

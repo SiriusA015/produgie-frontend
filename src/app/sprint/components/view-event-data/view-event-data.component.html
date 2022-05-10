@@ -1,0 +1,423 @@
+<div>
+  <ngx-spinner bdColor="rgba(245,245,245,0.8)" size="medium" color="#46d9aa" type="ball-spin-fade-rotating"
+    [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+  </ngx-spinner>
+  <h3 class="heading-view">
+    View Event
+    <span class="material-icons cross-right cursor-none" (click)="onNoClick()">
+      clear
+    </span>
+    <span class="material-icons cross-right icon-color" *ngIf="showIcon" (click)="opedEditEvent()">
+      edit
+    </span>
+    <span class="material-icons cross-right icon-color"  *ngIf="showIcon" (click)="opedDeleteEvent()">
+      delete
+    </span>
+  </h3>
+  <div class="background-color">
+    <div *ngIf="editData.title ==  'Weekly Check-in' || editData.title ==  'Feedback'">
+      <div>
+        <h3 class="h-title">{{editData.description.action.label}}</h3>
+        <p class="p-text">
+          {{editData.description.action.description}}
+        </p>
+      </div>
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <h3 class="h-title">Activity</h3>
+        <p class="p-text" *ngIf="editData.title != 'Feedback'">
+          {{editData.title}}
+        </p>
+        <p class="p-text" *ngIf="editData.title == 'Feedback'">
+          Feedback
+        </p>
+      </div>
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <h3 class="h-title">Date and Time</h3>
+
+        <div class="d-flex items-center div-margin-top">
+          <span class="p-text d-width">Date</span>
+          <span class="p-text">{{editData.description.activityDetails.meetingDate | date}}</span>
+        </div>
+
+        <div class="d-flex items-center div-margin-top">
+          <span class="d-width p-text">Time</span>
+          <span class="p-text">{{timeFrom}} {{fromMeridian}}</span>
+          <span class="btn-margin p-text">{{timeTo}}  {{toMeridian}}</span>
+        </div>
+
+        <div class="border-bottom"></div>
+
+      </div>
+    </div>
+    <div
+      *ngIf="editData.title =='Self Directed Learning' || editData.title =='Others'">
+      <div>
+        <h3 class="h-title">{{editData.description.action.label}}</h3>
+        <p class="p-text">
+          {{editData.description.action.description}}
+        </p>
+      </div>
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <h3 class="h-title">Activity</h3>
+        <p class="p-text">
+          {{editData.title}}
+        </p>
+      </div>
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <h3 class="h-title">Date and Time</h3>
+
+        <div class="d-flex items-center div-margin-top">
+          <span class="d-width p-text">Date</span>
+          <span class="p-text">{{editData.description.activityDetails.meetingDate | date}}</span>
+        </div>
+
+        <div class="d-flex items-center div-margin-top">
+          <span class="d-width p-text">Time</span>
+          <span class="p-text">{{timeFrom}}  {{fromMeridian}}</span>
+          <span class="btn-margin p-text">{{timeTo}}  {{toMeridian}}</span>
+        </div>
+
+        <div class="border-bottom"></div>
+
+      </div>
+      <!-- <div class="border-bottom"></div> -->
+      <div class="div-margin-top">
+
+        <!-- <div class="margin-top-dropdown"> -->
+        <div>
+          <h3 class="h-title">Offline/Online Meeting</h3>
+          <div class="div-margin-top display-button">
+            <div class="on-button">
+              <button type="button" class="btn" [ngClass]="{'button-background-color': editData.description.activityDetails.isOnline == true }"
+                (click)="getOnlineEvent('Online')">Online</button>
+            </div>
+            <div class="on-button">
+              <button type="button" class="btn btn-margin" [ngClass]="{'button-background-color': editData.description.activityDetails.isOnline == false }"
+                (click)="getOfflineEvent('Offline')">Offline</button>
+            </div>
+
+          </div>
+          <div class="margin-top-dropdown" *ngIf="editData.description.activityDetails.isOnline == true">
+            <p class="p-text">
+              {{editData.description.activityDetails.meetingUrl}}
+            </p>
+          </div>
+          <div class="margin-top-dropdown" *ngIf="editData.description.activityDetails.isOnline == false">
+            <p class="p-text">
+              {{editData.description.activityDetails.address}}
+            </p>
+
+          </div>
+
+        </div>
+        <!-- </div> -->
+      </div>
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <h3 class="h-title">Description</h3>
+        <p class="p-text">
+          {{editData.description.activityDetails.description}}
+        </p>
+      </div>
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <h3 class="h-title">Title</h3>
+        <p class="p-text">
+          {{editData.description.activityDetails.eventTitle}}
+        </p>
+      </div>
+      <!-- <p>
+          {{editData.title}}
+        </p>
+        <p>
+          {{editData.description.activityDetails.meetingTimeFrom}}
+        </p>
+        <p>
+          {{editData.description.activityDetails.meetingTimeTo}}
+        </p> -->
+    </div>
+    <div *ngIf="editData.title == 'Engage With Sprint Crew Member(s)'">
+      <div>
+        <h3 class="h-title">{{editData.description.action.label}}</h3>
+        <p class="p-text">
+          {{editData.description.action.description}}
+        </p>
+      </div>
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <h3 class="h-title">Activity</h3>
+        <p class="p-text">
+          {{editData.title}}
+        </p>
+      </div>
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <h3 class="h-title">Date and Time</h3>
+
+        <div class="d-flex items-center div-margin-top">
+          <span class="d-width p-text">Date</span>
+          <span class="p-text">{{editData.description.activityDetails.meetingDate | date}}</span>
+        </div>
+
+        <div class="d-flex items-center div-margin-top">
+          <span class="d-width p-text">Time</span>
+          <span class="p-text">{{timeFrom}}  {{fromMeridian}}</span>
+          <span class="btn-margin p-text">{{timeTo}}  {{toMeridian}}</span>
+        </div>
+
+        <div class="border-bottom"></div>
+
+      </div>
+      <!-- <div class="border-bottom"></div> -->
+      <div class="h-title">Sprint Crew</div>
+      <!-- <div class="m-2 rounded-md overflow-hidden shadow-md bg-white pl-4 py-4"> -->
+      <ng-container *ngIf="activityCrew?.length > 0">
+        <div class="display-div d-flex flex-wrap">
+          <div class="text-center mx-2" *ngFor="let cr of activityCrew">
+            <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553__340.png"
+              style="border-radius: 2px;width: 3em;" />
+          
+            <div class="user-text font-weight-bold">{{cr?.name | titlecase}}</div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- </div> -->
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <div>
+          <h3 class="h-title">Offline/Online Meeting</h3>
+          <div class="div-margin-top display-button">
+            <div class="on-button">
+              <button type="button" class="btn" [ngClass]="{'button-background-color': editData.description.activityDetails.isOnline == true }"
+                (click)="getOnlineEvent('Online')">Online</button>
+            </div>
+            <div class="on-button">
+              <button type="button" class="btn btn-margin" [ngClass]="{'button-background-color': editData.description.activityDetails.isOnline == false }"
+                (click)="getOfflineEvent('Offline')">Offline</button>
+            </div>
+
+          </div>
+          <div class="margin-top-dropdown" *ngIf="editData.description.activityDetails.isOnline == true">
+            <p class="p-text">
+              {{editData.description.activityDetails.meetingUrl}}
+            </p>
+          </div>
+          <div class="margin-top-dropdown" *ngIf="editData.description.activityDetails.isOnline == false">
+            <p class="p-text">
+              {{editData.description.activityDetails.address}}
+            </p>
+
+          </div>
+
+        </div>
+        <!-- </div> -->
+      </div>
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <h3 class="h-title">Description</h3>
+        <p class="p-text">
+          {{editData.description.activityDetails.description}}
+        </p>
+      </div>
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <h3 class="h-title">Title</h3>
+        <p class="p-text">
+          {{editData.description.activityDetails.eventTitle}}
+        </p>
+      </div>
+      <!-- <p>
+        {{editData.title}}
+      </p>
+      <p>
+        {{editData.description.activityDetails.meetingTimeFrom}}
+      </p>
+      <p>
+        {{editData.description.activityDetails.meetingTimeTo}}
+      </p> -->
+    </div>
+    <div *ngIf="editData.title == 'Align & Communicate Action With Stakeholder'">
+      <div>
+        <h3 class="h-title">{{editData.description.action.label}}</h3>
+        <p class="p-text">
+          {{editData.description.action.description}}
+        </p>
+      </div>
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <h3 class="h-title">Activity</h3>
+        <p class="p-text">
+          {{editData.title}}
+        </p>
+      </div>
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <h3 class="h-title">Date and Time</h3>
+
+        <div class="d-flex items-center div-margin-top">
+          <span class="d-width p-text">Date</span>
+          <span class="p-text">{{editData.description.activityDetails.meetingDate | date}}</span>
+        </div>
+
+        <div class="d-flex items-center div-margin-top">
+          <span class="d-width p-text">Time</span>
+          <span class="p-text">{{timeFrom}}  {{fromMeridian}}</span>
+          <span class="btn-margin p-text">{{timeTo}}  {{toMeridian}}</span>
+        </div>
+
+        <div class="border-bottom"></div>
+
+      </div>
+      <!-- <div class="border-bottom"></div> -->
+      <div class="font-bold tab-margin-top slider-font" style="padding: 0.5em;">Stakeholders</div>
+      <!-- <div class="m-2 rounded-md overflow-hidden shadow-md bg-white pl-4 py-4"> -->
+      <ng-container *ngIf="stakeholder?.length > 0">
+        <div class="display-div d-flex flex-wrap">
+          <div class="text-center mx-2"  *ngFor="let cr of stakeholder">
+            <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553__340.png"
+              style="border-radius: 2px;width: 3em;" />
+          
+            <div class="user-text font-weight-bold">{{cr?.name | titlecase}}</div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- </div> -->
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <div>
+          <h3 class="h-title">Offline/Online Meeting</h3>
+          <div class="div-margin-top display-button">
+            <div class="on-button">
+              <button type="button" class="btn" [ngClass]="{'button-background-color':editData.description.activityDetails.isOnline == true}"
+                (click)="getOnlineEvent('Online')">Online</button>
+            </div>
+            <div class="on-button">
+              <button type="button" class="btn btn-margin" [ngClass]="{'button-background-color': editData.description.activityDetails.isOnline == false }"
+                (click)="getOfflineEvent('Offline')">Offline</button>
+            </div>
+
+          </div>
+          <div class="margin-top-dropdown" *ngIf="editData.description.activityDetails.isOnline == true">
+            <p class="p-text">
+              {{editData.description.activityDetails.meetingUrl}}
+            </p>
+          </div>
+          <div class="margin-top-dropdown" *ngIf="editData.description.activityDetails.isOnline == false">
+            <p class="p-text">
+              {{editData.description.activityDetails.address}}
+            </p>
+
+          </div>
+
+        </div>
+        <!-- </div> -->
+      </div>
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <h3 class="h-title">Description</h3>
+        <p class="p-text">
+          {{editData.description.activityDetails.description}}
+        </p>
+      </div>
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <h3 class="h-title">Title</h3>
+        <p class="p-text">
+          {{editData.description.activityDetails.eventTitle}}
+        </p>
+      </div>
+      <!-- <p>
+        {{editData.title}}
+      </p>
+      <p>
+        {{editData.description.activityDetails.meetingTimeFrom}}
+      </p>
+      <p>
+        {{editData.description.activityDetails.meetingTimeTo}}
+      </p> -->
+    </div>
+    <div *ngIf="editData.title ==  'Formal/ Structured Learning'">
+      <div>
+        <h3 class="h-title">{{editData.description.action.label}}</h3>
+        <p class="p-text">
+          {{editData.description.action.description}}
+        </p>
+      </div>
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <h3 class="h-title">Activity</h3>
+        <p class="p-text">
+          {{editData.title}}
+        </p>
+        
+      </div>
+      <div class="border-bottom"></div>
+      <div class="div-margin-top">
+        <h3 class="h-title">Date and Time</h3>
+
+        <div class="d-flex items-center div-margin-top">
+          <span class="d-width p-text">Date</span>
+          <span class="p-text">{{editData.description.activityDetails.meetingDate | date}}</span>
+        </div>
+
+        <div class="d-flex items-center div-margin-top">
+          <span class="d-width p-text">Time</span>
+          <span class="p-text">{{timeFrom}}  {{fromMeridian}}</span>
+          <span class="btn-margin p-text">{{timeTo}}  {{toMeridian}}</span>
+        </div>
+        <div class="border-bottom"></div>
+        <div class="div-margin-top">
+          <div>
+            <h3 class="h-title">Offline/Online Meeting</h3>
+            <div class="div-margin-top display-button">
+              <div class="on-button">
+                <button type="button" class="btn" [ngClass]="{'button-background-color': editData.description.activityDetails.isOnline == true }"
+                  (click)="getOnlineEvent('Online')">Online</button>
+              </div>
+              <div class="on-button">
+                <button type="button" class="btn btn-margin" [ngClass]="{'button-background-color': editData.description.activityDetails.isOnline == false }"
+                  (click)="getOfflineEvent('Offline')">Offline</button>
+              </div>
+  
+            </div>
+            <div class="margin-top-dropdown" *ngIf="editData.description.activityDetails.isOnline == true">
+              <p class="p-text">
+                {{editData.description.activityDetails.meetingUrl}}
+              </p>
+            </div>
+            <div class="margin-top-dropdown" *ngIf="editData.description.activityDetails.isOnline == false">
+              <p class="p-text">
+                {{editData.description.activityDetails.address}}
+              </p>
+  
+            </div>
+  
+          </div>
+          <!-- </div> -->
+        </div>
+        <div class="border-bottom"></div>
+        <div class="div-margin-top">
+          <h3 class="h-title">Description</h3>
+          <p class="p-text">
+            {{editData.description.activityDetails.description}}
+          </p>
+        </div>
+        <div class="border-bottom"></div>
+        <div class="div-margin-top">
+          <h3 class="h-title">Title</h3>
+          <p class="p-text">
+            {{editData.description.activityDetails.eventTitle}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

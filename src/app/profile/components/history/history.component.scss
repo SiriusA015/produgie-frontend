@@ -1,0 +1,27 @@
+.no-record{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background: #f3f8ff;
+    margin-top: 20px;
+    font-weight: 300;
+    font-size: 16px;
+    font-style: italic;
+}
+
+.view-more{
+    color: #278CE9;
+    width: 100px;
+}
+
+.selectSprint{
+    background-color: #EBF2FB;
+    font-weight: bold;
+    border-radius: 2px;
+    border-left: 3px solid #278ce9;
+    padding-left: 7px !important;
+}
+
+.selectSprintText{
+    padding-left: 10px;
+}

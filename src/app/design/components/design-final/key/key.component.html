@@ -1,0 +1,149 @@
+<div class="flex flex-col lg:flex-row justify-between devlopment-keys margin-top-keys">
+
+  <div class="w-full mr-4 mb-4 rounded-md overflow-hidden ">
+    <!-- <img class="w-full" src="/img/card-top.jpg" alt="Sunset in the mountains"> -->
+    <div class=" flex flex-col h-full">
+      <div class="text-xl mb-2 flex flex-row justify-between items-center">
+        <div class="flex flex-row justify-between">
+          <span class="mr-2 text-center flex items-center justify-center">
+            <mat-icon class="pg-txt-green" aria-hidden="false"></mat-icon>
+            <!-- svgIcon="gift" -->
+          </span>
+          <span class="heading-2">Actions</span>
+        </div>
+        <!-- <mat-icon class="pg-txt-blue-bright cursor-pointer" (click)="editABO()" *ngIf="message.isEdit">edit</mat-icon> -->
+      </div>
+      <!-- <hr> -->
+      
+      <div *ngIf="carouselItems.length !== 0">
+       
+        <ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="carouselItems">
+         
+          <div *nguCarouselDef="let item; let ind = index" class="item">
+            <div class="tile flex flex-row justify-start items-center">
+              <div class="flex items-center justify-center">
+                <!-- <span class="w-10 h-10 rounded-full pg-bg-blue-dark text-white flex justify-center items-center">{{ind + 1}}</span> -->
+                <!-- <mat-icon class="maticon">keyboard_arrow_left</mat-icon> -->
+              </div>
+
+              <div class="flex flex-col justify-center items-start shadow-lg bg-white custom-rounded-border">
+                 <mat-icon svgIcon="cap_5" class="mat-icon-18 mb-4" aria-hidden="false"></mat-icon>
+                <div class="mb-1 heading-5">{{item.label}}</div>
+                <div class="font-14-heading">{{item.description}}</div>
+              </div>
+            </div>
+          </div>
+          <button NguCarouselPrev class="leftRs" [ngClass]="{'hidden': carouselItems.length === 1}">
+            <mat-icon class="maticon">keyboard_arrow_left</mat-icon>
+          </button>
+          <button NguCarouselNext class="rightRs" [ngClass]="{'hidden': carouselItems.length === 1}">
+            <mat-icon class="maticon">keyboard_arrow_right</mat-icon>
+          </button>
+        
+          <ul class="myPoint" NguCarouselPoint>
+            <li *ngFor="let j of myCarousel.pointNumbers; let i = index" [class.active]="i===myCarousel.activePoint"
+              (click)="myCarousel.moveTo(i)"></li>
+          </ul>
+        </ngu-carousel>
+      </div>
+    </div>
+  </div>
+  <div class="w-full mr-4 mb-4 rounded-md overflow-hidden ">
+    <!-- <img class="w-full" src="/img/card-top.jpg" alt="Sunset in the mountains"> -->
+    <div class="flex flex-col h-full w-full">
+      <div class="text-xl mb-2 flex flex-row items-center justify-between">
+        <div class="flex flex-row items-center">
+          <span class="mr-2 text-center flex items-center justify-center">
+            <mat-icon class="pg-txt-green" aria-hidden="false"></mat-icon>
+            <!-- svgIcon="timer" -->
+          </span>
+          <span class="heading-2">Behaviors</span>
+        </div>
+        <!-- <mat-icon class="pg-txt-blue-bright cursor-pointer" *ngIf="message.isEdit" (click)="editABO()">edit</mat-icon> -->
+      </div>
+      <!-- <hr> -->
+      <div *ngIf="carouselItems1.length !== 0">
+        <ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="carouselItems1">
+          <div *nguCarouselDef="let item; let ind = index" class="item">
+            <div class="tile flex flex-row justify-start items-center">
+              <div class="flex items-center justify-center">
+                <!-- <span class="w-10 h-10 rounded-full pg-bg-blue-dark text-white flex justify-center items-center">{{ind + 1}}</span> -->
+                <!-- <mat-icon class="maticon">keyboard_arrow_left</mat-icon> -->
+
+
+              </div>
+              <div class="flex flex-col justify-center items-start shadow-lg bg-white custom-rounded-border">
+                <mat-icon svgIcon="cap_5" class="mat-icon-18 mb-4" aria-hidden="false"></mat-icon>
+                <div class="mb-1 heading-5">{{item.label}}</div>
+                <div class="font-14-heading">{{item.description}}</div>
+              </div>
+            </div>
+          </div>
+          <button NguCarouselPrev class="leftRs" [ngClass]="{'hidden': carouselItems1.length === 1}">
+            <mat-icon class="maticon">keyboard_arrow_left</mat-icon>
+          </button>
+          <button NguCarouselNext class="rightRs" [ngClass]="{'hidden': carouselItems1.length === 1}">
+            <mat-icon class="maticon">keyboard_arrow_right</mat-icon>
+          </button>
+          <!-- <button NguCarouselPrev class="leftRs" [ngClass]="{'hidden': carouselItems2.length === 1}"><mat-icon class="maticon">keyboard_arrow_left</mat-icon></button> -->
+          <!-- <mat-icon class="rightRs maticon">keyboard_arrow_right</mat-icon> -->
+          <!-- <button NguCarouselNext class="rightRs focus:outline-none pg-txt-blue-bright flex justify-center items-center border border-gray-500" [ngClass]="{'hidden': carouselItems1.length === 1}"><mat-icon>chevron_right</mat-icon></button> -->
+          <!-- <button NguCarouselPrev class="leftRs focus:outline-none  text-white flex justify-center items-center" [ngClass]="{'hidden': carouselItems1.length === 1}"><mat-icon>chevron_left</mat-icon></button> -->
+          <ul class="myPoint" NguCarouselPoint>
+            <li *ngFor="let j of myCarousel.pointNumbers; let i = index" [class.active]="i===myCarousel.activePoint"
+              (click)="myCarousel.moveTo(i)"></li>
+          </ul>
+        </ngu-carousel>
+      </div>
+    </div>
+  </div>
+  <div class="w-full mb-4 rounded-md overflow-hidden">
+    <!-- <img class="w-full" src="/img/card-top.jpg" alt="Sunset in the mountains"> -->
+    <div class="flex flex-col h-full">
+      <div class="text-xl mb-2 flex flex-row items-center justify-between">
+        <div class="flex flex-row items-center">
+          <span class="mr-10 text-center flex items-center justify-center">
+            <!-- <mat-icon class="pg-txt-green" aria-hidden="false">done_all</mat-icon> -->
+          </span>
+          <span class="heading-2">Outcome</span>
+        </div>
+        <!-- <mat-icon class="pg-txt-blue-bright cursor-pointer" *ngIf="message.isEdit" (click)="editABO()">edit</mat-icon> -->
+      </div>
+      <!-- <hr> -->
+      <div *ngIf="carouselItems2.length !== 0">
+        <ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="carouselItems2">
+          <div *nguCarouselDef="let item; let ind = index" class="item">
+            <div class="tile flex flex-row justify-start items-center">
+              <div class="flex items-center justify-center">
+                </div>
+              <div class="flex flex-col justify-center items-start shadow-lg bg-white custom-rounded-border">
+                <mat-icon svgIcon="cap_5" class="mat-icon-18 mb-4" aria-hidden="false"></mat-icon>
+                <div class="mb-1 heading-5">{{item.label}}</div>
+                <div class="font-14-heading">{{item.description}}</div>
+              </div>
+            </div>
+          </div>
+          <button NguCarouselPrev class="leftRs" [ngClass]="{'hidden': carouselItems2.length === 1}">
+            <mat-icon class="maticon">keyboard_arrow_left</mat-icon>
+          </button>
+          <button NguCarouselNext class="rightRs" [ngClass]="{'hidden': carouselItems2.length === 1}">
+            <mat-icon class="maticon">keyboard_arrow_right</mat-icon>
+          </button>
+         
+          <ul class="myPoint" NguCarouselPoint>
+            <li *ngFor="let j of myCarousel.pointNumbers; let i = index" [class.active]="i===myCarousel.activePoint"
+              (click)="myCarousel.moveTo(i)"></li>
+          </ul>
+        </ngu-carousel>
+      </div>
+
+      <!-- <div>
+        <div class="text-center">
+          <span class="dot dot-active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+<div class="sprint-start" *ngIf="isDesignComplete && !isSprintStarted">
+  <div class="flex flex-col my-20 position-text"> 
+    <span class="font-bold text-base text-gray-500">Your Sprint will start on {{sprintStartDate | date: 'mediumDate'}}</span>
+  </div>
+</div>
+<div class="kanban_board" *ngIf="isDesignComplete && isSprintStarted">
+  <mat-tab-group>
+        <mat-tab label="To Do">
+            <mat-accordion>
+                <mat-expansion-panel hideToggle *ngFor="let data of selectedActions">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title class="d-flex justify-between items-center">
+                       {{data.label}}
+
+                        <button mat-icon-button [matMenuTriggerFor]="menu1"
+                        aria-label="Example icon-button with a menu">
+                        <mat-icon class="vert-color">more_vert</mat-icon>
+                    </button>                     
+                  </mat-panel-title>
+                  <mat-menu #menu1="matMenu">
+                    <button mat-menu-item (click)="moveInProgress(data)">
+                        <span>Move In progress</span>
+                    </button>
+                   
+                </mat-menu> 
+                  </mat-expansion-panel-header>
+                  <p>{{data.description}}</p>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </mat-tab>
+        <mat-tab label="In Progress">
+            <mat-accordion>
+                <mat-expansion-panel hideToggle *ngFor="let item of inProgress">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title class="d-flex justify-between items-center">
+                     {{item.label}}
+                        <button mat-icon-button [matMenuTriggerFor]="menu"
+                        aria-label="Example icon-button with a menu">
+                        <mat-icon class="vert-color">more_vert</mat-icon>
+                    </button>                 
+                  </mat-panel-title>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="moveToDone(item)">
+                        <span>Move To Done</span>
+                    </button>
+                   
+                </mat-menu>   
+                  </mat-expansion-panel-header>
+                  <p>{{item.description}}</p>
+                  <div class="tab_data d-flex items-center justify-between pt-3">
+                      <ul class="d-flex items-center justify-between">
+                          <li class="d-flex items-center" (click)="openComment(item)"><mat-icon> chat</mat-icon>{{item.chat_records}}</li>
+                          <li class="d-flex items-center"><mat-icon>link</mat-icon>{{item.link_records}}</li>
+                      </ul>
+                      <div class="d-flex items-center justify-between">
+                        <button class="btn color-white" (click)="viewEvent(item)">View Event</button>  
+                      </div>
+                  </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </mat-tab>
+        <mat-tab label="Done"> 
+            <mat-accordion>
+                <mat-expansion-panel hideToggle  *ngFor="let data of completedActions">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title class="d-flex justify-between items-start">
+                     {{data.label}}
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <p>{{data.description}}</p>
+                  <div class="tab_data d-flex items-center justify-between pt-3">
+                      <ul class="d-flex items-center justify-between">
+                          <li class="d-flex items-center" (click)="openComment(data)"><mat-icon> chat</mat-icon>{{data.chat_records}}</li>
+                          <li class="d-flex items-center"><mat-icon>link</mat-icon>{{data.link_records}}</li>
+                      </ul>
+                      <!-- <div class="d-flex items-center justify-between">
+                        <div class="d-flex items-center pg-block"><span>PG</span> +6</div>
+                      </div> -->
+                  </div>
+                </mat-expansion-panel>
+            </mat-accordion> 
+        </mat-tab>
+    </mat-tab-group>         
+</div>
+<div class="w-full fixed bottom-0">
+  <app-team-bottom-nav></app-team-bottom-nav>
+</div>

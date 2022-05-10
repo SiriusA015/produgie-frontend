@@ -1,0 +1,121 @@
+// .close-button{
+//     float: right;
+// }
+
+
+// .heading {
+//     font-size  : 18px;
+//     font-weight: bold;
+// }
+
+// .heading-2 {
+//     font-size  : 14px;
+//     font-weight: bold;
+// }
+
+// .circle {
+//     display        : flex;
+//     justify-content: center;
+// }
+
+// .title {
+//     font-size      : 14px;
+//     font-weight    : 900;
+//     display        : flex;
+//     justify-content: center;
+// }
+
+// li::marker {
+//     color    : #278ce9;
+//     font-size: 18px;
+// }
+
+// @media screen and (max-width: 1199px) {
+//     .user-activity__block-right {
+//         padding-left: 1rem;
+//     }
+//     .sprintStyling {
+//         padding: 2.5rem;
+//     }
+//     .user-activity__block {
+//         padding: 2rem 1.5rem;
+//     }
+//     .user-activity__block-left {
+//         font-size: 40px;
+//     }
+// }
+
+// // .close-button{
+// //     float: right;
+// //     top:-24px;
+// //     right:-24px;
+// //   }
+
+// .close-button{
+//     float: right;
+// }
+  
+//   .close-icon {
+//     transition: 1s ease-in-out;
+//   }
+  
+//   .close-icon:hover {
+//     transform: rotate(180deg);
+//   }
+  
+//   ::ng-deep .icon-outside .close-button{
+//     float: right;
+//     top:-52px;
+//     right:-52px;
+//   }
+  
+//   ::ng-deep .icon-outside .mat-dialog-container {
+//    overflow: unset
+//   }
+
+
+
+.close-button{
+    float: right;
+}
+.heading {
+    font-size  : 18px;
+    font-weight: bold;
+}
+
+.heading-2 {
+    font-size  : 14px;
+    font-weight: bold;
+}
+
+.circle {
+    display        : flex;
+    justify-content: center;
+}
+
+.title {
+    font-size      : 14px;
+    font-weight    : 900;
+    display        : flex;
+    justify-content: center;
+}
+
+li::marker {
+    color    : #278ce9;
+    font-size: 18px;
+}
+
+@media screen and (max-width: 1199px) {
+    .user-activity__block-right {
+        padding-left: 1rem;
+    }
+    .sprintStyling {
+        padding: 2.5rem;
+    }
+    .user-activity__block {
+        padding: 2rem 1.5rem;
+    }
+    .user-activity__block-left {
+        font-size: 40px;
+    }
+}

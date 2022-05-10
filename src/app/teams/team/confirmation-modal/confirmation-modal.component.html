@@ -1,0 +1,15 @@
+<h1 class="font-heading">
+    Confirmation
+    <span class="material-icons float-right cursor-pointer" (click)="onDismiss()">clear</span>
+  </h1>
+  
+  <div class="margin-top-div">
+    <p class="font-text">Are you sure you want to delete this {{data?.type == 'delete'? 'event' : 'user'}} ?</p>
+  </div>
+  
+  <div class="float-right">
+    <button  class="btn_submit" (click)="onConfirm()">Yes</button>
+    <button class="btn_submit-del" (click)="onDismiss()">No</button>
+   
+  </div>
+

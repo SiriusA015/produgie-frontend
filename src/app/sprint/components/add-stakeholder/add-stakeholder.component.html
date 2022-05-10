@@ -1,0 +1,50 @@
+<div>
+    <h2 class="text-center font-weight-bold">Add Stakeholder
+        <span class="material-icons cross-right" (click)="onNoClick()">
+            clear
+          </span>
+    </h2>
+</div>
+<div class="card-body">
+    <ngx-spinner bdColor = "rgba(245,245,245,0.8)" size = "medium" color = "#46d9aa" type = "ball-spin-fade-rotating" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+            <div class="form-group col">
+                <label> Name</label>
+                <input type="text" formControlName="firstName" class="form-control" [matAutocomplete]="auto" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectionChange($event.option.value)">
+                <mat-option *ngFor="let state of stakeCachingData" [value]="state">
+                  <span>{{ state.name }}</span>
+                </mat-option>
+              </mat-autocomplete>
+                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                    <div *ngIf="f.firstName.errors.required">Name is required</div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="form-row">
+            <div class="form-group col">
+                <label>Email</label>
+                <input type="text" formControlName="email" class="form-control"[matAutocomplete]="auto1"  [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                <mat-autocomplete #auto1="matAutocomplete" (optionSelected)="onSelectionChange($event.option.value)">
+                    <mat-option *ngFor="let state of stakeCachingData" [value]="state">
+                      <span>{{ state.email }}</span>
+                    </mat-option>
+                  </mat-autocomplete>
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.pattern">Invalid email address</div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="text-center">
+            <button class="btn btn-primary mr-1" [disabled]="f.invalid">Submit</button>
+         
+        </div>
+    </form>
+</div>
+
+
+

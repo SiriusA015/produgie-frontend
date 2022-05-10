@@ -1,0 +1,89 @@
+<div class="pg-container mx-auto flex justify-center items-center" *ngIf="sprintDay === 0">
+	<div class="flex flex-col mt-10">
+		<span class="font-bold text-base ">Your Sprint will start on</span>
+		<span class="text-center font-semibold pg-txt-green text-sm">{{userSprint.datetimeFrom | date:
+			'mediumDate'}}</span>
+	</div>
+</div>
+
+
+<div *ngIf="!(sprintDay === 0)" class="calender-wrapper">
+	<div class="pg-container mx-auto flex justify-center items-center" *ngIf="!userSprint">
+		<!-- <ngx-spinner bdColor = "rgba(245,245,245,2.0)" size = "medium" color = "#46d9aa" type = "ball-spin-fade-rotating" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner> -->
+
+		<div class="flex flex-col my-20">
+			<span class="font-bold text-base text-gray-500">You do not have an active sprint.</span>
+		</div>
+	</div>
+	<!-- <ngx-spinner bdColor = "rgba(245,245,245,2.0)" size = "medium" color = "#46d9aa" type = "ball-spin-fade-rotating" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner> -->
+
+	<div class="mb-0" *ngIf="userSprint">
+		<h2 class="heading-2">Calender</h2>
+	</div>
+	<ng-container *ngIf="userSprint">
+		<div class="border-bottom"></div>
+		<div class="calender-margin">
+			<!-- START CALENDAR -->
+			<div class="pb-20">
+				<div class="flex flex-row justify-space-between items-center cal calendar-top">
+					<div class="" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
+						<mat-icon class="inconcolor cursor-pointer color-arrow">keyboard_arrow_left</mat-icon>
+					</div>
+					<h3 class="font-bold font-heading">
+						{{ viewDate | calendarDate: view + "ViewTitle" }}
+					</h3>
+					<div mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">
+						<mat-icon class="inconcolor cursor-pointer color-arrow">keyboard_arrow_right</mat-icon>
+					</div>
+				</div>
+				<mwl-calendar-month-view [viewDate]="viewDate" [events]="events" [refresh]="refresh" [minDate]="minDate"
+					(dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)">
+				</mwl-calendar-month-view>
+				<!-- <mwl-calendar-month-view
+              [viewDate]="viewDate"
+              [events]="events"
+              (eventClicked)="handleEvent('Clicked', $event.event)"
+              (dayClicked)="dayClicked($event.day)"
+              >
+              </mwl-calendar-month-view> -->
+			</div>
+			<!-- END CALENDAR -->
+			<!-- <full-calendar [options]="calendarOptions"></full-calendar> -->
+			<!-- <full-calendar
+    #fullcalendar
+    [events]="calendarEvents"
+    (eventClick)="eventClickHandler($event)"
+    >
+    </full-calendar> -->
+			<!-- <full-calendar
+    #calendar
+    defaultView="dayGridMonth"
+    [plugins]="calendarPlugins"
+    [weekends]="calendarWeekends"
+    [events]="calendarEvents"
+    [allDaySlot]=false
+    [slotEventOverlap]=false
+    dateClick="handleDateClick($event)"
+    (eventClick)="handleEventClick($event)"
+    (eventRender)="eventRenderClick($event)"
+    (viewSkeletonRender)="viewSkeletonRenderClick($event)"
+    ></full-calendar> -->
+		</div>
+	</ng-container>
+</div>
+
+<ng-template #customCellTemplate let-day="day" let-locale="locale">
+	<div class="cal-cell-top">
+		<!-- <span class="cal-day-badge" *ngIf="day.badgeTotal > 0"
+        >{{ day.badgeTotal }}</span
+      > -->
+		<span class="cal-day-number back-color" *ngIf="day.events.length >0">
+			{{ day.date | calendarDate:'monthViewDayNumber':locale }}
+		</span>
+		<span class="cal-day-number" *ngIf="day.events.length <=0">
+			{{ day.date | calendarDate:'monthViewDayNumber':locale }}
+		</span>
+	</div>
+	<!-- <small *ngIf="day.events.length >0" style="margin: 5px;">
+         {{ day.events.length }} total events </small> -->
+</ng-template>

@@ -1,0 +1,100 @@
+<div class="flex w-full flex-row h-full relative">
+    <div class="w-1/8 bg-white left-nav">
+      <app-teams-left-nav></app-teams-left-nav>
+    </div>
+    <div class="pg-info">
+      <label class="pg-tooltip-left flex flex-row items-center ml-2">
+        <mat-icon class="text-gray-500 mat-icon-18" fontSet="material-icons-outlined"
+          >info</mat-icon
+        >
+        <input type="checkbox" />
+        <div class="font-light text-xs">
+          Mouse over the sidebar to track your progress in creating your sprint
+        </div>
+      </label>
+    </div>
+    <div class="pg-container pg">
+      <!-- <div class="mt-4"></div> -->
+      <div class="pg__inner">
+      <div class="flex flex-row mb-8 justify-end" *ngIf="message.isEdit">
+        <button
+          class="btn focus:outline-n flex flex-row items-center justify-end"
+          (click)="gotToNext()"
+        >
+          <mat-icon >save</mat-icon>
+          <span class="font-bold ">Update</span
+          >
+        </button>
+      </div>
+      <div class="w-full flex flex-row">
+        <div class="w-1/3 mx-2">
+          <app-action
+          [assessmentId]="assessmentId"
+          [actions]="actions"
+          [selectedActions]="previousSelectedActions"
+          [customActions]="customActions"
+          [grayOverlay]="message?.actionGray"
+          (actionOut)="onSelectAction($event)"
+          (customActionOut)="onCustomAdded($event)"
+          ></app-action>
+        </div>
+        <div class="w-1/3 mx-2">
+          <app-behaviours
+            *ngIf="behaviours.length > 0"
+            [assessmentId]="assessmentId"
+            [behaviour]="behaviours"
+            [selectedActions]="previousSelectedBehaviours"
+            [grayOverlay]="message?.behaviourGray"
+            (behaviourOut)="onSelectBehaviour($event)"
+            (customBehaviourOut)="onCustomAdded($event)"
+          ></app-behaviours>
+        </div>
+        <div class="w-1/3 mx-2">
+          <app-outcomes
+            *ngIf="outcomes.length > 0"
+            [assessmentId]="assessmentId"
+            [outcome]="outcomes"
+            [selectedActions]="previousSelectedOutcomes"
+            [grayOverlay]="message?.outcomeGray"
+            (outcomeOut)="onSelectOutcome($event)"
+            (customActionOut)="onCustomAdded($event)"
+          >
+        </app-outcomes>
+  
+        </div>
+      </div>
+  
+      <div class="m-2 flex flex-row justify-end" *ngIf="!message.isEdit">
+        <div class="flex flex-row items-center">
+          <div
+            class="flex flex-row items-center btn-width justify-center"
+            [ngClass]="{
+              'pg-bg-blue-dark': selectedActions.size > 0 && selectedBehaviours.size > 0 && selectedOutcomes.size > 0,'cursor-not-allowed': selectedActions.size === 0 || selectedBehaviours.size === 0 || selectedOutcomes.size === 0}"
+          >
+            <label
+              class="pg-tooltip flex flex-row items-center"
+              *ngIf="selectedActions.length === 0 || selectedBehaviour.length === 0 || selectedOutcome.length === 0"
+            >
+              <input type="checkbox" />
+              <div class="font-light text-xs">
+                Please Select atleast one from each action, behavior and outcome
+              </div>
+              
+            </label>
+            <button
+              class="btn next-btn flex items-center focus:outline-none w-full h-full justify-center"
+              [ngClass]="{
+                'cursor-not-allowed': selectedActions.length === 0 || selectedBehaviour.length === 0 || selectedOutcome.length === 0}"
+              (click)="gotToNext()"
+            >
+              Next
+            </button>
+          
+          </div>
+        </div>
+  
+      </div>
+    </div>
+    </div>
+  </div>
+  

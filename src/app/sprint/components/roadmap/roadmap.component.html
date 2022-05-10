@@ -1,0 +1,618 @@
+<div class="pg-container mx-auto flex justify-center items-center mt-20" *ngIf="sprintDay === 0">
+  <div class="flex flex-col mt-10">
+    <span class="font-bold text-base ">Your Sprint will start on</span>
+    <span class="text-center font-semibold pg-txt-green text-sm">{{userSprint.datetimeFrom | date: 'mediumDate'}}</span>
+  </div>
+</div>
+
+<div
+  class="pg-container mx-auto pg-mb-50 min-height-roadmap"
+  *ngIf="sprintDay > 0"
+>
+  <div class="flex flex-row justify-between items-center p-4">
+    <div class="flex items-center">
+      <span class="heading-2">Roadmap</span>
+      <div
+        [helipopper]="tpl"
+        helipopperTrigger="auto"
+        #formmenu="helipopper"
+        (click)="formmenu.show()"
+        helipopperPlacement="auto"
+        helipopperVariation="popper"
+        helipopperClass="pg-hp-custom"
+        class="flex items-center ml-4 cursor-pointer"
+      >
+        <mat-icon
+          fontSet="material-icons-outlined"
+          class="text-gray-500 mat-icon-18"
+          title="Sprint crew’s advice on your development plan"
+          >info</mat-icon
+        >
+      </div>
+      <ng-template #tpl>
+        <div class="font-light text-md">
+          Roadmap for your Sprint Actions. You can start them and mark them
+          completed here
+        </div>
+      </ng-template>
+    </div>
+    <div class="flex flex-row items-center">
+      <mat-icon
+        class="mat-icon-18 mr-1 cursor-pointer"
+        [ngClass]="{ 'pg-txt-green': dayView }"
+        (click)="changeView()"
+        >calendar_view_day</mat-icon
+      >
+      <mat-icon
+        class="mat-icon-18 mr-2 cursor-pointer"
+        [ngClass]="{ 'pg-txt-green': !dayView }"
+        (click)="changeView()"
+        >date_range</mat-icon
+      >
+      <!-- <mat-icon class="text-gray-600" (click)="SprintOption()"> more_vert </mat-icon> -->
+    </div>
+    <button
+      *ngIf="isSprintOption"
+      (click)="isSprintOption = false"
+      tabindex="-1"
+      class="fixed inset-0 h-full w-full cursor-default"
+    ></button>
+    <!-- <div
+  style="top:120px; right:20px;"
+    *ngIf="isSprintOption && !isStop && !isFinished && !isEndDate"
+    class="absolute right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl pg-dd-shadow z-50"
+  >
+    <ul class="py-2 px-1 bg-white rounded-lg pg-dd-shadow">
+      <li class="px-2 py-2 rounded-md text-gray-800 hover:bg-indigo-500 hover:text-white focus:outline-none cursor-pointer" (click)="openExtendSprint()">Extend Sprint</li>
+      <li class="px-2 py-2 rounded-md text-gray-800 hover:bg-indigo-500 hover:text-white focus:outline-none cursor-pointer" (click)="stopSprint() && !isStop && !isFinished">Stop Sprint</li>
+    </ul>
+  </div> -->
+  </div>
+  <ngu-carousel
+    class="flex flex-col justify-between h-full pg-h-screen-w-header-r"
+    #myCarousel
+    [inputs]="carouselConfig"
+    [dataSource]="data"
+    *ngIf="dayView"
+  >
+    <div *nguCarouselDef="let weeks; let ind = index" class="item">
+      <div class="bg-white rounded-md px-1 border-b border-gray-300">
+        <div class="w-full flex pt-4 items-center border-b border-gray-300">
+          <div class="w-1/6 pg-txt-blue-bright pl-2">Days</div>
+          <div
+            class="w-5/6 flex flex-row justify-between ml-2"
+            style="height: 20px"
+          >
+            <div
+              class="flex items-center justify-center w-full text-xs"
+              *ngFor="let i of daysArr"
+            >
+              <span
+                *ngIf="(i == 1 || i == 7 || i == 14) && i + weeks !== sprintDay"
+                >{{ i + weeks }}</span
+              >
+              <mat-icon
+                class="mat-icon-18 pg-txt-green"
+                *ngIf="i + weeks === sprintDay"
+                >room</mat-icon
+              >
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col justify-between items-center relative">
+          <div class="flex h-full w-full absolute top-0">
+            <div class="w-1/6"></div>
+            <div class="flex flex-row justify-between w-5/6 pl-2">
+              <div
+                class="h-full w-full border-r pg-border-gray-line"
+                *ngFor="let i of daysArr"
+                [ngClass]="{ 'bg-green-200': i + weeks === sprintDay }"
+              ></div>
+            </div>
+          </div>
+          <div
+            class="w-full"
+            *ngFor="let sprint of selectedActions; let i = index"
+          >
+            <div
+              *ngIf="sprint?.status === 'PENDING'"
+              class="w-full flex flex-row justify-between py-2 my-2"
+              style="min-height: 64px"
+            >
+              <div
+                class="relative w-1/6 rounded-md flex items-center px-1 pg-bg-blue-dark"
+                #action
+                [matMenuTriggerFor]="pendingtrigger"
+              >
+                <span class="absolute pg-right-6 triangle-down-blue"></span>
+                <span class="pg-text-xxs font-medium text-white">{{
+                  sprint.label
+                }}</span>
+                <mat-menu
+                  #pendingtrigger="matMenu"
+                  style="width: 132px; height: 34px"
+                >
+                  <div
+                    *ngIf="!isStop && !isFinished"
+                    class="bg-white p-2 flex flex-row justify-between items-center rounded-sm shadow-lg"
+                    (click)="completeAction(sprint.id, sprint.isCustom)"
+                  >
+                    <mat-icon
+                      fontSet="material-icons-outlined"
+                      class="pg-txt-blue-bright mat-icon-10"
+                      >flag</mat-icon
+                    >
+                    <span class="ml-2 pg-action-label">Mark as Complete</span>
+                  </div>
+                </mat-menu>
+              </div>
+
+              <div class="w-5/6 flex flex-row justify-between pl-2 z-10">
+                <div
+                  class="flex flex-col items-center w-full justify-between h-full"
+                  [ngClass]="
+                    sprint.commencedDay <= j + weeks && j + weeks <= sprintDay
+                      ? 'pg-bg-green-bright'
+                      : 'pg-bg-block parent'
+                  "
+                  *ngFor="let j of daysArr"
+                  #mybutton
+                  [matMenuTriggerFor]="menu"
+                >
+                  <div
+                    class="flex flex-col items-center justify-around h-full"
+                    *ngIf="
+                      doesExist(j + weeks, sprint.activities) &&
+                      sprint.commencedDay <= j + weeks
+                    "
+                  >
+                    <span
+                      *ngFor="let item of sprint.activities[j + weeks]"
+                      class="flex justify-center items-center rounded-full w-4 h-4 object-contain pg-mat-icon"
+                      [ngClass]="item.color"
+                    >
+                      <mat-icon
+                        fontSet="material-icons-outlined"
+                        class="text-xs mat-icon-10 text-white"
+                        >{{ item.icon }}</mat-icon
+                      >
+                    </span>
+                  </div>
+                  <mat-menu #menu="matMenu">
+                    <div *ngIf="doesExist(j + weeks, sprint.activities)">
+                      <button
+                        class="w-full flex items-center focus:outline-none px-2 py-2 border-b border-gray-400"
+                        *ngFor="let item of sprint?.activities[j + weeks]"
+                        (click)="openViewDialog(j + weeks, item, sprint)"
+                      >
+                        <mat-icon
+                          fontSet="material-icons-outlined"
+                          class="pg-txt-blue-bright mat-icon-12"
+                          >{{ item.icon }}</mat-icon
+                        >
+                        <span
+                          class="pg-menu-text ml-2"
+                          *ngIf="item.title == 'Feedback'"
+                          >Feedback</span
+                        >
+                        <span
+                          class="pg-menu-text ml-2"
+                          *ngIf="item.title != 'Feedback'"
+                          >{{ item.title }}</span
+                        >
+                      </button>
+                    </div>
+                    <button
+                      class="w-full flex items-center focus:outline-none px-2 py-2"
+                      *ngIf="
+                        !isStop &&
+                        !isFinished &&
+                        j + weeks >= sprintDay &&
+                        j + weeks <= userSprint.duration * 7
+                      "
+                      (click)="openAddDialog(j + weeks, sprint)"
+                    >
+                      <mat-icon
+                        fontSet="material-icons-outlined"
+                        class="pg-txt-blue-bright mat-icon-12"
+                        >add_circle_outline</mat-icon
+                      ><span class="pg-menu-text ml-2">Add Event</span>
+                    </button>
+                  </mat-menu>
+                </div>
+                <!-- && (j+weeks) <= userSprint.duration * 7 -->
+              </div>
+            </div>
+          </div>
+          <div
+            class="w-full"
+            *ngFor="let sprint of selectedActions; let i = index"
+          >
+            <div
+              *ngIf="sprint?.status === 'UNTOUCHED'"
+              class="w-full flex flex-row justify-between py-2 my-2"
+              style="min-height: 64px"
+            >
+              <div
+                class="relative w-1/6 rounded-md flex items-center px-1 pg-bg-block"
+                #action
+                [matMenuTriggerFor]="untouchedtrigger"
+              >
+                <span class="absolute pg-right-6 triangle-down-gray"></span>
+                <span class="pg-text-xxs font-medium text-black">{{
+                  sprint.label
+                }}</span>
+                <mat-menu
+                  #untouchedtrigger="matMenu"
+                  style="width: 132px; height: 34px"
+                >
+                  <div
+                    *ngIf="!isStop && !isFinished"
+                    class="bg-white p-2 flex flex-row justify-start items-center rounded-sm shadow-lg"
+                    (click)="commenceAction(sprint.id, sprint.isCustom)"
+                  >
+                    <mat-icon
+                      fontSet="material-icons-outlined"
+                      class="pg-txt-blue-bright mat-icon-10"
+                      >send</mat-icon
+                    >
+                    <span class="ml-2 pg-action-label">Begin Action</span>
+                  </div>
+                </mat-menu>
+                <!-- <div  *ngIf="isStop && isFinished" style="color: red;"> Your sprint has been stopped...!! </div> -->
+              </div>
+              <div class="w-5/6 flex flex-row justify-between pl-2">
+                <div
+                  class="flex flex-col items-center w-full justify-around h-full pg-bg-block parent"
+                >
+                  <div
+                    class="flex flex-col items-center justify-around h-full"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="w-full border-t border-dashed border-gray-500 relative flex justify-center mt-2 mb-4"
+          >
+            <span
+              class="absolute bg-white px-2 text-xs rounded-full border pg-text-green-completed pg-border-green-completed"
+              style="top: -10px"
+              >Completed</span
+            >
+          </div>
+          <div
+            class="w-full"
+            *ngFor="let sprint of selectedActions; let i = index"
+          >
+            <div
+              *ngIf="sprint?.status === 'COMPLETED'"
+              class="w-full flex flex-row justify-between py-2 my-2 z-10"
+              style="min-height: 64px"
+            >
+              <div
+                class="relative w-1/6 rounded-md flex items-center px-1 pg-bg-green-completed"
+              >
+                <span
+                  class="flex justify-center items-center absolute top-0 right-0 rounded-full pg-bg-icon-orange w-3 h-3 object-contain pg-mt-icon"
+                >
+                  <mat-icon class="text-xs mat-icon-8 text-white"
+                    >check</mat-icon
+                  >
+                </span>
+                <span class="absolute pg-right-6 triangle-down-green"></span>
+                <span class="pg-text-xxs text-white font-medium">{{
+                  sprint.label
+                }}</span>
+              </div>
+
+              <div class="w-5/6 flex flex-row justify-between pl-2 z-10">
+                <div
+                  class="flex flex-col items-center w-full justify-around h-full pg-bg-block"
+                  [ngClass]="{
+                    'pg-bg-green': j + weeks === sprint.finishedDay,
+                    'pg-bg-green-bright':
+                      sprint.commencedDay <= j + weeks &&
+                      j + weeks <= sprint.finishedDay - 1
+                  }"
+                  *ngFor="let j of daysArr"
+                  #mybutton
+                  [matMenuTriggerFor]="menu"
+                >
+                  <div
+                    class="flex flex-col items-center justify-around h-full"
+                    *ngIf="
+                      doesExist(j + weeks, sprint.activities) &&
+                      j + weeks <= sprint.finishedDay &&
+                        j + weeks >= sprint.commencedDay
+                    "
+                  >
+                    <span
+                      *ngFor="let item of sprint.activities[j + weeks]"
+                      class="flex justify-center items-center rounded-full w-4 h-4 object-contain pg-mat-icon"
+                      [ngClass]="item.color"
+                    >
+                      <mat-icon
+                        fontSet="material-icons-outlined"
+                        class="text-xs mat-icon-10 text-white"
+                        >{{ item.icon }}</mat-icon
+                      >
+                    </span>
+                  </div>
+                  <div
+                    class="flex flex-col items-center justify-around h-full"
+                    *ngIf="j + weeks === sprint.finishedDay"
+                  >
+                    <span
+                      class="flex justify-center items-center w-4 h-4 object-contain pg-mat-icon"
+                    >
+                      <mat-icon
+                        fontSet="material-icons-outlined"
+                        class="mat-icon-18 pg-text-icon-orange"
+                        >flag</mat-icon
+                      >
+                    </span>
+                  </div>
+
+                  <mat-menu #menu="matMenu">
+                    <div *ngIf="doesExist(j + weeks, sprint.activities)">
+                      <button
+                        class="w-full flex items-center focus:outline-none px-2 py-2 border-b border-gray-400"
+                        *ngFor="let item of sprint.activities[j + weeks]"
+                        (click)="openViewDialog(j + weeks, item, sprint)"
+                      >
+                        <mat-icon
+                          fontSet="material-icons-outlined"
+                          class="pg-txt-blue-bright mat-icon-12"
+                          >{{ item.icon }}</mat-icon
+                        >
+                        <span
+                          class="pg-menu-text ml-2"
+                          *ngIf="item.title != 'Feedback'"
+                          >{{ item.title }}</span
+                        >
+                        <span
+                          class="pg-menu-text ml-2"
+                          *ngIf="item.title == 'Feedback'"
+                          >Feedback</span
+                        >
+                      </button>
+                    </div>
+                  </mat-menu>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- [ngClass]="(sprint.commencedDay <= (j+weeks) && (j+weeks) <= sprint.finishedDay-1 ) ? 'pg-bg-green-bright': 'pg-bg-block parent'" [ngClass]="{'pg-bg-green': (j+weeks) === sprint.finishedDay}" -->
+      </div>
+    </div>
+    <ul class="myPoint" NguCarouselPoint>
+      <li
+        *ngFor="let j of myCarousel.pointNumbers; let i = index"
+        [class.active]="i === myCarousel?.activePoint"
+        (click)="myCarousel.moveTo(i)"
+      ></li>
+    </ul>
+  </ngu-carousel>
+  <div class="bg-white rounded-md" *ngIf="!dayView">
+    <div class="w-full flex flex-row justify-between px-1 py-2 my-2">
+      <div class="w-1/6"></div>
+      <div class="w-5/6 flex flex-row justify-between items-center pl-2">
+        <span
+          class="w-full text-xs font-semibold text-center"
+          style="color: #707070"
+          *ngFor="let item of totalSprintDurationMonths"
+        >
+          Month {{ item }}
+        </span>
+      </div>
+    </div>
+    <div class="flex flex-col justify-between items-center">
+      <div class="w-full" *ngFor="let sprint of selectedActions; let i = index">
+        <div
+          *ngIf="sprint?.status === 'PENDING'"
+          class="w-full flex flex-row justify-between px-1 py-2 my-2"
+          style="min-height: 4px"
+        >
+          <div
+            class="relative w-1/6 rounded-md flex items-center px-1 pg-bg-blue-dark"
+            #action
+            [matMenuTriggerFor]="pendingtrigger"
+          >
+            <span class="absolute pg-right-6 triangle-down-blue"></span>
+            <span class="pg-text-xxs font-medium text-white">{{
+              sprint.label
+            }}</span>
+            <mat-menu
+              #pendingtrigger="matMenu"
+              style="width: 132px; height: 34px"
+            >
+              <div
+                *ngIf="!isStop && !isFinished"
+                class="bg-white p-2 flex flex-row justify-between items-center rounded-sm shadow-lg"
+                (click)="completeAction(sprint.id, sprint.isCustom)"
+              >
+                <mat-icon
+                  fontSet="material-icons-outlined"
+                  class="pg-txt-blue-bright mat-icon-10"
+                  >flag</mat-icon
+                >
+                <span class="ml-2 pg-action-label">Mark as Complete</span>
+              </div>
+            </mat-menu>
+          </div>
+
+          <div class="w-5/6 flex flex-row justify-between items-center pl-2">
+            <div
+              class="flex flex-col items-center w-full justify-around"
+              [ngClass]="[
+                sprint.commencedDay <= j && j <= sprintDay
+                  ? 'pg-bg-green-bright h-4'
+                  : 'pg-bg-block parent h-2',
+                j === sprintDay ? 'rounded-r-md' : 'border-none'
+              ]"
+              *ngFor="let j of totalSprintDurationDays"
+            >
+              <div
+                class="flex flex-col items-center justify-around h-full"
+                *ngIf="
+                  doesExist(j, sprint.activities) && sprint.commencedDay <= j
+                "
+              >
+                <span
+                  *ngFor="let item of sprint.activities[j]"
+                  class="flex pg-act-dot justify-center items-center rounded-full object-contain pg-mat-icon"
+                  [ngClass]="item.color"
+                >
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="w-full" *ngFor="let sprint of selectedActions; let i = index">
+        <div
+          *ngIf="sprint?.status === 'UNTOUCHED'"
+          class="w-full flex flex-row justify-between px-1 py-2 my-2"
+          style="min-height: 64px"
+        >
+          <div
+            class="relative w-1/6 rounded-md flex items-center px-1 pg-bg-block"
+            #action
+            [matMenuTriggerFor]="untouchedtrigger"
+          >
+            <span class="absolute pg-right-6 triangle-down-gray"></span>
+            <span class="pg-text-xxs font-medium text-black">{{
+              sprint.label
+            }}</span>
+            <mat-menu
+              #untouchedtrigger="matMenu"
+              style="width: 132px; height: 34px"
+            >
+              <div
+                *ngIf="!isStop && !isFinished"
+                class="bg-white p-2 flex flex-row justify-start items-center rounded-sm shadow-lg"
+                (click)="commenceAction(sprint.id, sprint.isCustom)"
+              >
+                <mat-icon
+                  fontSet="material-icons-outlined"
+                  class="pg-txt-blue-bright mat-icon-10"
+                  >send</mat-icon
+                >
+                <span class="ml-2 pg-action-label">Begin Action</span>
+              </div>
+            </mat-menu>
+          </div>
+
+          <div class="w-5/6 flex flex-row justify-between items-center pl-2">
+            <div
+              class="flex flex-col items-center w-full justify-around h-2 pg-bg-block parent"
+            >
+              <div class="flex flex-col items-center justify-around h-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="w-full border-t border-dashed border-gray-500 relative flex justify-center mt-2 mb-4"
+      >
+        <span
+          class="absolute bg-white px-2 text-xs rounded-full border pg-text-green-completed pg-border-green-completed"
+          style="top: -10px"
+          >Completed</span
+        >
+      </div>
+      <div class="w-full" *ngFor="let sprint of selectedActions; let i = index">
+        <div
+          *ngIf="sprint?.status === 'COMPLETED'"
+          class="w-full flex flex-row justify-between px-1 py-2 my-2"
+          style="min-height: 64px"
+        >
+          <div
+            class="relative w-1/6 rounded-md flex items-center px-1 pg-bg-green-completed"
+          >
+            <span
+              class="flex justify-center items-center absolute top-0 right-0 rounded-full pg-bg-icon-orange w-3 h-3 object-contain pg-mt-icon"
+            >
+              <mat-icon class="text-xs mat-icon-8 text-white">check</mat-icon>
+            </span>
+            <span class="absolute pg-right-6 triangle-down-green"></span>
+            <span class="pg-text-xxs text-white font-medium">{{
+              sprint.label
+            }}</span>
+          </div>
+          <div class="w-5/6 flex flex-row justify-between items-center pl-2">
+            <div
+              class="flex flex-col items-center w-full justify-around pg-bg-block h-2"
+              [ngClass]="{
+                'pg-bg-green-bright':
+                  sprint.commencedDay <= j && j <= sprint.finishedDay,
+                'h-4': sprint.commencedDay <= j && j <= sprint.finishedDay,
+                'rounded-r-md': j === sprint.finishedDay
+              }"
+              *ngFor="let j of totalSprintDurationDays"
+            >
+              <div
+                class="flex flex-col items-center justify-around h-full"
+                *ngIf="
+                  doesExist(j, sprint.activities) &&
+                  j <= sprint.finishedDay &&
+                  sprint.commencedDay <= j
+                "
+              >
+                <span
+                  *ngFor="let item of sprint.activities[j]"
+                  class="flex justify-center items-center rounded-full pg-act-dot"
+                  [ngClass]="item.color"
+                >
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="pg-container mx-auto flex justify-center items-center" *ngIf="isFinished">
+  <app-sprint-congratulations></app-sprint-congratulations>
+  <div class="flex flex-col my-20">
+    <span class="font-bold text-base text-gray-500">You do not have an active sprint.</span>
+  </div>
+</div> -->
+<div
+  class="pg-container mx-auto flex justify-center items-center"
+  *ngIf="!userSprint"
+>
+  <div class="flex flex-col my-20">
+    <span class="font-bold text-base text-gray-500"
+      >You do not have an active sprint.</span
+    >
+  </div>
+</div>
+
+<app-mat-svg-icon></app-mat-svg-icon>
+
+<ng-template class="pg-container" #completeEvent let-close="close" let-data>
+  <div
+    class="bg-white p-2 flex flex-row justify-between items-center rounded-sm shadow-lg"
+  >
+    <input type="checkbox" name="complete" id="" />
+    <mat-icon fontSet="material-icons-outlined" class="pg-txt-blue-bright"
+      >flag</mat-icon
+    >
+    <span class="ml-2">Mark as complete</span>
+  </div>
+</ng-template>
+<ng-template class="pg-container" #commence let-close="close" let-data>
+  <div
+    class="bg-white p-2 flex flex-row justify-start items-center rounded-sm shadow-lg"
+  >
+    <mat-icon fontSet="material-icons-outlined" class="pg-txt-blue-bright"
+      >send</mat-icon
+    >
+    <span class="ml-2">Begin Action</span>
+  </div>
+</ng-template>

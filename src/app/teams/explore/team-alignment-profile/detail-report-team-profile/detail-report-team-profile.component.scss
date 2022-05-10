@@ -1,0 +1,86 @@
+.weight-bold{
+    font-size: 2rem;
+}
+.mrg-tp{
+    margin-top: 200px;
+}
+
+.font20{
+    font-size: 20px !important;
+}
+.show-on-print{
+    visibility: hidden;
+}
+.rightmr{
+    margin-right: 20px;
+}
+.leftmr{
+    margin-left: 20px;
+}
+// .cngs{
+//     margin-left: 350px;
+//     margin-top: 150px;
+//     margin-bottom: 200px;
+// }
+.jlogo{
+    // justify-content: center;
+    margin-left: 44% !important;
+    visibility: visible !important;
+}
+.mrg{
+    margin-top: 110%;
+    // // position: fixed;
+    // bottom: 0;
+    // position: relative;
+    // bottom: 0;
+
+}
+
+@page {
+    size: A4;
+    margin: 11mm 17mm 17mm 17mm;
+}
+@media print {
+    //this is for force printing of background colors and images in print view
+    * {
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+    .hide-on-print{
+        visibility: hidden;
+    }
+    .show-on-print{
+        visibility: visible;
+    }
+
+    .tracking-widest {
+        position: fixed;
+        bottom: 0;
+    }
+
+    p {
+        page-break-inside: avoid;
+    }
+
+    html, body {
+        width: 110mm;
+        height: 350mm;
+    }
+
+    .detailed-report-footer {
+        position: fixed;
+        bottom: 0;
+        display: flex;
+        justify-content: space-between;
+    }
+    .fix-content{
+        position: fixed; 
+        bottom: 0;
+    }
+    .rightmr{
+        margin-right: 0;
+    }
+    .leftmr{
+        margin-left: 0;
+    }
+}

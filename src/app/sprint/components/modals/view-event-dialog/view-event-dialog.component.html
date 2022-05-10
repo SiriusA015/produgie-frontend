@@ -1,0 +1,176 @@
+<div class="view-event">
+  <div
+  class="flex flex-row justify-between items-start "
+>
+  <div class="flex flex-col">
+    <span class="event-date-font"> View Event </span>
+    <span class="text-base text-gray-500">
+      {{ date | date: "mediumDate" }} | {{ date | date: "EEEE" }}
+    </span>
+  </div>
+  <div class="flex flex-row justify-between items-center">
+    <mat-icon
+      class="text-gray-500 mr-2 cursor-none"
+      *ngIf="
+        !data?.isStop &&
+        data.day >= 0 && data?.action?.status === 'PENDING' &&
+        data?.event?.type?.code !== 'WC' && data?.event?.type?.code !== 'FF'
+      "
+      (click)="deleteEvent()"
+      >delete</mat-icon
+    >
+    <mat-icon
+      class="pg-txt-blue-bright mr-2 cursor-none"
+      *ngIf="
+        !data?.isStop &&
+        data.day >= 0 && data?.action?.status === 'PENDING' &&
+        data?.event?.type?.code !== 'FF' &&   data?.event?.type?.code !== 'WC'
+      "
+      (click)="editEvent()"
+      >create</mat-icon
+    >
+    <mat-icon class="cursor-none" (click)="onNoClick()">close</mat-icon>
+  </div>
+</div>
+<div *ngIf="loadCounter > 0">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div class="background-color">
+    <div
+      class=""
+      [ngClass]="{ 'pg-bg-green': data?.action?.status === 'COMPLETED' }"
+    > <h3 class="h-title">{{ data.action.label }}</h3>
+      <span
+        class="p-text"
+        [ngClass]="
+          data?.action?.status === 'COMPLETED' ? 'text-black' : 'text-green-600'
+        "
+        > {{ data?.action?.description }}</span
+      >
+      <div class="flex items-center" *ngIf="data?.action?.status === 'COMPLETED'">
+        <span
+          class="flex justify-center items-center rounded-full pg-bg-icon-orange w-6 h-6 object-contain mr-2"
+        >
+          <mat-icon class="text-white mat-icon-18">check</mat-icon>
+        </span>
+        <span class="p-text">Completed</span>
+      </div>
+      <div class="border-bottom"></div>
+    </div>
+    <!-- <div class="mt-6"></div> -->
+    <div class="div-margin-top">
+      <h3 class="h-title"> Activity </h3>
+      <p class="p-text" *ngIf="data.event.title == 'Feedback'">
+        Feedback
+      </p>
+      <p class="p-text" *ngIf="data.event.title != 'Feedback'">
+        {{ data.event.title }}
+      </p>
+
+      <div class="border-bottom"></div>
+    </div>
+
+    <div
+      class="div-margin-top"
+      *ngIf="data?.event?.type?.code === 'ACS'"
+    >
+      <h3 class="h-title"> Stakeholder </h3>
+      <span class="flex justify-end items-center">
+        <div
+          class="h-12 w-12 p-1 rounded-full bg-white"
+          *ngFor="let sh of stakeholder; let i = index"
+          [ngClass]="{ '-ml-4': i > 0 }"
+        >
+          <span
+            class="pg-bg-blue-dark rounded-full h-full w-full flex justify-center items-center border-white text-white uppercase"
+          >
+            {{ sh.name.charAt(0) }}
+          </span>
+        </div>
+      </span>
+      
+      <div class="border-bottom"></div>
+    </div>
+    <div
+      class="div-margin-top"
+      *ngIf="data?.event?.type?.code === 'ESC'"
+    >
+      <h3 class="h-title"> Support Crew </h3>
+      <span class="flex justify-end items-center">
+        <div
+          class="h-12 w-12 p-1 rounded-full bg-white"
+          *ngFor="let crew of activityCrew; let i = index"
+          [ngClass]="{ '-ml-4': i > 0 }"
+        >
+          <span
+            class="pg-bg-blue-dark rounded-full h-full w-full flex justify-center items-center border-white text-white uppercase"
+          >
+            {{ crew.name.charAt(0) }}
+          </span>
+        </div>
+      </span>
+      <div class="border-bottom"></div>
+    </div>
+    <div
+      class="div-margin-top"
+      *ngIf="
+        data?.event?.type?.code !== 'FSL' &&
+        data?.event?.type?.code !== 'WC' &&
+        data?.event?.type?.code !== 'FF'
+      "
+    >
+      <h3 class="h-title">
+        {{ data?.event?.details?.isOnline ? "Online" : "Offline" }} Meeting
+      </h3>
+
+      <a
+        *ngIf="data.event.details.isOnline"
+        [href]="data?.event?.details?.meetingUrl"
+        class="p-text"
+      >
+        {{ data?.event?.details?.meetingUrl }}
+      </a>
+      <span
+        *ngIf="!data.event.details.isOnline"
+        class="p-text"
+      >
+        {{ data?.event?.details?.address }}
+      </span>
+
+      <div class="border-bottom"></div>
+    </div>
+
+    <div
+      class="div-margin-top"
+      *ngIf="data?.event?.type?.code !== 'FF'"
+    >
+      <h3 class="h-title"> Schedule </h3>
+      <p class="p-text">
+        {{ meetingTimeFrom }} - {{ meetingTimeTo }}
+      </p>
+
+      <div class="border-bottom"></div>
+    </div>
+
+    <div
+      class="div-margin-top"
+      *ngIf="data?.event?.type?.code !== 'WC' && data?.event?.type?.code !== 'FF'"
+    >
+      <h3 class="h-title">Description</h3>
+      <p class="p-text">
+        {{ data?.event?.details?.description }}
+      </p>
+      <div class="border-bottom"></div>
+    </div>
+    <div
+    class="div-margin-top"
+    *ngIf="data?.event?.type?.code !== 'WC' && data?.event?.type?.code !== 'FF'"
+  >
+    <h3 class="h-title">Title</h3>
+    <p class="p-text">
+      {{ data?.event?.details?.eventTitle }}
+    </p>
+    <div class="border-bottom"></div>
+  </div>
+</div>
+</div>

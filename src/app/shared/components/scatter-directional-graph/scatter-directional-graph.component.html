@@ -1,0 +1,17 @@
+<div #wrapper [ngStyle]="style" (window:resize)="onResize($event)">
+  <span #popper="helipopper"
+    [helipopper]="tpl"
+    helipopperVariation="popper"
+    helipopperPlacement="auto"
+    [helipopperOffset]="hpOffset"
+    helipopperClass="sg-hp-custom"
+  ></span>
+    <canvas #canvas style="width: 100%; height: 100%; transform: rotateZ(270deg);"></canvas>
+
+    <ng-template #tpl>
+      <div class="popup">
+        {{popUpData.text}}
+      </div>
+    </ng-template>
+
+  </div>

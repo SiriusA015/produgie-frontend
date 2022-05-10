@@ -1,0 +1,68 @@
+<div class="w-full flex flex-row p-3">
+  <div class="w-full border-2 bg-white text-center font-medium rounded-md flex justify-center items-center" style="width: 60px; writing-mode: vertical-lr; transform: rotate(-180deg);"
+  [ngStyle]="{'background-color': backgroundColor, 'border-color': borderColor, 'color': textColor}">
+    <span class="align-middle capitalize">{{ title }}</span>
+    <div
+        [helipopper]="info"
+        helipopperTrigger="auto"
+        #formmenu="helipopper"
+        (click)="formmenu.show()"
+        helipopperPlacement="auto"
+        helipopperVariation="popper"
+        helipopperClass="pg-hp-custom"
+        class="flex items-center cursor-pointer"
+      >
+        <mat-icon
+          fontSet="material-icons-outlined"
+          class="textColor mat-icon-18 tr-90"
+          title="Sprint crew’s advice on your development plan"
+          >info</mat-icon
+        >
+      </div>
+      <ng-template #info>
+        <div class="font-light text-xs">
+          {{ infoText }}
+        </div>
+      </ng-template>
+  </div>
+  <div class="w-full">
+    <div class="flex bg-white p-4" *ngIf="!hideLegend">
+      <span  *ngFor="let color of colors.slice(0, data.length); let i = index">
+        <div
+        class="pg-dot rounded-full mr-4 cursor-pointer"
+        [ngStyle]="{'background-color': color}"
+        [helipopper]="tpl"
+        helipopperTrigger="auto"
+        #formmenu="helipopper"
+        (click)="formmenu.show()"
+        helipopperPlacement="auto"
+        helipopperVariation="popper"
+        helipopperClass="pg-hp-custom"
+        ></div>
+
+        <ng-template #tpl>
+          <div>
+            <div class="text-sm font-semibold text-black mb-1">{{details[i]?.title}}</div>
+            <div class="text xs font-medium text-black">{{details[i]?.description}}</div>
+          </div>
+        </ng-template>
+      </span>
+    </div>
+    <div class="w-full bg-white shadow-sm flex items-center rounded-sm pl-4">
+      <div #wrapper class="w-full rounded-sm" style="display: block;" (window:resize)="onResize()">
+        <canvas class="rounded-sm" #canvas baseChart height="300px" style="height: 300px;"
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"
+          [plugins]="lineChartPlugins">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+

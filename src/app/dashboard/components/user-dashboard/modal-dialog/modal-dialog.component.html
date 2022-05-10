@@ -1,0 +1,10 @@
+<div class="modal-dialog-wrapper">
+	<div class="flex items-center justify-center mb-3">
+		<h1 mat-dialog-title class="heading-5 text-center">{{ data.message}}</h1>
+	</div>
+
+	<div class="exle-button-row flex justify-center">
+		<button class="mat-raised-button continue-button blue-bkg-btn" (click)="proceed()">Ok</button>
+		<button *ngIf="data.hasCancelButton" class="mat-raised-button continue-button ml-4" (click)="cancel()">Cancel</button>
+	</div>
+</div>

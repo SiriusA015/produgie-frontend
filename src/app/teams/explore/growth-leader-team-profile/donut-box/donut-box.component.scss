@@ -1,0 +1,33 @@
+.pg-snapshot-graph {
+    // background-image: url('/assets/images/graph.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  
+  
+  #wrapper-box {
+    width: 45rem;
+    max-width: 45rem;
+    height: 45rem;
+    max-height: 45rem;
+    // margin-left: 6.5rem;
+  }
+  
+  .action-wrapper {
+    width: 10% !important;
+    height: 10% !important;
+  }
+  
+  .action {
+    width: 100% !important;
+    height: 100% !important;
+    // height: 50%;
+    box-shadow: 0px 4px 8px #00000029;
+    // border: 2px solid #278CE9;
+  }
+  
+  ::ng-deep.action.mat-badge-medium.mat-badge-above .mat-badge-content {
+    top: 35%;
+  }
+  

@@ -1,0 +1,22 @@
+<div class="flex flex-col justify-between p-4 h-full w-full">
+    <div class="flex justify-center items-center mb-2 relative">
+        <span class="heading-1 mb-2">Confirm Sprint</span>
+        <span class="absolute right-0 top-0 cursor-pointer" (click)="Cancel()"><mat-icon class="text-gray-600">close</mat-icon></span>
+    </div>
+    <div class="flex flex-row justify-center items-center mb-4">
+        <mat-icon class="text-yellow-400">error_outline</mat-icon>
+        <span class="heading-5 ml-2">Important!</span>
+    </div>
+    <div>
+        <p class="text-center font-14-heading mb-8">
+            When you confirm, Produgie will send your <a class="pg-txt-blue-bright">Development Plan</a> to your Sprint Crew for advice to help you succeed in your Sprint. If you are not yet ready to share your Development Plan, just save it here and select Confirm later to share it.
+        </p>
+        <!-- <p class="text-center text-xs font-semibold mb-2">
+            When you confirm, Produgie will send you your <a class="pg-txt-blue-bright">Development Plan</a> to Sprint Crew for Supportive Advice. If you are not ready yet,
+            you can work on this later.
+        </p> -->
+    </div>
+    <div class="flex justify-center">
+        <button class="btn focus:outline-none" (click)="onConfirm()">CONFIRM</button>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="flex h-full flex-col">
+  <div class="flex flex-row justify-between align-center pb-4">
+    <span class="font-bold text-2xl txt-montserra">Add Photo</span>
+    <mat-icon (click)="dialogRef.close()" class="cursor-pointer"
+      >close</mat-icon
+    >
+  </div>
+  <hr />
+  <div class="flex flex-wrap py-4 items-center justify-around avatar-lists">
+    <img
+      *ngFor="let avatar of avatars"
+      matTooltip="Double click to set avatar"
+      matTooltipPosition="below"
+      aria-label="Button that displays a tooltip when focused or hovered over"
+      [src]="'/assets/avatars/avatar_' + avatar + '.svg'"
+      class="cursor-pointer"
+      (click)="changePicture(avatar)"
+    />
+  </div>
+
+  <div class="d-flex justify-center items-center mt-4 pb-10">
+    <input
+      type="file"
+      name="file"
+      id="file"
+      accept=".png, .jpg, .jpeg"
+      class="inputfile"
+      (change)="onFileselected($event.target.files)"
+    />
+    <label for="file"><mat-icon>file_upload</mat-icon> Choose a file</label>
+    <span
+      ><b>{{ ShowImageSame }}</b></span
+    >
+
+    <button type="submit" class="upload-btn" (click)="onUpload()">
+      Upload
+    </button>
+  </div>
+
+  <app-mat-svg-icon></app-mat-svg-icon>
+</div>

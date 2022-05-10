@@ -1,0 +1,15 @@
+<div class="w-screen h-screen flex justify-center items-center" *ngIf="!error">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div class="w-screen h-screen flex justify-center items-center" *ngIf="error">
+  <div class="bg-white w-1/5 rounded-md shadow-md p-4 ">
+    <p class="font-semibold text-4xl">Something went wrong</p>
+    <div class="text-xl py-4"><span>Error: </span><span>{{error}}</span></div>
+    <p class="text-xl py-4 italic">{{errorDescription}}</p>
+    <div class="flex justify-between items-center">
+      <span class="italics text-gray-600">It will redirect you to login screen, where you can retry.</span>
+      <button class="py-2 px-4 text-lg font-semibold pg-bg-blue-dark text-white rounded-md" [routerLink]="['/auth/login']">Retry</button>
+    </div>
+  </div>
+</div>

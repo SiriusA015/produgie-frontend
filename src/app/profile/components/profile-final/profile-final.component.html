@@ -1,0 +1,36 @@
+<div class="flex w-full flex-row h-full relative development-plan pg-f3-pt-110">
+  <div class="pg-container ">
+    <div class="pg__inner">
+      <app-summary [userSprint]="userSprint"></app-summary>
+      <app-summary-details
+        [strenghts]="capabilities"
+        [fads]="data?.capability"
+        [priority]="data?.priority"
+      ></app-summary-details>
+      <app-snapshot
+        [userSprint]="userSprint"
+        [sprint]="data?.sprint"
+        [sprintNo]="data?.sprintNo"
+        [frequency]="data?.userSprint"
+      ></app-snapshot>
+      <hr>
+      <app-result
+        [advice] = "advice"
+        [feedback] = "feedback"
+      ></app-result>
+      <hr>
+      <app-profile-key
+        [actions]="allaction"
+        [outcomes]="alloutcome"
+        [behaviours]="allbehavior"
+        [sprintId]="data?.userSprint?.sprintId"
+      ></app-profile-key>
+      <app-sprint-roles></app-sprint-roles>
+      <app-contact-card
+        [design]="design"
+        [crews]="data?.crew"
+      ></app-contact-card>
+    </div>
+  </div>
+</div>
+<app-mat-svg-icon></app-mat-svg-icon>

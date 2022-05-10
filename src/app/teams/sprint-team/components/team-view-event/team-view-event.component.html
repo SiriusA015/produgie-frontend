@@ -1,0 +1,40 @@
+<div class="height-div">
+    <h2 class="font-weight-bold event-date-font">{{eventDate | date}}
+      <span class="material-icons cross-right cursor-pointer" (click)="onNoClick()">
+        clear
+      </span>
+    </h2>
+    <!-- <ngx-spinner bdColor = "rgba(245,245,245,0.8)" size = "medium" color = "#46d9aa" type = "ball-spin-fade-rotating" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner> -->
+    <div class="background-color" *ngIf="data.events.length > 0">
+      <ng-container>
+        <div class="text-margin" (click)="viewEventData(event)" *ngFor="let event of data.events;let i = index;">
+          <span class="display-span">
+            <span [ngStyle]="{ 'background-color': event.color, 'width': '10px', 'height': '10px','border-radius':'10px','margin-top':'4px'}"></span>
+            <span class="margin-title title-font"  *ngIf="event.title != 'Feedback'">{{event.title}}</span>
+            <span class="margin-title title-font"  *ngIf="event.title == 'Feedback'">Feedback</span>
+            <span class="material-icons color">
+              keyboard_arrow_right
+              </span>
+          </span>
+          <div class="date-font" >
+            <span>{{timeArray[i]?.timeFrom}} {{timeArray[i]?.fromMeridian}}- </span>
+            <span>{{timeArray[i]?.timeTo}} {{timeArray[i]?.toMeridian}}</span>
+          </div>
+          <div class="border-bottom"></div>
+        </div>
+     
+      </ng-container>
+      
+      
+    </div>
+    <div class="background-color" *ngIf="data.events.length == 0">
+      No data found
+    </div>
+    <!-- <div class="background-color" *ngIf="!data.event">
+      No data found
+    </div> -->
+    <div class="button-container" *ngIf="isAdable">
+      <button class="btn" (click)="addEvent()">Add Event</button>
+    </div>
+  </div>
+  

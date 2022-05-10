@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="bddcc9761856e56202c67a0ccc0f26ce2c0fd97e" datatype="html">
+        <source>
+        My Summary
+      </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/dashboard/components/dash-main/summary/summary.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">An introduction header</note>
+        <note priority="1" from="meaning">summary header</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

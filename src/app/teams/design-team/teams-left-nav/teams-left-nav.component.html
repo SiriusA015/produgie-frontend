@@ -1,0 +1,284 @@
+<div class="main-nav-design">
+    <!-- <p class="text-2xl font-bold text-center pt-10 nav-text m-auto">
+      Design your Sprint
+    </p> -->
+    <div class="flex flex-col w-full pg-h-screen-w-header justify-start items-end pg-left-height">
+      <div class="" style="max-height: max-content">
+        <div class="nav-hover w-full flex justify-between rounded-md items-center pl-8" [ngClass]="{
+            'bg-white border border-gray-500 pg-txt-green': message?.step >= 1,'border-color bg-white':message?.step >= 2,'bg-color-panel':message?.step <2}">
+          <div class="flex w-full justify-between items-center"  [ngClass]="{ 'border-blue-500 rounded-2xl': message?.step >= 1,'pg-bg-black border-color':message?.step >= 2 }" >
+            <span >1. Focus Team Development</span>
+            <!-- <mat-icon
+              class="text-gray-500 material-icons-outlined"
+              aria-hidden="false"
+              >info</mat-icon
+            > -->
+          </div>
+          <div
+            [ngClass]="{
+              'pg-active-circle': message?.faddev && message?.fadfocus
+            }">
+            <span class="font-bold" *ngIf="message?.faddev && message?.fadfocus">
+              <!-- <mat-icon class="text-white">check</mat-icon> -->
+            </span>
+            <span class="font-bold" *ngIf="!message?.xfaddev || !message?.fadfocus">
+              <!-- 1 -->
+            </span>
+          </div>
+        </div>
+        <!-- <div class="w-full pl-8 py-8 nav-hover-list border-r-2 border-gray-500 relative" -->
+          <!-- [ngClass]="{ 'border-green-500': message?.step >= 1 }"> -->
+          <ul>
+            <li class="flex items-center mb-2"  [ngClass]="{ 'pg-bg-green': message?.faddev}">
+              <div 
+               ></div>
+              Select 3 priorities
+            </li>
+            <li class="flex items-center mb-2"  [ngClass]="{ 'pg-bg-green': message?.fadfocus}">
+              <div 
+               ></div>
+              Select current focus
+            </li>
+          </ul>
+        <!-- </div> -->
+  
+        <!-- <div
+          class="flex flex-col rounded-full border pg-txt-green bg-white nav-hover-r box -mr-10 justify-center items-center"
+          style="line-height: 9px" [ngClass]="{ 'pg-active-circle': message?.faddev && message?.fadfocus }"> -->
+          <span class="font-bold" *ngIf="message?.faddev && message?.fadfocus">
+            <!-- <mat-icon class="text-white">check</mat-icon> -->
+          </span>
+          <!-- <span class="font-bold mb-2" *ngIf="!message?.faddev || !message?.fadfocus">
+            1
+          </span> -->
+          <!-- <span class="font-semibold text-sm"> Focus </span> -->
+        <!-- </div> -->
+        <!-- <div class="w-full h-8 border-r-2 border-gray-500 relative"
+          [ngClass]="{ 'border-green-500': message?.step >= 1 }"></div> -->
+        <!-- <div class="flex justify-end" style="margin-right: -13px">
+          <div class="w-full relative">
+            <mat-icon class="pg-txt-green absolute left-nav-circle-direction-arrow bottom-0">keyboard_arrow_down
+            </mat-icon>
+          </div>
+        </div> -->
+  
+        <!-- 2nd point -->
+        <div class="nav-hover w-full flex justify-between items-center rounded-md pl-8" [ngClass]="{
+            'bg-white border border-gray-500 pg-txt-green': message?.step >= 2,'border-color':message?.step >= 3,'bg-color-panel':message?.step ==2,'bg-white':message?.sprint<2}">
+          <div class="flex w-full justify-between items-center"  [ngClass]="{ 'border-blue-500': message?.step >= 2,'color-grey':message?.step <2,'pg-bg-black':message?.step >=3 }">
+  
+            
+            <span >2. Configure Sprint</span>
+            <!-- <mat-icon
+              class="text-gray-500 material-icons-outlined"
+              aria-hidden="false"
+              >info</mat-icon
+            > -->
+          </div>
+          <div
+            [ngClass]="{
+              'pg-active-circle':
+                message?.sprint &&
+                message?.action &&
+                message?.behaviour &&
+                message?.outcome,
+              'pg-txt-green': message?.step >= 2 
+            }">
+            <span class="font-bold" *ngIf="
+                message?.sprint &&
+                message?.action &&
+                message?.behaviour &&
+                message?.outcome
+              ">
+              <!-- <mat-icon class="text-white">check</mat-icon> -->
+            </span>
+            <span class="font-bold" *ngIf="
+                !message?.sprint ||
+                !message?.action ||
+                !message?.behaviour ||
+                !message?.outcome
+              ">
+              <!-- 2 -->
+            </span>
+          </div>
+        </div>
+        <!-- <div class="w-full pl-8 py-8 nav-hover-list border-r-2 border-gray-500 relative"
+        > -->
+          <ul>
+            <li class="flex items-center mb-2"  [ngClass]="{ 'pg-bg-green': message?.sprintShow,'color-grey':message?.step <2 }">
+              <div 
+               ></div>
+              Sprint +
+            </li>
+            <li class="flex items-center mb-2"  [ngClass]="{ 'pg-bg-green': message?.action ,'color-grey':message?.step <2 }">
+              <div 
+               ></div>
+              Actions +
+            </li>
+            <li class="flex items-center mb-2" [ngClass]="{ 'pg-bg-green': message?.behaviour,'color-grey':message?.step <2 }">
+              <div 
+                ></div>
+              Behaviors
+            </li>
+            <li class="flex items-center mb-2"   [ngClass]="{ 'pg-bg-green': message?.outcome,'color-grey':message?.step <2 }">
+              <div 
+              ></div>
+              Outcomes
+            </li>
+          </ul>
+        <!-- </div> -->
+  
+        <!-- <div
+          class="flex flex-col rounded-full border text-gray-500 border-gray-500 bg-white nav-hover-r box -mr-10 justify-center items-center"
+          style="line-height: 9px" [ngClass]="{
+            'pg-active-circle':
+              message?.sprint &&
+              message?.action &&
+              message?.behaviour &&
+              message?.outcome,
+            'pg-txt-green': message?.step >= 2
+          }"> -->
+          <span class="font-bold" *ngIf="
+              message?.sprint &&
+              message?.action &&
+              message?.behaviour &&
+              message?.outcome
+            ">
+            <!-- <mat-icon class="text-white">check</mat-icon> -->
+          </span>
+          <span class="font-bold mb-2" *ngIf="
+              !message?.sprint ||
+              !message?.action ||
+              !message?.behaviour ||
+              !message?.outcome
+            ">
+            <!-- 2 -->
+          </span>
+          <!-- <span class="font-semibold text-sm"> Sprint </span> -->
+        <!-- </div> -->
+  
+        <!-- <div class="w-full h-8 border-r-2 border-gray-500 relative"
+          [ngClass]="{ 'border-green-500': message?.step >= 2 }"></div> -->
+  
+        <!-- <div class="flex justify-end" style="margin-right: -13px">
+          <div class="w-full relative">
+            <mat-icon class="text-gray-500 absolute left-nav-circle-direction-arrow bottom-0"
+              [ngClass]="{ 'pg-txt-green': message?.step >= 2 }">keyboard_arrow_down</mat-icon>
+          </div>
+        </div> -->
+        <!-- 2nd point end -->
+  
+        <div class="nav-hover w-full flex justify-between items-center rounded-md pl-8" [ngClass]="{
+          'bg-white border border-gray-500 pg-txt-green': message?.step >= 3,'border-color bg-white':message?.step >= 4,'bg-color-panel':message?.step ==3}">
+          <div class="flex w-full justify-between items-center"  [ngClass]="{ 'border-blue-300 pg-txt-green': message?.step >= 3,'color-grey':message?.step <3,'pg-bg-black':message?.step>3 }">
+            <span >3. Identify Support</span>
+            <!-- <mat-icon
+              class="text-gray-500 material-icons-outlined"
+              aria-hidden="false"
+              >info</mat-icon
+            > -->
+          </div>
+          <div
+            [ngClass]="{
+              'pg-active-circle': message?.crew,
+              'pg-txt-green': message?.step >= 3
+            }">
+            <span class="font-bold" *ngIf="message?.crew">
+              <!-- <mat-icon class="text-white">check</mat-icon> -->
+            </span>
+            <span class="font-bold" *ngIf="!message?.crew">  </span>
+          </div>
+        </div>
+        <!-- <div class="w-full pl-8 py-8 nav-hover-list border-r-2 border-gray-500 relative"
+          [ngClass]="{ 'border-green-500': message?.step >= 3 }"> -->
+          <ul>
+            <li class="flex items-center mb-2" [ngClass]="{ 'pg-bg-green': message?.crew,'color-grey':message?.step <3 }">
+              <div  >
+              </div>
+              Select Sprint Crew
+            </li>
+            <li class="flex items-center mb-2" [ngClass]="{ 'pg-bg-green': message?.crew ,'color-grey':message?.step <3}">
+              <div >
+              </div>
+              Assign Roles
+            </li>
+          </ul>
+        <!-- </div> -->
+        <!-- <div
+          class="flex flex-col rounded-full border text-gray-500 border-gray-500 bg-white nav-hover-r box -mr-10 justify-center items-center"
+          style="line-height: 9px" [ngClass]="{
+            'pg-active-circle': message?.crew,
+            'pg-txt-green': message?.step >= 3
+          }"> -->
+          <span class="font-bold" *ngIf="message?.crew">
+            <!-- <mat-icon class="text-white">check</mat-icon> -->
+          </span>
+          <!-- <span class="font-bold mb-2" *ngIf="!message?.crew"> 3 </span> -->
+          <!-- <span class="font-semibold text-sm"> Support </span> -->
+        <!-- </div> -->
+  
+        <!-- <div class="w-full h-8 border-r-2 border-gray-500 relative"
+          [ngClass]="{ 'border-green-500': message?.step >= 3 }"></div> -->
+  
+        <!-- <div class="flex justify-end" style="margin-right: -13px">
+          <div class="w-full relative">
+            <mat-icon class="text-gray-500 absolute left-nav-circle-direction-arrow bottom-0"
+              [ngClass]="{ 'pg-txt-green': message?.step >= 3 }">keyboard_arrow_down</mat-icon>
+          </div>
+        </div> -->
+  
+        <!-- 4th point -->
+        <div class="nav-hover w-full flex justify-between items-center rounded-md pl-8"[ngClass]="{
+          'bg-white border border-gray-500 pg-txt-green': message?.step >= 3,'border-color bg-color-panel':message?.step >= 4}">
+          <div class="flex w-full justify-between items-center" [ngClass]="{ ' border-blue-300': message?.step >= 4,'color-grey':message?.step <4 }">
+            <span class="mr-1">4. Schedule Routines</span>
+            <!-- <mat-icon
+              class="text-gray-500 material-icons-outlined"
+              aria-hidden="false"
+              >info</mat-icon
+            > -->
+          </div>
+          <div
+            [ngClass]="{
+              'pg-active-circle': message?.frequency && message?.isConfirm,
+              'pg-txt-green': message?.step >= 4
+            }">
+            <span class="font-bold" *ngIf="message?.frequency && message?.isConfirm">
+              <!-- <mat-icon class="text-white">check</mat-icon> -->
+            </span>
+            <span class="font-bold" *ngIf="!message?.frequency || !message?.isConfirm">
+              <!-- 4 -->
+            </span>
+          </div>
+        </div>
+        <!-- <div class="w-full pl-8 py-8 nav-hover-list relative border-r-0"> -->
+          <ul>
+            <li class="flex items-center mb-2"  [ngClass]="{ 'pg-bg-green': message?.frequency,'color-grey':message?.step <4 }">
+              <div 
+               ></div>
+              Feedback Frequency
+            </li>
+            <li class="flex items-center mb-2" [ngClass]="{ 'pg-bg-green': message?.routine,'color-grey':message?.step <4 }">
+              <div 
+                ></div>
+              Weekly Checkin
+            </li>
+          </ul>
+        <!-- </div> -->
+  
+        <!-- <div style="line-height: 9px" [ngClass]="{
+            'pg-active-circle': message?.frequency && message?.isConfirm,
+            'pg-txt-green': message?.step >= 4
+          }">
+          <span class="font-bold" *ngIf="message?.frequency && message?.isConfirm">
+             <mat-icon class="text-white">check</mat-icon> --
+          </span>
+          <span class="font-bold mb-2" *ngIf="!message?.frequency || !message?.isConfirm">
+             4 --
+          </span>
+          <span class="font-semibold text-sm"> Schedule </span>
+        </div> -->
+      </div>
+    </div>
+    <app-mat-svg-icon></app-mat-svg-icon>
+  </div>

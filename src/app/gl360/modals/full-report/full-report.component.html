@@ -1,0 +1,44 @@
+<div *ngIf="loadCounter > 0">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  <p align="center">Loading report...</p>
+</div>
+<div class="flex flex-col p-8" *ngIf="loadCounter === 0" id="printMe">
+  <div id="reportContent">
+    <div class="flex justify-end w-full absolute pg-top-close-icon">
+      <mat-icon class="cursor-pointer" (click)="onClose()">close</mat-icon>
+    </div>
+
+    <app-report-heading-gl360
+      (isReportDownload)="onReportDownload($event)"
+    ></app-report-heading-gl360>
+
+    <div class="border-b border-gray-500 mb-4" *ngFor="let cap of capabilities">
+      <app-gl-report
+        [staticData]="staticData"
+        [capability]="cap"
+        [score]="score[cap.uuid]"
+        [advices]="advice[cap.uuid]"
+        [uuid]="cap.uuid"
+      ></app-gl-report>
+    </div>
+    <div style="page-break-after: always"></div>
+    <div>
+      <div class="flex flex-col mx-20 mt-20 lg:mx-32">
+        <div class="flex jlogo items-center flex-shrink-0 text-white mt-10">
+          <img src="/assets/images/logo2.png" alt="logo" width="120px" />
+        </div>
+      </div>
+      <table class="fix-content mrg" style="width: 100%">
+        <tr>
+          <td>&#169;2021 Organisation Solutions</td>
+          <td class="hide-on-print leftmr">
+            &nbsp;
+            <!-- <img src="/assets/images/logo2.png" alt="logo" width="120px" /> -->
+          </td>
+          <td class="rightmr" style="float: right">CONFIDENTIAL</td>
+        </tr>
+      </table>
+      <!-- <app-report-footer-gl360></app-report-footer-gl360> -->
+    </div>
+  </div>
+</div>

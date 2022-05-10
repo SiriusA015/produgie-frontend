@@ -1,0 +1,256 @@
+<div class="flex w-full flex-row h-full relative">
+    <div class="w-1/8 bg-white left-nav">
+        <app-teams-left-nav></app-teams-left-nav>
+    </div>
+    <div class="pg-info">
+        <label class="pg-tooltip-left flex flex-row items-center ml-2">
+            <mat-icon class="text-gray-500 mat-icon-18" fontSet="material-icons-outlined">info</mat-icon>
+            <input type="checkbox" />
+            <div class="font-light text-xs">
+                Mouse over the sidebar to track your progress in creating your sprint
+            </div>
+        </label>
+    </div>
+    <div class="pg-container pg">
+        <div class="pg__inner">
+            <div class="flex items-center">
+                <span class="heading-1">Select Sprint Crew & Assign Roles</span>
+                <label class="pg-tooltip flex flex-row items-center ml-2 focus:outline-none">
+                    <!-- <mat-icon fontSet="material-icons-outlined" class="text-gray-500 mat-icon-18">info</mat-icon><input
+                        type="checkbox" /> -->
+                    <div class="heading-4">
+                        Add Sprint Crew members that can observe the Sprint and support you in achieving your
+                        development goal
+                    </div>
+                </label>
+            </div>
+            <p class="heading-4">Select Sprint Crew members who can observe your behaviour face-to-face remotely</p>
+            <mat-card class="mat margin-top-div mat-elevation-z">
+                <div class="flex flex-col w-full items-center border-form" [formGroup]="crewForm">
+                    <div class="flex w-full mb-15">
+                        <div class="w-1/6 font-bold title-label">Name</div>
+                        <div class="w-2/6 font-bold title-label">Email</div>
+                        <div class="w-2/6 font-bold title-label">Role</div>
+                        <!-- <div class="w-1/6 font-semibold flex flex-col justify-center"> -->
+                        <!-- <div class="flex flex-row items-center">
+                <span class="text-lg font-bold text-center">Advice and Review</span>
+              </div> -->
+                        <div class="w-1/6 font-bold title-label">Advice & Review</div>
+                        <div class="font-bold title-label fed">Feedback</div>
+
+                    </div>
+                </div>
+                <div class="flex flex-col w-full" [formGroup]="crewForm">
+                    <div class="w-full flex">
+                        <div class="w-1/6 pr-4">
+                            <input
+                                class="appearance-none inputboxborder bg-transparent w-full text-gray-600 leading-tight focus:outline-none font-semibold"
+                                type="text" placeholder="Name*" formControlName="name"
+                                [ngClass]="{ 'is-invalid': f.name.errors }" />
+
+                            <div *ngIf="f.name.touched && f.name.errors" class="text-red-500">
+                                <div *ngIf="f.name.errors.required">Name is required</div>
+                            </div>
+                        </div>
+                        <div class="w-2/6 pr-4">
+                            <input
+                                class="appearance-none bg-transparent inputboxborder w-full text-gray-600 leading-tight focus:outline-none  font-semibold"
+                                type="text" placeholder="Email*" formControlName="email"
+                                [ngClass]="{ 'is-invalid': f.email.errors }" />
+
+                            <div *ngIf="f.email.touched && f.email.errors" class="text-red-500">
+                                <div *ngIf="f.email.errors.required">Email is required</div>
+                                <div *ngIf="f.email.errors.email">Email must be valid</div>
+                            </div>
+
+                        </div>
+                        <div class="w-2/6 pr-8 flex relative flex-col">
+                            <span
+                                class="flex w-full justify-between items-center inputboxborder border-b-2 select-padding">
+
+                                <mat-select formControlName="role" placeholder="Select Role"
+                                    [ngClass]="{ 'is-invalid': f.role.errors }">
+                                    <mat-option [value]="role.id" *ngFor="let role of roles">{{role.role_name}}
+                                    </mat-option>
+                                </mat-select>
+                            </span>
+
+                            <div *ngIf="f.role.touched && f.role.errors" class="text-red-500">
+                                <div *ngIf="f.role.errors.required">Role is required</div>
+                            </div>
+                        </div>
+                        <div class="w-1/6 pr-4">
+                            <label class="switch margin-left-toggle">
+                                <input type="checkbox" formControlName="isFastForward"
+                                    (change)="changeToFalse($event)" />
+                                <div class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                                    <span class="toggle-text">YES</span><span class="toggle-text">NO</span>
+                                </div>
+                            </label>
+                            <!-- <mat-slide-toggle formControlName="isFastForward" (change)="changeToFalse($event)"></mat-slide-toggle> -->
+                        </div>
+                        <div class="w-1/6 pr-4 flex justify-between">
+
+                            <label class="switch  margin-left-toggle">
+                                <input type="checkbox" formControlName="isFeedbackGoalsNBehaviour"
+                                    (change)="changeToFalse($event)" />
+                                <div class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                                    <span class="toggle-text">YES</span><span class="toggle-text">NO</span>
+                                </div>
+                            </label>
+                            <!-- <mat-slide-toggle formControlName="isFeedbackGoalsNBehaviour" (change)="changeToFalse($event)">
+              </mat-slide-toggle> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex w-full items-center mt-8 relative addBtn" [ngClass]="{
+          'cursor-not-allowed': crewForm.invalid}">
+                    <span class="addbtn btn" (click)="addItemField()">
+                        + Add
+                    </span>
+                </div>
+
+            </mat-card>
+
+            <div class="flex items-center crew">
+                <span class="heading-2">Team Sprint Crew</span>
+            </div>
+
+
+
+            <div class="table-border">
+                <table class="schematable">
+                    <tr align="left">
+                        <th> Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Advice & Review</th>
+                        <th>Feedback</th>
+                        <th>Actions</th>
+                        <hr>
+                    </tr>
+                    <tr align="left" *ngFor="let data of dataSource">
+                        <td> {{data.name}}</td>
+                        <td> {{data.email}}</td>
+                        <td>{{data.role}}
+                        </td>
+                        <td>
+                            <!-- <mat-slide-toggle [checked]="data.isFastForward" (click)="$event.preventDefault()"></mat-slide-toggle> -->
+                            <div class="w-1/6 pr-4">
+                                <label class="switch">
+                                    <input type="checkbox" [checked]="data.isAdviceReview"
+                                        (change)="sendAdvice(data,$event)" />
+                                    <div
+                                        class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                                        <span>YES</span><span>NO</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <!-- <mat-slide-toggle [checked]="data.isFeedbackGoalsNBehaviour" (click)="$event.preventDefault()"> -->
+                            <!-- </mat-slide-toggle> -->
+                            <div class="w-1/6 pr-4">
+                                <label class="switch">
+                                    <input type="checkbox" [checked]="data.isFeedback"
+                                        (click)="sendFeedback(data,$event)" />
+                                    <div
+                                        class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                                        <span>YES</span><span>NO</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </td>
+                        <td *ngIf="data.email != crew.email">
+                            <button mat-icon-button [matMenuTriggerFor]="menu"
+                                aria-label="Example icon-button with a menu">
+                                <mat-icon class="vert-color">more_vert</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item *ngIf="data.role !='Team Member'">
+                                    <span (click)="editCrew(data)">Edit</span>
+                                </button>
+                                <button mat-menu-item>
+                                    <span (click)="deleteCrew(data)" >Remove from Sprint Crew</span>
+                                </button>
+                            </mat-menu>
+                            <!-- <button (click)="editCrew(data)" class="icon-edit" *ngIf="data.email != crew.email">
+                                <span class="material-icons icon-color">edit</span>
+                            </button>
+                            <button (click)="deleteCrew(data)" class="icon-delete" *ngIf="data.email != crew.email">
+                                <span class="material-icons icon-color">delete</span>
+                            </button> -->
+                        </td>
+                        <!-- <td>
+              <button (click)="deleteCrew(data)" *ngIf="data.email != crew.email">
+                <span class="material-icons icon-color">delete</span>
+              </button>
+            </td> -->
+                        <hr>
+                    </tr>
+
+                </table>
+
+
+            </div>
+            <!-- card -->
+
+
+
+            <!-- <div class="mb-2 flex flex-row justify-end">
+        <div class="flex flex-row items-center" *ngIf="!message.isEdit"> -->
+            <!-- <div class="flex flex-row items-center cursor-pointer bg-white rounded-full">
+            <button class="bg-transparent flex items-center focus:outline-none justify-center h-12 w-12"
+              [routerLink]="'/design/sprint'">
+              <label class="pg-tooltip flex flex-row items-center">
+                <mat-icon class="pg-txt-blue-bright" aria-hidden="false">navigate_before</mat-icon>
+                <input type="checkbox" />
+                <div class="font-light text-xs">
+                  Current Page Selections will be erased. If you want to edit any previous choices, you can also edit
+                  later from Development Plan.
+                </div>
+              </label>
+            </button>
+          </div> -->
+            <div *ngIf="!message.isEdit" class="flex flex-row items-center justify-center cursor-pointer pg-bg-blue-light btn text-white continuebtn  "
+                [ngClass]="{
+            'pg-bg-blue-dark': tableData.length > 0,'cursor-not-allowed': tableData.length == 0}">
+                <button class="bg-transparent flex items-center focus:outline-none h-full justify-center"
+                    (click)="storeCrew()">
+                    <label class="pg-tooltip flex flex-row items-center mb-0 " *ngIf="tableData.length > 0">
+                        <!-- <mat-icon class="" aria-hidden="false">navigate_next</mat-icon> -->
+                        <input type="checkbox" />
+                        <div class="font-light text-xs">
+                            Please fill the crew form
+                        </div>
+                    </label>Continue
+                </button>
+            </div>
+            <div *ngIf="message.isEdit" class="flex flex-row items-center justify-center cursor-pointer pg-bg-blue-light btn text-white continuebtn"
+                [ngClass]="{
+          'pg-bg-blue-dark': tableData.length > 0,'cursor-not-allowed': tableData.length == 0}">
+                <button class="bg-transparent flex items-center focus:outline-none h-full justify-center"
+                    (click)="storeCrew()" >
+                    <label class="pg-tooltip flex flex-row items-center mb-0 " *ngIf="tableData.length > 0">
+                        <input type="checkbox" />
+                        <div class="font-light text-xs">
+                            Please fill the crew form
+                        </div>
+                    </label>Update
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="flex flex-row justify-end" *ngIf="message.isEdit">
+      <button
+        class="border border-gray-500 rounded-md flex flex-row justify-evenly items-center bg-white px-6 py-4 focus:outline-none"
+        (click)="storeCrew()">
+        <mat-icon class="pg-txt-blue-bright">save</mat-icon>
+        <span class="pg-txt-blue-bright font-bold">Update</span>
+      </button>
+     
+  
+    </div> -->
+</div>
+<app-mat-svg-icon></app-mat-svg-icon>

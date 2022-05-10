@@ -1,0 +1,482 @@
+<!-- Navigation menu's -->
+<div class="flex w-full flex-row h-full mt-3">
+	<div class="nav-submenu">
+		<div class="text-font cursor-pointer" *ngIf="!isTeamCreated" (click)="setActiveTab('setup')" [ngClass]="{ 'nav-active': !isTeamCreated }">
+			Team Set Up
+		</div>
+		<ng-container *ngIf="isTeamCreated">
+			<div class="text-font cursor-pointer" [ngClass]="{ 'nav-active': isViewingRightActive }" (click)="goToViewingRights()">
+				Viewing Rights
+			</div>
+			<div [ngClass]="{ 'nav-active': isTeamSettingActive || isTeamEdit }" class="text-font cursor-pointer margin-navbar" (click)="setActiveTab('settings')">
+				Team Settings
+			</div>
+			<div [ngClass]="{ 'nav-active': isAddTeamSectionActive }" class="text-font cursor-pointer margin-navbar" (click)="setActiveTab('createTeam')">
+				Add New Team
+			</div>
+		</ng-container>
+	</div>
+</div>
+
+<div class="flex w-full flex-row h-full relative">
+	<mat-card class="card" style="border-radius: 15px">
+		<div class="pg-container">
+			<div class="pg__inner">
+				<div class="flex flex-col h-full">
+					<!-- START add team section -->
+					<ng-container *ngIf="isAddTeamSectionActive">
+						<div class="flex flex-col">
+							<span class="heading-1">Team Information</span>
+						</div>
+						<form [formGroup]="createTeamForm" (ngSubmit)="addTeam()">
+							<div class="margin-top">
+								<mat-form-field class="example-full-width" appearance="none" floatLabel="never">
+									<input matInput class="input-middle" formControlName="teamName" placeholder="Team Name" [ngClass]="{
+											'is-invalid': f.teamName.errors
+										}" />
+								</mat-form-field>
+								<div *ngIf="
+										f.teamName.touched && f.teamName.errors
+									" class="text-red-500">
+									<div *ngIf="f.teamName.errors.required">
+										Team Name is required
+									</div>
+									<div *ngIf="f.teamName.errors.minlength">
+										Minimum 2 characters required
+									</div>
+									<div *ngIf="f.teamName.errors.maxlength">
+										Maximum 30 characters allowed
+									</div>
+								</div>
+							</div>
+							<div class="margin-top">
+								<textarea class="text-area-border" formControlName="description" placeholder="Description" [ngClass]="{
+										'is-invalid': f.description.errors
+									}"></textarea>
+								<div *ngIf="
+										f.description.touched &&
+										f.description.errors
+									" class="text-red-500">
+									<div *ngIf="f.description.errors.required">
+										Description is required
+									</div>
+									<div *ngIf="f.description.errors.minlength">
+										Minimum 5 characters required
+									</div>
+									<div *ngIf="f.description.errors.maxlength">
+										Maximum 500 characters allowed
+									</div>
+								</div>
+							</div>
+							<div class="flex w-full items-center mt-8 relative">
+								<button class="addbtn btn flex justify-between align-center" [disabled]="
+										createTeamForm.invalid ||
+										isCreateTeamSubmited
+									">
+									Save Team
+									<mat-icon *ngIf="isCreateTeamSubmited">
+										<mat-spinner diameter="20"></mat-spinner>
+									</mat-icon>
+								</button>
+							</div>
+						</form>
+					</ng-container>
+					<!-- END add team section -->
+
+					<!--  START edit team section -->
+					<ng-container *ngIf="isTeamEdit">
+						<form [formGroup]="editTeamForm" (ngSubmit)="updateTeam()">
+							<div class="flex-col">
+								<div class="flex">
+									<h2 class="h-text">
+										Team Name <span class="ml-2"> - </span>
+									</h2>
+									<div class="width-div">
+										<input type="text" class="input-box" formControlName="teamName" placeholder="Team Name" [ngClass]="{
+												'is-invalid': e.teamName.errors
+											}" />
+										<div *ngIf="
+												e.teamName.touched &&
+												e.teamName.errors
+											" class="text-red-500 error-box ml-2">
+											<div *ngIf="
+													e.teamName.errors.required
+												">
+												Team Name is required
+											</div>
+											<div *ngIf="
+													e.teamName.errors.minlength
+												">
+												Minimum 2 characters required
+											</div>
+											<div *ngIf="
+													e.teamName.errors.maxlength
+												">
+												Maximum 30 characters allowed
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="flex-col margin-top">
+								<div class="flex">
+									<h2 class="h-text">
+										Description
+										<span class="ml-2"> - </span>
+									</h2>
+									<div class="width-div">
+										<textarea type="text" class="des-box" formControlName="teamDescription" placeholder="Description" [ngClass]="{
+												'is-invalid':
+													e.teamDescription.errors
+											}"></textarea>
+										<div *ngIf="
+												e.teamDescription.touched &&
+												e.teamDescription.errors
+											" class="text-red-500 error-box ml-2">
+											<div *ngIf="
+													e.teamDescription.errors
+														.required
+												">
+												Description is required
+											</div>
+											<div *ngIf="
+													e.teamDescription.errors
+														.minlength
+												">
+												Minimum 5 characters required
+											</div>
+											<div *ngIf="
+													e.teamDescription.errors
+														.maxlength
+												">
+												Maximum 500 characters allowed
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="flex mt-8 float-right">
+								<button class="addbtn btn flex justify-between align-center" [disabled]="editTeamForm.invalid">
+									Save
+									<mat-icon *ngIf="isCreateTeamSubmited">
+										<mat-spinner diameter="20"></mat-spinner>
+									</mat-icon>
+								</button>
+							</div>
+						</form>
+					</ng-container>
+					<!-- END edit team section -->
+
+					<!-- START team information section -->
+					<ng-container *ngIf="!isTeamEdit && isInfoSectionActive">
+						<div class="flex">
+							<h2 class="h-text">
+								Team Name <span class="ml-2"> - </span>
+							</h2>
+							<p class="p-text">{{ teamInfo?.name }}</p>
+							<button class="edit-button flex items-center justify-center" (click)="gotoEdit(teamInfo?.id)" *ngIf="!isTeamEdit && teamInfo">
+								<span class="material-icons icon-color mr-2">edit</span>
+								<span class="text-font icon-color">Edit</span>
+							</button>
+						</div>
+						<div class="text-center" *ngIf="isTeamData">
+							<mat-icon>
+								<mat-spinner diameter="40"></mat-spinner>
+							</mat-icon>
+						</div>
+
+						<div class="flex mt-4">
+							<h2 class="h-text">
+								Description <span class="ml-2"> - </span>
+							</h2>
+							<p class="p-text">
+								{{ teamInfo?.description }}
+							</p>
+						</div>
+					</ng-container>
+					<!-- END team information section -->
+
+					<!-- START invite section-->
+					<ng-container *ngIf="isInviteSectionActive">
+						<div class="flex flex-col margin-top" id="member-section">
+							<span class="heading-1">Add Team Members</span>
+						</div>
+						<div class="par-div">
+							<mat-card class="mat-card px-4 py-8 flex justify-between items-center rounded-md mat-card-padding">
+								<form [formGroup]="teamMemberForm" (ngSubmit)="inviteTeamMember()">
+									<div class="flex flex-col w-full items-center border-form">
+										<div class="flex w-full mb-15">
+											<div class="w-2/6 font-bold title-label">
+												Name
+											</div>
+											<div class="w-2/6 font-bold title-label">
+												Email
+											</div>
+											<div class="w-1/6 font-bold title-label">
+												Type
+											</div>
+
+											<div class="w-1/6 font-bold title-label">
+												Role
+											</div>
+										</div>
+									</div>
+									<div class="flex flex-col w-full items-center">
+										<div class="w-full flex">
+											<div class="w-2/6 pr-4">
+												<input class="appearance-none inputboxborder bg-transparent w-full text-gray-600 leading-tight focus:outline-none font-semibold" type="text" placeholder="Name" (keyup)="getName($event)" formControlName="name" [matAutocomplete]="auto" [ngClass]="{
+														'is-invalid':
+															g.name.errors
+													}" required />
+												<mat-autocomplete #auto="matAutocomplete" (optionSelected)="
+														onSelectionChange(
+															$event.option.value
+														)
+													">
+													<mat-option *ngFor="
+															let state of searchArray
+														" [value]="state">
+														<span>{{
+															state?.fullName
+															}}</span>
+													</mat-option>
+												</mat-autocomplete>
+												<div *ngIf="
+														g.name.touched &&
+														g.name.errors
+													" class="text-red-500">
+													<span *ngIf="
+															g.name.errors
+																.required
+														">Name is required</span>
+												</div>
+											</div>
+											<div class="w-2/6 pr-4">
+												<input class="appearance-none bg-transparent inputboxborder w-full text-gray-600 leading-tight focus:outline-none font-semibold" type="text" placeholder="Email" (keyup)="getEmail($event)" formControlName="email" [matAutocomplete]="auto1" [ngClass]="{
+														'is-invalid':
+															g.email.errors
+													}" required />
+												<mat-autocomplete #auto1="matAutocomplete" (optionSelected)="
+														onEmailChange(
+															$event.option.value
+														)
+													">
+													<mat-option *ngFor="
+															let state of searchArray
+														" [value]="state">
+														<span>{{
+															state.email
+															}}</span>
+													</mat-option>
+												</mat-autocomplete>
+												<div *ngIf="
+														g.email.touched &&
+														g.email.errors
+													" class="text-red-500">
+													<span *ngIf="
+															g.email.errors
+																.required
+														">Email is required</span>
+													<div *ngIf="
+															g.email.errors.email
+														">
+														Email must be a valid
+														email address
+													</div>
+												</div>
+											</div>
+											<div class="pr-8 flex relative flex-col">
+												<div class="flex w-full justify-between items-center inputboxborder border-b-2 select-padding">
+													<mat-select placeholder="Select Type" formControlName="type" [(value)]="
+															selectedTeamMember
+														" (selectionChange)="
+															onChange($event)
+														" [ngClass]="{
+															'is-invalid':
+																g.type.errors
+														}">
+														<mat-option value="teamMember" [disabled]="
+																!disable
+															">Team Member
+														</mat-option>
+														<mat-option value="guest" [disabled]="disable">Guest
+														</mat-option>
+													</mat-select>
+												</div>
+												<div *ngIf="
+														g.type.touched &&
+														g.type.errors
+													" class="text-red-500">
+													<div *ngIf="
+															g.type.errors
+																.required
+														">
+														Type is required
+													</div>
+												</div>
+											</div>
+
+											<div class="w-1/6 pr-8 flex relative flex-col">
+												<div class="flex w-full justify-between items-center inputboxborder border-b-2 select-padding">
+													<mat-select placeholder="Select Role" formControlName="role" [ngClass]="{
+															'is-invalid':
+																g.role.errors
+														}">
+														<mat-option *ngFor="
+																let data of roles
+															" [value]="data.id">
+															{{ data.name }}
+														</mat-option>
+													</mat-select>
+												</div>
+												<div *ngIf="
+														g.role.touched &&
+														g.role.errors
+													" class="text-red-500">
+													<div *ngIf="
+															g.role.errors
+																.required
+														">
+														Role is required
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="flex w-full items-center mt-8 relative">
+										<button class="addbtn btn flex justify-between align-center" [disabled]="teamMemberForm.invalid">
+											+ Invite
+											<mat-icon *ngIf="isCreateTeamSubmited">
+												<mat-spinner diameter="20"></mat-spinner>
+											</mat-icon>
+										</button>
+									</div>
+								</form>
+							</mat-card>
+						</div>
+					</ng-container>
+					<!-- END invite section-->
+					<!-- START team member list -->
+
+					<ng-container *ngIf="teamList?.length > 0 && isMemberSectionActive">
+						<div class="flex flex-col margin-top">
+							<span class="heading-1">Team Members</span>
+						</div>
+						<div class="par-div">
+							<mat-card style="background: none" class="mat-card px-4 py-8 flex justify-between items-center rounded-md">
+								<div class="table-responsive">
+									<table class="mat table-style-1" mat-table #table [dataSource]="dataSource">
+										<ng-container matColumnDef="name">
+											<th mat-header-cell *matHeaderCellDef class="th-text">
+												Name
+											</th>
+											<td mat-cell *matCellDef="let element" class="text-transform">
+												{{ element.name | titlecase }}
+											</td>
+										</ng-container>
+
+										<ng-container matColumnDef="email">
+											<th mat-header-cell *matHeaderCellDef class="th-text">
+												Email
+											</th>
+											<td mat-cell *matCellDef="let element" class="text-transform">
+												{{ element.email }}
+											</td>
+										</ng-container>
+
+										<ng-container matColumnDef="type">
+											<th mat-header-cell *matHeaderCellDef class="th-text">
+												Type
+											</th>
+											<td mat-cell *matCellDef="let element" class="center-align text-transform">
+												<span *ngIf="
+														element.type == 'Org'
+													">Team Member</span>
+												<span *ngIf="
+														element.type == 'Guest'
+													">Guest</span>
+											</td>
+										</ng-container>
+										<ng-container matColumnDef="status">
+											<th mat-header-cell *matHeaderCellDef class="th-text">
+												Status
+											</th>
+											<td mat-cell *matCellDef="let element" class="center-align text-transform">
+												{{ element.status }}
+											</td>
+										</ng-container>
+										<ng-container matColumnDef="GLA">
+											<th mat-header-cell *matHeaderCellDef class="th-text">
+												GLA
+											</th>
+											<td mat-cell *matCellDef="let element" class="center-align text-transform">
+												{{ element.gla }}
+											</td>
+										</ng-container>
+										<ng-container matColumnDef="role">
+											<th mat-header-cell *matHeaderCellDef class="th-text">
+												Role
+											</th>
+											<td mat-cell *matCellDef="let element" class="center-align text-transform">
+												{{ element.role }}
+											</td>
+										</ng-container>
+										<ng-container matColumnDef="action">
+											<th mat-header-cell *matHeaderCellDef class="th-text">
+												Actions
+											</th>
+											<td mat-cell *matCellDef="let element" class="center-align">
+												<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+													<mat-icon class="vert-color">more_vert</mat-icon>
+												</button>
+												<mat-menu #menu="matMenu">
+													<button mat-menu-item (click)="
+															reInvite(element)
+														" *ngIf="
+															element.type ==
+																'Org' &&
+															element.status ==
+																'Pending'
+														">
+														<span>Re-Invite</span>
+													</button>
+													<button mat-menu-item (click)="
+															removeTeamMember(
+																element
+															)
+														">
+														<span>Remove from
+															Team</span>
+													</button>
+												</mat-menu>
+											</td>
+										</ng-container>
+
+										<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+										<tr mat-row *matRowDef="
+												let row;
+												columns: displayedColumns
+											" [hidden]="
+												dataSource?.data?.length == 0
+											"></tr>
+									</table>
+									<div *ngIf="isTableLoading">
+										<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+									</div>
+									<div class="no-record" *ngIf="
+											dataSource?.data?.length === 0 &&
+											!isTableLoading
+										">
+										No data available.
+									</div>
+								</div>
+							</mat-card>
+						</div>
+					</ng-container>
+					<!-- END team member list -->
+				</div>
+			</div>
+		</div>
+	</mat-card>
+</div>

@@ -1,0 +1,45 @@
+<div class="flex w-full flex-row h-full relative development-plan">
+  <!-- <div class="w-1/8 hover:w-2/6 bg-white left-nav">
+    <app-left-nav></app-left-nav>
+  </div> -->
+  <!-- <div class="pg-info">
+    <label class="pg-tooltip-left flex flex-row items-center ml-2">
+      <mat-icon class="text-gray-500 mat-icon-18" fontSet="material-icons-outlined"
+        >info</mat-icon>
+      <input type="checkbox" />
+      <div class="font-light text-xs">
+        Mouse over the sidebar to track your progress in creating your sprint
+      </div>
+    </label>
+  </div> -->
+
+  <div class="pg-container pg">
+    <div class="pg__inner">
+      <app-summary [userSprint]="userSprint"></app-summary>
+      <app-summary-details
+        [strenghts]="capabilities"
+        [fads]="data?.capability"
+        [priority]="data?.priority"
+      ></app-summary-details>
+      <app-snapshot
+        [userSprint]="userSprint"
+        [sprint]="data?.sprint"
+        [sprintNo]="data?.sprintNo"
+        [frequency]="data?.userSprint"
+      ></app-snapshot>
+      <!-- <app-resilience  [sprintNo]="data?.sprintNo"></app-resilience> -->
+      <app-key
+        [actions]="allaction"
+        [outcomes]="alloutcome"
+        [behaviours]="allbehavior"
+        [sprintId]="data?.userSprint?.sprintId"
+      ></app-key>
+      <app-sprint-roles></app-sprint-roles>
+      <app-contact-card
+        [design]="design"
+        [crews]="data?.crew"
+      ></app-contact-card>
+    </div>
+  </div>
+</div>
+<app-mat-svg-icon></app-mat-svg-icon>

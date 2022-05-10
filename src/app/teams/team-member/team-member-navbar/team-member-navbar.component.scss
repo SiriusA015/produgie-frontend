@@ -1,0 +1,23 @@
+.nav-submenu {
+    padding: 0rem 5rem;
+    background: #f3f8ff;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height:50px;
+  }
+  .text-font{
+    margin-left:20px;
+    font-size:16px;
+  }
+  .nav-active{
+      color: #278CE9;
+      font-weight:bold;
+  }
+  a:hover {
+    text-decoration: none;
+    color: #278CE9;
+}
+.margin-top-navbar{
+    margin-top:124px;
+}

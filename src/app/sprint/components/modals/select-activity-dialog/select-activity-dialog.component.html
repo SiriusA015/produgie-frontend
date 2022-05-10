@@ -1,0 +1,32 @@
+<div class="bg-white rounded-t-md relative">
+  <div class="flex justify-center items-center py-2">
+    <div class="w-8 h-2 bg-gray-300 rounded-md" (click)="onClose()"></div>
+  </div>
+  <div class="text w-full">
+    <div class="flex font-bold justify-center mt-6 mb-4 text-lg">
+      Select Activity
+    </div>
+    <mat-radio-group
+      aria-labelledby="example-radio-group-label"
+      class="example-radio-group"
+      [(ngModel)]="data.selectedActivity"
+    >
+      <div
+        class="flex items-center"
+        *ngFor="let activity of data.activities; let i = index"
+      >
+        <mat-radio-button
+          class="example-radio-button"
+          [value]="activity"
+          [checked]="i == 1"
+          (click)="selectActivity(activity)"
+        >
+          <span class="text-left text-base font-semibold">{{
+            activity.title
+          }}</span>
+        </mat-radio-button>
+      </div>
+    </mat-radio-group>
+    <div class="flex flex-col content-between"></div>
+  </div>
+</div>

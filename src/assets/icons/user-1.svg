@@ -1,0 +1,31 @@
+<svg id="User_01a" data-name="User 01a" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="84" height="84" viewBox="0 0 84 84">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#1d0024"/>
+      <stop offset="1" stop-color="#100014"/>
+    </linearGradient>
+    <clipPath id="clip-path">
+      <path id="Mask" d="M42,0A42,42,0,1,1,0,42,42,42,0,0,1,42,0Z" fill="url(#linear-gradient)"/>
+    </clipPath>
+    <linearGradient id="linear-gradient-3" x1="0.5" y1="1" x2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#e6864e"/>
+      <stop offset="1" stop-color="#e67240"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="0.5" y1="1" x2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffc9b3"/>
+      <stop offset="1" stop-color="#ffd2c2"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffd4b3"/>
+      <stop offset="1" stop-color="#ffdcc2"/>
+    </linearGradient>
+  </defs>
+  <path id="Mask-2" data-name="Mask" d="M42,0A42,42,0,1,1,0,42,42,42,0,0,1,42,0Z" fill="url(#linear-gradient)"/>
+  <g id="User_01a-2" data-name="User 01a" clip-path="url(#clip-path)">
+    <path id="Combined_Shape" data-name="Combined Shape" d="M49.267,33.622c2.256-7.491,3.646-20.3-5.84-29.059-7.249-6.694-26.834-7.369-33.647,7.23-1.137,2.437.417,6.257,3.476,6.118,1.2-.055,1.947,3.754,2.642,6.118-.973,9.594-9.644,9.771-14.043,17.1C-3.567,50.167,3.107,63.515,19.1,63.515S44.251,50.28,49.267,33.622Z" transform="translate(12.604 10.73)" fill="url(#linear-gradient-3)"/>
+    <path id="Rectangle" d="M53.956,13.593C55.985,17.558,57,32,57,32H0S1.015,17.558,3.044,13.593C6.087,7.646,28.5,0,28.5,0S50.913,7.646,53.956,13.593Z" transform="translate(12 52)" fill="url(#linear-gradient-4)"/>
+    <path id="Mask-3" data-name="Mask" d="M23.689,31.422a16.821,16.821,0,0,1-6.816,1.947,14.854,14.854,0,0,1-6.532-1.947V25.3a10.944,10.944,0,0,1-2.125.126c-6.67,0-9.186-9.717-7.886-21.538.834,0,2.781,0,5.561-3.893C5.2,5.422,13.261,4.588,16.32.278,14.79,5.422,18.822,8.9,22.3,6.813c6.816-4.09,8.348,8.377,1.39,8.481Z" transform="translate(24.696 24.748)" fill="url(#linear-gradient-5)"/>
+    <path id="Path_2" data-name="Path 2" d="M0,3.754A28.194,28.194,0,0,0,9.733,0S6.257,5.979,0,5.979Z" transform="translate(35.037 46.299)" fill="#ffb597"/>
+    <path id="Combined_Shape-2" data-name="Combined Shape" d="M10.576,5c2.01-.091,6.665-1.075,6.665-3.2V0c.51,0,1.97,1.2,2.721,2.225,2.969,4.032-.324,7.647-3.01,7.647-3.389,0-5.634-2.831-6.385-4.193-.751,1.362-3,4.193-6.385,4.193C1.5,9.872-1.8,6.257,1.172,2.225,1.923,1.2,3.383,0,3.893,0V1.8c0,2.127,4.781,3.111,6.683,3.2Z" transform="translate(31.144 52.834)" fill="#fff"/>
+  </g>
+</svg>

@@ -1,0 +1,120 @@
+.pg-text-not-black {
+  color: #273645;
+}
+.pg-description-text {
+  color: #484848;
+}
+.pg-lh-button {
+  background-color: #70707020;
+}
+.pg-lh-text {
+  color: #707070;
+}
+.min-w-160 {
+  min-width: 160px;
+}
+.pg-blue-dot {
+  width: 28px;
+  height: 12px;
+  border-radius: 4px;
+}
+
+.text-xs {
+  font-size: 0.95rem !important;
+}
+
+.text-sm {
+  font-size: 1rem !important;
+}
+.font22 {
+  font-size: 22px !important;
+}
+.font20 {
+  font-size: 20px !important;
+}
+.font18 {
+  font-size: 18px !important;
+}
+.font16 {
+  font-size: 16px !important;
+}
+.font14 {
+  font-size: 14px !important;
+}
+
+// @media print {
+//     .content-block {
+//         page-break-inside: avoid;
+//     }
+//     .page-break {
+//         page-break-after:always;
+//     }
+// }
+
+@media print {
+  //this is for force printing of background colors and images in print view
+  * {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+  .hide-on-print {
+    visibility: hidden;
+  }
+  .show-on-print {
+    visibility: visible;
+  }
+
+  .tracking-widest {
+    position: fixed;
+    bottom: 0;
+  }
+
+  .mrg-tp {
+    margin-top: 60%;
+  }
+
+  .mrg {
+    margin-top: 120%;
+  }
+
+  // p {
+  //     page-break-inside: avoid;
+  // }
+
+  .page-break {
+    page-break-after: always;
+  }
+
+  html,
+  body {
+    width: 210mm;
+    height: 297mm;
+  }
+
+  .detailed-report-footer {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .fix-content {
+    position: fixed;
+    bottom: 0;
+  }
+  .rightmr {
+    margin-right: 0;
+  }
+  .leftmr {
+    margin-left: 0;
+  }
+
+  // // Firefox
+  @-moz-document url-prefix() {
+    // div {
+    //   color:red;
+    // }
+    .page-break {
+      page-break-after: avoid !important;
+    }
+  }
+}

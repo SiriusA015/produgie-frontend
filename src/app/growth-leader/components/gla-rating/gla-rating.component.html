@@ -1,0 +1,1002 @@
+<app-shared-header></app-shared-header>
+
+<div
+  class="mx-20 py-4"
+  *ngIf="(!transformDone || !performDone || !energiseDone) && !allDone"
+>
+  <div class="py-4 pg-border-gray">
+    <div class="flex flex-col justify-start items-start">
+      <!-- <span
+        class="h-12 w-12 rounded-full shadow-md bg-white flex justify-center items-center"
+      >
+        <mat-icon fontSet="material-icons-outlined" class="pg-txt-blue-bright"
+          >send</mat-icon
+        >
+      </span> -->
+      <span class="heading-1"> Growth Leader 360 </span>
+      <span class="mb-4 font14-heading"
+        >You will be rating 9 capabilities that drive growth in organizations.
+        Each capability is described by a 100% Definition, which reflects the
+        ideal outcomes someone would achieve if the capability is executed
+        perfectly.</span
+      >
+      <span class="mb-4 text-lg font-semibold font-16-heading">Please:</span>
+      <ul class="list-decimal ml-8">
+        <li class="mb-1">
+          Rate this person’s current capability vs. the 100% definition using
+          these guidelines:
+          <ul class="list-disc ml-10">
+            <li class="mb-1">80%+ indicates that little to no development is needed</li>
+            <li class="mb-1">40-70% indicates that development is needed</li>
+            <li class="mb-1">< 40% indicates much opportunity for development</li>
+          </ul>
+        </li>
+        <li class="mb-1">
+          Rate how important it is for the individual to develop the capability
+        </li>
+        <li class="mb-1">
+          Provide advice and input on actions the person can take to improve
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div
+    class=""
+    [formGroup]="transformForm"
+    *ngIf="performDone && energiseDone && !transformDone"
+  >
+    <div class="w-full border-b pg-border-gray py-4">
+      <div class="flex flex-row items-center">
+        <span class="mr-2 text-center flex items-center justify-center"> </span>
+        <span class="heading-2">Transform</span>
+      </div>
+    </div>
+    <div class="w-full">
+      <div
+        class="flex flex-col py-4 pg-list-items"
+        *ngFor="let item of transformCapability; let i = index"
+        formArrayName="transformFeedback"
+      >
+        <div class="mb-2">
+          <span class="font-bold font-16-heading mb-4">{{ item.label }} </span>
+        </div>
+        <div class="mb-2">
+          <span class="font-bold font-14-heading mb-4"> 100% Definition</span>
+        </div>
+
+        <div class="flex flex-col justify-between w-full mb-6">
+          <ul class="ml-10 list-disc mb-2">
+            <li *ngFor="let bpoint of description[item.uuid]" class="mb-1">
+              {{ bpoint }}
+            </li>
+          </ul>
+          <span class="font-semibold font-16-heading">
+            How does this person’s current capability compare to the ideal 100%
+            outcomes above:
+          </span>
+          <span class="font-14-heading mb-4">
+            (80%+, no development needed; 40-70%, some development needed;
+            &lt;40%, much development needed)
+          </span>
+
+          <div class="flex flex-col justify-between w-full" [formGroupName]="i">
+            <div class="flex flex-row justify-between w-full">
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="0"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">Can't rate</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="10"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">10%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="20"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">20%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="30"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">30%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="40"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">40%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="50"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">50%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="60"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">60%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="70"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">70%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="80"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">80%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="90"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">90%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="100"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">100%</span>
+                </label>
+              </div>
+            </div>
+            <div
+              class="text-red-600"
+              *ngIf="
+                isTransformSubmit &&
+                getTransformFormArray(i).get('percentageRating').invalid
+              "
+            >
+              Rating is required
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col justify-between w-full mb-6">
+          <h4 class="font-bold font-16-heading mb-2">Importance Rating</h4>
+          <span class="font-semibold font-14-heading mb-2"
+            >How important is it for this person to develop this skill now?
+          </span>
+          <div class="flex flex-col justify-between w-full" [formGroupName]="i">
+            <div class="flex flex-row justify-between w-full">
+              <div class="flex w-1/2 justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="0"
+                    formControlName="rating"
+                  />
+                  <span class="font-semibold">Can't rate</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="1"
+                    formControlName="rating"
+                  />
+                  <span class="font-semibold">Not Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="2"
+                    formControlName="rating"
+                  />
+                  <span class="font-semibold">Slightly Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="3"
+                    formControlName="rating"
+                  />
+                  <span class="font-semibold">Moderately Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="4"
+                    formControlName="rating"
+                  />
+                  <span class="font-semibold">Very Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="5"
+                    formControlName="rating"
+                  />
+                  <span class="font-semibold">Extremely Important</span>
+                </label>
+              </div>
+            </div>
+            <div
+              class="text-red-600"
+              *ngIf="
+                isTransformSubmit &&
+                getTransformFormArray(i).get('rating').invalid
+              "
+            >
+              Rating is required
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col justify-between w-full">
+          <h4 class="font-bold font-16-heading mb-2">Advice Text</h4>
+          <span class="font-semibold font-14-heading"
+            >What 2-3 specific behaviors or actions can this person take to
+            improve this rating by 10-20 points?</span
+          >
+          <div class="flex flex-row justify-between w-full" [formGroupName]="i">
+            <div class="w-full py-4">
+              <textarea
+                formControlName="advice"
+                class="
+                  w-full
+                  border
+                  rounded-sm
+                  border-gray-400
+                  focus:outline-none
+                  p-4
+                  text-lg
+                "
+                rows="5"
+                matInput
+                [placeholder]="placeholderText"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="loadCounter > 0">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <div class="flex flex-row m-2 justify-end">
+      <button
+        class="mr-4 btn focus:outline-none"
+        [ngClass]="{
+          'bg-gray-400': energiseForm.invalid,
+          'pg-bg-blue-dark': energiseForm.valid
+        }"
+        (click)="backToEnergise()"
+      >
+        Back
+      </button>
+      <button
+        class="mr-4 btn focus:outline-none"
+        [ngClass]="{
+          'bg-gray-400': transformForm.invalid,
+          'pg-bg-blue-dark': transformForm.valid
+        }"
+        (click)="storeTransformData()"
+        [disabled]="isDisable"
+      >
+        Save
+      </button>
+      <button
+        class="btn focus:outline-none"
+        [ngClass]="{
+          'bg-gray-400': transformForm.invalid,
+          'pg-bg-blue-dark': transformForm.valid
+        }"
+        (click)="submit()"
+        [disabled]="isDisable"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+  <div class="" [formGroup]="performForm" *ngIf="!performDone">
+    <div class="w-full border-b pg-border-gray py-4">
+      <div class="flex flex-row items-center">
+        <span class="mr-2 text-center flex items-center justify-center"> </span>
+        <span class="heading-2">Perform</span>
+      </div>
+    </div>
+    <div class="w-full">
+      <div
+        class="flex flex-col py-4 pg-list-items"
+        *ngFor="let item of performCapability; let i = index"
+        formArrayName="performFeedback"
+      >
+        <div class="mb-2">
+          <span class="font-16-heading mb-4">{{ item.label }} </span>
+        </div>
+        <div class="mb-2">
+          <span class="font-bold font-14-heading mb-4"> 100% Definition</span>
+        </div>
+        <div class="flex flex-col justify-between w-full mb-6">
+          <ul class="ml-10 list-disc mb-4">
+            <li *ngFor="let bpoint of description[item.uuid]" class="mb-1">
+              {{ bpoint }}
+            </li>
+          </ul>
+          <span class="font-semibold font-14-heading">
+            How does this person’s current capability compare to the ideal 100%
+            outcomes above:
+          </span>
+          <span class="text-xl mb-4 font-14-heading">
+            (80%+, no development needed; 40-70%, some development needed;
+            &lt;40%, much development needed)
+          </span>
+          <div class="flex flex-col justify-between w-full" [formGroupName]="i">
+            <div class="flex flex-row justify-between w-full">
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="0"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">Can't rate</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="10"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">10%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="20"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">20%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="30"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">30%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="40"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">40%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="50"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">50%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="60"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">60%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="70"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">70%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="80"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">80%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="90"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">90%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="100"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">100%</span>
+                </label>
+              </div>
+            </div>
+            <div
+              class="text-red-600"
+              *ngIf="
+                isPerformSubmit &&
+                getPerformFormArray(i).get('percentageRating').invalid
+              "
+            >
+              Rating is required
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col justify-between w-full mb-6">
+          <h4 class="font-bold font-16-heading mb-2">Importance Rating</h4>
+          <span class="font-semibold font-14-heading mb-4"
+            >How important is it for this person to develop this skill now?
+          </span>
+          <div class="flex flex-col justify-between w-full" [formGroupName]="i">
+            <div class="flex flex-row justify-between w-full">
+              <div class="flex w-1/2 justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="0"
+                    formControlName="rating"
+                  />
+                  <span class="font-semibold">Can't rate</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="1"
+                    formControlName="rating"
+                  />
+                  <span class="font-semibold">Not Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="2"
+                    formControlName="rating"
+                  />
+                  <span class="font-semibold">Slightly Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="3"
+                    formControlName="rating"
+                  />
+                  <span class="font-semibold">Moderately Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="4"
+                    formControlName="rating"
+                  />
+                  <span class="font-semibold">Very Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="5"
+                    formControlName="rating"
+                  />
+                  <span class="font-semibold">Extremely Important</span>
+                </label>
+              </div>
+            </div>
+            <div
+              class="text-red-600"
+              *ngIf="
+                isPerformSubmit && getPerformFormArray(i).get('rating').invalid
+              "
+            >
+              Rating is required
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col justify-between w-full">
+          <h4 class="font-bold font-16-heading mb-2">Advice Text</h4>
+          <span class="font-semibold font-14-heading"
+            >What 2-3 specific behaviors or actions can this person take to
+            improve this rating by 10-20 points?</span
+          >
+          <div class="flex flex-row justify-between w-full" [formGroupName]="i">
+            <div class="w-full py-4">
+              <textarea
+                formControlName="advice"
+                class="
+                  w-full
+                  border
+                  rounded-sm
+                  border-gray-400
+                  focus:outline-none
+                  p-4
+                  text-lg
+                "
+                rows="5"
+                matInput
+                [placeholder]="placeholderText"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="loadCounter > 0">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <div class="flex flex-row m-2 justify-end">
+      <button
+        class="btn focus:outline-none"
+        [ngClass]="{
+          'bg-gray-400': performForm.invalid,
+          'pg-bg-blue-dark': performForm.valid
+        }"
+        (click)="storePerformData()"
+        [disabled]="isDisable"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+  <div
+    class=""
+    [formGroup]="energiseForm"
+    *ngIf="performDone && !transformDone && !energiseDone"
+  >
+    <div class="w-full border-b pg-border-gray py-4">
+      <div class="flex flex-row items-center">
+        <span class="mr-2 text-center flex items-center justify-center">
+          <!-- <mat-icon
+            svgIcon="timer"
+            class="pg-txt-green"
+            aria-hidden="false"
+          ></mat-icon> -->
+        </span>
+        <span class="heading-2">Energize</span>
+      </div>
+    </div>
+    <div class="w-full">
+      <div
+        class="flex flex-col py-4 pg-list-items"
+        *ngFor="let item of energiseCapability; let i = index"
+        formArrayName="energiseFeedback"
+      >
+        <div class="mb-2">
+          <span class="font-16-heading mb-4">{{ item.label }} </span>
+        </div>
+        <div class="mb-2">
+          <span class="font-bold font-14-heading mb-4"> 100% Definition</span>
+        </div>
+        <div class="flex flex-col justify-between w-full mb-6">
+          <ul class="ml-10 list-disc mb-2">
+            <li *ngFor="let bpoint of description[item.uuid]" class="mb-1">
+              {{ bpoint }}
+            </li>
+          </ul>
+          <span class="font-semibold font-14-heading">
+            How does this person’s current capability compare to the ideal 100%
+            outcomes above:
+          </span>
+          <span class="font-14-heading mb-4">
+            (80%+, no development needed; 40-70%, some development needed;
+            &lt;40%, much development needed)
+          </span>
+          <div class="flex flex-col justify-between w-full" [formGroupName]="i">
+            <div class="flex flex-row justify-between w-full">
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="0"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">Can't rate</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="10"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">10%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="20"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">20%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="30"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">30%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="40"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">40%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="50"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">50%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="60"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">60%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="70"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">70%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="80"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">80%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="90"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">90%</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="100"
+                    formControlName="percentageRating"
+                  />
+                  <span class="font-semibold">100%</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div
+            class="text-red-600"
+            *ngIf="
+              isEnergiseSubmit &&
+              getEnergiseFormArray(i).get('percentageRating').invalid
+            "
+          >
+            Rating is required
+          </div>
+        </div>
+
+        <div class="flex flex-col justify-between w-full mb-6">
+          <h4 class="font-16-heading mb-2">Importance Rating</h4>
+          <span class="font-semibold font-14-heading mb-4"
+            >How important is it for this person to develop this skill now?
+          </span>
+          <div class="flex flex-col justify-between w-full" [formGroupName]="i">
+            <div class="flex flex-row justify-between w-full">
+              <div class="flex w-1/2 justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="0"
+                    formControlName="rating"
+                  />
+                  <span class="font-semibold">Can't rate</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="1"
+                    formControlName="rating"
+                  />
+                  <span class="font-semibold">Not Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="2"
+                    formControlName="rating"
+                  />
+                  <span class="font-semibold">Slightly Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="3"
+                    formControlName="rating"
+                  />
+                  <span class="font-semibold">Moderately Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="4"
+                    formControlName="rating"
+                  />
+                  <span class="font-semibold">Very Important</span>
+                </label>
+              </div>
+              <div class="flex w-full justify-start">
+                <label class="flex items-center justify-start">
+                  <input
+                    class="mr-2"
+                    type="radio"
+                    [value]="5"
+                    formControlName="rating"
+                  />
+                  <span class="font-semibold">Extremely Important</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div
+            class="text-red-600"
+            *ngIf="
+              isEnergiseSubmit && getEnergiseFormArray(i).get('rating').invalid
+            "
+          >
+            Rating is required
+          </div>
+        </div>
+        <div class="flex flex-col justify-between w-full">
+          <h4 class="font-bold font-16-heading mb-2">Advice Text</h4>
+          <span class="font-semibold font-14-heading"
+            >What 2-3 specific behaviors or actions can this person take to
+            improve this rating by 10-20 points?</span
+          >
+          <div class="flex flex-row justify-between w-full" [formGroupName]="i">
+            <div class="w-full py-4">
+              <textarea
+                formControlName="advice"
+                class="
+                  w-full
+                  border
+                  rounded-sm
+                  border-gray-400
+                  focus:outline-none
+                  p-4
+                  text-lg
+                "
+                rows="5"
+                matInput
+                [placeholder]="placeholderText"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="loadCounter > 0">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <div class="flex flex-row m-2 justify-end">
+      <button
+        class="mr-4 btn focus:outline-none"
+        [ngClass]="{
+          'bg-gray-400': performForm.invalid,
+          'pg-bg-blue-dark': performForm.valid
+        }"
+        (click)="backToPerform()"
+      >
+        Back
+      </button>
+      <button
+        class="btn focus:outline-none"
+        [ngClass]="{
+          'bg-gray-400': energiseForm.invalid,
+          'pg-bg-blue-dark': energiseForm.valid
+        }"
+        (click)="storeEnergiseData()"
+        [disabled]="isDisable"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>
+<div
+  class="
+    flex flex-col
+    pg-h-screen-w-header
+    w-full
+    justify-center
+    items-center
+    pg-bg-green
+  "
+  *ngIf="allDone"
+>
+  <div class="flex h-full w-full justify-center items-end">
+    <span class="font-bold text-4xl">Thank You for your input!</span>
+  </div>
+  <div class="flex h-full w-full justify-center items-center">
+    <button class="btn focus:outline-none" (click)="close()">CLOSE</button>
+  </div>
+</div>
+<app-mat-svg-icon></app-mat-svg-icon>

@@ -1,0 +1,252 @@
+<app-teams-navbar></app-teams-navbar>
+<div class="flex w-full flex-row h-full relative">
+    <mat-card class="card" style="border-radius: 15px;">
+        <div class="pg-container">
+            <div class="pg__inner">
+                <div class="flex flex-col h-full">
+                    <div class="flex flex-col margin-top">
+                        <span class="heading-1">Viewing Rights</span>
+                    </div>
+                    <div *ngIf="isLoading">
+                        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                    </div>
+                    <div class="par-div">
+                        <mat-card style="background: none;"
+                            class="mat-card px-4 py-8 flex justify-between items-center rounded-md">
+                            <div class="flex flex-col w-full items-center border-form">
+                                <div class="flex w-full mb-15">
+                                    <div class="w-2/6 font-bold title-label">Name</div>
+                                    <div class="w-4/6 font-bold title-label">Email</div>
+                                    <div class="w-2/6 font-bold title-label">Role</div>
+                                    <div class="w-2/6 font-bold title-label">Team Reports</div>
+                                    <div class="w-2/6 font-bold title-label">Sprint Design</div>
+                                    <div class="w-2/6 font-bold title-label">Team Dashboard</div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col w-full items-center" [formGroup]="formGroup">
+                                <div class="w-full flex items-center">
+                                    <div class="w-2/6 pr-4">
+                                        <input
+                                            class="appearance-none inputboxborder bg-transparent w-full text-gray-600 leading-tight focus:outline-none font-semibold"
+                                            formControlName="name" type="text" placeholder="Name" required />
+                                    </div>
+                                    <div class="w-4/6 pr-4">
+                                        <input
+                                            class="appearance-none bg-transparent inputboxborder w-full text-gray-600 leading-tight focus:outline-none font-semibold"
+                                            formControlName="email" type="text" placeholder="Email" required />
+                                    </div>
+                                    <div class="w-2/6 pr-8 flex relative">
+                                        <span
+                                            class="flex w-full justify-between items-center inputboxborder border-b-2 select-padding">
+                                            <mat-select placeholder="Select Role" formControlName="role">
+                                                <mat-option value="Coach">Coach</mat-option>
+                                                <mat-option value="HR">HR</mat-option>
+                                                <mat-option value="Mentor">Mentor</mat-option>
+                                            </mat-select>
+                                        </span>
+                                    </div>
+                                    <div class="w-2/6 pr-4">
+                                        <label class="switch">
+                                            <input type="checkbox" formControlName="team_report" />
+                                            <div
+                                                class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                                                <span class="toggle-text">YES</span><span class="toggle-text">NO</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="w-2/6 pr-4">
+                                        <label class="switch">
+                                            <input type="checkbox" formControlName="sprint_design" />
+                                            <div
+                                                class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                                                <span class="toggle-text">YES</span><span class="toggle-text">NO</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="w-2/6 pr-4">
+                                        <label class="switch">
+                                            <input type="checkbox" formControlName="team_dashboard" />
+                                            <div
+                                                class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                                                <span class="toggle-text">YES</span><span class="toggle-text">NO</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="flex w-full items-center mt-8 relative">
+                                    <span class="addbtn btn" (click)="invite()">
+                                        + Invite
+                                    </span>
+                                </div>
+                            </div>
+                        </mat-card>
+                    </div>
+                    
+                    <!-- Table 1 -->
+                    <div class="flex flex-col margin-top">
+                        <span class="heading-1">Role Based Users</span>
+                    </div>
+                    <div class="par-div">
+                        <mat-card style="background: none;"
+                            class="mat-card px-4 py-8 flex justify-between items-center rounded-md">
+                            <div class="table-responsive">
+                                <table class="mat table-style-1" mat-table #table [dataSource]="dataSource">
+                                    <ng-container matColumnDef="name">
+                                        <th mat-header-cell *matHeaderCellDef class="th-text">Name</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            {{element.name}}
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="email">
+                                        <th mat-header-cell *matHeaderCellDef class="th-text">Email</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            {{element.email}}
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="role">
+                                        <th mat-header-cell *matHeaderCellDef class="th-text">Role</th>
+                                        <td mat-cell *matCellDef="let element" class="center-align">
+                                            {{element.role}}
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="team-reports">
+                                        <th mat-header-cell *matHeaderCellDef class="th-text">Team Reports</th>
+                                        <td mat-cell *matCellDef="let element" class="center-align">
+                                            <div class="w-1/6 pr-4">
+                                                <label class="switch">
+                                                    <input type="checkbox" [checked]="element.team_report"
+                                                        (click)="updateRoleBasedUsers(element,'team_report',!element.team_report)" />
+                                                    <div
+                                                        class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                                                        <span class="toggle-text">YES</span><span
+                                                            class="toggle-text">NO</span></div>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="sprint-design">
+                                        <th mat-header-cell *matHeaderCellDef class="th-text">Sprint Design</th>
+                                        <td mat-cell *matCellDef="let element" class="center-align">
+                                            <div class="w-1/6 pr-4">
+                                                <label class="switch">
+                                                    <input type="checkbox" [checked]="element.sprint_design"
+                                                        (click)="updateRoleBasedUsers(element,'sprint_design', !element.sprint_design)" />
+                                                    <div
+                                                        class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                                                        <span class="toggle-text">YES</span><span
+                                                            class="toggle-text">NO</span></div>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="team-dashboard">
+                                        <th mat-header-cell *matHeaderCellDef class="th-text">Team Dashboard</th>
+                                        <td mat-cell *matCellDef="let element" class="center-align">
+                                            <div class="w-1/6 pr-4">
+                                                <label class="switch">
+                                                    <input type="checkbox" [checked]="element.team_dashboard"
+                                                        (click)="updateRoleBasedUsers(element,'team_dashboard',!element.team_dashboard)" />
+                                                    <div
+                                                        class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                                                        <span class="toggle-text">YES</span><span
+                                                            class="toggle-text">NO</span></div>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                </table>
+                            </div>
+                        </mat-card>
+                    </div>
+
+                    <!-- Table 2 -->
+                    <div class="flex flex-col margin-top">
+                        <span class="heading-1">Team Members</span>
+                    </div>
+                    <div class="par-div">
+                        <mat-card style="background: none;"
+                            class="mat-card px-4 py-8 flex justify-between items-center rounded-md">
+                            <div class="table-responsive">
+                                <table class="mat table-style-1" mat-table #table [dataSource]="teamMembersData">
+                                    <ng-container matColumnDef="name">
+                                        <th mat-header-cell *matHeaderCellDef class="th-text">Name</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            {{element.name}}
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="email">
+                                        <th mat-header-cell *matHeaderCellDef class="th-text">Email</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            {{element.email}}
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="role">
+                                        <th mat-header-cell *matHeaderCellDef class="th-text">Role</th>
+                                        <td mat-cell *matCellDef="let element" class="center-align">
+                                            {{element.role}}
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="team-reports">
+                                        <th mat-header-cell *matHeaderCellDef class="th-text">Team Reports</th>
+                                        <td mat-cell *matCellDef="let element" class="center-align">
+                                            <div class="w-1/6 pr-4">
+                                                <label class="switch">
+                                                    <input type="checkbox" [checked]="element.team_report"
+                                                        (click)="updateTeamMember(element,'team_report',!element.team_report)" />
+                                                    <div
+                                                        class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                                                        <span class="toggle-text">YES</span><span
+                                                            class="toggle-text">NO</span></div>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="sprint-design">
+                                        <th mat-header-cell *matHeaderCellDef class="th-text">Sprint Design</th>
+                                        <td mat-cell *matCellDef="let element" class="center-align">
+                                            <div class="w-1/6 pr-4">
+                                                <label class="switch">
+                                                    <input type="checkbox" [checked]="element.sprint_design"
+                                                        (click)="updateTeamMember(element,'sprint_design', !element.sprint_design)" />
+                                                    <div
+                                                        class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                                                        <span class="toggle-text">YES</span><span
+                                                            class="toggle-text">NO</span></div>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="team-dashboard">
+                                        <th mat-header-cell *matHeaderCellDef class="th-text">Team Dashboard</th>
+                                        <td mat-cell *matCellDef="let element" class="center-align">
+                                            <div class="w-1/6 pr-4">
+                                                <label class="switch">
+                                                    <input type="checkbox" [checked]="element.team_dashboard"
+                                                        (click)="updateTeamMember(element,'team_dashboard',!element.team_dashboard)" />
+                                                    <div
+                                                        class="slider round text-white flex justify-between items-center px-2 pg-txt-75">
+                                                        <span class="toggle-text">YES</span><span
+                                                            class="toggle-text">NO</span></div>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                </table>
+                            </div>
+                        </mat-card>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </mat-card>
+</div>

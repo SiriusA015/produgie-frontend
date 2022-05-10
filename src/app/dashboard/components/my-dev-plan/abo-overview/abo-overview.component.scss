@@ -1,0 +1,36 @@
+.item {
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+  
+  .tile {
+    min-height: 160px;
+    background-color: #fff;
+    background-size: cover !important;
+    display: flex;
+    padding-right: 30px;
+  }
+  
+  .leftRs {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    background-color: #4339f2;
+    left: 0;
+  }
+  
+  .rightRs {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    background-color: #fff;
+    right: 0;
+  }

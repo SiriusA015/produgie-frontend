@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Color" d="M8,16a8,8,0,1,1,8-8A8.009,8.009,0,0,1,8,16ZM8,1.6A6.4,6.4,0,1,0,14.4,8,6.407,6.407,0,0,0,8,1.6Z" transform="translate(0 0)" fill="#fff"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <path id="Color-2" data-name="Color" d="M3.68,6.884a.5.5,0,0,1-.064-.7L5.854,3.495,3.7.814A.5.5,0,0,1,4.476.187l2.414,3a.5.5,0,0,1-.005.634l-2.5,3a.5.5,0,0,1-.7.064Zm-3.5,0a.5.5,0,0,1-.064-.7L2.354,3.495.2.814A.5.5,0,0,1,.976.187l2.414,3a.5.5,0,0,1-.005.634l-2.5,3a.5.5,0,0,1-.7.064Z" fill="#fff" stroke="#fff" stroke-width="0.3"/>
+    </clipPath>
+  </defs>
+  <g id="Group_18265" data-name="Group 18265" transform="translate(-1576 -742.5)">
+    <g id="Icons_Radio_Button_Off" data-name="Icons / Radio / Button Off" transform="translate(1576 742.5)">
+      <g id="Group_124" data-name="Group 124" transform="translate(2 2)">
+        <path id="Color-3" data-name="Color" d="M8,16a8,8,0,1,1,8-8A8.009,8.009,0,0,1,8,16ZM8,1.6A6.4,6.4,0,1,0,14.4,8,6.407,6.407,0,0,0,8,1.6Z" transform="translate(0 0)" fill="#fff"/>
+      </g>
+    </g>
+    <g id="Icons_Arrow_Arrowhead_Right" data-name="Icons / Arrow / Arrowhead / Right" transform="translate(1583 749.5)">
+      <g id="Group_15" data-name="Group 15" transform="translate(0 0)">
+        <path id="Color-4" data-name="Color" d="M3.68,6.884a.5.5,0,0,1-.064-.7L5.854,3.495,3.7.814A.5.5,0,0,1,4.476.187l2.414,3a.5.5,0,0,1-.005.634l-2.5,3a.5.5,0,0,1-.7.064Zm-3.5,0a.5.5,0,0,1-.064-.7L2.354,3.495.2.814A.5.5,0,0,1,.976.187l2.414,3a.5.5,0,0,1-.005.634l-2.5,3a.5.5,0,0,1-.7.064Z" transform="translate(0)" fill="#fff" stroke="#fff" stroke-width="0.3"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,61 @@
+<app-loader *ngIf="loader"></app-loader>
+<div>
+  <h2 class="heading-2">Edit Current Sprint Crew 
+    <span class="material-icons float-right cursor-pointer" (click)="onNoClick()">clear</span>
+  </h2>
+  <form [formGroup]="editScrewForm" (ngSubmit)="onEditScrew()">
+    <div class="margin-top-div">
+      <div class="main-div">
+        <div class="box-left">
+          <div class="form-inline">
+            <label for="" class="title-label font-bold">Name:
+            </label>
+
+            <mat-form-field class="form-field" appearance="NOne">
+              <!-- <mat-label>Name</mat-label> -->
+              <input matInput formControlName="name" (keypress)="blockStartWhiteSpace($event);" class="inputboxborder"
+              [ngClass]="{ 'is-invalid': f.name.errors }" >
+            </mat-form-field>
+            <div *ngIf="f.name.touched && f.name.errors" class="text-red-500">
+                <div *ngIf="f.name.errors.required">Name is required</div>
+            </div>
+
+          </div>
+          <div class="form-inline">
+            <label for="" class="title-label font-bold">Email:
+            </label>
+
+            <mat-form-field class="form-field" appearance="NOne">
+              <input matInput formControlName="email" (keypress)="blockStartWhiteSpace($event);" class="inputboxborder"
+              [ngClass]="{ 'is-invalid': f.email.errors }" >
+            </mat-form-field>
+            <div *ngIf="f.email.touched && f.email.errors" class="text-red-500">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+                <div *ngIf="f.email.errors.email">Email must be valid</div>
+            </div>
+
+          </div>
+          
+          <div class="form-inline margin-top-div">
+            <label for="" class="title-label font-bold">Role:
+            </label>
+            <div class="w-1/6 pr-8 flex relative select">
+              <span class="flex w-full justify-between items-center inputboxborder border-b-2">
+                <mat-select formControlName="role" >
+                    <mat-option [value]="role.id" *ngFor="let role of roles">{{role.role_name}}
+                    </mat-option>
+                </mat-select>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="box-right">
+        </div>
+        <div class="submit-button margin-top-div">
+          <button class="btn">SUBMIT</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+</div>

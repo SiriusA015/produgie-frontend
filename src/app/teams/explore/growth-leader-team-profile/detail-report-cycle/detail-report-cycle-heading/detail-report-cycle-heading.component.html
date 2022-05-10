@@ -1,0 +1,177 @@
+<div class="flex pg-h-screen-w-header-m flex-col mx-20 lg:mx-32">
+  <div class="flex justify-end items-center flex-shrink-0 text-white mt-10">
+    <img src="/assets/images/logo2.png" alt="logo" width="120" />
+  </div>
+  <div class="flex flex-col pg-w-h justify-center">
+    <span class="mb-10 text-6xl font-bold text-gray-700">Growth Leader Team Profile</span>
+    <span data-html2canvas-ignore="true" class="print-helper-text" *ngIf="isFirefox">For best results, download and
+      print from the pdf report</span>
+    <div class="flex justify-between items-center">
+      <span class="text-xl font-semibold text-gray-700">Report for {{ teamName }}</span>
+      <div class="flex download-buttons print-view" data-html2canvas-ignore="true">
+        <button (click)="downloadReport()" 
+          class="border border-gray-500 rounded-md flex flex-row justify-evenly items-center bg-white px-6 py-4 focus:outline-none right-margin">
+          <mat-icon role="img" class="mat-icon notranslate pg-txt-blue-bright material-icons mat-icon-no-color "
+            aria-hidden="true">download_for_offline</mat-icon>
+          <span class="pg-txt-blue-bright font-bold" id="download">Download</span>
+        </button>
+        <button printSectionId="printMe" [useExistingCss]="true"
+          styleSheetFile="{{ styleName }}" ngxPrint 
+          class="border border-gray-500 rounded-md flex flex-row justify-evenly items-center bg-white px-6 py-4 focus:outline-none">
+          <mat-icon role="img" class="mat-icon notranslate pg-txt-blue-bright material-icons mat-icon-no-color"
+            aria-hidden="true">print</mat-icon>
+          <span class="pg-txt-blue-bright font-bold">Print</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<div class="mx-20 lg:mx-32 intro">
+  <div class="mb-10">
+    <span class="font-bold text-2xl font20">About Your Team Profile</span>
+  </div>
+  <div class="mb-10">
+    <span class="font14">Leadership teams with strong relationships, trust, and commitment outperform other teams. By
+      fully aligning their teams, managers can build these positive team dynamics and help their teams perform, innovate
+      and be highly effective.</span>
+  </div>
+  <div class="mb-10">
+    <span class="font14">The Growth Leader Team Report focuses on two aspects of alignment: People and Personality &
+      Practices. The report includes two sections: </span>
+  </div>
+  <div class="mb-10 pl-6">
+    <ul class="list-disc">
+      <li>
+        <span class="font-semibold font14">Team Roles: </span>
+        <span class="font14">
+          <ul>
+            <li>Individual Personality and Practices shape the role each person plays on a team</li>
+            <li>Use this part of the report to understand how individual roles impact team dynamics</li>
+            <li>Identify how the team can leverage these roles positively and work around role gaps</li>
+          </ul>
+        </span>
+      </li>
+      <li>
+        <span class="font-semibold font14">Team Capabilities: </span>
+        <span class="font14">
+          <ul>
+            <li>People capabilities across team members shape team performance</li>
+            <li>Use this part of the report to identify the team’s strengths and capability gaps</li>
+            <li>Identify how the team can build new capabilities or work around capability gaps</li>
+          </ul>
+        </span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="mb-10">
+    <span class="font14">All material contained within this report is confidential and is copy
+      right protected (©2021 Organisation Solutions Pte Ltd)
+    </span>
+  </div>
+
+  <div class="mb-10">
+    <span class="font-semibold font14">Leveraging Team Roles</span>
+  </div>
+
+  <div class="mb-10">
+    <span class="font14">Individuals play different roles on teams based on a person’s personality and practices. For
+      example:</span>
+  </div>
+
+  <div class="mb-10 pl-6">
+    <ul class="list-disc">
+      <li>
+        <span class="font-semibold font14">Structured: </span>
+        <span class="font14">
+          Individuals who are organized and detail-oriented help the team plan and deliver priorities
+        </span>
+      </li>
+      <li>
+        <span class="font-semibold font14">Relationship: </span>
+        <span class="font14">
+          Individuals who connect with and motivate others help the team engage stakeholders
+        </span>
+      </li>
+    </ul>
+  </div>
+  <div class="mb-10">
+    <span class="font14">Teams need all roles to succeed:</span>
+  </div>
+
+  <div class="mb-10 pl-6">
+    <ul class="list-disc">
+      <li>
+        <span class="font14">A team has a strength if > 60% of team members play a role</span>
+        <span class="font14">
+          <ul>
+            <li>Example: A team with 75% Innovator team members are likely to innovate</li>
+          </ul>
+        </span>
+      </li>
+      <li>
+        <span class="font14">A team has a potential risk if < 25% of team members play a role</span>
+            <span class="font14">
+              <ul>
+                <li>Example: A team with 10% External team members are likely to focus too much internally</li>
+              </ul>
+            </span>
+      </li>
+      <li>
+        <span class="font14">Teams can be unbalanced in their roles</span>
+        <span class="font14">
+          <ul>
+            <li>Example: A team with many Innovators and few Structured team members may find themselves creating many
+              new initiatives that are not executed well</li>
+          </ul>
+        </span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="mb-10">
+    <span class="font14">Each team can improve team dynamics by:</span>
+  </div>
+
+  <div class="mb-10 pl-6">
+    <ul class="list-disc">
+      <li>
+        <span class="font14">Leveraging areas where many team members play a role</span>
+        <span class="font14">
+          <ul>
+            <li>Use this to drive results in that area (e.g., leverage Results focused team members to drive execution)
+            </li>
+            <li>Minimize the downside risk of having too many people in one area, if needed</li>
+          </ul>
+        </span>
+      </li>
+      <li>
+        <span class="font14">Minimizing the impact of areas where few team members play a role by:</span>
+        <span class="font14">
+          <ul>
+            <li>Asking the few team members with that role to help the team in this area</li>
+            <li>Using Team Sprints to develop routines and practices to build capabilities in these areas </li>
+          </ul>
+        </span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="mb-10">
+    <span class="font14">Some team members may not have a team role. Roles are based on multiple measures and team
+      members with moderate scores in these areas will not play a particular role. These team members likely have other
+      strengths listed in the Team Capability section of the report.</span>
+  </div>
+
+  <div class="page-break"></div>
+  <div class="spacing" style="page-break-after: always">
+    <div class="donut-sizer">
+      <app-donut-cycle [profileData]="profileData" [description]="description">
+      </app-donut-cycle>
+    </div>
+  </div>
+</div>
+<app-mat-svg-icon></app-mat-svg-icon>

@@ -1,0 +1,26 @@
+<div class="">
+    <div class="p-4">
+        <div class="flex flex-row justify-start items-center">
+            <span class="h-12 w-12 rounded-full shadow-md bg-white flex justify-center items-center">
+                <mat-icon fontSet="material-icons-outlined" class="pg-txt-blue-bright">sms</mat-icon>
+            </span>
+            <span class="heading-1 ml-4">
+                Provide Team Advice
+            </span>
+        </div>
+    </div>
+    <hr>
+    <div class="p-4" [formGroup]="adviceForm">
+        <!-- <textarea [formControl]="advice" class="w-full border rounded-sm border-gray-400 focus:outline-none p-4 text-2x-1" rows="10" [placeholder]="placeholderText"></textarea> -->
+        <textarea formControlName="text" placeholder="placeholderText" id="" rows="10"
+        class="w-full border rounded-sm border-gray-400 focus:outline-none p-4 text-2x-1"></textarea>
+   
+        <div *ngIf="isLoading">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+        <div class="flex flex-row mt-2">
+            <button class="px-8 py-3 pg-bg-blue-dark text-white uppercase rounded-sm focus:outline-none" [disabled]="adviceForm.invalid || isLoading" (click)="storeAdvice()">Submit</button>
+            <button class="ml-8 py-3 focus:outline-none text-gray-500 uppercase" [disabled]="adviceForm.invalid || isLoading" (click)="saveAdvice()">Save</button>
+        </div>
+    </div>
+</div>

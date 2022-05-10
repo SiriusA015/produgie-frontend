@@ -1,0 +1,57 @@
+<div class="pg-container mx-auto">
+  <div class="w-full bg-white rounded shadow p-5">
+    <table class="table-fixed w-full">
+      <thead>
+        <tr class="tr-gray ">
+          <th class="w-1/4 px-4 py-2 text-gray-600 font-medium">SUPPORT CREW</th>
+          <th class="w-1/4 px-4 py-2">
+            <div class="flex items-center justify-center text-gray-600 font-medium">
+              <mat-icon class="material-icons-outlined mat-icon-18 text-xl mr-2">content_paste</mat-icon>
+              <span>PLAN</span>
+            </div>
+
+          </th>
+          <th class="w-1/4 px-4 py-2">
+            <div class="flex items-center justify-center text-gray-600 font-medium">
+              <mat-icon class="material-icons-outlined mat-icon-18 text-xl mr-2">explore</mat-icon>
+              <span>INSIGHTS</span>
+            </div>
+
+          </th>
+          <th class="w-1/4 px-4 py-2">
+            <div class="flex items-center justify-center text-gray-600 font-medium">
+              <mat-icon svgIcon="pulse" class="mat-icon-18 text-xl mr-2"></mat-icon>
+              <span>SPRINT</span>
+            </div>
+
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="w-full mt-3" *ngFor="let role of roles">
+          <td class="w-1/4 px-4 py-2 border-gray-300 border-b-2">{{ role }}</td>
+          <td class="w-1/4 px-4 py-2 border-gray-300 border-b-2 text-center">
+            <label class="switch">
+              <input type="checkbox" [checked]="true">
+              <span class="slider round"></span>
+            </label>
+          </td>
+          <td class="w-1/4 px-4 py-2 border-gray-300 border-b-2 text-center">
+            <label class="switch">
+              <input type="checkbox" [checked]="false">
+              <span class="slider round"></span>
+            </label>
+          </td>
+          <td class="w-1/4 px-4 py-2 border-gray-300 border-b-2 text-center">
+            <label class="switch">
+              <input type="checkbox" [checked]="true">
+              <span class="slider round"></span>
+            </label>
+          </td>
+        </tr>
+
+
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,313 @@
+<div id="overlay"></div>
+<div class="pg-header bg-white sticky w-full top-0">
+	<!-- [ngClass]="isTeamsActive ?'fixed':'sticky'" -->
+	<!-- START DESKTOP view -->
+	<nav class="flex items-center justify-around flex-wrap px-20 main-header" *ngIf="(isHandset$ | async) ? false : true">
+		<div class="flex items-center flex-shrink-0 text-white mr-6 cursor-pointer title-div">
+			<div (click)="gotoHome()" width="80">
+				<img src="/assets/images/logo.svg" alt="" />
+			</div>
+			<div class="mid-border"></div>
+			<span class="material-icons drop-icon" (click)="toggleSidebar()">
+				arrow_drop_down
+			</span>
+		</div>
+
+		<div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+			<div *ngIf="false" class="text-sm lg:flex-grow">
+				<ul class="txt-montserra flex justify-around">
+					<li class="mr-3 hidden lg:flex xl:flex items-center justify-center font-medium" [routerLink]="['/explore']" routerLinkActive="pg-h-pill-active">
+						<button class="hover:bg-gray-400 focus:outline-none text-gray-600 py-4 px-4 rounded-full font-medium">
+							<div class="flex flex-row items-center">
+								<mat-icon class="material-icons-outlined mat-icon-18 text-xl mr-2">explore</mat-icon>
+								<span>EXPLORE</span>
+								<label class="pg-tooltip flex flex-row items-center ml-2 focus:outline-none">
+									<mat-icon fontSet="material-icons-outlined" class="text-gray-500 mat-icon-18">info</mat-icon>
+									<input type="checkbox" />
+									<div class="font-light text-xs">Initiate a 360 or review your reports</div>
+								</label>
+							</div>
+						</button>
+					</li>
+					<li class="mr-3 hidden lg:flex xl:flex items-center justify-center font-medium" [routerLink]="['/design']" routerLinkActive="pg-h-pill-active">
+						<button class="hover:bg-gray-400 focus:outline-none text-gray-600 py-4 rounded-full px-10 font-medium">
+							<div class="flex items-center" style="height: 18px;align-items: center;justify-content: center;">
+								<mat-icon svgIcon="cube" class="mat-icon-18 text-xl mr-2"></mat-icon>
+								<span style="line-height: 1">DESIGN</span>
+								<label class="pg-tooltip flex flex-row items-center ml-2 focus:outline-none">
+									<mat-icon fontSet="material-icons-outlined" class="text-gray-500 mat-icon-18">info</mat-icon>
+									<input type="checkbox" />
+									<div class="font-light text-xs">
+										Create a Development Plan and design your development Sprint
+									</div>
+								</label>
+							</div>
+						</button>
+					</li>
+					<li class="mr-3 hidden lg:flex xl:flex items-center justify-center font-medium">
+						<button (click)="designstatus()" cdkOverlayOrigin #trigger="cdkOverlayOrigin" class="hover:bg-gray-300 focus:outline-none text-gray-600 py-4 px-10 rounded-full font-medium">
+							<div class="flex flex-row items-center">
+								<mat-icon class="material-icons-outlined mat-icon-18 text-xl mr-2">dashboard</mat-icon>
+								<span>SPRINT</span>
+								<label class="pg-tooltip flex flex-row items-center ml-2 focus:outline-none">
+									<mat-icon fontSet="material-icons-outlined" class="text-gray-500 mat-icon-18">info</mat-icon>
+									<input type="checkbox" />
+									<div class="font-light text-xs">
+										Track progress on your Sprint
+									</div>
+								</label>
+							</div>
+						</button>
+						<button *ngIf="isSprintOpen" (click)="isSprintOpen = false" tabindex="-1" class="fixed inset-0 h-full w-full cursor-default"></button>
+						<ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isSprintOpen">
+							<ul class="py-2 bg-white rounded-lg pg-dd-shadow ml-6">
+								<li [routerLink]="['/sprint/dashboard']" routerLinkActive="router-link-active" (click)="changeSprintIsOpeMobile()" class="px-6 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white focus:outline-none cursor-pointer">
+									Dashboard
+								</li>
+								<li [routerLink]="['/sprint/roadmap']" routerLinkActive="router-link-active" (click)="changeSprintIsOpeMobile()" class="px-6 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white focus:outline-none cursor-pointer">
+									Road Map
+								</li>
+							</ul>
+						</ng-template>
+					</li>
+					<li class="mr-3 hidden lg:flex xl:flex items-center justify-center font-medium">
+						<button class="disable focus:outline-none text-gray-600 py-4 px-10 rounded-full border-2 border-gray-500 font-medium" style="border-color: #e6e3e3">
+							<div class="flex flex-row items-center">
+								<mat-icon class="material-icons-outlined mat-icon-18 text-xl mr-2" style="color: #e6e3e3">
+									local_mall
+								</mat-icon>
+								<span style="color: #e6e3e3">ONDEMAND</span>
+							</div>
+						</button>
+					</li>
+					<li class="mr-3" (click)="openNotification()">
+						<span class="h-12 w-12 r-2 text-center rounded-full bg-gray-200 flex items-center justify-center cursor-pointer">
+							<mat-icon class="text-4xl" style="height: 28px; width: 34px" aria-hidden="false" [matBadge]="notificationCount" matBadgeColor="warn">notifications_none</mat-icon>
+						</span>
+					</li>
+				</ul>
+			</div>
+			<!-- START .LEAD desktop -->
+			<div class="nav-step2" *ngIf="!isTeamsActive">
+				<div class="nav-step2__left">
+					<div [ngClass]="{ 'active-tab': selectedMenu.includes('/explore') }" (click)="tabClick('/explore')">Explore</div>
+
+					<ng-container *ngIf="!statuscheck">
+						<div [ngClass]="{ 'active-tab': selectedMenu.includes('/design') }" (click)="tabClick('/design')">Design</div>
+						<div class="disabled-tab">Sprints</div>
+					</ng-container>
+					<ng-container *ngIf="statuscheck">
+						<div class="disabled-tab">Design</div>
+						<div [ngClass]="{ 'active-tab': selectedMenu.includes('/sprint') }" [routerLink]="['/sprint']">Sprints</div>
+					</ng-container>
+
+					<div [ngClass]="{ 'active-tab': selectedMenu.includes('/event') }" [routerLink]="['/event']" routerLinkActive="active">Events</div>
+				</div>
+				<div class="nav-step2__right">
+					<div (click)="openNotification()">
+						<span class="material-icons" [matBadge]="notificationCount" matBadgeColor="warn">circle_notifications</span>
+					</div>
+					<span class="fill-remaining-space">
+						<div [ngClass]="{'active-tab': selectedMenu == '/profile/general-settings'}" (click)="tabClick('/profile')" [matMenuTriggerFor]="menu1" #menuTrigger1="matMenuTrigger" (mouseover)="menuTrigger1.openMenu()">
+							<mat-icon>settings</mat-icon>
+							<span *ngIf="selectedMenu !== '/profile/general-settings'" class="material-icons">arrow_drop_down</span>
+							<span *ngIf="selectedMenu == '/profile/general-settings'" class="material-icons">arrow_drop_up</span>
+						</div>
+						<mat-menu #menu1="matMenu" [overlapTrigger]="false">
+							<span (mouseleave)="menuTrigger1.closeMenu()">
+								<button mat-menu-item [routerLink]="['/profile/general-settings']">My Profile</button>
+								<button mat-menu-item [routerLink]="['/dashboard/viewing-rights']">Viewing Rights</button>
+								<button mat-menu-item [routerLink]="['/profile/active-consent']">Active Consent</button>
+							</span>
+						</mat-menu>
+					</span>
+				</div>
+			</div>
+			<!-- END .LEAD desktop -->
+			<!-- START .TEAMS desktop -->
+			<div class="nav-step2" *ngIf="isTeamsActive">
+				<ng-container *ngIf="teamList?.length > 0">
+					<div class="nav-step2__left">
+						<span class="flex w-full justify-between items-center">
+							<mat-select id="selected-team" class="w-full appearance-none text-gray-600 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 font-semibold" [(value)]="selectedTeam" (selectionChange)="selectTeam($event.value)">
+								<mat-option [value]="team.id" *ngFor="let team of teamList" class="font-size-option">{{ team?.name }}</mat-option>
+							</mat-select>
+						</span>
+						<div [ngClass]="{
+								'active-tab':
+									teamExploreMenu.includes(teamActiveTabUrl)
+							}" (click)="
+								redirectToExplore('/teams/explore/team-portal')
+							">
+							Explore
+						</div>
+						<div *ngIf="!isSprintSelected" [ngClass]="{
+								'active-tab':
+									teamsDesignMenu.includes(teamActiveTabUrl)
+							}" (click)="onDesignClick()">
+							Design
+						</div>
+						<div [routerLink]="['/teams/sprint']">Sprints</div>
+					</div>
+					<div class="nav-step2__right">
+						<div (click)="openTeamNotification()">
+							<span class="material-icons" [matBadge]="teamNotificationCount" matBadgeColor="warn">circle_notifications</span>
+						</div>
+						<span class="fill-remaining-space">
+							<div [class.active-tab]="selectedMenu.includes('/profile')" (click)="tabClick('/profile')" [matMenuTriggerFor]="menu1" #menuTrigger1="matMenuTrigger" (mouseover)="menuTrigger1.openMenu()">
+								<mat-icon>settings</mat-icon>
+								<span *ngIf="selectedMenu !== '/profile/general-settings'" class="material-icons">arrow_drop_down</span>
+								<span *ngIf="selectedMenu == '/profile/general-settings'" class="material-icons">arrow_drop_up</span>
+							</div>
+							<mat-menu #menu1="matMenu" [overlapTrigger]="false">
+								<span (mouseleave)="menuTrigger1.closeMenu()">
+									<!-- <button mat-menu-item [routerLink]="['/teams/create-team']">Team Set Up</button> -->
+									<button mat-menu-item [routerLink]="['/teams/viewing-rights']" *ngIf="!showTeamMemberMenu">
+										Viewing Rights
+									</button>
+									<button mat-menu-item *ngIf="!showTeamMemberMenu">
+										<a href="/teams/team-settings?prev=team-settings" class="underline-none">Team Settings</a>
+									</button>
+									<button mat-menu-item *ngIf="!showTeamMemberMenu">
+										<a href="/teams/team-settings?prev=add-new" class="underline-none">Add New Team</a>
+									</button>
+									<button mat-menu-item *ngIf="showTeamMemberMenu">
+										<a href="/teams/member/team-details" class="underline-none">Teams
+										</a>
+									</button>
+									<button mat-menu-item *ngIf="showTeamMemberMenu">
+										<a href="/teams/member/viewing-rights" class="underline-none">Viewing Rights
+										</a>
+									</button>
+								</span>
+							</mat-menu>
+						</span>
+					</div>
+				</ng-container>
+			</div>
+		</div>
+		<!-- END .TEAMS desktop -->
+		<div class="header-right">
+			<div class="flex flex-col justify-center">
+				<div class="flex flex-row justify-center items-center" (click)="changeIsOpen()">
+					<button class="block h-16 w-16 rounded-full overflow-hidden focus:outline-none focus:border-none round-img">
+						<img id="profileId" [src]="
+									profilepic
+										? profilepic
+										: '/assets/avatars/blank_img.svg'
+								" onerror="this.onerror=null;this.src='/assets/avatars/avatar_10.svg'" alt="Your avatar" />
+					</button>
+					<div class="flex flex-col items-start ml-2">
+						<h2 class="font-medium text-sm username">
+							{{ common }}
+						</h2>
+					</div>
+				</div>
+			</div>
+			<div class="mt-3" *ngIf="isTeamsActive">
+				<mat-select id="selected-team" class="option-size w-full appearance-none text-gray-600 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 font-semibold" [(value)]="selectedRole" (selectionChange)="changeRoleType($event.value)">
+					<mat-option [value]="role?.value" *ngFor="let role of rolesArr" class="font-size-option">
+						{{ role?.name }}
+					</mat-option>
+				</mat-select>
+			</div>
+			<button *ngIf="isOpen" (click)="isOpen = false" tabindex="-1" class="fixed inset-0 h-full w-full cursor-default"></button>
+			<div *ngIf="isOpen" class="absolute right-auto mt-2 py-2 w-48 bg-white rounded-lg shadow-xl pg-dd-shadow">
+				<a (click)="signOut()" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white cursor-pointer">Sign out</a>
+			</div>
+		</div>
+	</nav>
+	<!-- END DESKTOP view -->
+	<!-- START MOBILE view -->
+	<nav class="flex flex-row items-center justify-between p-6" *ngIf="isHandset$ | async" style="min-height: 6.25rem">
+		<ul class="flex w-full justify-between items-center">
+			<li class="flex justify-center items-center">
+				<button class="focus:outline-none text-gray-600 rounded-full">
+					<div class="flex flex-row items-center">
+						<mat-icon style="color: #e6e3e3" class="material-icons-outlined mat-icon-18 text-xl">explore
+						</mat-icon>
+					</div>
+				</button>
+			</li>
+			<li class="flex justify-center items-center">
+				<button class="focus:outline-none text-gray-600 rounded-full">
+					<div class="flex flex-row items-center">
+						<mat-icon style="color: #e6e3e3" svgIcon="cube" class="mat-icon-18 text-xl"></mat-icon>
+					</div>
+				</button>
+			</li>
+			<!--show only in .Lead -->
+			<li *ngIf="!isTeamsActive" class="flex justify-center items-center" [routerLink]="['/sprint']" routerLinkActive="pg-h-pill-active">
+				<div>
+					<div class="flex flex-row justify-center">
+						<button class="focus:outline-none text-gray-600 rounded-full">
+							<mat-icon class="material-icons-outlined mat-icon-18 text-xl">dashboard</mat-icon>
+						</button>
+					</div>
+					<div style="font-size: 10px">Sprint</div>
+				</div>
+			</li>
+			<!--show only in .Team -->
+			<li *ngIf="isTeamsActive" class="flex justify-center items-center" [routerLink]="['/teams/sprint']" routerLinkActive="pg-h-pill-active">
+				<button class="focus:outline-none text-gray-600 rounded-full">
+					<mat-icon class="material-icons-outlined mat-icon-18 text-xl">dashboard</mat-icon>
+				</button>
+			</li>
+
+			<li class="flex justify-center items-center" (click)="openNotificationMobile()">
+				<div style="text-align: -webkit-center">
+					<div class="h-8 w-8 r-2 rounded-full bg-gray-200 flex justify-center cursor-pointer">
+						<mat-icon class="text-4xl" style="height: 22px; width: 34px; font-size: 22px" aria-hidden="false" [matBadge]="notificationCount" matBadgeColor="warn">notifications_none</mat-icon>
+					</div>
+					<div style="font-size: 10px">Notifications</div>
+				</div>
+			</li>
+			<li class="flex justify-center items-center">
+				<div>
+					<div class="flex flex-col items-center">
+						<div class="flex flex-row items-center" (click)="changeIsOpen()">
+							<button class="h-8 w-8 rounded-full overflow-hidden focus:outline-none focus:border-none">
+								<img [src]="
+										profilepic
+											? profilepic
+											: '/assets/avatars/avatar_10.svg'
+									" onerror="this.onerror=null;this.src='/assets/avatars/avatar_10.svg'" />
+							</button>
+						</div>
+					</div>
+					<button *ngIf="isOpen" (click)="isOpen = false" tabindex="-1" class="fixed inset-0 h-full w-full cursor-default"></button>
+					<div *ngIf="isOpen" class="absolute right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl pg-dd-shadow z-10">
+						<a (click)="signOut()" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Sign out</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</nav>
+	<!-- END MOBILE view -->
+	<div class="nav-submenu" *ngIf="isExploreSelected">
+		<div [ngClass]="{ 'selected-submenu': router.url === submenu.path }" *ngFor="let submenu of subMenuData; index as i" (click)="menuSelected(i, submenu.path)">
+			{{ submenu.title }}
+		</div>
+	</div>
+</div>
+<app-loader *ngIf="isLoader"></app-loader>
+<!-- START sidebar -->
+<div class="side-bar" [class.active]="isSidebarShow">
+	<div class="menu">
+		<div class="item" (click)="toggleSidebar()">
+			<a class="sub-btn module-link align-link" (click)="goToLeads()" routerLinkActive="bg-blue-200">
+				<!-- <mat-icon class="iconic">person</mat-icon> -->
+				<img src="/assets/images/person.png" width="13.58" height="15.83" />
+				&nbsp;&nbsp;
+				<span class="ml-3 font-black">.LEAD</span>
+			</a>
+		</div>
+		<div class="item" (click)="toggleSidebar()">
+			<a (click)="goToTeams()" class="module-link align-link" routerLinkActive="bg-blue-200">
+				<!-- <mat-icon class="iconic">people</mat-icon> -->
+				<img src="/assets/images/persons.png" width="24" height="12" />
+				<span class="ml-3 font-black">.TEAM</span>
+			</a>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,107 @@
+<div class="flex w-full flex-row h-full relative viewing-right">
+  <!-- <div class="pg-sidebar">
+    <app-profile-side-nav></app-profile-side-nav>
+  </div> -->
+  <div class="pg-container pg">
+    <div class="pg__inner">
+      <div class="flex flex-col h-full">
+        <div class="flex flex-col mb-10">
+          <span class="heading-1">My Profile</span>
+        </div>
+        <div class="row" [formGroup]="profileForm">
+          <div class="col-md-12 col-lg-6">
+            <div
+              class="rounded-full cursor-pointer bg-white border-dashed border border-gray-400 flex flex-col-1 items-center justify-center profile-img"
+              [ngClass]="{ 'border-none': picture }"
+              style="height: 15rem; width: 15rem"
+              (click)="openChangePictureDialog()"
+            >
+              <mat-icon *ngIf="!picture">add</mat-icon>
+              <!-- <p>Add Photo</p> -->
+              <!-- <img
+              *ngIf="!isImageshow"
+              [src]="'/assets/avatars/' + picture + '.svg'"
+              class="w-full h-full m-4 cursor-pointer"
+            /> -->
+              <img [src]="imageData" />
+            </div>
+            <div
+              class="flex border bg-white border-gray-400 py-4 px-4 my-2 rounded-md"
+            >
+              <input
+                class="appearance-none border-none w-full py-2 px-2 leading-tight focus:outline-none"
+                formControlName="salutation"
+                placeholder="Preferred Name"
+              />
+            </div>
+          </div>
+
+          <div class="col-md-12 col-lg-6">
+            <!-- <div class="flex border bg-white border-gray-400 py-4 px-4  my-2 rounded-md" style="width: 40rem;">
+                  <input class="appearance-none border-none w-full py-2 px-2 leading-tight focus:outline-none" formControlName="salutation" placeholder="Salutation">
+              </div> -->
+            <div
+              class="flex border bg-white border-gray-400 py-4 px-4 my-2 rounded-md"
+            >
+              <input
+                class="appearance-none border-none w-full mr-3 py-2 px-2 leading-tight focus:outline-none"
+                placeholder="Full Name"
+                formControlName="name"
+              />
+            </div>
+            <div
+              class="flex flex-col border bg-white border-gray-400 py-4 px-4 my-2 rounded-md cursor-not-allowed"
+            >
+              <input
+                class="appearance-none border-none w-full mr-3 py-2 px-2 leading-tight focus:outline-none cursor-not-allowed bg-white"
+                formControlName="email"
+                type="email"
+                placeholder="abc@example.com"
+              />
+            </div>
+            <div
+            *ngIf="isAllowedToChangePassword"
+              class="flex border bg-white border-gray-400 py-4 px-4 my-2 rounded-md"
+            >
+              <!-- <input class="appearance-none bg-white border-none w-full mr-3 py-2 px-2 leading-tight focus:outline-none"type="password" placeholder="Password" value="******************" disabled> -->
+
+              <span
+                class="appearance-none bg-white border-none w-full mr-3 py-2 px-2 leading-tight focus:outline-none"
+                >&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;</span
+              >
+
+              <button
+                type="button"
+                class="border-none text-blue-500 font-bold bg-transparent"
+                (click)="openChangePasswordDialog()"
+              >
+                Change
+              </button>
+            </div>
+            <div
+              class="flex border bg-blue-600 items-center rounded-md"
+              style="width: 10rem"
+              [ngClass]="{
+                'bg-gray-600 cursor-not-allowed': profileForm.invalid,
+                'bg-blue-600': profileForm.valid
+              }"
+            >
+              <button
+                class="border-none p-4 bg-blue-600 text-white text-center font-bold focus:outline-none"
+                style="text-align: center; width: 10rem"
+                (click)="updateProfile()"
+                [disabled]="profileForm.invalid"
+                [ngClass]="{
+                  'bg-gray-600 cursor-not-allowed': profileForm.invalid,
+                  'bg-blue-600': profileForm.valid
+                }"
+              >
+                Update
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,99 @@
+// .pg-bg-card{
+//     min-height: 419px;
+//     max-height: 419px;
+// }
+.pg-bg-green-button {
+	background-color: #3aa76d20;
+}
+
+.pg-text-gray {
+	color: #484848;
+}
+
+.pg-gl-list {
+	border-bottom: #e0e0e0 solid 2px;
+}
+
+.pg-gl-list:nth-last-child(1) {
+	border: none;
+}
+
+.example-margin {
+	margin: 0 12px;
+}
+
+.main-div {
+	background-color: white;
+
+	.card-section {
+		// background: #f3f8ff;
+		// border-radius: 15px;
+		// padding: 1.5rem;
+
+		// .card-section-left {
+		//   margin-right: 2vw;
+		// }
+
+		// .card-body {
+		//   height: 200px;
+		//   border-radius: 15px;
+		// }
+
+		.card-body-step1 {
+			border-radius: 15px;
+		}
+	}
+
+	.leve-dialog {
+		background-color: red !important;
+	}
+}
+.text-font {
+	font-size: 14px;
+	color: #8e9aae;
+}
+// .c-text{
+//   font-size:12px;
+// }
+.color-grey {
+	color: #8e9aae;
+}
+.role-margin {
+	margin-top: 2rem;
+	padding-left: unset !important;
+}
+.padding-b {
+	padding-bottom: 1rem;
+}
+.btn-color {
+	background-color: #278ce9 !important;
+}
+.btn-disable {
+	background-color: #8e9aae;
+	border: #8e9aae;
+}
+.border-radius-card {
+	border-radius: 1.5rem;
+	padding: 2.5rem;
+}
+// .width-cards {
+//   width:48% !important;
+// }
+.pt-1 {
+	padding-top: 1rem !important;
+}
+.pb-1 {
+	padding-bottom: 1rem !important;
+}
+.mt-2 {
+	margin-top: 20px !important;
+}
+
+.title-label {
+	font-size: 1.6rem;
+	color: #051532;
+}
+
+.my-portal {
+	margin: 8rem;
+}

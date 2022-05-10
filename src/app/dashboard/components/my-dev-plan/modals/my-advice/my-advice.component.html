@@ -1,0 +1,38 @@
+<div class="">
+    <div class="p-4">
+        <div class="flex flex-row justify-start items-center">
+            <span class="h-12 w-12 rounded-full shadow-md bg-white flex justify-center items-center">
+                <mat-icon fontSet="material-icons-outlined" class="pg-txt-blue-bright">sms</mat-icon>
+            </span>
+            <span class="text-sm font-bold ml-4">
+                Advice
+            </span>
+        </div>
+    </div>
+    <hr>
+    <div class="" >
+        <div class="flex flex-col p-4 pg-advice" *ngFor="let adv of advice">
+            <div class="flex flex-row justify-between items-center">
+                <div class="flex flex-row items-center">
+                    <div>
+                        <img class="w-12 h-12 rounded-full" src="/assets/icons/user-1.svg" alt="Avatar of Jonathan">
+                    </div>
+                    <div class="flex flex-col ml-4">
+                        <span class="font-semibold">
+                            {{adv.adviceby.name}}
+                        </span>
+                        <span class="font-semibold text-gray-400">
+                            {{adv.adviceby.role}}
+                        </span>
+                    </div>
+                </div>
+                <div>
+                    <span class="text-xs">{{adv.date}} | {{adv.time}}</span>
+                </div>
+            </div>
+            <div class="ml-16 border rounded-md p-4 border-gray-400">
+                <p class="text-xs font-semibold">{{adv.adviceText}}</p>
+            </div>
+        </div>
+    </div>
+</div>

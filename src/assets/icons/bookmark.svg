@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="31.665" height="50.874" viewBox="0 0 31.665 50.874">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.44" y1="-0.218" x2="0.44" y2="0.918" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#b761c6"/>
+      <stop offset="1" stop-color="#9c44b3"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.409" y1="1.712" x2="0.409" y2="0.752" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffcf95"/>
+      <stop offset="0.427" stop-color="#ffc954"/>
+      <stop offset="1" stop-color="#ffc200"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="0.028" y1="2.77" x2="-1.671" y2="3.305" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffc200" stop-opacity="0"/>
+      <stop offset="0.203" stop-color="#fb0" stop-opacity="0.204"/>
+      <stop offset="0.499" stop-color="#ffa700" stop-opacity="0.498"/>
+      <stop offset="0.852" stop-color="#f80" stop-opacity="0.851"/>
+      <stop offset="1" stop-color="#ff7800"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="0.367" y1="4.515" x2="-0.175" y2="5.687" xlink:href="#linear-gradient-3"/>
+    <linearGradient id="linear-gradient-5" x1="0.579" y1="1.236" x2="-0.679" y2="2.187" xlink:href="#linear-gradient-3"/>
+    <linearGradient id="linear-gradient-6" x1="0.267" y1="1.074" x2="-0.762" y2="1.815" xlink:href="#linear-gradient-3"/>
+    <linearGradient id="linear-gradient-7" x1="-0.131" y1="2.77" x2="1.568" y2="3.305" xlink:href="#linear-gradient-3"/>
+    <linearGradient id="linear-gradient-8" x1="0.268" y1="4.515" x2="0.81" y2="5.687" xlink:href="#linear-gradient-3"/>
+    <linearGradient id="linear-gradient-9" x1="-0.147" y1="1.236" x2="1.112" y2="2.187" xlink:href="#linear-gradient-3"/>
+  </defs>
+  <g id="Group_18264" data-name="Group 18264" transform="translate(-1609 -1145.067)">
+    <g id="bookmarks" transform="translate(1512.341 1145.067)">
+      <path id="Path_24292" data-name="Path 24292" d="M128.324,2.668V49.987a.885.885,0,0,1-1.511.626l-13.7-13.7a.885.885,0,0,0-1.252,0l-13.7,13.7a.885.885,0,0,1-1.511-.626V2.668A2.668,2.668,0,0,1,99.327,0h26.329A2.668,2.668,0,0,1,128.324,2.668Z" fill="url(#linear-gradient)"/>
+      <path id="Path_24295" data-name="Path 24295" d="M159.221,82.4l2.766-5.605Z" transform="translate(-50.027 -68.872)" fill="url(#linear-gradient-2)"/>
+      <path id="Path_24296" data-name="Path 24296" d="M259.433,82.528a.59.59,0,0,1-.136-.178l-2.766-5.6a.586.586,0,0,0-.532-.331V87.328Z" transform="translate(-143.507 -68.821)" fill="url(#linear-gradient-3)"/>
+      <path id="Path_24297" data-name="Path 24297" d="M265.93,138.99l-6.185-.9a.592.592,0,0,1-.311-.146l-3.434,4.8,10.371-3.44A.583.583,0,0,0,265.93,138.99Z" transform="translate(-143.508 -124.238)" fill="url(#linear-gradient-4)"/>
+      <path id="Path_24299" data-name="Path 24299" d="M262.483,195.094,256,186.249l5.613,1.935a.575.575,0,0,0,0,.209l1.057,6.161A.582.582,0,0,1,262.483,195.094Z" transform="translate(-143.508 -167.743)" fill="url(#linear-gradient-5)"/>
+      <path id="Path_24300" data-name="Path 24300" d="M262.481,195.095a.589.589,0,0,1-.675.085l-5.532-2.908A.605.605,0,0,0,256,192.2V186.25Z" transform="translate(-143.507 -167.744)" fill="url(#linear-gradient-6)"/>
+      <path id="Path_24301" data-name="Path 24301" d="M221.437,82.528a.59.59,0,0,0,.136-.178l2.766-5.6a.586.586,0,0,1,.532-.331V87.328Z" transform="translate(-112.38 -68.821)" fill="url(#linear-gradient-7)"/>
+      <path id="Path_24302" data-name="Path 24302" d="M152.059,138.99l6.185-.9a.592.592,0,0,0,.311-.146l3.434,4.8-10.371-3.44A.583.583,0,0,1,152.059,138.99Z" transform="translate(-49.498 -124.238)" fill="url(#linear-gradient-8)"/>
+      <path id="Path_24304" data-name="Path 24304" d="M188.982,195.094l6.483-8.845-5.613,1.935a.574.574,0,0,1,0,.209l-1.057,6.161A.582.582,0,0,0,188.982,195.094Z" transform="translate(-82.974 -167.743)" fill="url(#linear-gradient-9)"/>
+    </g>
+    <g id="Icons_Person_Remove" data-name="Icons / Person / Remove" transform="translate(1618 1156.5)">
+      <path id="Color" d="M13,18a1,1,0,0,1-1-1A5,5,0,1,0,2,17a1,1,0,1,1-2,0,7,7,0,0,1,14,0A1,1,0,0,1,13,18ZM7,8a4,4,0,1,1,4-4A4.005,4.005,0,0,1,7,8ZM7,2A2,2,0,1,0,9,4,2,2,0,0,0,7,2Z" transform="translate(0)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

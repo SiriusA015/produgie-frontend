@@ -1,0 +1,64 @@
+<nav
+  class="flex flex-row items-center justify-between px-4 bg-white"
+  *ngIf="isHandset$ | async"
+>
+  <ul class="flex w-full justify-between items-center sprint-bottom-menu">
+    <li class="flex justify-center items-center" [routerLink]="['/teams/sprint/dashboard']" routerLinkActive="active">
+      <button class="focus:outline-none text-gray-600 rounded-full">
+        <div class="flex flex-row items-center">
+          <!-- <mat-icon class="material-icons-outlined mat-icon-20 text-xl cursor-pointer text-gray-500 " 
+            >dashboard</mat-icon
+          > -->
+          <img src="../../../../assets/images/menu/dashboard.svg" class="gray-img"/>
+          <img src="../../../../assets/images/menu/dashboard-1.svg" class="blue-img"/>
+        </div>
+      </button>
+    </li>
+    <li class="flex justify-center items-center" [routerLink]="['/teams/sprint/roadmap']" routerLinkActive="active">
+        <button class="focus:outline-none text-gray-600 rounded-full">
+          <div class="flex flex-row items-center">
+            <!-- <mat-icon class="material-icons-outlined mat-icon-20 text-xl cursor-pointer text-gray-500"
+              >double_arrow</mat-icon
+            > -->
+            <img src="../../../../assets/images/menu/roadmap.svg" class="gray-img"/>
+            <img src="../../../../assets/images/menu/roadmap-1.svg" class="blue-img"/>
+          </div>
+        </button>
+      </li>
+    <li class="flex justify-center items-center" [routerLink]="['/teams/sprint/calender']" routerLinkActive="active">
+      <button class="focus:outline-none text-gray-600 rounded-full">
+        <div class="flex flex-row items-center">
+          <!-- <mat-icon class="material-icons-outlined mat-icon-20 text-xl cursor-pointer text-gray-500"
+            >event</mat-icon
+          > -->
+          <img src="../../../../assets/images/menu/calendar.svg" class="gray-img"/>
+          <img src="../../../../assets/images/menu/calendar-1.svg" class="blue-img"/>
+        </div>
+      </button>
+    </li>
+    <li class="flex justify-center items-center" [routerLink]="['/teams/sprint/efforts']" routerLinkActive="active">
+      <button class="focus:outline-none text-gray-600 rounded-full">
+        <div class="flex flex-row items-center">
+            <!-- <mat-icon svgIcon="snaphot_box" class="cursor-pointer text-gray-500 mat-icon-20 text-x pg-p-15">
+
+            </mat-icon> -->
+            <img src="../../../../assets/images/menu/return-on-effort.svg" class="gray-img"/>
+            <img src="../../../../assets/images/menu/return-on-effort-1.svg" class="blue-img"/>
+        </div>
+      </button>
+    </li>
+    <li class="flex justify-center items-center" [routerLink]="['/teams/sprint/trends']" routerLinkActive="active">
+        <button class="focus:outline-none text-gray-600 rounded-full">
+          <div class="flex flex-row items-center">
+            <!-- <mat-icon class="material-icons-outlined mat-icon-20 text-xl cursor-pointer text-gray-500"
+            >timeline</mat-icon
+          > -->
+          <img src="../../../../assets/images/menu/trends.svg" class="gray-img"/>
+          <img src="../../../../assets/images/menu/trends-1.svg" class="blue-img"/>
+          </div>
+        </button>
+      </li>
+  </ul>
+</nav>
+<app-mat-svg-icon></app-mat-svg-icon>
+

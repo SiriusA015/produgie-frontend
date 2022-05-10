@@ -1,0 +1,138 @@
+<div class="flex flex-col lg:flex-row justify-between">
+    <div
+      class="w-full lg:w-1/3 xl:w-1/4 mr-4 mb-4 rounded overflow-hidden shadow-lg bg-white"
+    >
+      <div class="pt-4 flex flex-col h-full">
+        <div class="text-xl px-4 mb-2 flex flex-row items-center justify-between">
+          <div class="flex flex-row items-center">
+            <div>
+              <span class="ml-3 mr-2 text-center flex items-center justify-center">
+                <mat-icon
+                  svgIcon="flash"
+                  class="pg-txt-green mat-icon-18"
+                  aria-hidden="false"
+                ></mat-icon>
+              </span>
+            </div>
+            <span class="font-semibold">Strengths</span>
+          </div>
+  
+          <mat-icon
+            aria-hidden="false"
+            class="text-gray-500 cursor-pointer mat-icon-18"
+            >more_vert</mat-icon
+          >
+        </div>
+        <hr />
+        <div class="flex h-full px-4">
+          <ul class="w-full flex flex-col justify-evenly">
+            <li class="list-key flex flex-row items-center mb-3 pb-3" *ngFor="let strength of strenghts">
+              <span
+                class="w-10 h-10 mr-4 text-center rounded-full pg-bg-green-light flex items-center justify-center"
+              >
+                <mat-icon
+                  [svgIcon]="strength.capability.icon"
+                  class="mat-icon-12 pg-txt-green"
+                  aria-hidden="false"
+                ></mat-icon>
+              </span>
+              <span class="text-base font-semibold">{{strength.capability.label}}</span>
+            </li>
+            <!-- <li class="list-key flex flex-row items-center mb-3 pb-3">
+              <span
+                class="w-10 h-10 mr-4 text-center rounded-full pg-bg-green-light flex items-center justify-center"
+              >
+                <mat-icon
+                  [svgIcon]="strength.capability.icon"
+                  class="mat-icon-12 pg-txt-green"
+                  aria-hidden="false"
+                ></mat-icon>
+              </span>
+              <span class="text-base font-semibold">Develop Growth Mindset</span>
+            </li>
+            <li class="list-key flex flex-row items-center pb-3">
+              <span
+                class="w-10 h-10 mr-4 text-center rounded-full pg-bg-green-light flex items-center justify-center"
+              >
+                <mat-icon
+                  svgIcon="surface"
+                  class="mat-icon-12 pg-txt-green"
+                  aria-hidden="false"
+                ></mat-icon>
+              </span>
+              <span class="text-base font-semibold"
+                >Build Stakeholder Relationship</span
+              >
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+    <div
+      class="w-full lg:w-1/3 xl:w-2/4 mr-4 mb-4 overflow-hidden flex flex-col bg-white shadow-lg"
+    >
+      <div class="pt-4 flex flex-col h-full">
+        <div class="text-xl px-4 mb-2 flex flex-row items-center justify-between">
+          <div class="flex flex-row items-center">
+            <span class="font-semibold">Priorities for Development</span>
+          </div>
+        </div>
+        <hr>
+        <div
+          class="flex flex-col lg:flex-row justify-between items-center w-full h-full"
+        >
+        <div class="flex w-1/3 justify-between items-center flex-col p-10 h-full" *ngFor="let fad of fads" [ngStyle]="{'background-color': fad.id === priority ? '#64b5f620' : 'white'}">
+
+          <p class="font-bold text-xs text-center text-gray-800">
+            {{fad.label}}
+          </p>
+          <span
+            class="pg-w-88 pg-h-88 r-2 rounded-full flex items-center justify-center relative bg-white border"
+            [ngStyle]="{'background-color': fad.id === priority ? 'white' : '#64b5f620'}"
+          >
+            <mat-icon
+              class="mat-icon-42 text-white"
+              [svgIcon]="fad.icon"
+              aria-hidden="false"
+            ></mat-icon>
+            <span class="absolute bottom-0 rounded-full w-6 h-6 pg-bg-green text-white flex justify-center items-center -mb-3" *ngIf="fad.id === priority"><mat-icon class="mat-icon-18">check</mat-icon></span>
+          </span>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="w-full lg:w-1/3 xl:w-1/4 mb-4 rounded overflow-hidden shadow-lg bg-white"
+    >
+      <div class="pt-4 flex flex-col h-full">
+        <div class="text-xl px-4 mb-2 flex flex-row items-center justify-between">
+          <div class="flex flex-row items-center">
+            <span class="flex items-center justify-center">
+              <mat-icon
+                svgIcon="file"
+                class="mat-icon-18 text-gray-500"
+                aria-hidden="false"
+              ></mat-icon>
+            </span>
+            <span class="font-semibold ml-2">Portfolio</span>
+            <mat-icon class="ml-1 cursor-pointer text-gray-500 mat-icon-18"
+              >save_alt</mat-icon
+            >
+          </div>
+          <div>
+            <mat-icon
+              aria-hidden="false"
+              class="text-gray-500 cursor-pointer mat-icon-18"
+              >more_vert</mat-icon
+            >
+          </div>
+        </div>
+        <hr>
+        <div class="flex mb-4 mt-3 justify-center items-center h-full">
+          <span class="text-gray-500 font-bold">No data yet</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  

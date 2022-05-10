@@ -1,0 +1,425 @@
+.main-dashboard-div {
+  background-color: #ffffff;
+  height: 100%;
+  padding: 5rem 8rem;
+
+  mat-card {
+    border-radius: 1.5rem;
+    box-shadow: none;
+    margin-bottom: 1rem;
+
+    .card-title {
+      font-weight: bold;
+      font-size: 1.8rem;
+      color: #051532;
+    }
+    .title-label {
+      color: #051532;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+    .mat-card__inner {
+      padding: 1rem 0;
+      align-items: center;
+      border-bottom: 1px solid #dbdde1;
+      &:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  .example-header-image {
+    // background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+    background-image: url("/assets/avatars/avatar_2.svg");
+    background-size: cover;
+  }
+
+  .completed {
+    background-color: #3adf90 !important;
+    color: #fff !important;
+    cursor:pointer;
+  }
+
+  .title {
+    font-size: 2.4rem;
+    font-weight: bold;
+    margin-bottom: 2.5rem;
+  }
+
+  .sub-title-text{
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .common-background {
+    background-color: #f3f8ff;
+    border-radius: 15px;
+    padding: 2.5rem;
+  }
+
+  .text-div{
+    background-color: #f3f8ff;
+    border-radius: 15px;
+    padding: 2rem;
+  }
+
+  .explor-part {
+    width: 25%;
+    .explore-main-step1 {
+      .explore-body {
+        mat-card {
+          button {
+            flex-grow: 0;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            padding: 5px 10px;
+            background-color: #9ac9f4;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    .explore-main-step2 {
+      padding-bottom: 30px;
+
+      .portfolio-body {
+        mat-card {
+          height: -webkit-fill-available;
+        }
+      }
+    }
+    .mat-card {
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  .current-sprint {
+    width: 75%;
+    padding-left: 1rem;
+
+    .current-sprint-subpart {
+      display: flex;
+
+      .current-sprint-subpart-step1 {
+        width: 33%;
+        .current-sprint-subpart1 {
+          .card-body {
+            background: #ebf2fb;
+            border-radius: 10px;
+            color: #278ce9;
+            padding: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            .icon-pad {
+              margin-right: 1rem;
+            }
+          }
+        }
+
+        .current-sprint-subpart2 {
+          .sub-title {
+            font-size: 11px;
+            color: #278ce9;
+          }
+        }
+      }
+
+      .current-sprint-tab-part {
+        mat-card {
+          margin: 0;
+          border-radius: 0;
+          box-shadow: none !important;
+
+          mat-card-header {
+            mat-card-title {
+              font-size: 14px;
+              margin: 0;
+            }
+
+            .mat-card-subtitle {
+              font-size: 12px;
+              color: #8e9aae;
+              margin: 0;
+            }
+
+            .time-div {
+              margin: auto 0 auto auto;
+              position: absolute;
+              right: 40px;
+
+            }
+          }
+
+          mat-card-content {
+            margin-bottom: 30px;
+            // width: 265.3px;
+            // height: 72px;
+            flex-grow: 0;
+            font-size: 12px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.5;
+            letter-spacing: 0.24px;
+            text-align: left;
+            color: #051532;
+          }
+        }
+
+        .view-all-button {
+          background: #ffffff;
+          padding: 15px;
+
+          button {
+            color: #278ce9;
+            border: 1px solid #278ce9;
+          }
+        }
+      }
+    }
+
+    .trending-main-div {
+      // margin: 10px 0px;
+
+      mat-card {
+        height: -webkit-fill-available;
+      }
+      &__inner {
+        mat-card {
+          margin: 0 0.5rem;
+        }
+      }
+    }
+  }
+
+  .slide-main {
+    margin-bottom: 15px;
+
+    .slide-title {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .slide-body {
+      .slide-button {
+        span {
+          color: #278ce9;
+          font-size: 36px;
+        }
+      }
+
+      .slide-cards {
+        margin: 5px 0px;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        img {
+          width: 25px;
+          margin-bottom: 15px;
+        }
+        .container {
+          width: 100%;
+          height: 100%;
+          padding: 0;
+          .sliders {
+            position: relative;
+
+            .slider {
+              span {
+                align-self: stretch;
+                flex-grow: 0;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: 1.5;
+                text-align: left;
+                color: #051532;
+              }
+
+              .sub-title {
+                font-size: 16px;
+                font-weight: bold;
+                letter-spacing: 0.32px;
+              }
+
+              .content {
+                letter-spacing: 0.28px;
+                font-size: 14px;
+                font-weight: 500;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .slide-footer {
+      .slide-footer-button {
+        color: #8e9aae;
+        font-size: 8px;
+      }
+
+      .slide-footer-button-active {
+        color: #278ce9;
+      }
+    }
+  }
+
+
+
+  .igx-calendar {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.26), 0 1px 1px 0 rgba(0, 0, 0, 0.12), 0 2px 1px -1px rgba(0, 0, 0, 0.08);
+  }
+
+  ::ng-deep .mat-tab-labels {
+    display: flex;
+  }
+
+  ::ng-deep .mat-tab-header {
+    border: none !important;
+  }
+
+  ::ng-deep .mat-tab-label {
+    // color: white;
+    height: 35px;
+    min-width: 25px !important;
+    padding: 5px;
+    background-color: #ffffff;
+    color: #278ce9;
+
+    // font-weight: 700;
+    // background:red ;
+    flex: 1;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    opacity: 1;
+  }
+
+  ::ng-deep .mat-tab-body-content {
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+
+  ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar,
+  .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: transparent;
+  }
+
+  ::ng-deep .mat-tab-label-active {
+    background-color: #278ce9;
+    color: #fff;
+    font-weight: 700;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .mat-tab-group {
+    // margin: 20px 20px 0px 0px;
+    // width: 85%;
+    background-color: #f3f8ff;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+}
+.info-possition {
+  margin-top: -15px;
+}
+
+.pg-bg-blue-dark {
+  border-radius: 3rem;
+}
+
+// ::ng-deep .cal-month-view .cal-day-badge {
+// display: none;
+// }
+
+// .icon-pad {
+//   padding: 10px;
+// }
+
+// ::ng-deep .cal-day-badge {
+//   display: none !important;
+// }
+
+// ::ng-deep .cal-event{
+//   background-color: transparent !important;
+// }
+// .back-color{
+//   border-radius: 50%;
+//   border: 1px solid #000;
+//   color: #000;
+//   text-align: center;
+//   background-color: #2d96ff;
+//   font-weight: 400;
+// }
+
+::ng-deep .cal-has-events {
+  background-color: #9bc9f4 !important;
+  color: #000;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 1199px) {
+  .main-dashboard-div {
+    padding: 2.5rem 0rem;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .main-dashboard-div .common-background {
+    padding: 1rem;
+  }
+  .main-dashboard-div mat-card {
+    font-size: 1.2rem;
+  }
+  .main-dashboard-div mat-card .card-title {
+    font-size: 1.6rem;
+  }
+  .main-dashboard-div mat-card .title-label {
+    font-size: 1.2rem;
+  }
+  .main-dashboard-div mat-card .mat-card__inner {
+    font-size: 1.2rem;
+  }
+  .main-dashboard-div .slide-main .slide-body .slide-cards .container .sliders .slider .content {
+    letter-spacing: 0.28px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+}
+
+
+
+.display-div{
+  display:inline-flex;
+}
+.circle{
+  border:1px solid #278CE9;
+  background-color:#278CE9;
+  height:25px;
+  border-radius: 50%;
+}
+.margin-left-circle{
+  margin-left:10px;
+}
+.icon-color{
+  color:#fff;
+}
+.h-point-five{
+  height:0.7rem !important;
+}
+
+.return-efforts {
+  width: 300px;
+}
+
+@media screen and (max-width: 400px) {
+  .return-efforts {
+      width: 250px;
+  }
+}

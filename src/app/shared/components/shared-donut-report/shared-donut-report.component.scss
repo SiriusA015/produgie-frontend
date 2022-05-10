@@ -1,0 +1,57 @@
+.close-button{
+    float: right;
+}
+
+.pg-text-not-black {
+    color: #273645;
+  }
+  .pg-description-text {
+    color: #484848;
+  }
+  .pg-lh-button {
+    background-color: #9AC9F4;
+    border-radius: 100px;
+  }
+  .pg-lh-text {
+    color: #FFFFFF;
+    font-weight: bold;
+  }
+  .min-w-160 {
+    min-width: 160px;
+  }
+  .pg-blue-dot {
+    border-radius: 5px;
+    width: 29.6px;
+    height: 22px;
+  }
+  
+  .pg-lh-text-sub{
+    background: #ECECEC;
+    border-radius: 8px;
+    width: 144px;
+    height: 28px;
+    color: #8E9AAE;
+  }
+  .text-xs {
+    font-size: 0.95rem !important;
+  }
+  
+  .text-sm {
+    font-size: 1rem !important;
+  }
+  
+  .text-base{
+    font-size: 1.4rem !important;
+  }
+  li::marker {
+    color    : #278ce9;
+    font-size: 18px;
+}
+
+.pg-bg-blue-light{
+  background-color: #9AC9F4 !important;
+}
+
+.pg-bg-blue-dark{
+  background-color: #278CE9 !important;
+}

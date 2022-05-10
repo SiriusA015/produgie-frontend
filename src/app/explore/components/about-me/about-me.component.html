@@ -1,0 +1,245 @@
+<div class="flex w-full flex-row h-full relative main-div">
+  <app-loader *ngIf="loadCounter > 0"></app-loader>
+  <div class="flex flex-col pg-container my-portal m-10" *ngIf="loadCounter === 0">
+    <div class="card-section">
+      <div class="flex flex-col w-full justify-between">
+        <div class="flex flex-row width-cards card-section-left mb-4">
+          <div class="
+              bg-white
+              w-1/2
+              rounded-md
+              flex flex-col
+              pg-bg-card
+              card-body
+              border-radius-card
+              mr-4
+            ">
+            <div class="flex items-center justify-between">
+              <span class="heading-2">Growth Leader Assessment</span>
+              <button (click)="checkAllStatus()" *ngIf="!glaSurveyCompleted" class="
+                  flex
+                  items-center
+                  bg-white
+                  pg-txt-blue-bright
+                  capitalize
+                  rounded-md
+                  focus:outline-none
+                  heading-5
+                " style="color: #278ce9">
+                <!-- <mat-icon class="mr-2 mat-icon-18">cached</mat-icon> -->
+                <span class="material-icons mr-3"> refresh </span>
+                Refresh
+              </button>
+            </div>
+            <div class="flex flex-col role-margin">
+              <div class="flex justify-between items-center pg-gl-list py-2 pb-1">
+                <span class="title-label">Role Challenges</span>
+                <button class="
+                    px-6
+                    py-2
+                    rounded-full
+                    text-white
+                    pg-bg-blue-incomplete
+                    focus:outline-none
+                    font-semibold
+                    c-text
+                  " *ngIf="!jobroleAdded" (click)="openSelectDialog()">
+                  Incomplete
+                </button>
+                <div class="
+                    px-6
+                    py-2
+                    rounded-full
+                    text-white
+                    pg-backg-green
+                    font-semibold
+                    cursor-pointer
+                    c-text
+                  " *ngIf="jobroleAdded" (click)="openSelectDialog()">
+                  Completed
+                </div>
+              </div>
+              <div class="flex justify-between items-center pg-gl-list py-2 pt-1">
+                <div class="flex items-center">
+                  <span class="title-label">Style & Strategy</span>
+                  <span class="text-font color-grey">(Allow 40 min)</span>
+                </div>
+                <div class="
+                    px-6
+                    py-2
+                    rounded-full
+                    text-white
+                    pg-bg-blue-incomplete
+                    font-semibold
+                    cursor-pointer
+                    c-text
+                  " (click)="openStyleStrategyDialog()" *ngIf="!glaSurveyCompleted">
+                  Incomplete
+                </div>
+                <div class="
+                    px-6
+                    py-2
+                    rounded-full
+                    text-white
+                    pg-backg-green
+                    font-semibold
+                    c-text
+                  " *ngIf="glaSurveyCompleted">
+                  Completed
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="
+              bg-white
+              w-1/2
+              rounded-md
+              flex flex-col
+              pg-bg-card
+              relative
+              justify-start
+              border-radius-card
+            ">
+            <div class="flex items-center justify-between">
+              <span class="padding-b text-xl font-bold heading-2">Growth Leader 360</span>
+            </div>
+            <div class="flex flex-col">
+              <div class="flex justify-between items-center pg-gl-list py-2">
+                <span class="title-label">Nominate Raters</span>
+                <div *ngIf="gla360incomplete" class="
+                    px-6
+                    py-2
+                    text-white
+                    pg-backg-green
+                    cursor-pointer
+                    rounded-full
+                    font-semibold
+                    c-text
+                  " (click)="gotonomieetest()">
+                  Nominate
+                </div>
+                <div *ngIf="gla360expired" class="
+                    px-6
+                    py-2
+                    text-white
+                    bg-gray-500
+                    cursor-pointer
+                    rounded-full
+                    font-semibold
+                    c-text
+                  ">
+                  Nominee
+                </div>
+                <div *ngIf="gla360completed" class="
+                    px-6
+                    py-2
+                    text-white
+                    cursor-pointer
+                    rounded-full
+                    pg-backg-green
+                    font-semibold
+                    c-text
+                  ">
+                  Completed
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-row mt-2">
+          <div class="w-1/2 mr-4">
+            <div>
+              <span class="text-xl font-bold heading-1">What's Next?</span>
+            </div>
+            <div *ngIf="!jobroleAdded || !glaSurveyCompleted" class="
+                flex flex-col
+                w-full
+                mr-3
+                bg-white
+                rounded-md
+                mt-2
+                border-radius-card
+              ">
+              <div class="flex items-center">
+                <mat-icon class="pg-txt-blue">query_builder</mat-icon>
+                <span class="text-lg font-semibold ml-2 heading-5">GLA Report</span>
+              </div>
+              <div class="mt-4">
+                <p class="text-lg text-font">
+                  After you have selected your role challenge and completed the
+                  Style & Strategies surveys, your Growth Leader Assessment
+                  results will be generated. Refresh if you do not see the
+                  results after 5 minutes.
+                </p>
+              </div>
+            </div>
+            <div class="
+                flex flex-col
+                w-full
+                bg-white
+                rounded-md
+                p-4
+                mt-2
+                card-body-step1
+              " *ngIf="reportGenerated">
+              <div class="flex items-center">
+                <mat-icon class="pg-txt-blue-bright">check_circle</mat-icon>
+                <span class="text-lg font-semibold ml-2 heading-5">Your Profile is ready!</span>
+              </div>
+              <div class="mt-4">
+                <p class="text-lg text-font">
+                  We are running an analysis on your assessment. You'll be able
+                  to view your personalised report in a few minutes. Check your
+                  email for our notification.
+                </p>
+              </div>
+              <div class="mt-4">
+                <button class="btn" [ngClass]="{
+                    'bg-gray-600': !reportGenerated,
+                    'btn-color': reportGenerated
+                  }" [disabled]="!reportGenerated" (click)="gotoSnapshot(type)">
+                  View your results
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="align w-1/2">
+            <div>
+              <span class="text-xl font-bold heading-1">What's Next?</span>
+            </div>
+            <div class="
+            flex flex-col
+            w-full
+            bg-white
+            rounded-md
+            p-4
+            mt-2
+            card-body-step1
+              ">
+              <div class="flex items-center">
+                <mat-icon class="pg-txt-blue-bright">query_builder</mat-icon>
+                <span class="text-lg font-semibold ml-2 heading-5">This will take 15 days</span>
+              </div>
+              <div class="mt-4">
+                <p class="text-lg text-font">
+                  Allow 15 days for you and your raters to complete the Growth
+                  Leader 360. Once this is done your report will be generated.
+                </p>
+              </div>
+              <div class="mt-4">
+                <button class="btn btn-gray" *ngIf="!gla360completed">
+                  View your results
+                </button>
+                <button class="btn pg-txt-blue-bright" *ngIf="gla360completed" (click)="routeTopage()">
+                  View your results
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-mat-svg-icon></app-mat-svg-icon>
+</div>

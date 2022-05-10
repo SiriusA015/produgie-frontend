@@ -1,0 +1,92 @@
+<app-dev-loader *ngIf="isLoader"></app-dev-loader>
+<div class="flex w-full flex-row h-full relative development-plan">
+  <div class="pg-container pg">
+    <div class="pg__inner">
+      <div class="flex flex-row justify-between items-center mb-8">
+        <span class="heading-1"
+          >{{ name?.fullname }}'s Development Plan</span
+        >
+        <button
+          *ngIf="checkEmpty(advice)"
+          class="
+            px-8
+            py-4
+            flex flex-row
+            justify-between
+            items-center
+            bg-white
+            rounded-md
+            border border-gray-400
+            focus:outline-none
+          "
+          (click)="openAdvice(); $event.stopPropagation()"
+        >
+          <mat-icon class="pg-txt-blue-bright mr-2">send</mat-icon>
+          <span class="pg-txt-blue-bright font-bold">Provide Advice</span>
+        </button>
+        <button
+          *ngIf="!checkEmpty(advice)"
+          class="
+            px-8
+            py-4
+            flex flex-row
+            justify-between
+            items-center
+            text-white
+            rounded-md
+            border border-gray-400
+            focus:outline-none
+          "
+          (click)="editAdvice(); $event.stopPropagation()"
+        >
+          <mat-icon
+            fontSet="material-icons-outlined"
+            class="pg-txt-blue-bright mr-2"
+            >edit</mat-icon
+          >
+          <span class="pg-txt-blue-bright text-md font-semibold text-gray-500"
+            >Edit Advice</span
+          >
+        </button>
+      </div>
+
+      <!-- <app-summary  [advicecomp]="advicecomp" [userSprint]="userSprint" [name]="name"></app-summary> -->
+      <app-summary-details
+        [strenghts]="capabilities"
+        [fads]="data?.capability"
+        [priority]="data?.priority"
+      ></app-summary-details>
+      <app-snapshot
+        [userSprint]="data?.userSprint"
+        [sprint]="data?.sprint"
+        [sprintNo]="data?.sprintNo"
+        [frequency]="data?.userSprint"
+      ></app-snapshot>
+      <!-- <app-snapshot [userSprint]="userSprint" [sprint]="data?.sprint" [sprintNo]="data?.sprintNo" [frequency]="data?.userSprint"></app-snapshot> -->
+      <!-- <app-resilience  [sprintNo]="data?.sprintNo"></app-resilience> -->
+      <app-key
+        [actions]="allaction"
+        [outcomes]="alloutcome"
+        [behaviours]="allbehavior"
+        [sprintId]="data?.userSprint?.sprintId"
+      ></app-key>
+      <app-sprint-roles></app-sprint-roles>
+      <app-contact-card
+        *ngIf="data?.crew"
+        [crews]="data?.crew"
+        [self]="data.name.fullname"
+      ></app-contact-card>
+    </div>
+  </div>
+</div>
+<div
+  class="bg-transparent fixed top-0 left-0 h-screen w-screen"
+  style="z-index: 10000"
+  *ngIf="stored"
+>
+  <app-thank-you
+    [userName]="data.name.fullname"
+  ></app-thank-you>
+</div>
+
+<app-mat-svg-icon></app-mat-svg-icon>

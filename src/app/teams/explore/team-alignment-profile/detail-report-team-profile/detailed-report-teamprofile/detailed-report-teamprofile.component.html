@@ -1,0 +1,55 @@
+<div class="popup-style-1">
+
+    <div class="pb-4">
+        <div class="flex flex-row justify-between items-center">
+            <span class="heading-2 mt-20">
+                {{ scale }}
+            </span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="">
+        <div class="py-4">
+            <p class="pg-description-text font-16-heading font-regular" style="font-weight: 400;">{{ scale_description }}</p>
+        </div>
+        <div class="d-flex items-center mt-4">
+            <!-- For low -->
+            <div class="pb-4 text-center">
+              <button
+                class="px-6 py-2 mb-3 rounded-full text-white bg-blue-200 focus:outline-none font-semibold c-text cursor-text">
+                Low
+              </button>
+              <div>
+                <p class="font-14-heading" style="color: #000;">{{lowScale}}</p>
+              </div>
+            </div>
+            <!-- For Middle blue divs -->
+            <div class="w-1/3 flex flex-col mt-4 ml-1 mr-1">
+              <div class="flex flex-row justify-between">
+                <div *ngFor="let sc of score" class="pg-blue-dot mx-1"
+                  [ngClass]="{'pg-bg-blue-light': scale_rating < sc, 'pg-bg-blue-dark': scale_rating >= sc}">
+                </div>
+              </div>
+            </div>
+            <!-- For high  -->
+            <div class="pb-4 text-center">
+              <button
+                class="px-6 py-2 mb-3 rounded-full text-white bg-blue-200 focus:outline-none font-semibold c-text cursor-text">
+                High
+              </button>
+              <div>
+                <p class="font-14-heading" style="color: #000;">{{highScale}}</p>
+              </div>
+            </div>
+          </div>
+
+        <div class="pb-2 mt-3">
+            <span class="font-16-heading text-base" style="color:#051532;">Your team scores indicates that:</span>
+        </div>
+
+        <ul class="listing" *ngFor="let data of sub_scale">
+            <li>{{data.subscale_description}}</li>
+        </ul>
+    </div>
+</div>

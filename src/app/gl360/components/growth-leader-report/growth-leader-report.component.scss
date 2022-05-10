@@ -1,0 +1,152 @@
+.card-section{
+  background: #f3f8ff;
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  max-width: 1280px;
+  margin: 50px auto;
+}
+
+.pg-growth-select {
+  background-color: #e6e6e6;
+}
+.pg-sidebar {
+  width: 8.333334rem;
+}
+
+.mr-2 {
+  margin: 0px 8px 0px 12px;
+}
+
+.width {
+  border: 1px solid cornflowerblue;
+  border-radius: 5px;
+  // width: 82%;
+  padding: 5px;
+  margin-top:25px;
+}
+
+.fl{
+  margin-top: 15px;
+}
+
+.flex .items-center{
+  padding-top: 1rem;
+}
+.padding-view{
+  padding-top:4rem;
+}
+
+input[type="checkbox"] {
+  background: #899be7;
+  border: #979fe0 1px solid;
+}
+.align-center{
+  margin-left: 50%;
+}
+.gla-tooltip{
+  top: 5  .5em !important;
+}
+
+.mat {
+  // margin: -260px auto;
+  width: 100%;
+  padding: 1.5rem;
+}
+
+.font{
+  padding: 0.5rem;
+}
+.verticle-align-text{
+  vertical-align: text-bottom;
+}
+.margin-left-div{
+  margin-left:-14px;
+}
+.text-ml{
+  margin-left:7px;
+}
+.padding-div{
+  padding-left:20px;
+}
+.filter-text{
+  font-size:14px !important;
+}
+.text-font{
+  font-size:16px !important;
+}
+.view-text{
+  font-size: 1.6rem !important;
+  color: #8e9aae;
+  // margin-right: 2rem;
+}
+.icon-size{
+  width:18.4px !important;
+  height: 18.4px !important;
+}
+.view-font{
+  font-size: 12px;
+  color: #278ce9;
+  vertical-align: middle;
+}
+.input-width{
+  // width:20%;
+  height:18px;
+  // border:2px solid blue !important
+}
+.width-div{
+  width:30%;
+}
+.width-recomend-div{
+  width:50%;
+}
+.width-rank-div{
+  width:40%;
+}
+.margin-top-circle{
+  margin-top:50px;
+}
+// input[type="checkbox"]:checked:before {
+//   content: '';
+//   border: solid 2px #278ce9 !important;
+//   }
+@media screen and (min-width: 320px) and (max-width: 575px){
+  .no-flex{
+    display: unset !important;
+  }
+
+.flex .items-center{
+  padding-left: 1rem;
+}
+.margin-left-div{
+  margin-left:-12px;
+}
+.width {
+  width: 56% !important;
+}
+.mat{
+  margin: 12px 12px;
+  width: 71%;
+}
+}
+@media screen and (min-width: 768px) and (max-width: 991px){
+  // .width-recomend-div{
+  //   width:50%;
+  // }
+
+}
+
+.heading-4 {
+  font-size: 1.8rem;
+  line-height: 1.2;
+  color: #8e9aae;
+  font-weight: 400;
+}
+@media screen and (min-width: 992px){
+.order-md-1 {
+  order: 1;
+}
+
+.order-md-2 {
+  order: 2;
+}
+}

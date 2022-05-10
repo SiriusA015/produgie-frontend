@@ -1,0 +1,211 @@
+<app-explore-navbar [surveyStatus]="surveyStatus" [isCompleted]="isCompleted"></app-explore-navbar>
+<div class="flex w-full flex-row h-full relative main-div">
+    <div class="flex flex-col pg-container my-portal">
+        <div class="card-section">
+            <div class="flex flex-col w-full justify-between">
+
+                <div class="flex flex-row width-cards card-section-left mb-4">
+
+                    <div class="bg-white w-1/2 rounded-md flex flex-col pg-bg-card card-body border-radius-card mr-4">
+                        <div class="flex items-center justify-between">
+                            <span class="heading-2">Growth Leader Team Report</span>
+                        </div>
+
+                        <div class="flex flex-col role-margin">
+                            <div class="spinner" *ngIf="!show">
+                                <mat-icon>
+                                    <mat-spinner diameter="40"></mat-spinner>
+                                </mat-icon>
+                            </div>
+                            <div class="flex justify-between items-center pg-gl-list py-2 pb-1" *ngIf="show">
+                                <span class="title-label">Generate Report</span>
+                                <div *ngIf="show">
+                                    <button *ngIf="isInsufficient" class="px-6 py-2 rounded-full text-white bg-gray-500  focus:outline-none font-semibold c-text cursor-text" [matTooltip]="istooltip ? 'Team Members have not accepted your team invite' : 'Team Members have not filled in the GLA Survey'">
+                                        Insufficient Data
+                                    </button>
+                                    <button *ngIf="isGenerate" class="px-6 py-2 rounded-full text-white survey focus:outline-none  font-semibold  c-text"
+                                        (click)="openGenerateReport()">
+                                        Generate
+                                        <mat-icon *ngIf="isGeneratedReport">
+                                            <mat-spinner diameter="20" class=""></mat-spinner>
+                                        </mat-icon>
+                                    </button>
+                                    <button *ngIf="isCompleted"
+                                        class="px-6 py-2 rounded-full text-white pg-backg-green focus:outline-none font-semibold c-text cursor-text">
+                                        Generated
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white w-1/2 rounded-md flex flex-col 
+                                pg-bg-card relative justify-start border-radius-card">
+                        <div class="flex items-center justify-between">
+                            <span class="padding-b text-xl font-bold heading-2">Team Alignment</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <div class="flex justify-between items-center pg-gl-list py-2">
+                                <div class="spinner" *ngIf="!show">
+                                    <mat-icon>
+                                        <mat-spinner diameter="40"></mat-spinner>
+                                    </mat-icon>
+                                </div>
+                                <span class="title-label">Send Survey</span>
+                                <div *ngIf="sendSurveyStatus?.start == false" (click)="openDialog()"
+                                    class="px-6 py-2 pg-bg-blue-incomplete text-white cursor-pointer rounded-full font-semibold c-text survey">
+                                    Start
+                                </div>
+                                <div *ngIf="sendSurveyStatus?.start == true"
+                                    class="px-6 py-2 rounded-full text-white pg-backg-green focus:outline-none font-semibold c-text cursor-text">
+                                    Started
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center pg-gl-list py-2 pt-1">
+                                <div class="flex items-center">
+                                    <span class="title-label">Generate Report</span>
+                                </div>
+                                <div *ngIf="show">
+                                    <button *ngIf="surveyStatus == 'Insufficient Data'"
+                                        class="px-6 py-2 rounded-full text-white bg-gray-500 focus:outline-none  font-semibold  c-text cursor-text">
+                                        {{ surveyStatus }}
+                                    </button>
+                                    <button *ngIf="surveyStatus == 'Generate'" (click)="generateTeamAlignReport()"
+                                        class="px-6 py-2 rounded-full text-white pg-bg-blue-incomplete focus:outline-none  font-semibold  c-text survey">
+                                        {{ surveyStatus }}
+                                    </button>
+                                    <button *ngIf="surveyStatus == 'Generated'"
+                                        class="px-6 py-2 rounded-full text-white pg-backg-green focus:outline-none  font-semibold  c-text cursor-text">
+                                        {{ surveyStatus }}
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="flex flex-row mt-2">
+
+                    <div class="w-1/2 mr-4">
+                        <div>
+                            <span class="text-xl font-bold heading-1">What's Happening?</span>
+                            <div class="flex flex-col w-full mr-3 bg-white rounded-md mt-2border-radius-card">
+                                <div class="flex items-center titles">
+                                    <span class="text-lg font-semibold ml-2 heading-5 text-font">Growth Leader Team
+                                        Report</span>
+                                </div>
+
+                                <div *ngIf="isLoading">
+                                    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                                </div>
+                                <div *ngIf="data"><b> No data found</b></div>
+                                <div class="mt-4" *ngIf="!data">
+                                    <table mat-table [dataSource]="glaReportData" class="tableHeader">
+                                        <ng-container matColumnDef="name">
+                                            <th mat-header-cell *matHeaderCellDef> Name </th>
+                                            <td mat-cell *matCellDef="let element">
+                                                {{element?.name}}
+                                            </td>
+                                        </ng-container>
+                                        <ng-container matColumnDef="status">
+                                            <th mat-header-cell *matHeaderCellDef> Status </th>
+                                            <td mat-cell *matCellDef="let element">
+                                                {{element?.status}}
+                                            </td>
+                                        </ng-container>
+                                        <ng-container matColumnDef="action">
+                                            <th mat-header-cell *matHeaderCellDef> Action </th>
+                                            <td mat-cell *matCellDef="let element">
+                                                <div class="app-nav-item cursor-pointer" *ngIf="activeRole != TEAM_MANAGER && element?.email != userEmail && element?.status == 'Completed'">
+                                                    <mat-icon class="matIcon disable" style="opacity: 0.5;">more_vert</mat-icon>
+                                                </div>
+                                            
+                                                <div class="app-nav-item cursor-pointer" *ngIf="activeRole != TEAM_MANAGER && element?.email != userEmail && element?.status != 'Completed'" [matMenuTriggerFor]="menu">
+                                                    <mat-icon class="matIcon">more_vert</mat-icon>
+                                                </div>
+                                            
+                                                <mat-menu #menu="matMenu">
+                                                    <button mat-menu-item (click)="notifyToComplete(element)">Notify To
+                                                        Complete</button>
+                                                </mat-menu>
+                                            </td>
+                                        </ng-container>
+
+                                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="align w-1/2">
+                        <div>
+                            <span class="text-xl font-bold heading-1">What's Happening?</span>
+                            <div class="flex flex-col w-full mr-3 bg-white rounded-md mt-2border-radius-card">
+                                <div class="flex items-center titles">
+                                    <span class="text-lg font-semibold ml-2 heading-5 text-font">Team Alignment
+                                        Report</span>
+                                </div>
+
+                                <!-- <div class="spinner" *ngIf="!show">
+                                    <mat-icon>
+                                        <mat-spinner diameter="40"></mat-spinner>
+                                    </mat-icon>
+                                </div> -->
+                                <div *ngIf="isLoading">
+                                    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                                  </div>
+                                <div class="mt-4">
+                                    <table mat-table [dataSource]="teamAligmentReportData" class="tableHeader">
+                                        <ng-container matColumnDef="name">
+                                            <th mat-header-cell *matHeaderCellDef> Name </th>
+                                            <td mat-cell *matCellDef="let element">
+                                                {{element?.name}}
+                                            </td>
+                                        </ng-container>
+                                        <ng-container matColumnDef="status">
+                                            <th mat-header-cell *matHeaderCellDef> Status </th>
+                                            <td mat-cell *matCellDef="let element">
+                                                {{element?.status}}
+                                            </td>
+                                        </ng-container>
+                                        <ng-container matColumnDef="action">
+                                            <th mat-header-cell *matHeaderCellDef> Action </th>
+                                            <td mat-cell *matCellDef="let element">
+
+                                                <div class="app-nav-item cursor-pointer" *ngIf="activeRole != TEAM_MANAGER && element?.email != userEmail && element?.status == 'Completed'">
+                                                    <mat-icon class="matIcon disable" style="opacity: 0.5;">more_vert</mat-icon>
+                                                </div>
+
+                                                <!-- <div class="app-nav-item cursor-pointer" *ngIf="element?.userId != user_id">
+                                                    <mat-icon class="matIcon disable">more_vert</mat-icon>
+                                                </div> -->
+
+                                                <div class="app-nav-item cursor-pointer" *ngIf="activeRole != TEAM_MANAGER && element?.email != userEmail && element?.status != 'Completed'" [matMenuTriggerFor]="menu">
+                                                    <mat-icon class="matIcon">more_vert</mat-icon>
+                                                </div>
+                                                
+                                                <mat-menu #menu="matMenu">
+                                                    <button mat-menu-item (click)="notifyToComplete(element)">Notify To
+                                                        Complete</button>
+                                                </mat-menu>
+                                            </td>
+                                        </ng-container>
+                                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <app-mat-svg-icon></app-mat-svg-icon>
+</div>

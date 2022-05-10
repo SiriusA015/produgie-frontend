@@ -1,0 +1,74 @@
+<div class="event-detail-wrapper">
+	<div class="heading-2 text-center">Event Detail</div>
+	<div class="icon cross-icon" (click)="close()"></div>
+
+	<div class="mt-8">
+		<div class="part">
+			<div class="label">
+				Event Title
+			</div>
+			<div class="value">
+				{{ data.title || 'N/A' }}
+			</div>
+		</div>
+		<div class="part">
+			<div class="label">
+				Description
+			</div>
+			<div class="value">
+				{{ data.description || 'N/A' }}
+			</div>
+		</div>
+		<div class="part">
+			<div class="label">
+				Visibility
+			</div>
+			<div class="value flex" *ngIf="data?.visibilities">
+				<ng-container *ngFor="let item of data.visibilities">
+					<span class="box">{{ item.name || 'N/A' }}</span>
+				</ng-container>
+				<span *ngIf="!data.visibilities">N/A</span>
+			</div>
+		</div>
+		<div class="part">
+			<div class="label">
+				Event Location
+			</div>
+			<div class="value">
+				<a [href]="data.location.joinUrl" target="_blank">
+					{{ data.location.joinUrl || 'N/A' }}
+				</a>
+			</div>
+		</div>
+		<div class="part">
+			<div class="label">
+				Secret key of the user for the meeting invite
+			</div>
+			<div class="value">
+				{{ data.location.secretKey || 'N/A'}}
+			</div>
+		</div>
+		<div class="part">
+			<div class="label">
+				Date
+			</div>
+			<div class="value">
+				{{ data.startDate.tz(timeZone).format("MMMM D, yyyy") }}
+			</div>
+		</div>
+		<div class="part">
+			<div class="label">
+				Time
+			</div>
+			<div class="value">
+				{{ data.startDate?.tz(timeZone).format("hh:mm a (z)") }} to {{ data.endDate?.tz(timeZone).format("hh:mm a (z)") }}
+			</div>
+		</div>
+	</div>
+
+	<div class="w-full flex justify-center">
+		<button class="btn-blue bg-blue-600" (click)="close()">
+			Confirm
+		</button>
+	</div>
+</div>

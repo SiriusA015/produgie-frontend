@@ -1,0 +1,18 @@
+<div class="flex flex-col items-center w-full justify-center qrcode-wrapper">
+  <!-- <img src="/assets/icons/qrcode/alpha-produgie.svg" alt="qrcode" /> -->
+  <!-- <img src="/assets/icons/qrcode/my.produgie.png" alt="qrcode" /> -->
+  <!-- <img  [src]="QRCode" alt="qrcode" width="150px" />  -->
+
+  <ngx-qrcode [elementType]="elementType" [value]="url" cssClass="aclass" [width]="167" [height]="164" [colorDark]="'#1fbae6'" [colorLight]="'#f2f2f2'"  errorCorrectionLevel="L">
+  </ngx-qrcode>
+
+  <div class="flex justify-center mb-12 w-3/4">
+    <span class="text-4xl font-bold text-center">Manage your Sprint on Mobile</span>
+  </div>
+
+  <div class="flex w-3/4">
+    <span class="text-2xl text-center">Scan here to view your sprint on your mobile.</span>
+    <!-- <span class="text-2xl">(placeholder)</span> -->
+  </div>
+
+</div>

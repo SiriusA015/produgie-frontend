@@ -1,0 +1,76 @@
+<div class="flex w-full flex-row h-full relative">
+  <app-loader *ngIf="loadCounter > 0"></app-loader>
+  <mat-card class="card" style="border-radius: 20px">
+    <div class="pg-container" *ngIf="reportGenerated">
+      <div class="pg__inner">
+        <div class="flex flex-col h-full">
+          <div class="flex flex-col">
+            <span class="heading-1"
+              >Sign Up for Insights into Impact session</span
+            >
+            <!-- <span class="heading-4"
+            style="letter-spacing: 0.96px;">Inputshort descriptive text here</span> -->
+          </div>
+          <!-- <div class="bg-white px-4 py-8 flex  justify-between items-center hr "
+         *ngFor="let item of sessionList"> -->
+          <div class="par-div">
+            <mat-card
+              style="background: none"
+              class="mat-card px-4 py-8 flex justify-between items-center rounded-md"
+              *ngFor="let item of sessionList"
+            >
+              <div class="matdiv">
+                <div class="w-1/2 flex items-center width-name">
+                  <span
+                    class="opbtn w-1/4 flex items-center justify-center pg-font-12 font-bold border pg-border-blue-bright rounded bg-white pg-txt-blue-bright py-2 background-blue"
+                  >
+                    {{ item.orgName }}
+                  </span>
+                  <div
+                    class="flex flex-col w-2/3 margin-left-text width-session"
+                  >
+                    <span
+                      class="flex w-3/4 font-semibold pg-font-16 pg-text-insight heading-5"
+                    >
+                      Produgie Insights into Impact Session
+                    </span>
+                    <!-- <span class="flex w-3/4 font-semibold sub font-16-heading ">Input short descriptive text</span> -->
+                  </div>
+                </div>
+                <div class="w-1/2 flex justify-between items-center width-date">
+                  <div class="flex flex-col w-2/3">
+                    <span class="pg-txt-blue font-semibold dt date-text">{{
+                      item.date | date: "mediumDate"
+                    }}</span>
+                    <span class="text-xs font-semibold time heading-5">{{
+                      item.time
+                    }}</span>
+                  </div>
+                  <div class="text-center">
+                    <a
+                      [href]="item.registration"
+                      target="_blank"
+                      class="btn rgbtn flex justify-center"
+                      >Register</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <hr />
+            </mat-card>
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="flex flex-col justify-center items-center h w-full"
+      *ngIf="!reportGenerated"
+    >
+      <div class="text-2xl font-semibold">Survey not completed yet!</div>
+    </div>
+  </mat-card>
+
+  <app-mat-svg-icon></app-mat-svg-icon>
+</div>

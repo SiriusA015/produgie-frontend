@@ -1,0 +1,53 @@
+.event-detail-wrapper {
+	padding: 2rem 5rem;
+	position: relative;
+	font-weight: 400;
+	line-height: 27px;
+	letter-spacing: 0.02rem;
+	width: 100%;
+
+	.heading-2 {
+		font-size: 24px;
+	}
+
+	.label {
+		font-size: 16px;
+		color: #828282;
+	}
+
+	.value {
+		font-size: 18px;
+		color: #051532;
+		width: fit-content;
+		overflow-wrap: anywhere;
+	}
+
+	.part {
+		margin-bottom: 2rem;
+	}
+
+	.btn-blue {
+		border-radius: 3px;
+		box-shadow: 0px 0px 4px 0px #00000040;
+		color: white;
+		cursor: pointer;
+		font-weight: 700;
+		margin-bottom: 5px;
+		margin-top: 5px;
+		padding: 10px 30px;
+		text-align: center;
+		width: fit-content;
+	}
+
+	.box {
+		padding: 5px 14px;
+		font-weight: 500;
+		box-shadow: 0px 0px 4px 0px #00000040;
+		border-radius: 3px;
+		width: fit-content;
+		margin-inline: auto;
+		margin: 0 1rem 5px 0;
+		font-size: 14px;
+	}
+}
+

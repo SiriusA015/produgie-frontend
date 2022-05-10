@@ -1,0 +1,132 @@
+<div class="relative config-sprint" *ngIf="behaviour.length > 0 || customActions.length > 0">
+  <div class="bg-white rounded-md flex flex-col shadow-lg border"
+    [ngClass]="grayOverlay ? 'border-gray-500' : ' border-green-600 bod'">
+    <div class="flex flex-row">
+      <span class="heading-5">Behaviors to Practice</span>
+      <label class="pg-tooltip flex flex-row items-center ml-2 focus:outline-none">
+        <mat-icon fontSet="material-icons-outlined" class="text-gray-500 mat-icon-18">info</mat-icon><input
+          type="checkbox" />
+        <div class="font-light text-xs">
+          Select behaviours to practice on-the-job based on insights from the Explore section
+        </div>
+      </label>
+    </div>
+    <div class="flex justify-between items-center">
+      <span class="font-12-heading">(Select up to {{ maxSelection }})</span>
+    </div>
+    <div *ngIf="behaviour.length > 0" class="mt-3">
+      <div *ngFor="let action of behaviour; let i = index" class=" border cursor-pointer pg-box-preview position-block"
+        (click)="selectAction(action, i)"
+        [ngClass]="{'border-2 pg-border-green-bright backg pg-selected': selectedActions.has(action.id), 'pg-border-b-none': selectedActions.has(behaviour[i+1]?.id)}">
+        <span class="material-icons cursor-pointer position-cross" *ngIf="action.isCustom" (click)="deleteBehaviour(action)">cancel</span>
+        <div class="relative h-full ml-label flex flex-row justify-between items-center ">
+
+          <div class="flex flex-row">
+            <div class="flex flex-col">
+              <span class="heading-5">{{ action.label }}</span>
+            </div>
+
+          </div>
+          <div class="flex flex-row items-center justify-between">
+            <mat-icon class="pg-txt-blue-bright" (click)="showDescription(action.id); $event.stopPropagation()">
+            </mat-icon>
+          </div>
+        </div>
+        <div class="flex flex-row justify-between items-center padding-des">
+          <span class="text-base font-14-heading">
+            {{ action.description }}
+          </span>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="customActions.length > 0">
+      <div class="flex flex-row py-4">
+        <span class="text-lg font-bold font-14-heading">Custom Behavior</span>
+        <label class="pg-tooltip flex flex-row items-center ml-2">
+          <mat-icon svgIcon="info" class="text-gray-200" aria-hidden="false"></mat-icon><input type="checkbox" />
+          <div class="font-light text-xs">Select Custom Behavior in description.</div>
+        </label>
+      </div>
+      <div *ngFor="let action of customActions; let i = index"
+        class="border cursor-pointer overflow-hidden pg-box-preview" (click)="selectActionCustom(action, i)"
+        [ngClass]="{'border-2 pg-border-green-bright backg pg-selected': selectedActionsCustom.has(action.id), 'pg-border-b-none': selectedActionsCustom.has(customActions[i+1]?.id)}">
+        <div class="relative h-full flex flex-row justify-between items-center">
+          <div class="flex flex-row items-center">
+            <div class="flex flex-col">
+              <span class="heading-5">{{ action.label }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-row justify-between items-center">
+          <span class="font-14-heading">
+            {{ action.description }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-start items-center mt-4">
+      <button class="bg-transparent flex items-center focus:outline-none custombtn" [helipopper]="custom"
+        helipopperTrigger="manual" (click)="customMenu.show(); clearCustomForm(); stopPropagation($event)"
+        #customMenu="helipopper" helipopperAlignment="start" helipopperPlacement="auto" helipopperVariation="popper">
+        <span style="color: #278ce9;">+ add custom</span>
+        <label class="pg-tooltip flex flex-row items-center ml-2 mb-0 focus:outline-none">
+          <mat-icon fontSet="material-icons-outlined" class="text-gray-500 mat-icon-18">info</mat-icon><input
+            type="checkbox" />
+          <div class="font-light text-xs">
+            Click to add items to make this Sprint more meaningful to you and your role
+          </div>
+        </label>
+      </button>
+    </div>
+  </div>
+
+  <ng-template #custom>
+    <div class="bg-white w-full add-custom-action" (click)="stopPropagation($event)" [formGroup]="customForm">
+      <div class="flex flex-row justify-between items-center" (click)="stopPropagation($event)">
+        <span class="font-14-heading">Add Custom Behaviour</span>
+      </div>
+      <div class="my-2" (click)="stopPropagation($event)">
+        <input class="
+          appearance-none
+          bg-transparent
+          border-b border-gray-600
+          w-full
+          text-gray-700
+          py-2
+          leading-tight
+          focus:outline-none
+        " type="text" formControlName="label" placeholder="Label*" />
+      </div>
+      <div class="my-2" (click)="stopPropagation($event)">
+        <textarea class="
+          border-b border-gray-600
+          text-gray-700
+          py-2
+          w-full
+          focus:outline-none
+          bg-transparent
+        " rows="3" formControlName="description" placeholder="Description*"></textarea>
+      </div>
+      <div class="" (click)="stopPropagation($event)">
+        <button class="btn focus:outline-none" [ngClass]="
+        customForm.valid
+            ? 'pg-bg-blue-dark text-white'
+            : 'bg-gray-400 pg-txt-blue-bright'
+        " [disabled]="customForm.invalid" (click)="
+          addCustom();
+          customMenu.hide();
+          clearCustomForm();
+          stopPropagation($event)
+        ">
+          Add
+        </button>
+      </div>
+    </div>
+  </ng-template>
+  <div class="absolute top-0 left-0 bg-gray-100 w-full h-full opacity-50 cursor-pointer" *ngIf="grayOverlay"
+    (click)="grayClicked()"></div>
+  <div class="absolute top-0 left-0 bg-gray-100 w-full h-full opacity-50 cursor-pointer" *ngIf="isLoading"></div>
+  <div class="absolute top-0 left-0 bg-transparent w-full h-full cursor-pointer spinner" *ngIf="isLoading"></div>
+</div>
+<app-mat-svg-icon></app-mat-svg-icon>

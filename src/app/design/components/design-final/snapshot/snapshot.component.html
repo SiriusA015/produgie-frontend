@@ -1,0 +1,133 @@
+<div class="mb-4 current-sprint background-sprint">
+  <div
+    class="flex flex-col lg:flex-row justify-between items-center topred"
+    *ngIf="loadCounter === 0"
+  >
+    <div
+      class="w-full justify-center lg:mb-0 flex items-center lg:justify-start"
+    >
+      <div class="flex textchange">
+        <h2 class="heading-2">Current Sprint</h2>
+        <label class="pg-tooltip-left flex flex-row items-center ml-2">
+          <mat-icon
+            class="text-gray-500 mat-icon-18"
+            fontSet="material-icons-outlined"
+            >info</mat-icon
+          >
+          <input type="checkbox" />
+          <div class="font-light">
+            {{ userSprint?.description }}
+          </div>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div>
+        <!-- <span class="text-xs">Sprint {{sprintNo}}</span> -->
+        <div class="flex flex-row items-center">
+          <div class="pg-btn-group focus:shadow-outline">
+            <div class="">
+              <button class="pbtn">
+                <span class="textstyle">Sprint {{ sprintNo }}</span>
+              </button>
+            </div>
+          </div>
+          <!-- <mat-icon
+            class="pg-txt-blue-bright ml-2 cursor-pointer"
+            (click)="editFrequency()"
+            *ngIf="message.isEdit"
+            >edit
+          </mat-icon> -->
+        </div>
+      </div>
+      <!-- <mat-icon aria-hidden="false" class="pg-txt-blue-bright cursor-pointer" (click)="editSprint()"
+        *ngIf="message.isEdit">edit</mat-icon> -->
+    </div>
+
+    <!-- <div class="flex flex-col lg:flex-row justify-between"> -->
+  </div>
+  <div class="probar">
+    <div
+      class="
+        sprintbox
+        lg:mb-0
+        lg:w-3/5
+        items-center
+        justify-center
+        sprint-background
+      "
+    >
+      <div class="heading-5 mb-2 d-flex items-center">
+        <span class="mr-2">
+          <mat-icon
+            [svgIcon]="sprint?.icon | titlecase"
+            class="mat-icon-24"
+          ></mat-icon>
+        </span>
+        {{ sprint?.label }}
+      </div>
+      <div class="font-14-heading color-text">
+        {{ sprint?.description }}
+      </div>
+    </div>
+    <div
+      class="
+        sprint-start-end
+        align
+        grid
+        lg:w-3/4
+        grid-cols-2 grid-rows-2
+        gap-10
+        ml-12
+      "
+    >
+      <div class="w-full mb-2 lg:mb-0 flex flex-row items-center font-semibold">
+        <!-- <mat-icon class="mr-2">power_settings_new</mat-icon> -->
+        <span class="mr-2 textStyle">Start on :</span>
+        <span class="heading-5">{{
+          frequency?.datetimeFrom | date: "mediumDate"
+        }}</span>
+      </div>
+      <div class="w-full mb-2 lg:mb-0 flex flex-row items-center font-semibold">
+        <!-- <mat-icon svgIcon="tick" class="mat-icon-18 mr-2"></mat-icon> -->
+        <span class="mr-2 textStyle">Ends on :</span>
+        <span class="heading-5">{{
+          frequency?.datetimeTo | date: "mediumDate"
+        }}</span>
+      </div>
+      <div class="w-full mb-2 lg:mb-0 flex flex-row items-center font-semibold">
+        <!-- <mat-icon class="mr-2">query_builder</mat-icon> -->
+        <span class="mr-2 textStyle">Duration :</span>
+        <span class="heading-5">{{selectedDuration}} {{selectedDuration == '1' ? 'Week' : 'Weeks'}}</span>
+        <!-- <mat-form-field  *ngIf="message.isEdit">
+          <mat-select [(value)]="selectedDuration" (selectionChange)="onDurationChange($event)">
+            <mat-option value="1" *ngIf="!simulator" [disabled]="frequency?.frequency === 28">1 Week</mat-option>
+            <mat-option value="4"  [disabled]="frequency?.frequency === 28 && simulator ">4 Weeks</mat-option>
+            <mat-option value="8">8 Weeks</mat-option>
+            <mat-option value="12">12 Weeks</mat-option>
+          </mat-select>
+        </mat-form-field> -->
+      </div>
+      <div class="w-full mb-2 lg:mb-0 flex flex-row items-center font-semibold">
+        <!-- <mat-icon svgIcon="dot" class="mat-icon-18 mr-2"></mat-icon> -->
+        <span class="mr-2 textStyle">Feedback frequency :</span>
+        <span class="heading-5"
+          >{{ frequency?.frequency }}
+          {{ frequency?.frequency == 1 ? "Day" : "Days" }}</span
+        >
+      </div>
+    </div>
+    <!-- <div class="progressbar-style">
+      <mat-progress-bar class="example-margin" [color]="color" [mode]="mode" [value]="value"
+        [bufferValue]="bufferValue">
+      </mat-progress-bar>
+    </div> -->
+  </div>
+
+  <div
+    *ngIf="loadCounter > 0"
+    class="bg-white px-4 py-6 shadow-lg mb-4 rounded items-center"
+  >
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+</div>

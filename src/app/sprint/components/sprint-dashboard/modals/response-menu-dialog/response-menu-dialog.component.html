@@ -1,0 +1,78 @@
+<div class="p-4 flex flex-col bg-white">
+  <div class="flex items-center cursor-pointer py-2">
+    <mat-icon
+      fontSet="material-icons-outlined"
+      class="mat-icon-24 pg-txt-blue-bright"
+      aria-hidden="false"
+      matBadge="5"
+      matBadgeColor="warn"
+      >sms</mat-icon
+    >
+    <span class="ml-2 text-gray-500" (click)="openAdvice()">Advice</span>
+    <div
+      [helipopper]="tpl1"
+      helipopperTrigger="auto"
+      #formmenu="helipopper"
+      (click)="formmenu.show()"
+      helipopperPlacement="auto"
+      helipopperVariation="popper"
+      helipopperClass="pg-hp-custom"
+      class="flex items-center ml-4"
+    >
+      <mat-icon
+        fontSet="material-icons-outlined"
+        class="text-gray-500 mat-icon-18"
+        title="Sprint crew’s advice on your development plan"
+        >info</mat-icon
+      >
+    </div>
+    <ng-template #tpl1>
+      <div class="font-light text-xs">
+        Sprint crew’s advice on your development plan
+      </div>
+    </ng-template>
+  </div>
+  <div class="flex items-center cursor-pointer py-2">
+    <mat-icon
+      fontSet="material-icons-outlined"
+      class="mat-icon-24 pg-txt-blue-bright"
+      aria-hidden="false"
+      matBadge="2"
+      matBadgeColor="warn"
+      >send</mat-icon
+    >
+    <span class="ml-2 text-gray-500" (click)="openComment()">Comments</span>
+    <div
+      [helipopper]="tpl2"
+      helipopperTrigger="auto"
+      #formmenu="helipopper"
+      (click)="formmenu.show()"
+      helipopperPlacement="auto"
+      helipopperVariation="popper"
+      helipopperClass="pg-hp-custom"
+      class="flex items-center ml-4"
+    >
+      <mat-icon
+        fontSet="material-icons-outlined"
+        class="text-gray-500 mat-icon-18"
+        title="Sprint crew’s advice on your development plan"
+        >info</mat-icon
+      >
+    </div>
+    <ng-template #tpl2>
+      <div class="font-light text-xs">
+        Sprint crew’s feedback on your sprint progress
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="flex items-center cursor-pointer py-2">
+    <mat-icon
+      fontSet="material-icons-outlined"
+      class="mat-icon-24 text-gray-400"
+      aria-hidden="false"
+      >done</mat-icon
+    >
+    <span class="ml-2 text-gray-400">Review</span>
+  </div>
+</div>

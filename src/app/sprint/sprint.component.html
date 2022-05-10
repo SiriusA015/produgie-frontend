@@ -1,0 +1,11 @@
+<div class="flex">
+  <div class="left-panel-max-width" style="min-height: 100vh;">
+    <router-outlet></router-outlet>
+    <div class="left-panel-max-width fixed bottom-0" style="z-index: 999">
+      <app-bottom-nav></app-bottom-nav>
+    </div>
+  </div>
+  <div class="sprint-mobile-dialog-container">
+    <app-sprint-on-mobile-dialog></app-sprint-on-mobile-dialog>
+  </div>
+</div>

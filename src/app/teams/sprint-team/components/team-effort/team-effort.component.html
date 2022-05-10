@@ -1,0 +1,117 @@
+<div class="w-full p-4 return-efforts-main mb-20">
+    <div class="sprint-start" *ngIf="!isSprintStarted">
+      <div class="flex flex-col my-20 position-text"> 
+        <span class="font-bold text-base text-gray-500">Your Sprint will start on {{sprintStartDate | date: 'mediumDate'}}</span>
+      </div>
+    </div>
+    <div class="flex flex-col my-20" *ngIf="!isDesignComplete">
+      <span class="font-bold text-base text-gray-500 text-center">You do not have an active sprint.</span>
+    </div>
+    <div *ngIf="isDesignComplete && isSprintStarted">
+      <div class="flex items-center mb-10">
+        <span class="heading-2">Return on Effort</span>
+        <div
+          [helipopper]="tpl"
+          helipopperTrigger="auto"
+          #formmenu="helipopper"
+          (click)="formmenu.show()"
+          helipopperPlacement="auto"
+          helipopperVariation="popper"
+          helipopperClass="pg-hp-custom"
+          class="flex items-center ml-2"
+        >
+          <mat-icon
+            fontSet="material-icons-outlined"
+            class="text-gray-500 mat-icon-18"
+            title="Sprint crew’s advice on your development plan"
+            >info</mat-icon
+          >
+        </div>
+        <ng-template #tpl>
+          <div class="font-light text-xs">
+            Summary of Sprint Crew ratings of your progress
+          </div>
+        </ng-template>
+      </div>
+      <div class="w-full flex flex-row pt-0 justify-center items-center">
+        <div
+          style="
+            writing-mode: vertical-lr;
+            transform: rotate(-180deg);
+            color: #727b84;
+          "
+          class="font-semibold mr-2"
+        >
+          {{ yAxis }}
+        </div>
+        <div class="flex flex-col return-efforts pb-4">
+          <div class="flex flex-col items-center">
+            <div class="w-full">
+              <div
+                class="w-full px-6"
+                *ngFor="let color of colors.slice(0, colors.length - 1); let i = index"
+                [ngClass]="{
+                  'px-6': i === 0,
+                  'px-3': i === 1,
+                  'px-2': i === 2,
+                  'px-0': i === 3
+                }"
+              >
+                <div
+                  class="w-full h-3 rounded-t-md"
+                  [ngStyle]="{ 'background-color': color }"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="w-full h-8 rounded-t-lg h-point-five"
+            [ngStyle]="{ 'background-color': colors[colors.length - 1] }"
+          ></div>
+          <app-scatter-directional-graph
+            [data]="data"
+            [style]="style"
+            [lineColor]="lineColor"
+            [pointColor]="pointColor"
+            [dataPoint]="dataPoint"
+            [lineWidth]="lineWidth"
+            [pointRadius]="pointRadius"
+            [pointWidth]="pointWidth"
+            [pointBorderColor]="pointBorderColor"
+            [lineNumber]="lineNumber"
+            [backgroundImage]="backgroundImage"
+            [direction]="true"
+            [pointText]="pointText"
+            [hpOffset]="[250, 200]"
+          ></app-scatter-directional-graph>
+        </div>
+      </div>
+      <div
+        class="w-full flex flex-row justify-center items-center"
+        style="color: #727b84; margin-top:10px;"
+      >
+        <div class="font-semibold mr-2">
+          <span>{{ xAxis }}</span>
+        </div>
+        <div class="display-div">
+          <div class="circle">
+            <span class="material-icons icon-color" (click)="cycleUp()">
+              keyboard_arrow_up
+              </span>
+          </div>
+         <div  class="circle margin-left-circle">
+          <span class="material-icons  icon-color" (click)="cycleDown()">
+            keyboard_arrow_down
+            </span>
+         </div>
+         </div>
+      </div>
+    </div>    
+    <div class="w-full fixed bottom-0">
+        <app-team-bottom-nav></app-team-bottom-nav>
+    </div>
+  </div>
+  
+  
+  
+  

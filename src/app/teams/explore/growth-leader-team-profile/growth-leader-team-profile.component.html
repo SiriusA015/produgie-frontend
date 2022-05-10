@@ -1,0 +1,123 @@
+<app-explore-navbar></app-explore-navbar>
+<mat-card class="card-section">
+  <div class="col-md-12">
+    <ng-container *ngIf="!isErrorInReport">
+      <div class="row">
+        <div class="col-lg-8 order-2 order-md-1 order-lg-1">
+          <!-- progress bar -->
+          <div *ngIf="isLoading">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </div>
+          <div class="margin-top-circle">
+            <app-donut [rankChecked]="rankChecked" [energize]="glaCapEnergise" [perform]="glaCapPerform"
+              [transform]="glaCapTransform" *ngIf="(isCircle || !isCycle && !isBox) && !isLoading">
+            </app-donut>
+            <app-donut-box [capabilities]="fCapabilities" [rankChecked]="rankChecked"
+              *ngIf="(!isCircle && !isCycle) && !isLoading">
+            </app-donut-box>
+            <app-donut-cycle [selfChecked]="selfChecked" [isHighest]="isHighest" [isLowest]="isLowest" [teamMemberChecked]="teamMemberChecked"
+              [profileData]="profileData" [RankOrder]="RankOrder" [isRecommended]=isRecommended [rankChecked]="rankChecked" *ngIf="(!isCircle && !isBox) && !isLoading">
+            </app-donut-cycle>
+          </div>
+        </div>
+        <div class="col-lg-4 order-1 order-md-2 order-lg-2">
+          <div class="row">
+            <div class="col-md-6 col-lg-12">
+              <div class="row">
+                <div class="col-md-6 col-lg-6 filtercs padding-view">
+                  <label class="pg-tooltip flex flex-row ml-3 text-lg view-text">View as:</label>
+                  <label class="pg-tooltip flex flex-row ml-3">
+                    <mat-icon *ngIf="!isCycle" svgIcon="snapshot_cycle1"
+                      class=" mat-icon-28 cursor-pointer text-gray-500  icon-size" (click)="onViewChange('cycle')"
+                      aria-hidden="false">
+                    </mat-icon>
+                    <mat-icon *ngIf="isCycle" svgIcon="snapshot_cycle"
+                      class=" mat-icon-28 cursor-pointer pg-txt-blue-bright icon-size" (click)="onViewChange('cycle')"
+                      aria-hidden="false">
+                    </mat-icon>
+                    <input type="checkbox" />
+                    <div class="font-light text-xs gla-tooltip">Cycle View</div>
+                  </label>
+  
+                  <label class="pg-tooltip flex flex-row ml-3">
+                    <mat-icon *ngIf="!isCircle" svgIcon="Graph_View1"
+                      class=" mat-icon-28 cursor-pointer text-gray-500  icon-size" (click)="onViewChange('donut')"
+                      aria-hidden="false">
+                    </mat-icon>
+                    <mat-icon *ngIf="isCircle" svgIcon="Graph_View"
+                      class=" mat-icon-28 cursor-pointer pg-txt-blue-bright icon-size" (click)="onViewChange('donut')"
+                      aria-hidden="false">
+                    </mat-icon>
+                    <input type="checkbox" />
+                    <div class="font-light text-xs gla-tooltip">Donut View</div>
+                  </label>
+  
+                  <label class="pg-tooltip flex flex-row ml-3">
+                    <mat-icon *ngIf="!isBox" svgIcon="Color"
+                      class=" mat-icon-28 cursor-pointer text-gray-500  icon-size" (click)="onViewChange('matrix')"
+                      aria-hidden="false">
+                    </mat-icon>
+                    <mat-icon *ngIf="isBox" svgIcon="Color1"
+                      class=" mat-icon-28 cursor-pointer pg-txt-blue-bright icon-size" (click)="onViewChange('matrix')"
+                      aria-hidden="false">
+                    </mat-icon>
+                    <input type="checkbox" />
+                    <div class="font-light text-xs gla-tooltip">2x2(Grid) view</div>
+                  </label>
+                 
+                </div>
+  
+                <div class="col-md-6 col-lg-6">
+                  <div class="detailReport-width bg-white shadow bg-white cursor-pointer py-3">
+                    <!-- openDetailedDialog -->
+                    <mat-icon class="mat-icon pg-txt-blue-bright align-middle mat-icon-18  material-icons ml-2">
+                      insert_drive_file
+                    </mat-icon>
+                    <span *ngIf="!isCycle" class="font-semibold font view-font" (click)="openGlaDetailReport()">View Detailed Report</span>
+                    <span *ngIf="isCycle && !isCircle && !isBox" class="text-2x1 font-semibold font view-font" (click)="openCycleDetailReport()">View Detailed Report</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <mat-card class="mt-10 col-md-6 col-lg-12">
+              <p class="font-medium filter-text">Filter</p>
+              <p class="checkboxstyle mt-4">
+                <input class="input-width" type="checkbox" value="high" [checked]="isHighest" name="rank"
+                  (click)="changeHighest()"> <span class="checkbox-text">Highest</span>
+              </p>
+              <p class="checkboxstyle">
+                <input class="input-width" type="checkbox" value="low" [checked]="isLowest" name="rank"
+                  (click)="changeLowest()"> <span class="checkbox-text">Lowest</span>
+              </p>
+              <p class="checkboxstyle">
+                <input class="input-width" type="checkbox" value="recommended" [checked]="isRecommended" name="rank" 
+                  (click)="toggleRecommended()"> <span class="checkbox-text">Recommended</span>
+  
+              </p>
+              <p class="checkboxstyle">
+                <input class="input-width" type="checkbox" value="rank" [checked]="rankChecked" name="rank"
+                  (click)="changeRankCheck()"> <span class="checkbox-text">Rank Order</span>
+              </p>
+              <p class="checkboxstyle" *ngIf=" !isCircle && !isBox ">
+                <input class="input-width" type="checkbox" value="self" [checked]="selfChecked" name="rank"
+                  (click)="changeself()"> <span class="checkbox-text">Manager</span>
+              </p>
+              <p class="checkboxstyle" *ngIf=" !isCircle && !isBox ">
+                <input class="input-width" type="checkbox" value="team-members" [checked]="teamMemberChecked" name="rank"
+                  (click)="changeteams()"> <span class="checkbox-text"> Team Members</span>
+              </p>
+  
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="isErrorInReport">
+      <div class="flex flex-col justify-center items-center h w-full">
+      <div class="text-2xl font-semibold">{{ infoMsg || 'Something went wrong' }}</div>
+    </div>
+    </ng-container>
+  </div>
+</mat-card>
+<app-mat-svg-icon></app-mat-svg-icon>

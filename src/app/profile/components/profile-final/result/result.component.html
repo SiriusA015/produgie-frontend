@@ -1,0 +1,68 @@
+<div class="flex flex-col lg:flex-row justify-between px-24 pb-10">
+  <div class="flex flex-col lg:flex-row justify-between items-start w-full">
+    <div class="w-1/3 p-18">
+      <div class="heading-2 mt-3 mb-8">Results</div>
+      <div class="">
+        <mat-form-field>
+          <mat-select (selectionChange)="getSelectResult($event.value)" [(value)]="selectedValue">
+            <mat-option *ngFor="let item of resultsSelect" [value]="item.key">
+              {{item.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <app-result-trend [selectedValue]="selectedValue"></app-result-trend>
+      </div>
+    </div>
+
+    <div class="w-1/3 p-18">
+      <div class="heading-2 mt-3 mb-8">Advice</div>
+      <div class="advice-area" *ngIf="advice && advice.length!=0">
+        <div class="flex flex-col general-card mb-2" *ngFor="let item of advice">
+          <div class="flex flex-row justify-between items-center">
+            <div class="flex flex-row items-center">
+              <div>
+                <img class="w-16 h-16 rounded-full" alt="Avatar" [src]="item.avatar"/>
+              </div>
+              <div class="flex flex-col ml-4">
+                  <span class="f-14 fc-05 fw-700">
+                      {{item.name}}
+                  </span>
+                  <span class="f-12 fc-8E fw-400">
+                      {{item.role}}
+                  </span>
+              </div>
+            </div>
+            <div>
+                <span class="f-12 fc-8E fw-400">{{item.time| date: 'M/d': 'UTC'}}</span>
+            </div>
+          </div>
+          <div class="mt-2">
+            <p class="f-12 fc-05 fw-400">{{item.text}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="overflow-hidden bg-white advice-area-nodata" *ngIf="!advice || advice.length==0">
+        <h2 class="no-data-text">No advice</h2>
+      </div>
+    </div>
+
+    <div class="w-1/3 p-18">
+      <div class="heading-2 mt-3 mb-8">Feedback</div>
+      <div class="advice-area" *ngIf="feedback && feedback.length!=0">
+        <div class="flex flex-col general-card mb-2" *ngFor="let item of feedback">
+          <div class="flex flex-row justify-between items-start">
+            <div>
+              <p class="f-12 fc-05 fw-400">{{item.text}}</p>
+            </div>
+            <div>
+                <span class="f-12 fc-8E fw-400">{{item.time| date: 'M/d': 'UTC'}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="overflow-hidden bg-white advice-area-nodata" *ngIf="!feedback || feedback.length==0">
+        <h2 class="no-data-text">No feedback</h2>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+.pg-link-text{
+    color: #484848;
+}
+.pg-sidebar{
+    // width: 348px;
+    width: 100px;
+    position: fixed;
+    top: 0;
+    min-height: 100vh;
+    .sidebar-content {
+      display: none;
+    }
+}
+
+.pg-sidebar:hover{
+  width: 24rem;
+  .sidebar-content {
+    display: flex;
+  }
+}

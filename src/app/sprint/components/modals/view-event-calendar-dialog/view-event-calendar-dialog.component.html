@@ -1,0 +1,160 @@
+<div
+  class="flex flex-row justify-between items-start p-8 border-b border-gray-300"
+>
+  <div class="flex flex-col">
+    <span class="font-bold text-2xl"> View Event </span>
+    <span class="text-base text-gray-500">
+      {{ data.day | date: "mediumDate" }} | {{ data.day | date: "EEEE" }}
+    </span>
+  </div>
+  <div class="flex flex-row justify-between items-center">
+    <mat-icon
+      class="text-gray-500 mr-2"
+      *ngIf="
+        !data.isStop &&
+        data.day.getTime() >= today &&
+        !data?.event?.roadmap?.isFinished &&
+        data?.event?.eventType?.code !== 'WC' &&
+          data?.event?.eventType?.code !== 'FF'
+      "
+      (click)="deleteEvent()"
+      >delete</mat-icon
+    >
+    <mat-icon
+      class="pg-txt-blue-bright mr-2"
+      *ngIf="
+        !data.isStop &&
+        data.day.getTime() >= today &&
+        (!data?.event?.roadmap?.isFinished ||
+          data?.event?.eventType?.code === 'WC') &&
+        data?.event?.eventType?.code !== 'FF'
+      "
+      (click)="editEvent()"
+      >create</mat-icon
+    >
+    <mat-icon (click)="onNoClick()">close</mat-icon>
+  </div>
+</div>
+<div *ngIf="loadCounter > 0">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div
+  class="flex flex-row pg-bg-green-light p-8 items-center justify-between"
+  *ngIf="
+    data?.event?.eventType?.code !== 'WC' &&
+    data?.event?.eventType?.code !== 'FF'
+  "
+  [ngClass]="{ 'pg-bg-green': data?.event?.roadmap?.isFinished }"
+>
+  <span
+    class="text-md font-semibold"
+    [ngClass]="
+      data?.event?.roadmap?.isFinished ? 'text-white' : 'text-green-600'
+    "
+    >{{ data?.event?.action?.label }}: {{ data?.event?.action?.description }}</span
+  >
+  <div class="flex items-center" *ngIf="data?.event?.roadmap?.isFinished">
+    <span
+      class="flex justify-center items-center rounded-full pg-bg-icon-orange w-6 h-6 object-contain mr-2"
+    >
+      <mat-icon class="text-white mat-icon-18">check</mat-icon>
+    </span>
+    <span class="text-white text-md font-semibold">Completed</span>
+  </div>
+</div>
+<div class="mt-6"></div>
+<div class="flex flex-row justify-betweeen items-center px-8 py-4 w-full">
+  <span class="w-1/3 text-gray-600 font-semibold"> Activity </span>
+  <span class="w-2/3 flex justify-end text-right text-gray-600 font-semibold">
+    {{ data?.event?.eventType?.title }}
+  </span>
+</div>
+<hr />
+<div
+  class="flex flex-row justify-betweeen items-center px-8 py-4"
+  *ngIf="data?.event?.eventType?.code === 'ACS'"
+>
+  <span class="w-1/3 text-gray-600 font-semibold"> Stakeholder </span>
+  <span class="w-2/3 flex justify-end items-center">
+    <div
+      class="h-12 w-12 p-1 rounded-full bg-white"
+      *ngFor="let sh of stakeholder; let i = index"
+      [ngClass]="{ '-ml-4': i > 0 }"
+    >
+      <span
+        class="pg-bg-blue-dark rounded-full h-full w-full flex justify-center items-center border-white text-white uppercase"
+      >
+        {{ sh.name.charAt(0) }}
+      </span>
+    </div>
+  </span>
+</div>
+<div
+  class="flex flex-row justify-betweeen items-center px-8 py-4"
+  *ngIf="data?.event?.eventType?.code === 'ESC'"
+>
+  <span class="w-1/3 text-gray-600 font-semibold"> Support Crew </span>
+  <span class="w-2/3 flex justify-end items-center">
+    <div
+      class="h-12 w-12 p-1 rounded-full bg-white"
+      *ngFor="let crew of activityCrew; let i = index"
+      [ngClass]="{ '-ml-4': i > 0 }"
+    >
+      <span
+        class="pg-bg-blue-dark rounded-full h-full w-full flex justify-center items-center border-white text-white uppercase"
+      >
+        {{ crew.name.charAt(0) }}
+      </span>
+    </div>
+  </span>
+</div>
+<hr />
+<div
+  class="flex flex-row justify-betweeen items-center px-8 py-4"
+  *ngIf="
+    data?.event?.eventType?.code !== 'FSL' &&
+    data?.event?.eventType?.code !== 'WC' &&
+    data?.event?.eventType?.code !== 'FF'
+  "
+>
+  <span class="w-1/3 text-gray-600 font-semibold">
+    {{ data?.event?.eventDetails?.isOnline ? "Online" : "Offline" }} Meeting
+  </span>
+
+  <a
+    *ngIf="data?.event?.eventDetails?.isOnline"
+    [href]="data?.event?.eventDetails?.meetingUrl"
+    class="w-2/3 pg-txt-blue-bright flex justify-end font-semibold"
+  >
+    {{ data?.event?.eventDetails?.meetingUrl }}
+  </a>
+  <span
+    *ngIf="!data?.event?.eventDetails.isOnline"
+    class="w-2/3 pg-txt-blue-bright flex justify-end font-semibold"
+  >
+    {{ data?.event?.eventDetails?.address }}
+  </span>
+</div>
+<hr />
+<div
+  class="flex flex-row justify-betweeen items-center px-8 py-4 font-semibold"
+  *ngIf="data?.event?.eventType?.code !== 'FF'"
+>
+  <span class="w-1/3 text-gray-600"> Schedule </span>
+  <span class="w-2/3 flex justify-end text-gray-600 font-semibold">
+    {{ meetingTimeFrom }} - {{ meetingTimeTo }}
+  </span>
+</div>
+<hr />
+<div
+  class="flex flex-col items-start px-8 py-4"
+  *ngIf="
+    data?.event?.eventType?.code !== 'WC' &&
+    data?.event?.eventType?.code !== 'FF'
+  "
+>
+  <span class="text-gray-600 font-semibold">Description</span>
+  <p class="text-sm text-gray-500 font-semibold pt-2">
+    {{ data?.event?.eventDetails?.description }}
+  </p>
+</div>

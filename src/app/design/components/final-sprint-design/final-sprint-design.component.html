@@ -1,0 +1,65 @@
+<div class="pg-container mx-auto" style="padding: 0 10rem;">
+  <div class="mt-4"></div>
+  <div class="mb-2 flex flex-row justify-between">
+    <div class="flex flex-row items-center">
+      <span class="text-3xl">Finalize Sprint Design</span>
+    </div>
+    <div class="flex flex-row items-center">
+      <div class="flex flex-row items-center cursor-pointer">
+        <button
+          class="bg-transparent flex items-center focus:outline-none"
+          [routerLink]="['/design/sprint-frequency']"
+        >
+          <mat-icon class="ml-2 text-gray-600" aria-hidden="false"
+            >keyboard_backspace</mat-icon
+          >
+          <span class="text-sm text-gray-600">Prev</span>
+        </button>
+      </div>
+      <!-- <div
+        class="flex flex-row items-center cursor-pointer ml-4 pg-txt-orange-strength"
+      >
+        <button
+          class="bg-transparent flex items-center focus:outline-none"
+          [routerLink]="['/design/sprint-final']"
+        >
+          <span class="text-sm">Next</span
+          ><mat-icon class="ml-2" aria-hidden="false">arrow_right_alt</mat-icon>
+        </button>
+      </div> -->
+    </div>
+  </div>
+
+  <div class="mb-5 flex flex-row items-center">
+    <span class="text-2xl" style="color: #3d5dff">SPRINT PREVIEW</span>
+    <label class="pg-tooltip flex flex-row items-center ml-2"
+      ><mat-icon
+        svgIcon="info"
+        class="text-gray-200"
+        aria-hidden="false"
+      ></mat-icon
+      ><input type="checkbox" />
+      <div>
+        Consider current on-the-job challenges you have that will require you to
+        Set Vision and Inspire Action. Common challenges that stretch this area
+        are listed below. If one of them matches your on-the-job challenge,
+        select it for your development sprint. If not, please select the custom
+        sprint option.
+      </div></label
+    >
+  </div>
+
+  <div class="w-full flex justify-between">
+    <div class="w-3/4 rounded-lg bg-white mr-4">
+      <app-fs-strengths></app-fs-strengths>
+      <app-fs-focus></app-fs-focus>
+      <app-fs-sprint></app-fs-sprint>
+      <app-fs-sprint-crew></app-fs-sprint-crew>
+    </div>
+    <div class="w-1/4 h-48 rounded-lg sticky" style="top: 5rem">
+      <!-- <app-fs-weekly-checkin></app-fs-weekly-checkin> -->
+    </div>
+  </div>
+</div>
+
+<app-mat-svg-icon></app-mat-svg-icon>

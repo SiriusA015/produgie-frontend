@@ -1,0 +1,542 @@
+<div class="main-dashboard-div w-full flex justify-center" *ngIf="!loading">
+  <div class="explor-part">
+    <div class="common-background explore-main-step1">
+      <div class="title">Explore</div>
+      <div class="explore-body pb-3 mb-3">
+        <mat-card>
+          <div class="card-title">Assessment</div>
+          <div class="flex justify-between mat-card__inner">
+            <span class="title-label">Growth Leader <br />Assessment</span>
+            <button
+              *ngIf="!glaSurveyCompleted"
+              class="
+                px-6
+                rounded-full
+                justify-center
+                text-white
+                pg-bg-blue-dark
+              "
+              [routerLink]="['/explore/aboutme']"
+            >
+              Incomplete
+            </button>
+            <button
+              *ngIf="glaSurveyCompleted"
+              class="
+                px-6
+                rounded-full
+                justify-center
+                text-white
+                pg-bg-green
+                completed
+              "
+            >
+              Completed
+            </button>
+          </div>
+          <div class="flex justify-between mat-card__inner">
+            <span class="title-label">Growth Leader 360 </span>
+            <button
+              *ngIf="!gl360statuscompleted"
+              class="
+                px-6
+                rounded-full
+                justify-center
+                text-white
+                pg-bg-blue-dark
+                cursor-pointer
+              "
+              [routerLink]="['/gl360/nominee']"
+            >
+              Incomplete
+            </button>
+            <button
+              *ngIf="gl360statuscompleted"
+              class="px-6 rounded-full justify-center text-white pg-bg-green-dark completed cursor-pointer"
+              [routerLink]="'/explore/aboutgrowthleaders'"
+              [queryParams]="{gl360Active: 'true'}"
+              >
+              Completed
+            </button>
+          </div>
+        </mat-card>
+
+        <mat-card *ngIf="show">
+          <div class="card-title">Priorities for <br />Development</div>
+          <div
+            class="mat-card__inner"
+            *ngFor="let prioritie of priorities; index as i"
+          >
+            {{ i + 1 }}. {{ prioritie.label }}
+         </div>
+        </mat-card>
+      </div>
+    </div>
+      <div
+      class="common-background mt-8 explore-main-step2"
+      *ngIf="showportfolio"
+    >
+      <div class="title">My Portfolio</div>
+      <button class="flex justify-evenly items-center btn btn-white focus:outline-none mb-3" (click)="onViewHistroy()">
+        <span class="">View History</span>
+      </button>
+      <div
+        class="slide-main portfolio-body"
+        *ngFor="let item of myportfolioSlides"
+      >
+        <div class="flex items-center justify-center slide-body">
+          <div class="slide-button" *ngIf="item.data.length > 1">
+            <span
+              class="material-icons cursor-pointer"
+              (click)="clickNextSlide(false, item, myportfolioSlides.length)"
+            >
+              keyboard_arrow_left
+            </span>
+          </div>
+          <mat-card class="slide-cards">
+            <div class="container">
+              <div class="sliders">
+                <ng-container *ngFor="let subitem of item.data; let i = index">
+                  <div class="flex slider" *ngIf="item.activeIndex == i">
+                    <img
+                      src="/assets/icons/dashboard/Communicator.svg"
+                      alt=""
+                      width="20"
+                    />
+                    <span class="font-semibold">{{ subitem.label }}</span>
+                    <br />
+                    </div>
+                </ng-container>
+              </div>
+            </div>
+          </mat-card>
+          <div class="slide-button" *ngIf="item.data.length > 1">
+            <span
+              class="material-icons cursor-pointer"
+              (click)="clickNextSlide(true, item, item.data.length)"
+            >
+              keyboard_arrow_right
+            </span>
+          </div>
+        </div>
+        <div
+          class="flex items-center justify-center px-10 slide-footer"
+          *ngIf="item.data.length > 1"
+        >
+          <span
+            class="material-icons mx-1 slide-footer-button"
+            [ngClass]="
+              item.activeIndex == i ? 'slide-footer-button-active' : ''
+            "
+            *ngFor="let subitem of item.data; let i = index"
+          >
+            circle
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="current-sprint">
+    <div class="common-background" *ngIf="show">
+      <div class="flex items-center">
+        <div class="title">Current Sprint</div>
+        <label
+          class="pg-tooltip flex flex-row items-center ml-2 focus:outline-none"
+        >
+          <mat-icon
+            role="img"
+            fontset="material-icons-outlined"
+            class="
+              mat-icon
+              notranslate
+              text-gray-500
+              mat-icon-22
+              material-icons-outlined
+              mat-icon-no-color
+              info-possition
+            "
+            aria-hidden="true"
+            >info</mat-icon
+          >
+          <input type="checkbox" />
+          <div class="font-light text-xs z-20 color-black">
+            {{ toolTipCurrentSprint }}
+          </div>
+        </label>
+      </div>
+
+        <div class="current-sprint-subpart flex justify-center">
+        <div class="current-sprint-subpart-step1" *ngIf="!isPlanLoading">
+          <mat-card class="current-sprint-subpart1">
+            <div class="card-title">Focus for Development</div>
+            <div class="flex justify-left mt-2 items-center card-body">
+              <span class="icon-pad">
+                <mat-icon
+                  [svgIcon]="focusForDevelopment?.icon"
+                  class="mat-icon-24"
+                ></mat-icon>
+              </span>
+              {{ focusForDevelopment?.label }}
+            </div>
+          </mat-card>
+          <mat-card class="current-sprint-subpart2">
+            <div class="font-bold sub-title">SELECTED SPRINT</div>
+            <span>
+              <mat-icon
+                [svgIcon]="selectedSprint?.icon | titlecase"
+                class="mat-icon-24"
+              ></mat-icon>
+            </span>
+            <div class="card-title">{{ selectedSprint?.label }}</div>
+            <div>{{ selectedSprint?.description }}</div>
+          </mat-card>
+          <mat-card>
+            <div class="card-title">Up Next</div>
+
+            <div class="calendar-wrapper up-next-calendar">
+              <!-- TODO: new code added for calender -->
+              <div>
+                <div
+                  class="
+                    flex flex-row
+                    justify-center
+                    items-center
+                    cal cal-month-view
+                  "
+                >
+                  <div
+                    class=""
+                    mwlCalendarPreviousView
+                    [view]="view"
+                    [(viewDate)]="viewDate"
+                  >
+                    <mat-icon class="inconcolor cursor-pointer"
+                      >keyboard_arrow_left</mat-icon
+                    >
+                  </div>
+                  <div>
+                    <h3 class="heading-2">
+                      {{ viewDate | calendarDate: view + "ViewTitle" }}
+                    </h3>
+                  </div>
+                  <div
+                    mwlCalendarNextView
+                    [view]="view"
+                    [(viewDate)]="viewDate"
+                  >
+                    <mat-icon class="inconcolor cursor-pointer"
+                      >keyboard_arrow_right</mat-icon
+                    >
+                  </div>
+                </div>
+                <div class="cal">
+                  <mwl-calendar-month-view
+                    [viewDate]="viewDate"
+                    [events]="events"
+                    [cellTemplate]="customCellTemplate"
+                  >
+                  </mwl-calendar-month-view>
+                      </div>
+              </div>
+
+              <!-- TODO: new code added for calender -->
+            </div>
+          </mat-card>
+          <mat-card *ngIf="feedback?.length > 2">
+            <div class="card-title">Return on Effort</div>
+            <!-- ROI Implement -->
+            <div class="w-full flex flex-row pt-0 justify-center items-center">
+              <div
+                style="
+                  writing-mode: vertical-lr;
+                  transform: rotate(-180deg);
+                  color: #727b84;
+                "
+                class="font-semibold mr-2"
+              >
+                {{ yAxis }}
+              </div>
+              <div class="flex flex-col return-efforts pb-4">
+                <div class="flex flex-col items-center">
+                  <div class="w-full">
+                    <div
+                      class="w-full px-6"
+                      *ngFor="
+                        let color of colors.slice(0, colors.length - 1);
+                        let i = index
+                      "
+                      [ngClass]="{
+                        'px-6': i === 0,
+                        'px-3': i === 1,
+                        'px-2': i === 2,
+                        'px-0': i === 3
+                      }"
+                    >
+                      <div
+                        class="w-full h-3 rounded-t-md"
+                        [ngStyle]="{ 'background-color': color }"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="w-full h-8 rounded-t-lg h-point-five"
+                  [ngStyle]="{ 'background-color': colors[colors.length - 1] }"
+                ></div>
+                <app-scatter-directional-graph
+                  [data]="data"
+                  [style]="style"
+                  [lineColor]="lineColor"
+                  [pointColor]="pointColor"
+                  [dataPoint]="dataPoint"
+                  [lineWidth]="lineWidth"
+                  [pointRadius]="pointRadius"
+                  [pointWidth]="pointWidth"
+                  [pointBorderColor]="pointBorderColor"
+                  [lineNumber]="lineNumber"
+                  [backgroundImage]="backgroundImage"
+                  [direction]="true"
+                  [pointText]="pointText"
+                  [hpOffset]="[250, 200]"
+                ></app-scatter-directional-graph>
+              </div>
+            </div>
+            <div
+              class="w-full flex flex-row justify-center items-center"
+              style="color: #727b84; margin-top: 10px"
+            >
+              <div class="font-semibold mr-2">
+                <span>{{ xAxis }}</span>
+              </div>
+              <div class="display-div">
+                <div class="circle">
+                  <span class="material-icons icon-color" (click)="cycleUp()">
+                    keyboard_arrow_up
+                  </span>
+                </div>
+                <div class="circle margin-left-circle">
+                  <span class="material-icons icon-color" (click)="cycleDown()">
+                    keyboard_arrow_down
+                  </span>
+                </div>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+        <div class="current-sprint-subpart-step1" *ngIf="isPlanLoading">
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+        <div class="current-sprint-subpart-step1 ml-4 mr-4">
+          <div
+            class="slide-main"
+            *ngFor="let item of currentSprintsSlides; index as mainIndex"
+          >
+            <div class="slide-title flex justify-between">
+              {{ item.title }}
+              <img
+                src="/assets/icons/dashboard/bar_chart.svg"
+                alt=""
+                class="mr-10 cursor-pointer"
+                width="20"
+                (click)="openBottomDialog(mainIndex)"
+              />
+            </div>
+
+            <div class="flex items-center justify-center slide-body">
+              <div class="slide-button" *ngIf="item.data.length > 1">
+                <span
+                  class="material-icons cursor-pointer"
+                  (click)="
+                    clickNextSlide(false, item, currentSprintsSlides.length)
+                  "
+                >
+                  keyboard_arrow_left
+                </span>
+              </div>
+              <mat-card class="slide-cards">
+                <img
+                  src="/assets/icons/dashboard/Communicator.svg"
+                  alt=""
+                  class=""
+                  width="20"
+                />
+                <div class="container">
+                  <div class="sliders">
+                    <ng-container
+                      *ngFor="let subitem of item.data; let i = index"
+                    >
+                      <div class="slider" *ngIf="item.activeIndex == i">
+                        <span class="sub-title">{{ subitem.label }}</span>
+                        <br />
+                        <span class="content">
+                          {{ subitem.description }}
+                        </span>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+              </mat-card>
+              <div class="slide-button" *ngIf="item.data.length > 1">
+                <span
+                  class="material-icons cursor-pointer"
+                  (click)="clickNextSlide(true, item, item.data.length)"
+                >
+                  keyboard_arrow_right
+                </span>
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-center px-10 slide-footer"
+              *ngIf="item.data.length > 1"
+            >
+              <span
+                class="material-icons mx-1 slide-footer-button"
+                [ngClass]="
+                  item.activeIndex == i ? 'slide-footer-button-active' : ''
+                "
+                *ngFor="let subitem of item.data; let i = index"
+              >
+                circle
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="current-sprint-subpart-step1 ml-4 mr-4" *ngIf="isPlanLoading">
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+        <div class="current-sprint-subpart-step1 current-sprint-tab-part">
+          <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="Feedback">
+              <mat-card
+                class="current-sprint-tab-cards"
+                *ngFor="let feed of feedback; index as i"
+              >
+                    <mat-card-content>
+                  <p>
+                    {{ feed?.text }}
+                  </p>
+                </mat-card-content>
+                <hr />
+              </mat-card>
+              <ng-container *ngIf="feedback?.length <=0 ">
+                <div class="column mat-card__inner">
+                  <mat-card class="current-sprint-tab-cards">
+                    <mat-card-content>
+                      <p>No feedback available </p>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </ng-container>
+              <!-- <div class="w-full view-all-button">
+                <button mat-stroked-button class="btn btn-white">
+                  <b>View All</b>
+                </button>
+              </div> -->
+            </mat-tab>
+            <mat-tab label="Advice">
+              <mat-card class="" *ngFor="let advs of advice; index as i">
+                <mat-card-header>
+                  <div mat-card-avatar>
+                    <img id="profileId" src="{{advs.imageUrl ? imageBaseUrl+advs.imageUrl : '/assets/avatars/'+advs.avatar+'.svg' }}" (error)="onImgError($event,advs.avatar)" alt="Your avatar" />
+                  </div>
+                  <mat-card-title class="font-bold">{{
+                    advs?.name
+                  }}</mat-card-title>
+                  <mat-card-subtitle>{{ advs?.role }}</mat-card-subtitle>
+                  <div class="time-div">1 d</div>
+                </mat-card-header>
+                <mat-card-content>
+                  <p class="mt-2">
+                    {{ advs?.text }}
+                  </p>
+                </mat-card-content>
+                <hr />
+              </mat-card>
+              <ng-container *ngIf="advice?.length <=0 ">
+                <div class="column mat-card__inner">
+                  <mat-card class="current-sprint-tab-cards">
+                    <mat-card-content>
+                      <p>No advice available </p>
+                    </mat-card-content>
+                  </mat-card>
+                </div>                
+              </ng-container>
+              <!-- <div class="w-full view-all-button">
+                <button mat-stroked-button class="btn btn-white">
+                  <b>View All</b>
+                </button>
+              </div> -->
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-div" *ngIf="!show">
+      <div class="sub-title-text">Please design your Sprint!</div>
+    </div>
+
+    <div class="common-background trending-main-div mt-8">
+      <div class="title">Trending in Produgie</div>
+      <div class="flex justify-center w-full trending-main-div__inner">
+        <mat-card class="w-1/3">
+          <div class="card-title font-bold">Top 3 Roles</div>
+          
+          <div class="title-label mat-card__inner"
+            *ngFor="let jobrole of jobRoles; index as i">
+            {{ i + 1 }}. {{ jobrole.title }}
+          </div>
+          <mat-progress-bar mode="indeterminate" *ngIf="trendingLoading"></mat-progress-bar>
+        </mat-card>
+        <mat-card class="w-1/3">
+          <div class="card-title font-bold">Top 3 Priorities</div>
+          <div class="title-label mat-card__inner"
+            *ngFor="let strength of fadPriorities; index as i">
+            {{ i + 1 }}. {{ strength.label }}
+             </div>
+          <mat-progress-bar mode="indeterminate" *ngIf="trendingLoading"></mat-progress-bar>
+        </mat-card>
+        <mat-card class="w-1/3">
+          <div class="card-title font-bold">Top 3 Sprint Focus Areas</div>
+          <div
+            class="title-label mat-card__inner"
+            *ngFor="let fad of FADs; index as i"
+          >
+            {{ i + 1 }}. {{ fad.label }}
+          </div>
+          <mat-progress-bar mode="indeterminate" *ngIf="trendingLoading"></mat-progress-bar>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <app-mat-svg-icon></app-mat-svg-icon>
+</div>
+
+<ng-template #customCellTemplate let-day="day" let-locale="locale">
+  <div class="cal-cell-top">
+   <span class="cal-day-number back-color" *ngIf="day.events.length > 0">
+     <span [mwlCalendarTooltip]= day.events
+     [tooltipEvent]="dayEvent"
+     [tooltipTemplate]="cellTooltipTemplate"
+     [tooltipPlacement]="'top'">
+      {{ day.date | calendarDate: "monthViewDayNumber":locale }}
+
+     </span>
+    </span>
+    <span class="cal-day-number" *ngIf="day.events.length <= 0">
+      {{ day.date | calendarDate: "monthViewDayNumber":locale }} </span> 
+ </div>
+ </ng-template>
+
+<div *ngIf="loading">
+  <ngx-spinner
+    bdColor="rgb(255,255,255)"
+    size="large"
+    color="#1ebe80"
+    type="ball-spin-clockwise-fade"
+    [fullScreen]="false"
+  >
+    <p style="color: black">Fetching Data...</p>
+  </ngx-spinner>
+</div>

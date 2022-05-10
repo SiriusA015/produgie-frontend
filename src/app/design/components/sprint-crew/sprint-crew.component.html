@@ -1,0 +1,93 @@
+<div class="pg-container mx-auto" style="padding: 0 10rem;">
+  <div class="mt-4"></div>
+  <div class="mb-2 flex flex-row justify-between">
+    <div class=" flex flex-row items-center">
+      <span class="text-3xl">Set up Sprint Crew</span
+      ><label class="pg-tooltip flex flex-row items-center ml-2"
+      ><mat-icon
+        svgIcon="info"
+        class="text-gray-200"
+        aria-hidden="false"
+      ></mat-icon
+      ><input type="checkbox" />
+      <div>
+        <h4 class="font-medium mb-1">Sprint Crew</h4>
+        <span class="font-light text-xs">
+          Consider current on-the-job challenges you have that will require you
+        to Set Vision and Inspire Action. Common challenges that stretch this
+        area are listed below. If one of them matches your on-the-job
+        challenge, select it for your development sprint. If not, please
+        select the custom sprint option.
+        </span>
+        </div>
+      </label
+    >
+    </div>
+    <div class="flex flex-row items-center">
+      <div class="flex flex-row items-center cursor-pointer">
+        <button
+          class="bg-transparent flex items-center focus:outline-none"
+          [routerLink]="['/design/sprint-frequency']"
+        >
+          <mat-icon class="ml-2 text-gray-600" aria-hidden="false"
+            >keyboard_backspace</mat-icon
+          >
+          <span class="text-sm text-gray-600">Prev</span>
+        </button>
+      </div>
+      <div
+        class="flex flex-row items-center cursor-pointer ml-4 text-gray-600"
+        [ngClass]="{ 'pg-txt-orange-strength': crews.length > 0 }"
+      >
+        <button
+          class="bg-transparent flex items-center focus:outline-none"
+          [disabled]="crews.length === 0"
+          [routerLink]="['/design/sprint-crew-role']"
+        >
+          <span class="text-sm">Next</span
+          ><mat-icon class="ml-2" aria-hidden="false">arrow_right_alt</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-5 flex flex-row items-center">
+    <span class="text-2xl pg-txt-blue-bright">SELECT CREW</span
+    >
+  </div>
+
+  <div class="flex flex-wrap">
+    <div class="crew-card border-2 border-gray-500 border-dashed flex items-center justify-center cursor-pointer rounded-md mr-4 mb-4"
+      (click)="openCrewAdd()"
+    >
+      <div class="felx flex-col items-center justify-center" style="color: #FC9F6A;">
+        <div class="h-10 w-10 text-center flex items-center justify-center rounded-full mb-4" style="background-color: #FC9F6A;">
+          <mat-icon style="color: white;">add</mat-icon>
+        </div>
+        <div class="w-10 font-medium text-center text-lg">Add</div>
+      </div>
+
+    </div>
+
+    <div class="crew-card flex border-2 items-center justify-center cursor-pointer rounded-md mr-4 mb-4 relative" style="border-color: #3AA76D;" *ngFor="let user of crews">
+      <div class="felx flex-col items-center justify-center text-center">
+        <div class="flex items-center justify-center w-full">
+          <div class="w-20 h-20" *ngIf="user?.avatar">
+            <img [src]="user?.avatar" alt="Avatar">
+          </div>
+          <div class="w-20 h-20 bg-orange-400 text-center text-3xl text-white rounded-full flex justify-center items-center font-semibold" *ngIf="!user?.avatar">
+            {{ user.name[0] | uppercase }}
+          </div>
+        </div>
+
+        <div class="font-medium text-center text-xl" style="color: #333333;">{{user.name}}</div>
+        <div class="font-medium text-sm" style="color: #808080;">{{user.role}}</div>
+      </div>
+
+      <div class="absolute border-2 selected-crew-done pl-2 pt-2"><mat-icon>done</mat-icon></div>
+    </div>
+  </div>
+
+
+</div>
+<app-mat-svg-icon></app-mat-svg-icon>
